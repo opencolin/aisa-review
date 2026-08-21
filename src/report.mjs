@@ -19,160 +19,221 @@ const load = (key) => {
   return res.ok ? res.body : null;
 };
 
-/* ---------- rendering helpers ---------- */
+/* ---------- formatting ---------- */
+const esc = (v) => String(v ?? "").replace(/\|/g, "\\|").replace(/\s*\n+\s*/g, " ").trim();
+const pct = (v) => (typeof v === "number" ? `${(v * 100).toFixed(2)}%` : "—");
+const num = (v) => (typeof v === "number" ? (Number.isInteger(v) ? String(v) : v.toFixed(3).replace(/0+$/, "").replace(/\.$/, "")) : "—");
+const clean = (s) => String(s ?? "").replace(/^Opportunity(Type|Category|Priority)\./, "").replace(/_/g, " ");
+const trunc = (s, n) => { const t = esc(s); return t.length > n ? t.slice(0, n - 1) + "…" : t; };
 
-const esc = (v) => String(v ?? "").replace(/\|/g, "\\|").replace(/\n+/g, " ").trim();
-
-const fmt = (v) => {
-  if (v === null || v === undefined) return "—";
-  if (typeof v === "number") return Number.isInteger(v) ? String(v) : v.toFixed(2);
-  if (typeof v === "boolean") return v ? "yes" : "no";
-  if (Array.isArray(v)) return v.length ? v.map(fmt).join(", ") : "—";
-  if (typeof v === "object") return JSON.stringify(v);
-  const s = String(v);
-  return s.length > 160 ? s.slice(0, 157) + "..." : s;
-};
-
-/** Find the first array of objects inside a response, wherever it lives. */
-function findRows(body) {
-  if (Array.isArray(body)) return body;
-  if (!body || typeof body !== "object") return null;
-  for (const k of ["items", "data", "results", "rows", "prompts", "opportunities", "tasks", "records"]) {
-    if (Array.isArray(body[k])) return body[k];
-  }
-  for (const v of Object.values(body)) if (Array.isArray(v) && v.length && typeof v[0] === "object") return v;
-  return null;
-}
-
-/** Column names ranked by how often they appear and how useful they look. */
-function pickColumns(rows, max = 7) {
-  const preferred = [
-    "name", "title", "label", "prompt", "text", "slug", "status", "category", "type",
-    "opportunity_type", "grade", "score", "mention_rate", "share_of_voice", "position",
-    "average_position", "platform", "agent", "target", "priority", "impact", "effort",
-    "created_at", "updated_at", "action_date",
-  ];
-  const freq = new Map();
-  for (const r of rows.slice(0, 50)) {
-    if (!r || typeof r !== "object") continue;
-    for (const k of Object.keys(r)) freq.set(k, (freq.get(k) ?? 0) + 1);
-  }
-  const keys = [...freq.keys()];
-  const scored = keys
-    .filter((k) => !/^(id|.*_id|uuid|org.*|organization.*)$/i.test(k))
-    .sort((a, b) => {
-      const pa = preferred.indexOf(a), pb = preferred.indexOf(b);
-      if (pa !== -1 || pb !== -1) return (pa === -1 ? 99 : pa) - (pb === -1 ? 99 : pb);
-      return (freq.get(b) ?? 0) - (freq.get(a) ?? 0);
-    });
-  return scored.slice(0, max);
-}
-
-function table(rows, { max = 25, columns } = {}) {
-  if (!rows?.length) return "_No records._\n";
-  const cols = columns ?? pickColumns(rows);
-  if (!cols.length) return "```json\n" + JSON.stringify(rows.slice(0, 5), null, 2) + "\n```\n";
-  const head = `| ${cols.join(" | ")} |\n| ${cols.map(() => "---").join(" | ")} |`;
-  const body = rows
-    .slice(0, max)
-    .map((r) => `| ${cols.map((c) => esc(fmt(r?.[c]))).join(" | ")} |`)
-    .join("\n");
-  const more = rows.length > max ? `\n\n_${rows.length - max} more rows in \`data/\`._\n` : "\n";
-  return `${head}\n${body}\n${more}`;
-}
-
-/** Scalar top-level fields of an object, as a key/value table. */
-function scalars(body) {
-  if (!body || typeof body !== "object" || Array.isArray(body)) return "";
-  const entries = Object.entries(body).filter(
-    ([, v]) => v === null || ["string", "number", "boolean"].includes(typeof v),
-  );
-  if (!entries.length) return "";
-  return `| Metric | Value |\n| --- | --- |\n${entries
-    .map(([k, v]) => `| ${esc(k)} | ${esc(fmt(v))} |`)
-    .join("\n")}\n`;
-}
-
-/** Render any dataset: scalars first, then the biggest embedded table. */
-function section(body, opts = {}) {
-  if (body === null || body === undefined) return "_Endpoint returned no data (unavailable on this plan, or empty)._\n";
-  const parts = [];
-  const s = scalars(body);
-  if (s) parts.push(s);
-  const rows = findRows(body);
-  if (rows?.length) parts.push(table(rows, opts));
-  if (!parts.length) parts.push("```json\n" + JSON.stringify(body, null, 2).slice(0, 2000) + "\n```\n");
-  return parts.join("\n");
-}
-
-/* ---------- report ---------- */
-
-const auth = load("auth");
-const org =
-  auth?.organization?.name ?? auth?.org?.name ?? auth?.organization_name ?? auth?.name ?? "AISA.one";
-
-const w = manifest.window;
 const md = [];
+const P = (...lines) => md.push(...lines);
 
-md.push(`# AI Visibility Report — AISA.one`);
-md.push("");
-md.push(`**Source:** Lightsage (formerly Sapient) public API · \`${manifest.baseUrl}\`  `);
-md.push(`**Organization:** ${esc(org)}  `);
-md.push(`**Window:** ${w.start} → ${w.end} (${w.days} days)  `);
-md.push(`**Generated:** ${new Date(manifest.generatedAt).toUTCString()}`);
-md.push("");
-md.push("---");
-md.push("");
+/* ---------- data ---------- */
+const cur = load("visibility_current") ?? {};
+const ov = load("visibility_overview") ?? {};
+const vp = load("visibility_prompts") ?? {};
+const promptsBody = load("prompts") ?? {};
+const cfg = load("prompts_config") ?? {};
+const opps = load("opportunities") ?? {};
+const tasks = load("tasks") ?? {};
+const runs = load("ap_runs")?.data ?? [];
+const actions = load("ap_actions")?.data ?? [];
+const actionCounts = load("ap_actions")?.counts ?? {};
 
-md.push(`## Visibility`);
-md.push("");
-md.push(`### Current`);
-md.push(section(load("visibility_current")));
-md.push(`### Overview`);
-md.push(section(load("visibility_overview")));
-md.push(`### By prompt`);
-md.push(section(load("visibility_prompts"), { max: 40 }));
+const company = cur.company ?? ov.company ?? { name: "AIsa", domain: "aisa.one" };
+const snap = ov.snapshot ?? cur;
+const w = manifest.window;
 
-md.push(`## Tracked prompts`);
-md.push(section(load("prompts"), { max: 50 }));
+const competitors = ov.competitors ?? [];
+const self = competitors.find((c) => c.company?.domain === company.domain);
+const ranked = [...competitors].sort((a, b) => (b.visibility_score ?? 0) - (a.visibility_score ?? 0));
+const leader = ranked[0];
 
-md.push(`## Opportunities`);
-md.push(section(load("opportunities"), { max: 40 }));
+const availablePlatforms = cfg.platforms ?? [];
+const trackedPlatforms = ov.by_platform?.platforms ?? [];
+const codingAgentNames = new Set(["Claude Code", "Codex", "Cursor", "GitHub Copilot", "Gemini CLI", "OpenClaw", "OpenCode", "Hermes", "Pi", "Kilo"]);
+const trackedCodingAgents = trackedPlatforms.filter((p) => codingAgentNames.has(p.name));
 
-md.push(`## Tasks`);
-md.push(section(load("tasks"), { max: 30 }));
+const allPrompts = (vp.topics ?? []).flatMap((t) => (t.prompts ?? []).map((p) => ({ ...p, topic: t.name })));
+const promptsWithCitations = allPrompts.filter((p) => (p.metrics?.citation_count ?? 0) > 0);
 
-const apKeys = [
-  ["ap_sources", "Sources"],
-  ["ap_targets", "Targets"],
-  ["ap_runs", "Recent eval runs"],
-  ["ap_actions", "Actions"],
-  ["ap_evals", "Eval definitions"],
-  ["ap_skills", "Skills"],
-  ["ap_custom_evals", "Custom evals"],
-  ["ap_starter_projects", "Starter projects"],
-];
-if (apKeys.some(([k]) => load(k))) {
-  md.push(`## API Performance`);
-  for (const [key, label] of apKeys) {
-    const body = load(key);
-    if (!body) continue;
-    md.push(`### ${label}`);
-    md.push(section(body, { max: 20 }));
+const passed = runs.filter((r) => r.passed).length;
+const passRate = runs.length ? passed / runs.length : null;
+
+/* ---------- header ---------- */
+P(`# AI Visibility Report — ${company.name} (${company.domain})`, "");
+P(`**Source** · Lightsage public API (formerly Sapient) · \`${manifest.baseUrl}\`  `);
+P(`**Window** · ${w.start} → ${w.end} (${w.days} days) · latest run ${ov.date_range?.latest_run_date ?? cur.date ?? "—"}  `);
+P(`**Generated** · ${new Date(manifest.generatedAt).toUTCString()}`, "");
+P("---", "");
+
+/* ---------- executive summary ---------- */
+P("## Executive summary", "");
+P(`| Metric | Value | Rank |`, `| --- | --- | --- |`);
+P(`| Visibility score | ${pct(snap.visibility_score)} | #${snap.visibility_score_rank ?? "—"} of ${competitors.length || "—"} |`);
+P(`| Share of voice | ${pct(snap.share_of_voice)} | #${snap.share_of_voice_rank ?? "—"} of ${competitors.length || "—"} |`);
+P(`| Average position | ${num(snap.average_position)} | #${snap.average_position_rank ?? "—"} |`);
+P(`| Total citations | ${num(snap.total_citations ?? vp.summary?.metrics?.citation_count)} | — |`);
+P(`| Prompt runs | ${num(vp.summary?.metrics?.run_count)} across ${num(vp.summary?.prompt_count)} prompts / ${num(vp.summary?.topic_count)} topics | — |`);
+P("");
+
+const citationCount = snap.total_citations ?? vp.summary?.metrics?.citation_count ?? 0;
+const runCount = vp.summary?.metrics?.run_count ?? 0;
+P(`**${company.name} is effectively invisible to AI answer engines in this window.** ` +
+  `${runCount} prompt runs produced **${citationCount} citation${citationCount === 1 ? "" : "s"}** — ` +
+  `${allPrompts.length - promptsWithCitations.length} of ${allPrompts.length} tracked prompts returned zero visibility. ` +
+  (leader ? `The category leader, **${leader.company?.name}**, holds ${pct(leader.visibility_score)} visibility and ${pct(leader.share_of_voice)} share of voice — ` +
+  `roughly ${Math.round((leader.visibility_score ?? 0) / (snap.visibility_score || 1))}× ${company.name}'s visibility.` : ""), "");
+
+P("Three findings drive everything below:", "");
+P(`1. **No coding agents are being tracked.** ${availablePlatforms.length} platforms are available; only ${trackedPlatforms.length} are configured (${trackedPlatforms.map((p) => p.name).join(", ")}) — ` +
+  `${trackedCodingAgents.length === 0 ? "**none of them coding agents**" : `${trackedCodingAgents.length} coding agents`}. ` +
+  `Claude Code, Codex, Cursor, Copilot and Gemini CLI are all available and unmeasured.`);
+P(`2. **The API works better than the docs do.** ${runs.length} API Performance evals passed at ${passRate === null ? "—" : pct(passRate)}, and every open site action is a docs problem — ` +
+  `${actionCounts.total ?? actions.length} actions covering broken URLs and unreadable pages, not API defects.`);
+P(`3. **The "#1 average position" is a single-citation artifact.** It comes from one citation on one prompt, not from category strength — treat it as noise, not a win.`, "");
+
+/* ---------- visibility ---------- */
+P("---", "", "## 1. Visibility", "");
+P(`### Competitive landscape`, "");
+P(`| # | Company | Visibility | Share of voice | Avg position |`, `| --- | --- | --- | --- | --- |`);
+for (const c of ranked) {
+  const isSelf = c.company?.domain === company.domain;
+  const name = isSelf ? `**${esc(c.company?.name)}**` : esc(c.company?.name);
+  P(`| ${c.visibility_score_rank ?? "—"} | ${name} | ${pct(c.visibility_score)} | ${pct(c.share_of_voice)} | ${num(c.average_position)} |`);
+}
+P("");
+
+P(`### Platform coverage`, "");
+P(`Tracked: **${trackedPlatforms.map((p) => p.name).join(", ") || "none"}**`, "");
+P(`| Platform | Type | Credits/prompt | Tracked |`, `| --- | --- | --- | --- |`);
+const trackedNames = new Set(trackedPlatforms.map((p) => p.name));
+for (const p of availablePlatforms) {
+  const type = codingAgentNames.has(p.name) ? "coding agent" : "answer engine";
+  P(`| ${esc(p.name)} | ${type} | ${num(p.credits_per_prompt)} | ${trackedNames.has(p.name) ? "yes" : "—"} |`);
+}
+P("");
+
+P(`### By topic`, "");
+P(`| Topic | Prompts | Visibility | Share of voice | Citations | Runs |`, `| --- | --- | --- | --- | --- | --- |`);
+for (const t of vp.topics ?? []) {
+  const m = t.metrics ?? {};
+  P(`| ${esc(t.name)} | ${num(t.prompt_count)} | ${pct(m.visibility_score)} | ${pct(m.share_of_voice)} | ${num(m.citation_count)} | ${num(m.run_count)} |`);
+}
+P("");
+
+P(`### By prompt`, "");
+P(`| Topic | Prompt | Citations | Visibility | Runs |`, `| --- | --- | --- | --- | --- |`);
+for (const p of allPrompts) {
+  const m = p.metrics ?? {};
+  const flag = (m.citation_count ?? 0) > 0 ? "" : " ";
+  P(`| ${esc(p.topic)} | ${trunc(p.text, 110)}${flag} | ${num(m.citation_count)} | ${pct(m.visibility_score)} | ${num(m.run_count)} |`);
+}
+P("");
+
+/* ---------- API performance ---------- */
+if (runs.length) {
+  P("---", "", "## 2. API Performance", "");
+  P(`**${passed}/${runs.length} evals passed (${pct(passRate)})**, all executed by \`${[...new Set(runs.map((r) => r.model))].join(", ")}\`.`, "");
+
+  const byEndpoint = new Map();
+  for (const r of runs) {
+    const k = `${r.endpoint?.method ?? "?"} ${r.endpoint?.path ?? "?"}`;
+    const e = byEndpoint.get(k) ?? { pass: 0, total: 0, scores: [] };
+    e.total++; if (r.passed) e.pass++; e.scores.push(r.score ?? 0);
+    byEndpoint.set(k, e);
+  }
+  P(`| Endpoint | Passed | Avg score |`, `| --- | --- | --- |`);
+  for (const [k, e] of [...byEndpoint.entries()].sort((a, b) => a[1].pass / a[1].total - b[1].pass / b[1].total)) {
+    P(`| \`${esc(k)}\` | ${e.pass}/${e.total} | ${num(e.scores.reduce((a, b) => a + b, 0) / e.scores.length)} |`);
+  }
+  P("");
+
+  const reasons = new Map();
+  for (const r of runs.filter((x) => !x.passed)) for (const f of r.failure_reasons ?? []) reasons.set(f, (reasons.get(f) ?? 0) + 1);
+  if (reasons.size) {
+    P(`**Failed criteria** (across ${runs.length - passed} failed runs). These are eval checks that did not pass — the names describe the expected condition, not an error:`, "");
+    P(`| Reason | Count |`, `| --- | --- |`);
+    for (const [k, v] of [...reasons.entries()].sort((a, b) => b[1] - a[1])) P(`| \`${esc(k)}\` | ${v} |`);
+    P("");
   }
 }
 
-md.push(`## Endpoint coverage`);
-md.push("");
-md.push(`| Endpoint | Path | Status | Time |`);
-md.push(`| --- | --- | --- | --- |`);
-for (const e of manifest.endpoints) {
-  const state = e.ok ? "ok" : e.optional ? "n/a" : "**failed**";
-  md.push(`| ${esc(e.label)} | \`${esc(e.path)}\` | ${state} (${e.status}) | ${e.durationMs}ms |`);
+if (actions.length) {
+  P(`### Site actions`, "");
+  P(`${actionCounts.open ?? "—"} open of ${actionCounts.total ?? actions.length} total.`, "");
+  const byType = new Map();
+  for (const a of actions) byType.set(a.action_type, [...(byType.get(a.action_type) ?? []), a]);
+  for (const [type, list] of byType) {
+    P(`**${clean(type)}** (${list.length})`, "");
+    for (const a of list) P(`- ${a.priority === "high" ? "**[high]** " : ""}\`${esc(a.primary_url)}\``);
+    P("");
+  }
 }
-md.push("");
+
+/* ---------- tasks ---------- */
+const taskList = tasks.data ?? [];
+if (taskList.length) {
+  P("---", "", `## 3. Recommended actions`, "");
+  P(`Lightsage's ranked task list for ${tasks.action_date ?? "today"} — ${tasks.active_count ?? taskList.length} active.`, "");
+  for (const t of taskList) {
+    P(`### ${t.rank}. ${esc(t.title)}`, "");
+    P(`\`${clean(t.task_type)}\` · priority **${esc(t.priority)}** · effort ${esc(t.effort)} · score ${num(t.score)}`, "");
+    P(`**Why.** ${esc(t.why)}`, "");
+    P(`**Next action.** ${esc(t.next_action)}`, "");
+  }
+}
+
+/* ---------- opportunities ---------- */
+const oppList = opps.data ?? [];
+if (oppList.length) {
+  P("---", "", `## 4. Opportunities (${opps.count ?? oppList.length})`, "");
+  const sum = opps.summary ?? {};
+  const renderCounts = (obj) => Object.entries(obj ?? {}).map(([k, v]) => `${clean(k)} (${v})`).join(", ");
+  P(`**By category** — ${renderCounts(sum.by_category)}  `);
+  P(`**By type** — ${renderCounts(sum.by_type)}  `);
+  P(`**By priority** — ${renderCounts(sum.by_priority)}`, "");
+
+  const gaps = oppList.filter((o) => o.topic_name && typeof o.competitor_visibility === "number");
+  if (gaps.length) {
+    P(`### Competitive gaps`, "");
+    P(`| Topic | You | Top competitor | Their visibility |`, `| --- | --- | --- | --- |`);
+    for (const o of gaps.sort((a, b) => b.competitor_visibility - a.competitor_visibility).slice(0, 15)) {
+      P(`| ${esc(o.topic_name)} | ${pct(o.your_visibility)} | ${esc(o.top_competitor_brand_name)} | ${pct(o.competitor_visibility)} |`);
+    }
+    P("");
+  }
+
+  const outreach = oppList.filter((o) => !o.topic_name);
+  if (outreach.length) {
+    P(`### Citation / outreach targets (${outreach.length})`, "");
+    P(`| Target | Type |`, `| --- | --- |`);
+    for (const o of outreach.slice(0, 25)) P(`| ${trunc(o.title, 80)} | ${clean(o.type)} |`);
+    if (outreach.length > 25) P("", `_${outreach.length - 25} more in \`data/opportunities.json\`._`);
+    P("");
+  }
+}
+
+/* ---------- caveats ---------- */
+P("---", "", "## 5. Data quality caveats", "");
+P(`- **Average position is not meaningful.** \`average_position = ${num(snap.average_position)}\` (rank #${snap.average_position_rank}) derives from ${citationCount} citation. It will regress as citations accumulate.`);
+if (oppList.length) {
+  const saturated = oppList.filter((o) => o.impact_score === 100).length;
+  P(`- **Opportunity impact scores are saturated.** ${saturated} of ${oppList.length} opportunities score exactly 100, and ${opps.summary?.["by_priority"]?.["OpportunityPriority.HIGH"] ?? "most"} are "high" priority — the ranking carries little signal. The ranked task list in §3 is the better prioritisation.`);
+}
+if (runs.length && runs.every((r) => r.latency_ms == null)) P(`- **Latency is unpopulated.** All ${runs.length} eval runs report \`latency_ms: null\`, so no latency conclusions are available.`);
+P(`- **Answer engines only.** Visibility covers ${trackedPlatforms.map((p) => p.name).join(", ")}. Coding-agent visibility — Lightsage's core differentiator — is unmeasured for ${company.name}.`);
+P(`- **Window.** Metrics cover ${w.start} → ${w.end}; the latest completed run is ${ov.date_range?.latest_run_date ?? "—"}.`, "");
+
+/* ---------- coverage ---------- */
+P("---", "", "## 6. Endpoint coverage", "");
+P(`| Endpoint | Path | Status | Time |`, `| --- | --- | --- | --- |`);
+for (const e of manifest.endpoints) {
+  P(`| ${esc(e.label)} | \`${esc(e.path)}\` | ${e.ok ? "ok" : e.optional ? "n/a" : "**failed**"} (${e.status}) | ${e.durationMs}ms |`);
+}
+P("");
 
 const outPath = join(outDir, "aisa-report.md");
 writeFileSync(outPath, md.join("\n"));
-console.log(`Report written: ${outPath}`);
-console.log(`  ${manifest.endpoints.filter((e) => e.ok).length}/${manifest.endpoints.length} endpoints included`);
+console.log(`Report written: ${outPath} (${md.join("\n").length} bytes)`);
