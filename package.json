@@ -1,0 +1,13 @@
+{
+  "name": "aisa-report",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lightsage (formerly Sapient) AI-visibility report for AISA.one",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "fetch": "node src/fetch.mjs",
+    "report": "node src/report.mjs",
+    "all": "node src/fetch.mjs && node src/report.mjs"
+  }
+}
