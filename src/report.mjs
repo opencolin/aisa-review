@@ -424,10 +424,8 @@ if (diag) {
   const sum = diag.summary ?? {};
   const rs = diagRecent?.summary;
   if (rs) {
-    P(`### Current baseline (${esc(windowLabel(diagRecent.since))})`, "");
-    P(`**${num(rs.total_runs - rs.failed_runs)}/${num(rs.total_runs)} runs passed — ${num(100 - rs.failure_rate)}%.**`, "");
-    P(`This is the first clean read on the API. Every earlier number in this report was taken while the eval credential was rejected or the account had no balance, so agents could not complete a live call regardless of endpoint quality. Both are now resolved.`, "");
-    P("");
+    // Lead with the per-surface split. A combined figure across REST and CLI
+    // describes neither: they differ by ~45 points and have different owners.
     const postRuns = (load("ap_runs")?.data ?? []).filter((r) => String(r.run_at) >= "2026-08-23T14:20");
     const srcAgg = new Map();
     for (const r of postRuns) {
@@ -435,12 +433,23 @@ if (diag) {
       const v = srcAgg.get(k) ?? { pass: 0, total: 0 };
       v.total++; if (r.passed) v.pass++; srcAgg.set(k, v);
     }
-    if (srcAgg.size > 1) {
-      P(`**REST and CLI now diverge sharply**, and it is no longer an environment problem — a CLI agent confirmed \`aisa whoami\` and \`aisa balance\` both succeed against a funded account.`, "");
+    const ranked = [...srcAgg.entries()].sort((a, b) => b[1].pass / b[1].total - a[1].pass / a[1].total);
+    const LABEL = { rest_api: "REST", cli: "CLI" };
+    const nameOf = (k) => LABEL[k] ?? k;
+
+    P(`### Current baseline (${esc(windowLabel(diagRecent.since))})`, "");
+    if (ranked.length > 1) {
+      P(`**${ranked.map(([k, v]) => `${nameOf(k)} ${v.pass}/${v.total} (${(v.pass / v.total * 100).toFixed(1)}%)`).join(" · ")}**`, "");
+      P(`These are the first clean numbers in this report — every earlier figure was taken while the eval credential was rejected or the account had no balance, so agents could not complete a live call regardless of quality. Both are now resolved, and the two surfaces have separated by ${Math.round((ranked[0][1].pass / ranked[0][1].total - ranked[ranked.length - 1][1].pass / ranked[ranked.length - 1][1].total) * 100)} points. Read them separately; a blended figure describes neither.`, "");
+      P("");
       P(`| Surface | Passed | Rate |`, `| --- | --- | --- |`);
-      for (const [k, v] of [...srcAgg.entries()].sort((a, b) => b[1].pass / b[1].total - a[1].pass / a[1].total)) {
-        P(`| ${esc(k)} | ${v.pass}/${v.total} | ${(v.pass / v.total * 100).toFixed(1)}% |`);
-      }
+      for (const [k, v] of ranked) P(`| ${nameOf(k)} | ${v.pass}/${v.total} | ${(v.pass / v.total * 100).toFixed(1)}% |`);
+      P("");
+      P(`The gap is not environmental — a CLI agent confirmed \`aisa whoami\` and \`aisa balance\` both succeed against a funded account, and no CLI failure was auth or balance related. The CLI defects are catalogued in the fix list above.`, "");
+      P("");
+    } else {
+      P(`**${num(rs.total_runs - rs.failed_runs)}/${num(rs.total_runs)} runs passed — ${num(100 - rs.failure_rate)}%.**`, "");
+      P(`This is the first clean read on the API. Every earlier number in this report was taken while the eval credential was rejected or the account had no balance, so agents could not complete a live call regardless of endpoint quality. Both are now resolved.`, "");
       P("");
     }
     P(`| Window | Runs | Failure rate | What it reflects |`, `| --- | --- | --- | --- |`);

@@ -2,7 +2,7 @@
 
 **Source** · Lightsage public API (formerly Sapient) · `https://api.lightsage.com`  
 **Window** · 2026-07-24 → 2026-08-23 (30 days) · latest run 2026-08-23  
-**Generated** · Sun, 23 Aug 2026 19:04:07 GMT
+**Generated** · Sun, 23 Aug 2026 19:06:19 GMT
 
 
 ## Read this first
@@ -490,17 +490,18 @@ _This eval ran 2026-08-11, **before** the eval credential was replaced — and i
 
 ### Current baseline (since 2026-08-23 14:20 UTC)
 
-**116/178 runs passed — 65.2%.**
+**REST 52/54 (96.3%) · CLI 64/124 (51.6%)**
 
-This is the first clean read on the API. Every earlier number in this report was taken while the eval credential was rejected or the account had no balance, so agents could not complete a live call regardless of endpoint quality. Both are now resolved.
+These are the first clean numbers in this report — every earlier figure was taken while the eval credential was rejected or the account had no balance, so agents could not complete a live call regardless of quality. Both are now resolved, and the two surfaces have separated by 45 points. Read them separately; a blended figure describes neither.
 
-
-**REST and CLI now diverge sharply**, and it is no longer an environment problem — a CLI agent confirmed `aisa whoami` and `aisa balance` both succeed against a funded account.
 
 | Surface | Passed | Rate |
 | --- | --- | --- |
-| rest_api | 52/54 | 96.3% |
-| cli | 64/124 | 51.6% |
+| REST | 52/54 | 96.3% |
+| CLI | 64/124 | 51.6% |
+
+The gap is not environmental — a CLI agent confirmed `aisa whoami` and `aisa balance` both succeed against a funded account, and no CLI failure was auth or balance related. The CLI defects are catalogued in the fix list above.
+
 
 | Window | Runs | Failure rate | What it reflects |
 | --- | --- | --- | --- |
@@ -806,28 +807,28 @@ Notes for whoever implements it:
 
 | Endpoint | Path | Status | Time |
 | --- | --- | --- | --- |
-| API health | `/v1/status` | ok (200) | 82ms |
-| Key / org identity | `/v1/auth/status` | ok (200) | 497ms |
-| Current visibility | `/v1/visibility/current` | ok (200) | 1000ms |
-| Visibility overview | `/v1/visibility/overview` | ok (200) | 3335ms |
-| Per-prompt visibility | `/v1/visibility/prompts` | ok (200) | 2831ms |
-| Tracked prompts | `/v1/prompts` | ok (200) | 486ms |
-| Prompt config / topics | `/v1/prompts/config` | ok (200) | 770ms |
-| Opportunities | `/v1/opportunities` | ok (200) | 8161ms |
-| Daily tasks | `/v1/tasks` | ok (200) | 599ms |
-| API Perf sources | `/v1/api-performance/sources` | ok (200) | 1038ms |
-| API Perf targets | `/v1/api-performance/targets` | ok (200) | 340ms |
-| API Perf config | `/v1/api-performance/config` | ok (200) | 1048ms |
-| API Perf runs | `/v1/api-performance/runs` | ok (200) | 7205ms |
-| API Perf actions | `/v1/api-performance/actions` | ok (200) | 1544ms |
-| API Perf eval defs | `/v1/api-performance/evals` | ok (200) | 1431ms |
-| API Perf skills | `/v1/api-performance/skills` | ok (200) | 726ms |
-| Custom evals | `/v1/api-performance/custom-evals` | ok (200) | 3077ms |
-| Starter projects | `/v1/api-performance/starter-projects` | ok (200) | 727ms |
-| Agent behaviour diagnosis | `/v1/api-performance/diagnose` | ok (200) | 6311ms |
-| Agent behaviour diagnosis (2026-08-23T14:20:00Z) | `/v1/api-performance/diagnose` | ok (200) | 6001ms |
-| AISA MCP manifest | `https://aisa.one/.well-known/mcp.json` | ok (200) | 182ms |
-| Flagged doc URLs re-checked live | `(live)` | ok (200) | 1742ms |
-| Ora agent-readiness | `https://ora.ai/api/score/aisa.one` | ok (200) | 80ms |
-| Cloudflare agent-ready scan | `https://isitagentready.com/api/scan` | ok (200) | 6829ms |
-| npm CLI package | `https://registry.npmjs.org/@aisa-one/cli` | ok (200) | 186ms |
+| API health | `/v1/status` | ok (200) | 133ms |
+| Key / org identity | `/v1/auth/status` | ok (200) | 535ms |
+| Current visibility | `/v1/visibility/current` | ok (200) | 901ms |
+| Visibility overview | `/v1/visibility/overview` | ok (200) | 3038ms |
+| Per-prompt visibility | `/v1/visibility/prompts` | ok (200) | 2669ms |
+| Tracked prompts | `/v1/prompts` | ok (200) | 457ms |
+| Prompt config / topics | `/v1/prompts/config` | ok (200) | 722ms |
+| Opportunities | `/v1/opportunities` | ok (200) | 7266ms |
+| Daily tasks | `/v1/tasks` | ok (200) | 609ms |
+| API Perf sources | `/v1/api-performance/sources` | ok (200) | 896ms |
+| API Perf targets | `/v1/api-performance/targets` | ok (200) | 337ms |
+| API Perf config | `/v1/api-performance/config` | ok (200) | 1005ms |
+| API Perf runs | `/v1/api-performance/runs` | ok (200) | 4412ms |
+| API Perf actions | `/v1/api-performance/actions` | ok (200) | 1325ms |
+| API Perf eval defs | `/v1/api-performance/evals` | ok (200) | 1292ms |
+| API Perf skills | `/v1/api-performance/skills` | ok (200) | 611ms |
+| Custom evals | `/v1/api-performance/custom-evals` | ok (200) | 2792ms |
+| Starter projects | `/v1/api-performance/starter-projects` | ok (200) | 616ms |
+| Agent behaviour diagnosis | `/v1/api-performance/diagnose` | ok (200) | 7243ms |
+| Agent behaviour diagnosis (2026-08-23T14:20:00Z) | `/v1/api-performance/diagnose` | ok (200) | 6550ms |
+| AISA MCP manifest | `https://aisa.one/.well-known/mcp.json` | ok (200) | 1151ms |
+| Flagged doc URLs re-checked live | `(live)` | ok (200) | 2127ms |
+| Ora agent-readiness | `https://ora.ai/api/score/aisa.one` | ok (200) | 318ms |
+| Cloudflare agent-ready scan | `https://isitagentready.com/api/scan` | ok (200) | 8818ms |
+| npm CLI package | `https://registry.npmjs.org/@aisa-one/cli` | ok (200) | 193ms |
