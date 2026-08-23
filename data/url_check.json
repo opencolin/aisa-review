@@ -1,12 +1,12 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 1384,
+  "durationMs": 1617,
   "path": "(live HEAD/GET of flagged doc URLs)",
   "body": {
-    "checkedAt": "2026-08-23T14:10:42.581Z",
-    "total": 19,
-    "stillBroken": 16,
+    "checkedAt": "2026-08-23T15:21:30.176Z",
+    "total": 24,
+    "stillBroken": 19,
     "urls": [
       {
         "url": "https://aisa.one/docs/authentication",
@@ -129,6 +129,41 @@
       },
       {
         "url": "https://aisa.one/docs/api-reference/firecrawl/post_firecrawl-search",
+        "actionType": "broken_url",
+        "priority": "medium",
+        "status": 404,
+        "stillBroken": true
+      },
+      {
+        "url": "https://aisa.one/docs/api-reference/financial/get_analyst-estimates",
+        "actionType": "page_not_llm_readable",
+        "priority": "medium",
+        "status": 200,
+        "stillBroken": false
+      },
+      {
+        "url": "https://aisa.one/docs/api-reference/financial/get_filings",
+        "actionType": "page_not_llm_readable",
+        "priority": "medium",
+        "status": 200,
+        "stillBroken": false
+      },
+      {
+        "url": "https://aisa.one/docs/api-reference/other/post_firecrawl_parse",
+        "actionType": "broken_url",
+        "priority": "medium",
+        "status": 404,
+        "stillBroken": true
+      },
+      {
+        "url": "https://aisa.one/docs/api-reference/financial/get_filings_items",
+        "actionType": "broken_url",
+        "priority": "medium",
+        "status": 404,
+        "stillBroken": true
+      },
+      {
+        "url": "https://aisa.one/docs/api-reference/essentials/get_credits-balance",
         "actionType": "broken_url",
         "priority": "medium",
         "status": 404,

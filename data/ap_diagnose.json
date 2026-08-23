@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 5566,
+  "durationMs": 6035,
   "path": "/v1/api-performance/diagnose",
   "body": {
     "company": {
@@ -12,10 +12,10 @@
     },
     "since": "30d",
     "summary": {
-      "total_runs": 384,
-      "failed_runs": 263,
-      "passed_runs": 121,
-      "failure_rate": 68.5,
+      "total_runs": 438,
+      "failed_runs": 265,
+      "passed_runs": 173,
+      "failure_rate": 60.5,
       "top_failed_endpoints": [
         {
           "endpoint": "POST /v1/images/edits",
@@ -24,6 +24,10 @@
         {
           "endpoint": "POST /apis/v1/exa/agent/runs",
           "count": 4
+        },
+        {
+          "endpoint": "POST /apis/v1/perplexity/sonar-deep-research",
+          "count": 3
         },
         {
           "endpoint": "POST /v1/chat/completions",
@@ -46,22 +50,18 @@
           "count": 3
         },
         {
+          "endpoint": "GET /v1/errors",
+          "count": 2
+        },
+        {
           "endpoint": "POST /apis/v1/firecrawl/batch-scrape",
-          "count": 2
-        },
-        {
-          "endpoint": "community-search aisa twitter community-search [options] <query>",
-          "count": 2
-        },
-        {
-          "endpoint": "space aisa twitter space [options] <space-id>",
           "count": 2
         }
       ],
       "top_failed_models": [
         {
           "model": "global.anthropic.claude-opus-5",
-          "count": 263
+          "count": 265
         }
       ],
       "top_failure_reasons": [
@@ -79,15 +79,15 @@
         },
         {
           "reason": "exit_code_zero",
-          "count": 84
+          "count": 86
         },
         {
           "reason": "completed_task",
-          "count": 58
+          "count": 59
         },
         {
           "reason": "clean_execution",
-          "count": 30
+          "count": 31
         },
         {
           "reason": "efficiency",
@@ -108,16 +108,292 @@
       ]
     },
     "failure_analysis": {
-      "total_runs": 99,
-      "failed_runs": 68,
-      "failure_rate": 68.7,
+      "total_runs": 100,
+      "failed_runs": 35,
+      "failure_rate": 35,
       "patterns": [
+        {
+          "pattern": "excessive_searching",
+          "label": "Hard to Discover",
+          "description": "Agent made 2+ web requests to find your docs. Consider adding llms.txt or improving doc discoverability.",
+          "count": 56,
+          "percentage": 56,
+          "severity": "critical",
+          "example_reasons": [
+            "Made 4 requests: https://aisa.one/docs/guides, https://aisa.one/docs/llms.txt, https://aisa.one/docs/guides/getting-started-with-aisa",
+            "Made 4 requests: https://aisa.one/docs/guides, https://aisa.one/docs/llms.txt, https://aisa.one/docs/guides/authentication",
+            "Made 4 requests: https://aisa.one/docs/guides, https://aisa.one/docs/llms.txt, https://aisa.one/docs/api-reference"
+          ],
+          "affected_endpoints": [
+            {
+              "method": "POST",
+              "path": "/apis/v1/firecrawl/batch-scrape",
+              "count": 2
+            },
+            {
+              "method": "POST",
+              "path": "/v1/embeddings",
+              "count": 2
+            },
+            {
+              "method": "POST",
+              "path": "/apis/v1/perplexity/sonar-reasoning-pro",
+              "count": 1
+            },
+            {
+              "method": "POST",
+              "path": "/apis/v1/perplexity/sonar-deep-research",
+              "count": 1
+            },
+            {
+              "method": "POST",
+              "path": "/apis/v1/tavily/crawl",
+              "count": 1
+            }
+          ],
+          "affected_models": [
+            "agent:claude-code:global.anthropic.claude-opus-5"
+          ],
+          "run_ids": [
+            "71f65a3e-b086-4e2f-8940-f5a3ff31e4a1",
+            "599d7e8d-9683-4376-a163-4c79c3dda29a",
+            "d2959649-7ac6-4097-8292-122b0d3e248d",
+            "cb1d3874-7f04-4c6e-b876-54b576f3df58",
+            "c053c5eb-ab72-40b6-a621-177277257726",
+            "47f8fc1d-9edd-4bf2-b20b-ce57e74199ce",
+            "2f6e0155-c2e9-4eab-ae36-990c86c36f81",
+            "3a66f47b-e15a-4f00-88ff-2232865da646",
+            "a33ee03f-19e2-473c-959e-2a5c0d159450",
+            "8a5669dd-332a-4b11-b9e4-e4a506b4b406",
+            "73c088eb-4465-436e-9797-12db5a28eac0",
+            "0211c133-2dc2-4ac2-9bd7-44c46395340f",
+            "f5a4ca4c-019c-49aa-bcc5-2ffc7f237724",
+            "3cec13f2-3d87-4a87-bf93-7ab3cddf2918",
+            "69a09c84-7e8f-4ef7-a595-6d0aa7e86364",
+            "d12bc55f-2bd7-43d7-ab90-e6b9300a67f7",
+            "a98a6c62-f060-4fa2-80cb-df46675617e0",
+            "3839374c-4c65-4fbb-ac2c-f59688b56cc9",
+            "f3e1993c-d13a-4d6a-9c2e-50d163f0ba9c",
+            "65e05150-b1da-4509-a8cc-a52f601ec52e",
+            "c4002fc7-60f9-4a08-b474-d1af2c6a405a",
+            "a64cb3b0-3122-4a5d-9090-051e3be363c2",
+            "821a26a6-ba5c-4d03-b5c4-07ef008229ac",
+            "bc928217-fd2c-4a2c-ae76-485c15a2a09b",
+            "e35f5e5b-dfb9-4ce6-8481-5bd8179234da",
+            "48fe7b3b-3987-4d6e-a260-da556d3460fc",
+            "e257d1a7-0020-439c-bee0-1a485d8609ea",
+            "5e6adab4-6154-4494-b974-07445902d097",
+            "e3b2cb68-86fc-4db2-bf35-cb90233ec324",
+            "6466a5fa-98f8-446d-9b23-e6dada3a66ca",
+            "e550f611-c22e-44ea-aaa8-473819c2dc88",
+            "686b375d-a491-4f1a-be63-1dcdb78de298",
+            "5ff152bc-97fa-4b8c-8f6c-18754549b399",
+            "8b4ef6ea-bf28-48bb-9c4b-fb4ff28de285",
+            "168ade56-97ac-47f7-bb83-90deb37ba920",
+            "3932cfed-ff52-4f97-b880-30189004714d",
+            "7d1b4f94-d42a-40a0-ad23-775df415d202",
+            "00ff8617-649a-4621-9adc-a951a2e3703e",
+            "c9b37427-343d-4c57-a7fb-d5e856a3dd69",
+            "b6b9c06c-29c8-4d03-aaa5-61ccf857fc10",
+            "b6bba1d7-79d3-48e6-a181-3a7b0e78b1a6",
+            "92f3c838-c5ae-45e6-b0d2-af23665fd744",
+            "35092810-f1b4-4c99-b606-b3008b24b7bc",
+            "a6ce2e69-29ae-4a96-9d0c-ba6257e601cb",
+            "527a6bb2-d49c-4159-a7d0-fc5d28daed2a",
+            "3b2dde7e-06e5-4124-b4a3-1fe2b0b711a0",
+            "f85c8a5d-8cc9-4f4a-89d1-85b468bf2ef1",
+            "d30bdbf1-62f0-481d-ae42-d02ef8dddef9",
+            "491aa11e-4c10-4712-bc5c-37a0de62b475",
+            "61925a3b-96fe-4e2a-8bf1-6cea56edf684"
+          ]
+        },
+        {
+          "pattern": "auth_confusion",
+          "label": "Auth Flow Unclear",
+          "description": "Agent got auth error or searched for auth docs. Make your authentication flow clearer.",
+          "count": 51,
+          "percentage": 51,
+          "severity": "critical",
+          "example_reasons": [
+            "Got 401 Unauthorized",
+            "Tried auth page: https://aisa.one/docs/guides/authentication",
+            "Invalid token error"
+          ],
+          "affected_endpoints": [
+            {
+              "method": "POST",
+              "path": "/apis/v1/perplexity/sonar-reasoning-pro",
+              "count": 1
+            },
+            {
+              "method": "POST",
+              "path": "/apis/v1/perplexity/sonar-deep-research",
+              "count": 1
+            },
+            {
+              "method": "POST",
+              "path": "/apis/v1/tavily/crawl",
+              "count": 1
+            },
+            {
+              "method": "GET",
+              "path": "/apis/v1/financial/macro/interest-rates",
+              "count": 1
+            },
+            {
+              "method": "GET",
+              "path": "/apis/v1/polymarket/events",
+              "count": 1
+            }
+          ],
+          "affected_models": [
+            "agent:claude-code:global.anthropic.claude-opus-5"
+          ],
+          "run_ids": [
+            "71f65a3e-b086-4e2f-8940-f5a3ff31e4a1",
+            "599d7e8d-9683-4376-a163-4c79c3dda29a",
+            "d2959649-7ac6-4097-8292-122b0d3e248d",
+            "c053c5eb-ab72-40b6-a621-177277257726",
+            "47f8fc1d-9edd-4bf2-b20b-ce57e74199ce",
+            "2f6e0155-c2e9-4eab-ae36-990c86c36f81",
+            "3a66f47b-e15a-4f00-88ff-2232865da646",
+            "a33ee03f-19e2-473c-959e-2a5c0d159450",
+            "8a5669dd-332a-4b11-b9e4-e4a506b4b406",
+            "73c088eb-4465-436e-9797-12db5a28eac0",
+            "0211c133-2dc2-4ac2-9bd7-44c46395340f",
+            "f5a4ca4c-019c-49aa-bcc5-2ffc7f237724",
+            "3cec13f2-3d87-4a87-bf93-7ab3cddf2918",
+            "69a09c84-7e8f-4ef7-a595-6d0aa7e86364",
+            "d12bc55f-2bd7-43d7-ab90-e6b9300a67f7",
+            "a98a6c62-f060-4fa2-80cb-df46675617e0",
+            "3839374c-4c65-4fbb-ac2c-f59688b56cc9",
+            "f3e1993c-d13a-4d6a-9c2e-50d163f0ba9c",
+            "65e05150-b1da-4509-a8cc-a52f601ec52e",
+            "c4002fc7-60f9-4a08-b474-d1af2c6a405a",
+            "a64cb3b0-3122-4a5d-9090-051e3be363c2",
+            "821a26a6-ba5c-4d03-b5c4-07ef008229ac",
+            "bc928217-fd2c-4a2c-ae76-485c15a2a09b",
+            "e35f5e5b-dfb9-4ce6-8481-5bd8179234da",
+            "48fe7b3b-3987-4d6e-a260-da556d3460fc",
+            "e257d1a7-0020-439c-bee0-1a485d8609ea",
+            "5e6adab4-6154-4494-b974-07445902d097",
+            "e3b2cb68-86fc-4db2-bf35-cb90233ec324",
+            "6466a5fa-98f8-446d-9b23-e6dada3a66ca",
+            "e550f611-c22e-44ea-aaa8-473819c2dc88",
+            "686b375d-a491-4f1a-be63-1dcdb78de298",
+            "5ff152bc-97fa-4b8c-8f6c-18754549b399",
+            "168ade56-97ac-47f7-bb83-90deb37ba920",
+            "3932cfed-ff52-4f97-b880-30189004714d",
+            "7d1b4f94-d42a-40a0-ad23-775df415d202",
+            "00ff8617-649a-4621-9adc-a951a2e3703e",
+            "c9b37427-343d-4c57-a7fb-d5e856a3dd69",
+            "b6b9c06c-29c8-4d03-aaa5-61ccf857fc10",
+            "b6bba1d7-79d3-48e6-a181-3a7b0e78b1a6",
+            "92f3c838-c5ae-45e6-b0d2-af23665fd744",
+            "35092810-f1b4-4c99-b606-b3008b24b7bc",
+            "a6ce2e69-29ae-4a96-9d0c-ba6257e601cb",
+            "527a6bb2-d49c-4159-a7d0-fc5d28daed2a",
+            "f85c8a5d-8cc9-4f4a-89d1-85b468bf2ef1",
+            "491aa11e-4c10-4712-bc5c-37a0de62b475",
+            "61925a3b-96fe-4e2a-8bf1-6cea56edf684",
+            "20e340d9-8fb7-4002-bdbd-ebb19c0029ca",
+            "e3479d4f-1468-4071-9e29-e7e23d22ef75",
+            "747a2849-7e93-4484-a814-4b07e6b09397",
+            "5b686f6f-1d45-4fee-adf4-d36ecf5578c7"
+          ]
+        },
+        {
+          "pattern": "api_returned_error",
+          "label": "API Returned Error",
+          "description": "Agent's API call returned an error (404, 401, 500, etc.). Check endpoint paths and auth requirements.",
+          "count": 42,
+          "percentage": 42,
+          "severity": "warning",
+          "example_reasons": [
+            "HTTP 401 - authentication failed",
+            "HTTP 404 - endpoint not found"
+          ],
+          "affected_endpoints": [
+            {
+              "method": "POST",
+              "path": "/v1/embeddings",
+              "count": 2
+            },
+            {
+              "method": "POST",
+              "path": "/apis/v1/perplexity/sonar-reasoning-pro",
+              "count": 1
+            },
+            {
+              "method": "POST",
+              "path": "/apis/v1/perplexity/sonar-deep-research",
+              "count": 1
+            },
+            {
+              "method": "GET",
+              "path": "/apis/v1/financial/macro/interest-rates",
+              "count": 1
+            },
+            {
+              "method": "GET",
+              "path": "/v1/rate-limits",
+              "count": 1
+            }
+          ],
+          "affected_models": [
+            "agent:claude-code:global.anthropic.claude-opus-5"
+          ],
+          "run_ids": [
+            "71f65a3e-b086-4e2f-8940-f5a3ff31e4a1",
+            "599d7e8d-9683-4376-a163-4c79c3dda29a",
+            "c053c5eb-ab72-40b6-a621-177277257726",
+            "2f6e0155-c2e9-4eab-ae36-990c86c36f81",
+            "3a66f47b-e15a-4f00-88ff-2232865da646",
+            "a33ee03f-19e2-473c-959e-2a5c0d159450",
+            "73c088eb-4465-436e-9797-12db5a28eac0",
+            "0211c133-2dc2-4ac2-9bd7-44c46395340f",
+            "f5a4ca4c-019c-49aa-bcc5-2ffc7f237724",
+            "3cec13f2-3d87-4a87-bf93-7ab3cddf2918",
+            "d12bc55f-2bd7-43d7-ab90-e6b9300a67f7",
+            "3839374c-4c65-4fbb-ac2c-f59688b56cc9",
+            "f3e1993c-d13a-4d6a-9c2e-50d163f0ba9c",
+            "65e05150-b1da-4509-a8cc-a52f601ec52e",
+            "c4002fc7-60f9-4a08-b474-d1af2c6a405a",
+            "a64cb3b0-3122-4a5d-9090-051e3be363c2",
+            "821a26a6-ba5c-4d03-b5c4-07ef008229ac",
+            "bc928217-fd2c-4a2c-ae76-485c15a2a09b",
+            "e35f5e5b-dfb9-4ce6-8481-5bd8179234da",
+            "48fe7b3b-3987-4d6e-a260-da556d3460fc",
+            "5e6adab4-6154-4494-b974-07445902d097",
+            "e3b2cb68-86fc-4db2-bf35-cb90233ec324",
+            "e550f611-c22e-44ea-aaa8-473819c2dc88",
+            "686b375d-a491-4f1a-be63-1dcdb78de298",
+            "168ade56-97ac-47f7-bb83-90deb37ba920",
+            "00ff8617-649a-4621-9adc-a951a2e3703e",
+            "c9b37427-343d-4c57-a7fb-d5e856a3dd69",
+            "b6b9c06c-29c8-4d03-aaa5-61ccf857fc10",
+            "b6bba1d7-79d3-48e6-a181-3a7b0e78b1a6",
+            "92f3c838-c5ae-45e6-b0d2-af23665fd744",
+            "a6ce2e69-29ae-4a96-9d0c-ba6257e601cb",
+            "3b2dde7e-06e5-4124-b4a3-1fe2b0b711a0",
+            "f85c8a5d-8cc9-4f4a-89d1-85b468bf2ef1",
+            "d30bdbf1-62f0-481d-ae42-d02ef8dddef9",
+            "491aa11e-4c10-4712-bc5c-37a0de62b475",
+            "61925a3b-96fe-4e2a-8bf1-6cea56edf684",
+            "20e340d9-8fb7-4002-bdbd-ebb19c0029ca",
+            "747a2849-7e93-4484-a814-4b07e6b09397",
+            "65ba0a2b-0a6d-460a-b32c-4bf49ba443b5",
+            "7fa93d48-752d-4e52-9fd6-c68d9cf14fe9",
+            "5b686f6f-1d45-4fee-adf4-d36ecf5578c7",
+            "5bdc2fa4-c9bd-4f5a-9816-41b48e2f89e2"
+          ]
+        },
         {
           "pattern": "no_doc_attempt",
           "label": "Guessed Without Docs",
           "description": "Agent used tools without looking up your documentation. May indicate poor doc discoverability.",
-          "count": 60,
-          "percentage": 60.6,
+          "count": 38,
+          "percentage": 38,
           "severity": "info",
           "example_reasons": [
             "Used 27 tool(s) without checking documentation",
@@ -192,216 +468,25 @@
             "5f2fcb9f-a6be-481f-a41b-5992d49a3f19",
             "48f84e0d-1f99-40b7-9f20-a833f23206cb",
             "5bdc2fa4-c9bd-4f5a-9816-41b48e2f89e2",
-            "e524bb9a-4b66-4adb-bcb8-f20037630ad4",
-            "46a4fe6b-439e-42f7-ad42-ab6696c8746e",
-            "deaf70d1-20f5-499b-bacb-a6fe105ee82c",
-            "aa927bba-f4f1-4f15-89d7-914b0a68ec55",
-            "670f4606-abd0-4c55-8257-9f706faf9b70",
-            "6bd293aa-6f31-48e8-80ce-73239f33af40",
-            "92c4fe5e-96bb-443d-a2f1-f96bdfa58b4b",
-            "49551602-4e7e-4c68-8a4f-7d81157d635e",
-            "bee7ffd7-13a6-45bd-bd54-8c67a50388e5",
-            "cdbc9d4c-d3a1-4545-b7d2-acbd0a9bc4b2",
-            "0a00eedb-50e7-4237-88f0-c2ca4ea668bd",
-            "7ee4af01-ff44-4d40-aa28-9f2cc33697a1",
-            "53a1f28b-eda8-4dd7-a829-6a478ce772bf"
-          ]
-        },
-        {
-          "pattern": "auth_confusion",
-          "label": "Auth Flow Unclear",
-          "description": "Agent got auth error or searched for auth docs. Make your authentication flow clearer.",
-          "count": 14,
-          "percentage": 14.1,
-          "severity": "critical",
-          "example_reasons": [
-            "Got 401 Unauthorized",
-            "Tried auth page: https://aisa.one/docs/guides/authentication",
-            "Invalid token error"
-          ],
-          "affected_endpoints": [
-            {
-              "method": "search",
-              "path": "aisa api search [options] <query>",
-              "count": 1
-            },
-            {
-              "method": "run",
-              "path": "aisa run [options] <slug> <path>",
-              "count": 1
-            },
-            {
-              "method": "verified-followers",
-              "path": "aisa twitter verified-followers [--raw] <user-id>",
-              "count": 1
-            },
-            {
-              "method": "POST",
-              "path": "/apis/v1/firecrawl/parse",
-              "count": 1
-            },
-            {
-              "method": "user-search",
-              "path": "aisa twitter user-search [--raw] <query>",
-              "count": 1
-            }
-          ],
-          "affected_models": [
-            "agent:claude-code:global.anthropic.claude-opus-5"
-          ],
-          "run_ids": [
-            "5b686f6f-1d45-4fee-adf4-d36ecf5578c7",
-            "5bdc2fa4-c9bd-4f5a-9816-41b48e2f89e2",
-            "ca1fb6b2-4460-42dd-a910-feaba4c472b1",
-            "522d2ec1-f073-4243-87f4-18a0a2d6ed2a",
-            "3fe76e1d-d207-46c4-bd7e-1976c2477941",
-            "18f174fd-9017-470b-a2d5-a55740a4ce43",
-            "8021355b-5f2d-491f-9062-cd63467b4a10",
-            "a2b69ad1-96d7-411c-b128-65dc7bd83048",
-            "13d61cfe-93f1-4312-8dcd-bb3f5a7b1042",
-            "95ee719e-b1b6-4fb0-bd3d-58634315e84f",
-            "a4080b67-ba2c-4485-a0ad-2ae86e0523d3",
-            "38d068a5-c790-4aac-a523-2c7a0e0a033f",
-            "759874f7-a2c0-4da4-b8f1-17e5d2b37234",
-            "e9b25730-3329-47ca-8d43-57c86ac1c75d"
-          ]
-        },
-        {
-          "pattern": "api_returned_error",
-          "label": "API Returned Error",
-          "description": "Agent's API call returned an error (404, 401, 500, etc.). Check endpoint paths and auth requirements.",
-          "count": 14,
-          "percentage": 14.1,
-          "severity": "warning",
-          "example_reasons": [
-            "HTTP 404 - endpoint not found",
-            "HTTP 401 - authentication failed"
-          ],
-          "affected_endpoints": [
-            {
-              "method": "POST",
-              "path": "/apis/v1/firecrawl/batch-scrape",
-              "count": 1
-            },
-            {
-              "method": "search",
-              "path": "aisa api search [options] <query>",
-              "count": 1
-            },
-            {
-              "method": "run",
-              "path": "aisa run [options] <slug> <path>",
-              "count": 1
-            },
-            {
-              "method": "verified-followers",
-              "path": "aisa twitter verified-followers [--raw] <user-id>",
-              "count": 1
-            },
-            {
-              "method": "user-search",
-              "path": "aisa twitter user-search [--raw] <query>",
-              "count": 1
-            }
-          ],
-          "affected_models": [
-            "agent:claude-code:global.anthropic.claude-opus-5"
-          ],
-          "run_ids": [
-            "7fa93d48-752d-4e52-9fd6-c68d9cf14fe9",
-            "5b686f6f-1d45-4fee-adf4-d36ecf5578c7",
-            "5bdc2fa4-c9bd-4f5a-9816-41b48e2f89e2",
-            "ca1fb6b2-4460-42dd-a910-feaba4c472b1",
-            "3fe76e1d-d207-46c4-bd7e-1976c2477941",
-            "18f174fd-9017-470b-a2d5-a55740a4ce43",
-            "8021355b-5f2d-491f-9062-cd63467b4a10",
-            "a2b69ad1-96d7-411c-b128-65dc7bd83048",
-            "13d61cfe-93f1-4312-8dcd-bb3f5a7b1042",
-            "95ee719e-b1b6-4fb0-bd3d-58634315e84f",
-            "38d068a5-c790-4aac-a523-2c7a0e0a033f",
-            "759874f7-a2c0-4da4-b8f1-17e5d2b37234",
-            "6d02b0b6-3e04-46eb-939e-8fe6ef1250e8",
-            "e9b25730-3329-47ca-8d43-57c86ac1c75d"
-          ]
-        },
-        {
-          "pattern": "excessive_searching",
-          "label": "Hard to Discover",
-          "description": "Agent made 2+ web requests to find your docs. Consider adding llms.txt or improving doc discoverability.",
-          "count": 12,
-          "percentage": 12.1,
-          "severity": "critical",
-          "example_reasons": [
-            "Made 3 requests: https://aisa.one/docs/guides, https://aisa.one/docs/llms.txt, https://aisa.one/docs/guides/getting-started-with-aisa",
-            "Made 4 requests: https://aisa.one/docs/agent-skills/quickstart, https://aisa.one/docs/llms.txt, https://aisa.one/docs/api-reference/errors",
-            "Made 3 requests: https://aisa.one/docs/guides, https://aisa.one/docs/llms.txt, https://aisa.one/docs/guides/authentication"
-          ],
-          "affected_endpoints": [
-            {
-              "method": "POST",
-              "path": "/apis/v1/firecrawl/batch-scrape",
-              "count": 1
-            },
-            {
-              "method": "list",
-              "path": "aisa models list [options]",
-              "count": 1
-            },
-            {
-              "method": "POST",
-              "path": "/apis/v1/firecrawl/parse",
-              "count": 1
-            },
-            {
-              "method": "POST",
-              "path": "/v1/chat/completions",
-              "count": 1
-            },
-            {
-              "method": "GET",
-              "path": "/apis/v1/financial/macro/interest-rates",
-              "count": 1
-            }
-          ],
-          "affected_models": [
-            "agent:claude-code:global.anthropic.claude-opus-5"
-          ],
-          "run_ids": [
-            "7fa93d48-752d-4e52-9fd6-c68d9cf14fe9",
-            "993758a7-f83d-4884-9e45-bd2405ec06b3",
-            "522d2ec1-f073-4243-87f4-18a0a2d6ed2a",
-            "8021355b-5f2d-491f-9062-cd63467b4a10",
-            "a2b69ad1-96d7-411c-b128-65dc7bd83048",
-            "13d61cfe-93f1-4312-8dcd-bb3f5a7b1042",
-            "95ee719e-b1b6-4fb0-bd3d-58634315e84f",
-            "a4080b67-ba2c-4485-a0ad-2ae86e0523d3",
-            "38d068a5-c790-4aac-a523-2c7a0e0a033f",
-            "759874f7-a2c0-4da4-b8f1-17e5d2b37234",
-            "6d02b0b6-3e04-46eb-939e-8fe6ef1250e8",
-            "e9b25730-3329-47ca-8d43-57c86ac1c75d"
+            "e524bb9a-4b66-4adb-bcb8-f20037630ad4"
           ]
         },
         {
           "pattern": "wrong_endpoint_called",
           "label": "Wrong Endpoint Used",
           "description": "Agent called a different endpoint than expected. Endpoint naming may be ambiguous.",
-          "count": 4,
-          "percentage": 4,
+          "count": 10,
+          "percentage": 10,
           "severity": "warning",
           "example_reasons": [
-            "Called https://api.aisa.one/apis/v1/firecrawl/scrape instead of /apis/v1/firecrawl/parse",
-            "Called https://api.aisa.one/v1/models instead of /v1/chat/completions",
-            "Called https://api.aisa.one/v1/models instead of /v1/rate-limits"
+            "Called https://api.aisa.one/apis/v1/perplexity/sonar instead of /apis/v1/perplexity/sonar-deep-research",
+            "Called https://api.aisa.one/v1/chat/completions instead of /v1/rate-limits",
+            "Called https://api.aisa.one/v1/models; instead of /v1/errors"
           ],
           "affected_endpoints": [
             {
               "method": "POST",
-              "path": "/apis/v1/firecrawl/parse",
-              "count": 1
-            },
-            {
-              "method": "POST",
-              "path": "/v1/chat/completions",
+              "path": "/apis/v1/perplexity/sonar-deep-research",
               "count": 1
             },
             {
@@ -413,67 +498,90 @@
               "method": "GET",
               "path": "/v1/errors",
               "count": 1
+            },
+            {
+              "method": "GET",
+              "path": "/apis/v1/financial/filings/items",
+              "count": 1
+            },
+            {
+              "method": "POST",
+              "path": "/apis/v1/firecrawl/parse",
+              "count": 1
             }
           ],
           "affected_models": [
             "agent:claude-code:global.anthropic.claude-opus-5"
           ],
           "run_ids": [
-            "522d2ec1-f073-4243-87f4-18a0a2d6ed2a",
-            "8021355b-5f2d-491f-9062-cd63467b4a10",
-            "6d02b0b6-3e04-46eb-939e-8fe6ef1250e8",
-            "e9b25730-3329-47ca-8d43-57c86ac1c75d"
+            "599d7e8d-9683-4376-a163-4c79c3dda29a",
+            "2f6e0155-c2e9-4eab-ae36-990c86c36f81",
+            "a33ee03f-19e2-473c-959e-2a5c0d159450",
+            "a98a6c62-f060-4fa2-80cb-df46675617e0",
+            "f3e1993c-d13a-4d6a-9c2e-50d163f0ba9c",
+            "821a26a6-ba5c-4d03-b5c4-07ef008229ac",
+            "bc928217-fd2c-4a2c-ae76-485c15a2a09b",
+            "5ff152bc-97fa-4b8c-8f6c-18754549b399",
+            "a6ce2e69-29ae-4a96-9d0c-ba6257e601cb",
+            "3b2dde7e-06e5-4124-b4a3-1fe2b0b711a0"
           ]
         }
       ],
       "top_failure_reasons": [
         {
           "reason": "Didn't look up documentation",
-          "count": 60,
-          "percentage": 60.6
+          "count": 38,
+          "percentage": 38
         },
         {
           "reason": "HTTP 401 - authentication failed",
-          "count": 10,
-          "percentage": 10.1
-        },
-        {
-          "reason": "Agent said it couldn't complete task",
-          "count": 7,
-          "percentage": 7.1
+          "count": 32,
+          "percentage": 32
         },
         {
           "reason": "Excessive searching (4 web fetches)",
-          "count": 5,
-          "percentage": 5.1
+          "count": 26,
+          "percentage": 26
         },
         {
           "reason": "HTTP 404 - endpoint not found",
-          "count": 4,
-          "percentage": 4
-        },
-        {
-          "reason": "Excessive searching (6 web fetches)",
-          "count": 1,
-          "percentage": 1
-        },
-        {
-          "reason": "Excessive searching (9 web fetches)",
-          "count": 1,
-          "percentage": 1
+          "count": 10,
+          "percentage": 10
         },
         {
           "reason": "Excessive searching (5 web fetches)",
-          "count": 1,
-          "percentage": 1
+          "count": 7,
+          "percentage": 7
+        },
+        {
+          "reason": "Agent said it couldn't complete task",
+          "count": 5,
+          "percentage": 5
+        },
+        {
+          "reason": "Excessive searching (6 web fetches)",
+          "count": 4,
+          "percentage": 4
         }
       ],
       "endpoints_by_failure_count": [
         {
           "method": "POST",
-          "path": "/apis/v1/firecrawl/batch-scrape",
+          "path": "/apis/v1/perplexity/sonar-deep-research",
           "failure_count": 1,
           "total_runs": 1
+        },
+        {
+          "method": "GET",
+          "path": "/v1/errors",
+          "failure_count": 1,
+          "total_runs": 1
+        },
+        {
+          "method": "POST",
+          "path": "/apis/v1/firecrawl/batch-scrape",
+          "failure_count": 1,
+          "total_runs": 2
         },
         {
           "method": "community-search",
@@ -516,22 +624,495 @@
           "path": "aisa skills install [options] <slug>",
           "failure_count": 1,
           "total_runs": 1
-        },
-        {
-          "method": "article",
-          "path": "aisa twitter article [options] <tweet-id>",
-          "failure_count": 1,
-          "total_runs": 1
-        },
-        {
-          "method": "community-tweets",
-          "path": "aisa twitter community-tweets [options] <community-id>",
-          "failure_count": 1,
-          "total_runs": 1
         }
       ]
     },
     "examples": [
+      {
+        "id": "599d7e8d-9683-4376-a163-4c79c3dda29a",
+        "endpoint": {
+          "id": "0c0e9b3e-cc21-4ff6-ba8c-2ee795307232",
+          "method": "POST",
+          "path": "/apis/v1/perplexity/sonar-deep-research",
+          "description": "Exhaustive multi-step web research that generates comprehensive, well-cited reports. Ideal for deep-dive research tasks; responses may take several minutes to complete.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.875,
+        "failure_reasons": [
+          "exit_code_zero"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T15:15:55.430902+00:00",
+        "prompt_sent": "Using https://aisa.one/docs/guides, integrate POST /apis/v1/perplexity/sonar-deep-research from AIsa's API into my codebase and test it out. Write a Python script.\n\n## Agent Skills\nDo not use agent skills for this variant. Solve the task without installing or reading configured skill repositories.\n\nThe following environment variables are available in your environment for authentication and configuration: $AISA_API_KEY. Use them where relevant (e.g. in headers, query params, or config).\n\n## Execution Policy\nDo not ask clarifying questions or wait for more input. Make reasonable product and implementation assumptions, then start working immediately. If the request is ambiguous, choose a sensible default and note that choice briefly in your final response.\n\n\n## Output\nWrite your script to `/home/daytona/app/`. The script should print output to stdout.\n\nAfter writing the script:\n1. Install any required dependencies (e.g. `pip install <package>` or `npm install <package>`)\n2. Run the script and verify it works\n3. List the files you created:\n```bash\nls -la /home/daytona/app/\n```",
+        "response_text": "I'll start by fetching the AIsa docs to understand the API.Empty `app/` dir, so this is a greenfield script. Let me read the docs.The docs page points to an index at `llms.txt`. Let me fetch that.The OpenAPI spec is . Let me grab it plus the and endpoint docs in parallel.Note a discrepancy: the spec shows `/apis/v2/...` while the user asked for `/apis/v1/...`. Let me read the spec closely.`/apis/v1` is the Bearer- server (v2 is an x402 pay-per-call mirror), so the user's path is correct. Now the request/response schemas:Spec fully captured. Let me check the error/rate-limit conventions before writing.Now I have everything: path, , schema, latency warning (~192s), and retry rules. Let me check deps and verify the cheaply before committing to a 3-minute call. confirmed valid and response shape matches the spec. Now writing the script — designed around deep-research's ~192s latency (long read timeout, no streaming needed) and the documented retry rules.`requests` 2.32.5 is already present. Let me pin it and smoke-test the plumbing with the fast `sonar` model before spending 3 minutes on the real call.Formatting, citations, and usage parsing all work. Now the real deep-research call (~3 min) in the background, while I verify error handling.While that runs, let me verify the 401 path is reported cleanly and not retried.401 fails fast with a request_id and no retry, as intended. Let me confirm the missing-key message.The deep research call succeeded. Let me inspect the results.Real report generated. Let me verify the saved JSON and list files.Done. The integration works end to end against the live API.\n\n## What I built\n\n`aisa_deep_research.py` — a self-contained CLI client for `POST /apis/v1/perplexity/sonar-deep-research`.\n\n**Endpoint details confirmed from the docs** (the `/docs/guides` page itself had no endpoint specifics; it pointed to `/docs/llms.txt`, which led me to `https://aisa.one/openapi.yaml` for the schema):\n- Base URL `https://api.aisa.one/apis/v1`, via `: Bearer $`\n- Body is OpenAI chat-completions shaped: required `model` (`sonar-deep-research`) + `messages`, optional ``/`temperature`/`top_p`/`top_k`\n- Response: `choices[0].message.content`, `citations[]`, `search_results[]`, `usage` (plus `` and `num_search_queries` for this model)\n\nOne thing worth flagging: `/apis/v1` (what you asked for) is the Bearer- server, while the spec lists this operation's `x-x402.path` as `/apis/v2/...` — that's just the mirrored pay-per-call surface needing no registration. `/apis/v1` is correct for API-key and is what I used.\n\n## Verification\n\nRather than blind-firing the slow endpoint, I preflighted on the fast `sonar` model, then ran the real thing:\n\n| Check | Result |\n|---|---|\n| Real deep-research call | HTTP 200 in **207s**, 74,314-char report, 19 citations, 50 upstream searches, $0.69 |\n| Fast-model smoke test | 200 in ~2s |\n| Invalid key | `HTTP 401 ... invalid api key` — fails fast, no retry |\n| Missing key | Clear message before any network call |\n\n## Design assumptions\n\n- **600s read timeout, 15s connect.** The docs warn deep research measured ~192s and that \"many clients time out well before it answers\" — my run took 207s, confirming this. Note the real cost was **$0.69**, not the flat $0.012 the spec advertises, since usage is metered on the ~102k reasoning .\n- **Retries follow AIsa's documented policy**: only 429/5xx, 1s base with doubling, ±25% jitter, 30s cap, 4 attempts, honoring `Retry-After`. 4xx raises immediately.\n- Defaults to a semiconductor-supply-chain demo prompt; override with a positional arg, `--model`, `--system`, `--max-`, `--temperature`, `--save`.\n\nFiles created: `aisa_deep_research.py`, `requirements.txt` (requests, already present), plus artifacts from the test run (`deep_research_output.json`, `deep_run.log`) which you can safely delete.",
+        "execution_stdout": "WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.\n\n[notice] A new release of pip is available: 26.0.1 -> 26.2.1\n[notice] To update, run: pip install --upgrade pip\n",
+        "execution_stderr": "",
+        "exit_code": 124,
+        "tool_calls": [
+          {
+            "input": {
+              "query": "select:WebFetch",
+              "max_results": 1
+            },
+            "output": "{'type': 'tool_reference', 'tool_name': 'WebFetch'}",
+            "tool_id": "toolu_bdrk_01D4MNXvdUcdN7a3EJ3FLzoo",
+            "tool_name": "ToolSearch"
+          },
+          {
+            "input": {
+              "command": "ls -la ~/ 2>&1 | head -30; echo \"---\"; python3 --version; echo \"---\"; echo \"KEY_LEN=${#}\"",
+              "description": "Inspect workspace and env"
+            },
+            "output": "total 40\ndrwx------ 1 daytona daytona 71 Aug 23 15:05 .\ndrwxr-xr-x 1 root root 29 May 14 11:01 ..\ndrwxr-xr-x 2 root root 6 Aug 23 15:05 app\n-rw-r--r-- 1 daytona daytona 220 Mar 8 15:21 .bash_logout\n-rw-r--r-- 1 daytona daytona 3526 Mar 8 15:21 .bashrc\ndrwxrwxrwx 2 root root 6 May 14 21:13 .claude\n-rw-r--r-- 1 daytona daytona 5290 Aug 28 2025 .face\nlrwxrwxrwx 1 daytona daytona 5 Aug 28 2025 .face.icon -> .face\n-rw-r--r-- 1 daytona daytona 807 Mar 8 15:21 .profile\ndrwxr-xr-x 2 root root 43 Aug 23 15:05 __pycache__\n-rw-r--r-- 1 root root 16079 Apr 27 13:49 sandbox_agent.py\n-rw-r--r-- 1 root root 304 Aug 23 15:05 uvicorn.log\n-rw-r--r-- 1 daytona daytona 0 May 14 11:02 .zshrc\n---\nPython 3.14.4\n---\nKEY_LEN=51",
+            "tool_id": "toolu_bdrk_011EW3ip72XzkwXX8pURTYwd",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "url": "https://aisa.one/docs/guides",
+              "prompt": "Extract the full API integration details: base URL, method (headers, API key format), and everything about the endpoint POST /apis/v1/perplexity/sonar-deep-research including exact request body schema, required/optional fields, model names, and response format. Include any code examples verbatim."
+            },
+            "output": "# API Integration Details - Limited Information Available\n\nBased on the provided documentation excerpt, I can only offer partial information:\n\n## What's Available\n\nThe page confirms AIsa is a **\"unified API gateway for AI agents\"** with support for multiple models and data APIs. However, the specific endpoint details you requested are **not included** in this content.\n\n## What's Missing\n\nThe documentation does not contain:\n- Base URL specifications\n- header format or API key structure\n- The POST `/apis/v1/perplexity/sonar-deep-research` endpoint schema\n- Request body parameters (required/optional fields)\n- Response format specifications\n- Code examples for this endpoint\n\n## Recommended Action\n\nThe page directs users to **\"Fetch the complete documentation index at: https://aisa.one/docs/llms.txt\"** to discover all available pages. The full API reference appears to be located at the **\"API Reference\"** section mentioned in the next steps, which would contain the detailed endpoint specifications you're seeking.\n\nTo obtain the exact integration details for the Perplexity Sonar Deep Research endpoint, you'll need to access the complete documentation through those resources rather than this introductory page.",
+            "tool_id": "toolu_bdrk_016tEqchJc8bLAzohbVrb5Ua",
+            "tool_name": "WebFetch"
+          },
+          {
+            "input": {
+              "url": "https://aisa.one/docs/llms.txt",
+              "prompt": "List all documentation pages and their URLs. Highlight any pages about , API reference, perplexity, or sonar-deep-research."
+            },
+            "output": "# AIsa Documentation Pages and URLs\n\n## Complete Page List\n\n**Start Here**\n- Agent Quickstart: https://aisa.one/docs/agent-quickstart\n- Getting Started: https://aisa.one/docs/guides/getting-started-with-aisa\n- : https://aisa.one/docs/guides/ ⭐\n- Pricing and Billing: https://aisa.one/docs/guides/pricing\n- Errors: https://aisa.one/docs/api-reference/errors\n- Rate Limits: https://aisa.one/docs/api-reference/rate-limits\n\n**Navigate by Goal**\n- Capabilities by Goal: https://aisa.one/docs/by-goal\n- Research Agent: https://aisa.one/docs/use-cases/research-agent\n- Market Intelligence Agent: https://aisa.one/docs/use-cases/market-intelligence-agent\n- Sales Research Agent: https://aisa.one/docs/use-cases/sales-research-agent\n- Social Intelligence Agent: https://aisa.one/docs/use-cases/social-intelligence-agent\n- Autonomous API Purchasing: https://aisa.one/docs/use-cases/autonomous-api-purchasing\n\n**Navigate by Interface**\n- Capabilities by Interface: https://aisa.one/docs/by-interface\n- AI Model Inference: https://aisa.one/docs/guides/models\n- Agent Skills: https://aisa.one/docs/agent-skills\n- Direct API Access: https://aisa.one/docs/api-reference ⭐\n- Agent Discovery: https://aisa.one/docs/guides/agent-discovery\n- Machine Payments: https://aisa.one/docs/concepts/machine-payments-for-agents\n\n**Concepts**\n- Agent Capability Layer: https://aisa.one/docs/concepts/agent-capability-layer\n- Unified Model/Data/Tools API: https://aisa.one/docs/concepts/unified-model-data-tools-api\n- Agent Skills vs. Direct APIs: https://aisa.one/docs/concepts/agent-skills-vs-direct-apis\n- Model Gateway vs. Capability Layer: https://aisa.one/docs/concepts/model-gateway-vs-capability-layer\n- When to Use AIsa: https://aisa.one/docs/evaluate/when-to-use-aisa\n- Supported Capabilities: https://aisa.one/docs/evaluate/supported-capabilities\n- Architecture: https://aisa.one/docs/evaluate/architecture\n- Security Evaluation: https://aisa.one/docs/evaluate/security ⭐\n- Pricing Evaluation: https://aisa.one/docs/evaluate/pricing\n\n**API Families**\n- Chat API: https://aisa.one/docs/api-reference/chat/post_chat-completions ⭐\n- Search API: https://aisa.one/docs/api-reference/search/get_youtube-search\n- Perplexity API: https://aisa.one/docs/api-reference/perplexity/post_perplexity-sonar ⭐\n- Financial API: https://aisa.one/docs/api-reference/financial/get_prices\n- Twitter API: https://aisa.one/docs/api-reference/twitter/get_twitter-user-info\n- Scholar API: https://aisa.one/docs/api-reference/scholar/post_scholar-search-scholar\n- Prediction Market API: https://aisa.one/docs/api-reference/prediction-market/get_polymarket-events\n\n**Machine Discovery**\n- A2A Agent Card: https://aisa.one/.well-known/agent-card.json\n- MCP Manifest: https://aisa.one/.well-known/mcp.json\n- OpenAPI 3.1: https://aisa.one/openapi.yaml\n- Full Documentation: https://aisa.one/docs/llms-full.txt\n\n---\n\n## Highlighted Pages\n\n**** handles \"Bearer , key storage, and rotation.\"\n\n**API Reference** pages cover direct endpoint orchestration across multiple data sources.\n\n**Perplexity API** specifically supports \"answer and deep-research routes\" via the sonar endpoint.",
+            "tool_id": "toolu_bdrk_017M9Fne8ps9PF8kyyZeXEQv",
+            "tool_name": "WebFetch"
+          },
+          {
+            "input": {
+              "command": "cd /tmp && curl -sS -L -o openapi.yaml https://aisa.one/openapi.yaml && wc -l openapi.yaml && grep -n \"sonar\" openapi.yaml | head -40",
+              "description": "Download OpenAPI spec and find sonar paths"
+            },
+            "output": "98418 openapi.yaml\n76878: than reading `post_exa_search` results yourself. `post_perplexity_sonar` answers the same shape of question for $0.012\n81490: /perplexity/sonar:\n81494: operationId: post_perplexity_sonar\n81497: Body is OpenAI chat-completions shaped: `model` (required, `sonar`) and `messages`. Returns `choices[0].message.content`\n81500: and fastest of the four Perplexity endpoints — use it for a single factual question. Step up to `post_perplexity_sonar_pro`\n81501: for multi-part questions, or `post_perplexity_sonar_reasoning_pro` when the answer requires working through steps.\n81511: model: sonar\n81523: path: /apis/v2/perplexity/sonar\n81525: /perplexity/sonar-pro:\n81529: operationId: post_perplexity_sonar_pro\n81532: and response shape as `post_perplexity_sonar` — `model` (required, `sonar-pro`) and `messages` in, `choices[0].message.content`,\n81533: `citations`, `search_results[]` and `usage` out. Measured at about 10 seconds, roughly three times `sonar`, for the\n81534: same flat $0.012 per request. Use it for questions with several parts or follow-ups. For a single lookup `sonar` answers\n81535: in a third of the time at the same price; when the difficulty is reasoning rather than retrieval, `post_perplexity_sonar_reasoning_pro`\n81544: model: sonar-pro\n81556: path: /apis/v2/perplexity/sonar-pro\n81558: /perplexity/sonar-reasoning-pro:\n81562: operationId: post_perplexity_sonar_reasoning_pro\n81565: by web search. Same shape as the other Perplexity endpoints — `model` (required, `sonar-reasoning-pro`) and `messages`\n81567: $0.012 per request. Use it for comparison, causation and analysis. When the question is simply what is the case, `post_perplexity_sonar`\n81568: is faster; when you need a long report over many sources rather than an answer, `post_perplexity_sonar_deep_research`.\n81576: model: sonar-reasoning-pro\n81588: path: /apis/v2/perplexity/sonar-reasoning-pro\n81590: /perplexity/sonar-deep-research:\n81594: operationId: post_perplexity_sonar_deep_research\n81597: `sonar-deep-research`) and `messages` in; `choices[0].message.content`, `citations`, `search_results[]` and `usage`\n81600: larger than `post_perplexity_sonar`, at the same flat $0.012 per request. Many clients time out well before it answers,\n81610: model: sonar-deep-research\n81622: path: /apis/v2/perplexity/sonar-deep-research\n85508: than keywords — `post_exa_search` matches on meaning; you want a written answer rather than a list to iterate — `post_perplexity_sonar`;\n96155: - sonar\n96156: - sonar-pro\n96157: - sonar-reasoning-pro\n96158: - sonar-deep-research\nShell cwd was reset to /home/daytona",
+            "tool_id": "toolu_bdrk_01GTVNcVbMhSSdpyec9EwVD4",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "url": "https://aisa.one/docs/guides/",
+              "prompt": "What is the exact base URL and the exact HTTP header(s) required for ? Show a verbatim curl example."
+            },
+            "output": "# AIsa API \n\n**Base URL:** `https://api.aisa.one/v1`\n\n** Header:** `: Bearer `\n\n## Verbatim curl example\n\nThe documentation provides this exact request:\n\n```bash\ncurl https://api.aisa.one/v1/chat/completions \\\n -H \": Bearer $\" \\\n -H \"Content-Type: application/json\" \\\n -d '{\"model\":\"gpt-5.4\",\"messages\":[{\"role\":\"user\",\"content\":\"Hello\"}]}'\n```\n\nThe key requirement is including your API key as a Bearer in the header with every request to the specified endpoint.",
+            "tool_id": "toolu_bdrk_018HYf6bn82ykuye8EAr979h",
+            "tool_name": "WebFetch"
+          },
+          {
+            "input": {
+              "command": "cd /tmp && sed -n '81590,81625p' openapi.yaml",
+              "description": "Read sonar-deep-research spec section"
+            },
+            "output": " /perplexity/sonar-deep-research:\n post:\n tags:\n - AI Models\n operationId: post_perplexity_sonar_deep_research\n summary: Sonar Deep Research — exhaustive research & comprehensive reports\n description: 'Commission a report: this endpoint runs many searches and writes a long, cited document. `model` (required,\n `sonar-deep-research`) and `messages` in; `choices[0].message.content`, `citations`, `search_results[]` and `usage`\n out, where `usage` also reports `num_search_queries` and ``. ⚠️ Budget for the wait: a two-sentence\n question measured **192 seconds** and returned 86 KB after 10 upstream searches — roughly 60 times slower and 10 times\n larger than `post_perplexity_sonar`, at the same flat $0.012 per request. Many clients time out well before it answers,\n so call it only when a report is genuinely the deliverable, and never in a loop. For anything you would read in one\n sitting, the other three Perplexity endpoints answer in seconds.'\n requestBody:\n required: true\n content:\n application/json:\n schema:\n $ref: '#/components/schemas/ChatCompletionRequest'\n example:\n model: sonar-deep-research\n messages:\n - role: user\n content: Write a comprehensive analysis of the global semiconductor supply chain risks in 2026\n responses:\n '200':\n description: Successful response with AI answer and citations\n content:\n application/json:\n schema:\n $ref: '#/components/schemas/ChatCompletionResponse'\n x-x402:\n path: /apis/v2/perplexity/sonar-deep-research\n source: https://github.com/AIsa-team/aisa-proxy\n /pinterest/search:\n get:\nShell cwd was reset to /home/daytona",
+            "tool_id": "toolu_bdrk_01NgiQXiAWVKQuLAPaUTFadP",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "cd /tmp && grep -n \"^servers:\" -A 12 openapi.yaml | head -30; echo \"=== SECURITY ===\"; grep -n \"^security:\" -A 8 openapi.yaml | head -20",
+              "description": "Find servers and security blocks"
+            },
+            "output": "29:servers:\n30-- url: https://api.aisa.one/apis/v1\n31- description: AIsa Data APIs (Bearer — register at https://aisa.one)\n32-- url: https://api.aisa.one/apis/v2\n33- description: 'AIsa Data APIs (x402 pay-per-call) — same surface as /apis/v1, mirrored. No registration; receive HTTP 402\n34- challenge, settle with stablecoin micropayment. Spec: https://www.x402.org. Open-source gateway implementation: https://github.com/AIsa-team/aisa-proxy'\n35- x-implementation: https://github.com/AIsa-team/aisa-proxy\n36-- url: https://api.aisa.one/v1\n37- description: AIsa LLM Inference (OpenAI-compatible, Bearer )\n38-- url: https://api.aisa.one/v1beta\n39- description: AIsa Gemini-compatible GenerateContent (Bearer )\n40-security:\n41-- : []\n=== SECURITY ===\n40:security:\n41-- : []\n42-tags:\n43-- name: AI Models\n44- description: Access 50+ LLMs via OpenAI-compatible, Anthropic, and Google Gemini interfaces\n45-- name: Agent Email\n46- description: AI-agent email accounts, inboxes, threads, drafts, and message send/reply via AgentMail.to\n47-- name: Crypto Data\n48- description: Cryptocurrency prices, markets, and exchange data via CoinGecko\nShell cwd was reset to /home/daytona",
+            "tool_id": "toolu_bdrk_013dWv2vViJ9fw2ZbZtG4nKH",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "cd /tmp && awk '/^ ChatCompletionRequest:/,/^ [A-Za-z]+:$/' openapi.yaml | head -80",
+              "description": "Extract ChatCompletionRequest schema"
+            },
+            "output": " ChatCompletionRequest:\nShell cwd was reset to /home/daytona",
+            "tool_id": "toolu_bdrk_018av1ZFfNWbehCdy12M8tc6",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "cd /tmp && awk '/^ ChatCompletionResponse:/,0' openapi.yaml | head -70",
+              "description": "Extract ChatCompletionResponse schema"
+            },
+            "output": " ChatCompletionResponse:\n type: object\n properties:\n id:\n type: string\n description: Unique identifier for the completion.\n model:\n type: string\n description: The model used for the completion.\n object:\n type: string\n example: chat.completion\n created:\n type: integer\n description: Unix timestamp of when the completion was created.\n choices:\n type: array\n items:\n type: object\n properties:\n index:\n type: integer\n message:\n type: object\n properties:\n role:\n type: string\n content:\n type: string\n description: The AI-generated answer, with inline citation references like [1][2].\n finish_reason:\n type: string\n enum:\n - stop\n - length\n citations:\n type: array\n description: List of source URLs referenced in the answer.\n items:\n type: string\n search_results:\n type: array\n description: Detailed search results with titles, snippets, and URLs.\n items:\n type: object\n properties:\n title:\n type: string\n url:\n type: string\n snippet:\n type: string\n date:\n type: string\n source:\n type: string\n usage:\n type: object\n properties:\n :\n type: integer\n :\n type: integer\n :\n type: integer\n search_context_size:\n type: string\n PinterestPinsResponse:\n type: object\n properties:\nShell cwd was reset to /home/daytona",
+            "tool_id": "toolu_bdrk_014Jyrpe9rhoEd6xzQwynsvX",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "cd /tmp && grep -n \"ChatCompletionRequest:\" openapi.yaml; echo \"---\"; sed -n '96130,96200p' openapi.yaml",
+              "description": "Locate and print ChatCompletionRequest schema"
+            },
+            "output": "96145: ChatCompletionRequest:\n---\n description: The reporting period of the financial data.\n period:\n type: string\n enum:\n - annual\n - quarterly\n - ttm\n description: The time period of the financial data.\n currency:\n type: string\n description: The currency of the financial data.\n additionalProperties:\n type: string\n description: Additional financial metrics based on the search criteria.\n description: Stocks matching the requested screener filters.\n ChatCompletionRequest:\n type: object\n required:\n - model\n - messages\n properties:\n model:\n type: string\n description: The Sonar model to use.\n enum:\n - sonar\n - sonar-pro\n - sonar-reasoning-pro\n - sonar-deep-research\n messages:\n type: array\n description: A list of messages comprising the conversation so far.\n items:\n type: object\n required:\n - role\n - content\n properties:\n role:\n type: string\n enum:\n - system\n - user\n - assistant\n description: The role of the message .\n content:\n type: string\n description: The content of the message.\n :\n type: integer\n description: The maximum number of to generate in the response.\n temperature:\n type: number\n description: Sampling temperature between 0 and 2. Lower values make output more focused and deterministic.\n default: 0.2\n minimum: 0\n maximum: 2\n top_p:\n type: number\n description: Nucleus sampling parameter. The model considers with top_p probability mass.\n default: 0.9\n minimum: 0\n maximum: 1\n top_k:\n type: integer\n description: The number of to keep for top-k filtering.\n default: 0\n minimum: 0\n maximum: 2048\n stream:\n type: boolean\nShell cwd was reset to /home/daytona",
+            "tool_id": "toolu_bdrk_017HZCEckcgnXdvnRRWGT4K9",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "url": "https://aisa.one/docs/api-reference/errors",
+              "prompt": "List the HTTP error status codes, the JSON error response body shape, and any recommended retry guidance (which codes are retryable, backoff advice)."
+            },
+            "output": "# AIsa API Error Handling Summary\n\n## HTTP Status Codes\n\n| Code | Category | Retryable |\n|------|----------|-----------|\n| 400 | Bad Request | ❌ No |\n| 401 | | ❌ No |\n| 403 | Forbidden | ❌ No |\n| 404 | Not Found | ❌ No |\n| 422 | Unprocessable Entity | ❌ No |\n| 429 | Rate Limited | ✅ Yes |\n| 5xx | Server/Upstream Errors | ✅ Yes |\n\n## Error Response Structure\n\nAll failures return JSON with an error object containing:\n\n- **type**: Category like \"\" or \"rate_limit_error\"\n- **code**: Machine-readable identifier (safe for conditional logic)\n- **message**: Human-readable description\n- **request_id**: Unique identifier for support tickets\n\n## Retry Strategy\n\n**Only retry on:** 429 (rate limit) and 5xx (server) errors.\n\n**Never retry:** 4xx client errors—they indicate request problems, not transient issues.\n\n**Backoff approach:** Begin at 1 second, double after each attempt, add ±25% randomization, and cap at 30 seconds maximum.\n\n**Limits:** Stop after 3–5 attempts or 60 seconds total elapsed time.\n\n**Rate limits:** Always check the \"Retry-After\" header when present; use exponential backoff if absent.",
+            "tool_id": "toolu_bdrk_01CacZTtA9ciGrTJ4hTwtdbn",
+            "tool_name": "WebFetch"
+          },
+          {
+            "input": {
+              "command": "python3 -c \"import requests, sys; print('requests', requests.__version__)\" 2>&1 | tail -2",
+              "description": "Check if requests is installed"
+            },
+            "output": "requests 2.32.5",
+            "tool_id": "toolu_bdrk_01NWENNympWnYWr1RM1kaTtk",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "cd /tmp && curl -sS -w \"\\nHTTP=%{http_code} TIME=%{time_total}s\\n\" -X POST https://api.aisa.one/apis/v1/perplexity/sonar \\\n -H \": Bearer $\" -H \"Content-Type: application/json\" \\\n -d '{\"model\":\"sonar\",\"messages\":[{\"role\":\"user\",\"content\":\"Reply with the single word: pong\"}]}' 2>&1 | tail -c 700",
+              "description": "Preflight check on fast sonar endpoint"
+            },
+            "output": "gy | Time Space Education\",\"url\":\"https://timespaceeducation.wordpress.com/2016/08/15/provocations-and-the-ping-pong-analogy/\"},{\"date\":\"2014-04-10\",\"last_updated\":\"2025-11-03\",\"place_metadata\":null,\"snippet\":\"### Got a one-word email response from my advisor: \\\"Perfect.\\\"\",\"source\":\"web\",\"title\":\"Got a one-word email response from my advisor: \\\"Perfect.\\\" - Reddit\",\"url\":\"https://www.reddit.com/r/GradSchool/comments/22p1gf/got_a_oneword_email_response_from_my_advisor/\"}],\"usage\":{\"\":1,\"cost\":{\"\":0.00001,\"\":0,\"request_cost\":0.005,\"total_cost\":0.00501},\"\":7,\"search_context_size\":\"low\",\"\":8}}\n\nHTTP=200 TIME=2.338840s\nShell cwd was reset to /home/daytona",
+            "tool_id": "toolu_bdrk_01Wveetn1ZyEpgebsHjb37aL",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "content": "#!/usr/bin/env python3\n\"\"\"\nAIsa API integration: POST /apis/v1/perplexity/sonar-deep-research\n\nCommissions a long, cited research report from Perplexity's Sonar Deep Research\nmodel via AIsa's unified API gateway.\n\nDocs:\n https://aisa.one/docs/guides\n https://aisa.one/docs/guides/\n https://aisa.one/docs/api-reference/errors\n https://aisa.one/openapi.yaml\n\nUsage:\n export \n python aisa_deep_research.py # runs the built-in demo prompt\n python aisa_deep_research.py \"your research question\"\n python aisa_deep_research.py --model sonar \"quick question\"\n python aisa_deep_research.py --save report.json \"question\"\n\nNote on latency: per AIsa's own docs, sonar-deep-research runs many upstream\nsearches and a two-sentence question was measured at ~192 seconds returning\n~86 KB. The default read timeout here is therefore 600s. Never call it in a loop.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport os\nimport random\nimport sys\nimport textwrap\nimport time\nfrom typing import Any, Iterable\n\nimport requests\n\n# ---------------------------------------------------------------------------\n# Configuration\n# ---------------------------------------------------------------------------\n\n# /apis/v1 is the Bearer- data-API server. (/apis/v2 is the same surface\n# mirrored for x402 pay-per-call micropayments and needs no registration.)\nBASE_URL = os.environ.get(\"AISA_BASE_URL\", \"https://api.aisa.one/apis/v1\")\nENDPOINT = \"/perplexity/sonar-deep-research\"\n\nDEFAULT_MODEL = \"sonar-deep-research\"\nVALID_MODELS = (\"sonar\", \"sonar-pro\", \"sonar-reasoning-pro\", \"sonar-deep-research\")\n\n# Deep research is slow by design; generous read timeout, short connect timeout.\nCONNECT_TIMEOUT = 15\nREAD_TIMEOUT = int(os.environ.get(\"AISA_READ_TIMEOUT\", \"600\"))\n\n# Retry policy from https://aisa.one/docs/api-reference/errors :\n# retry only 429 + 5xx, start at 1s, double, +/-25% jitter, cap 30s, few attempts.\nRETRYABLE_STATUS = {429, 500, 502, 503, 504}\nMAX_ATTEMPTS = 4\nBACKOFF_BASE = 1.0\nBACKOFF_CAP = 30.0\n\n\nclass AIsaError(RuntimeError):\n \"\"\"Raised when the AIsa API returns a non-retryable or final error.\"\"\"\n\n\n# ---------------------------------------------------------------------------\n# Client\n# ---------------------------------------------------------------------------\n\n\nclass AIsaClient:\n def __init__(self, : str, base_url: str = BASE_URL) -> None:\n if not :\n raise AIsaError(\n \"Missing API key. Set the environment variable.\"\n )\n self.base_url = base_url.rstrip(\"/\")\n self.session = requests.Session()\n self.session.headers.update(\n {\n \"\": f\"Bearer {}\",\n \"Content-Type\": \"application/json\",\n \"Accept\": \"application/json\",\n \"User-Agent\": \"aisa-deep-research-demo/1.0\",\n }\n )\n\n # -- error helpers ------------------------------------------------------\n\n @staticmethod\n def _describe_error(resp: requests.Response) -> str:\n \"\"\"Unpack AIsa's {\"error\": {type, code, message, request_id}} envelope.\"\"\"\n request_id = resp.headers.get(\"x-request-id\", \"-\")\n try:\n payload = resp.json()\n except ValueError:\n return f\"HTTP {resp.status_code} (request_id={request_id}): {resp.text[:400]}\"\n\n err = payload.get(\"error\") if isinstance(payload, dict) else None\n if isinstance(err, dict):\n return (\n f\"HTTP {resp.status_code} \"\n f\"type={err.get('type', '-')} code={err.get('code', '-')} \"\n f\"request_id={err.get('request_id', request_id)}: \"\n f\"{err.get('message', '-')}\"\n )\n if isinstance(err, str):\n return f\"HTTP {resp.status_code} (request_id={request_id}): {err}\"\n return f\"HTTP {resp.status_code} (request_id={request_id}): {json.dumps(payload)[:400]}\"\n\n @staticmethod\n def _sleep_for(attempt: int, resp: requests.Response | None) -> float:\n \"\"\"Honour Retry-After when present, else exponential backoff with jitter.\"\"\"\n if resp is not None:\n retry_after = resp.headers.get(\"Retry-After\")\n if retry_after:\n try:\n return min(float(retry_after), BACKOFF_CAP)\n except ValueError:\n pass\n delay = min(BACKOFF_BASE * (2 ** (attempt - 1)), BACKOFF_CAP)\n return delay * random.uniform(0.75, 1.25) # +/-25% jitter\n\n # -- main call ----------------------------------------------------------\n\n def deep_research(\n self,\n prompt: str,\n *,\n model: str = DEFAULT_MODEL,\n system: str | None = None,\n : int | None = None,\n temperature: float | None = None,\n ) -> tuple[dict[str, Any], float]:\n \"\"\"POST the chat-completions-shaped body and return (payload, elapsed_s).\"\"\"\n messages: list[dict[str, str]] = []\n if system:\n messages.append({\"role\": \"system\", \"content\": system})\n messages.append({\"role\": \"user\", \"content\": prompt})\n\n body: dict[str, Any] = {\"model\": model, \"messages\": messages}\n if is not None:\n body[\"\"] = \n if temperature is not None:\n body[\"temperature\"] = temperature\n\n url = f\"{self.base_url}{ENDPOINT}\"\n last_error = \"unknown error\"\n\n for attempt in range(1, MAX_ATTEMPTS + 1):\n started = time.monotonic()\n try:\n resp = self.session.post(\n url, json=body, timeout=(CONNECT_TIMEOUT, READ_TIMEOUT)\n )\n except requests.Timeout:\n last_error = f\"request timed out after {READ_TIMEOUT}s\"\n resp = None\n except requests.RequestException as exc:\n last_error = f\"network error: {exc}\"\n resp = None\n else:\n elapsed = time.monotonic() - started\n if resp.status_code == 200:\n try:\n return resp.json(), elapsed\n except ValueError as exc:\n raise AIsaError(f\"Malformed JSON in 200 response: {exc}\") from exc\n\n last_error = self._describe_error(resp)\n if resp.status_code not in RETRYABLE_STATUS:\n raise AIsaError(last_error) # 4xx: our fault, don't retry\n\n if attempt == MAX_ATTEMPTS:\n break\n delay = self._sleep_for(attempt, resp)\n print(\n f\" ! {last_error}\\n retrying in {delay:.1f}s \"\n f\"(attempt {attempt + 1}/{MAX_ATTEMPTS})\",\n file=sys.stderr,\n flush=True,\n )\n time.sleep(delay)\n\n raise AIsaError(f\"Failed after {MAX_ATTEMPTS} attempt(s). Last error: {last_error}\")\n\n\n# ---------------------------------------------------------------------------\n# Output formatting\n# ---------------------------------------------------------------------------\n\n\ndef _rule(title: str = \"\", width: int = 78) -> str:\n if not title:\n return \"=\" * width\n return f\"== {title} \" + \"=\" * max(0, width - len(title) - 4)\n\n\ndef _as_list(value: Any) -> list[Any]:\n return value if isinstance(value, list) else []\n\n\ndef print_report(payload: dict[str, Any], elapsed: float, model: str) -> None:\n choices = _as_list(payload.get(\"choices\"))\n message = (choices[0].get(\"message\") or {}) if choices else {}\n content = (message.get(\"content\") or \"\").strip()\n finish_reason = choices[0].get(\"finish_reason\", \"-\") if choices else \"-\"\n\n print(_rule(\"RESPONSE METADATA\"))\n print(f\" id : {payload.get('id', '-')}\")\n print(f\" model : {payload.get('model', model)}\")\n print(f\" object : {payload.get('object', '-')}\")\n print(f\" finish_reason : {finish_reason}\")\n print(f\" latency : {elapsed:.1f}s\")\n print(f\" answer size : {len(content):,} chars\")\n print()\n\n print(_rule(\"REPORT\"))\n if content:\n for block in content.split(\"\\n\"):\n if block.strip():\n print(textwrap.fill(block, width=78))\n else:\n print()\n else:\n print(\" (empty content)\")\n print()\n\n citations = [c for c in _as_list(payload.get(\"citations\")) if c]\n print(_rule(f\"CITATIONS ({len(citations)})\"))\n if citations:\n for i, url in enumerate(citations, 1):\n print(f\" [{i}] {url}\")\n else:\n print(\" (none returned)\")\n print()\n\n results = _as_list(payload.get(\"search_results\"))\n print(_rule(f\"SEARCH RESULTS ({len(results)})\"))\n if results:\n for i, item in enumerate(results[:10], 1):\n if not isinstance(item, dict):\n continue\n title = (item.get(\"title\") or \"untitled\").strip()\n print(f\" {i}. {title}\")\n print(f\" url : {item.get('url', '-')}\")\n if item.get(\"date\"):\n print(f\" date : {item['date']}\")\n snippet = (item.get(\"snippet\") or \"\").strip().replace(\"\\n\", \" \")\n if snippet:\n print(f\" note : {textwrap.shorten(snippet, width=140)}\")\n if len(results) > 10:\n print(f\" ... and {len(results) - 10} more\")\n else:\n print(\" (none returned)\")\n print()\n\n usage = payload.get(\"usage\") if isinstance(payload.get(\"usage\"), dict) else {}\n print(_rule(\"USAGE & COST\"))\n if usage:\n # Deep research additionally reports num_search_queries + .\n for key in (\n \"\",\n \"\",\n \"\",\n \"\",\n \"num_search_queries\",\n \"search_context_size\",\n ):\n if key in usage:\n print(f\" {key:<20}: {usage[key]}\")\n cost = usage.get(\"cost\")\n if isinstance(cost, dict):\n total = cost.get(\"total_cost\")\n if total is not None:\n print(f\" {'total_cost':<20}: ${total}\")\n else:\n print(\" (no usage reported)\")\n print(_rule())\n\n\n# ---------------------------------------------------------------------------\n# CLI\n# ---------------------------------------------------------------------------\n\nDEMO_PROMPT = (\n \"Write a comprehensive analysis of the global semiconductor supply chain \"\n \"risks in 2026, covering advanced-node concentration, export controls, and \"\n \"the outlook for packaging capacity.\"\n)\n\n\ndef main(argv: Iterable[str] | None = None) -> int:\n parser = argparse.ArgumentParser(\n description=\"Run AIsa's Perplexity Sonar Deep Research endpoint.\",\n formatter_class=argparse.RawDescriptionHelpFormatter,\n )\n parser.add_argument(\"prompt\", nargs=\"*\", help=\"Research question (defaults to a demo prompt).\")\n parser.add_argument(\n \"--model\", default=DEFAULT_MODEL, choices=VALID_MODELS,\n help=f\"Sonar model to use (default: {DEFAULT_MODEL}).\",\n )\n parser.add_argument(\"--system\", default=None, help=\"Optional system message.\")\n parser.add_argument(\"--max-\", type=int, default=None, help=\"Cap generated .\")\n parser.add_argument(\"--temperature\", type=float, default=None, help=\"Sampling temperature (0-2).\")\n parser.add_argument(\"--save\", metavar=\"PATH\", default=None, help=\"Write the raw JSON response here.\")\n args = parser.parse_args(list(argv) if argv is not None else None)\n\n prompt = \" \".join(args.prompt).strip() or DEMO_PROMPT\n\n print(_rule(\"AISA — PERPLEXITY SONAR DEEP RESEARCH\"))\n print(f\" POST {BASE_URL}{ENDPOINT}\")\n print(f\" model : {args.model}\")\n print(f\" prompt : {textwrap.shorten(prompt, width=200)}\")\n if args.model == \"sonar-deep-research\":\n print(\" note : deep research typically takes 2-4 minutes; please wait.\")\n print(_rule())\n print()\n\n try:\n client = AIsaClient(os.environ.get(\"\", \"\"))\n payload, elapsed = client.deep_research(\n prompt,\n model=args.model,\n system=args.system,\n \n temperature=args.temperature,\n )\n except AIsaError as exc:\n print(f\"ERROR: {exc}\", file=sys.stderr)\n return 1\n except KeyboardInterrupt:\n print(\"\\nInterrupted.\", file=sys.stderr)\n return 130\n\n print_report(payload, elapsed, args.model)\n\n if args.save:\n with open(args.save, \"w\", encoding=\"utf-8\") as fh:\n json.dump(payload, fh, indent=2, ensure_ascii=False)\n print(f\"\\nRaw JSON response saved to {args.save}\")\n\n return 0\n\n\nif __name__ == \"__main__\":\n sys.exit(main())\n",
+              "file_path": "aisa_deep_research.py"
+            },
+            "output": "File created successfully at: aisa_deep_research.py (file state is current in your context — no need to Read it back)",
+            "tool_id": "toolu_bdrk_01JAiujRz3GZvZKhwR5n12Sr",
+            "tool_name": "Write"
+          },
+          {
+            "input": {
+              "command": "cd ~/app && printf 'requests>=2.32.0\\n' > requirements.txt && pip install -q -r requirements.txt 2>&1 | tail -3; echo \"install-exit=$?\"",
+              "description": "Pin and install dependencies"
+            },
+            "output": "[notice] A new release of pip is available: 26.0.1 -> 26.2.1\n[notice] To update, run: pip install --upgrade pip\ninstall-exit=0",
+            "tool_id": "toolu_bdrk_01M7uZBMnXCJKRAbfashkAgo",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "timeout 180 python3 aisa_deep_research.py --model sonar \"What is the capital of Japan? One sentence.\" 2>&1 | tail -40",
+              "description": "Smoke test formatting via fast sonar model"
+            },
+            "output": " note : When you think of Japan’s capital city, Tokyo instantly comes to mind. ... But surprisingly, **Tokyo is not officially or legally [...]\n 3. Tokyo, Japan\n url : https://clintonwhitehouse3.archives.gov/WH/New/Pacific/tokyo.html\n note : TOKYO, JAPAN ** Tokyo is the capital of Japan and one of the world's largest cities.\n 4. What is the capital of Japan? | Britannica\n url : https://www.britannica.com/question/What-is-the-capital-of-Japan\n date : 2026-08-21\n note : The capital of Japan is Tokyo, one of the largest metropolitan areas in the world. It serves as the country’s political, economic, and [...]\n 5. Tokyo - Wikipedia\n url : https://en.wikipedia.org/wiki/Tokyo\n date : 2001-05-18\n note : **Tokyo**, officially the **Tokyo Metropolis**, is the capital and most populous city of Japan. ... |Capital|Tokyo (de facto; de jure: [...]\n 6. Tokyo | Japan, Population, Map, History, & Facts | Britannica\n url : https://www.britannica.com/place/Tokyo\n date : 2026-04-26\n note : # Tokyo national capital, Japan Homework Help ... **Tokyo**, city and capital of Tokyo *to* (metropolis) and of Japan. It is located [...]\n 7. What Is The Capital Of Japan?\n url : https://www.worldatlas.com/articles/what-is-the-capital-of-japan.html\n date : 2019-08-21\n note : Tokyo is the capital city of Japan, a title the city has held since 1868 after it was renamed from Edo. ... While Tokyo is considered [...]\n 8. Capital - Kanto - Regions - Explore Japan - Kids Web Japan\n url : https://web-japan.org/kidsweb/explore/regions/q10.html\n note : ### Q. Please tell us about Tokyo, the capital of Japan. ... Tokyo is Japan's biggest city, with a population of 9.5 million people in [...]\n 9. Japan: The capital and other cities - Turkish Airlines Blog\n url : https://blog.turkishairlines.com/en/japan-the-capital-and-other-cities/\n date : 2023-09-29\n note : Turkish Airlines operates at least one direct flight per day from Istanbul to Tokyo, Japan’s capital. ... **Tokyo, Japan’s capital, [...]\n 10. Japan - Wikipedia\n url : https://en.wikipedia.org/wiki/Japan\n date : 2001-10-31\n note : Tokyo is the country's capital and largest city. ... |Capital and largest city|Tokyo 35°41′N 139°46′E﻿ / ﻿35.683°N 139.767°E| ... The [...]\n ... and 7 more\n\n== USAGE & COST ==============================================================\n : 10\n : 13\n : 23\n search_context_size : low\n total_cost : $0.00502\n==============================================================================",
+            "tool_id": "toolu_bdrk_01B1ET6W4RoP5K7tJJHVMJ9U",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "timeout 900 python3 aisa_deep_research.py --save deep_research_output.json > deep_run.log 2>&1; echo \"EXIT=$?\"",
+              "description": "Run real deep-research call in background",
+              "run_in_background": true
+            },
+            "output": "Command running in background with ID: bttm9106f. Output is being written to: /tmp/claude-0/-home-daytona/09780a14-e855-4b60-b396-49c97743f8d0/tasks/bttm9106f.output",
+            "tool_id": "toolu_bdrk_01FUuZLhqsJkUWxff1aXXqp3",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": " timeout 60 python3 aisa_deep_research.py --model sonar \"hi\" 2>&1 | tail -8; echo \"EXIT=${PIPESTATUS[0]}\"; echo \"=== missing key ===\"; cd ~/app && env -u timeout 30 python3 aisa_deep_research.py --model sonar \"hi\" 2>&1 | tail -3",
+              "description": "Test error handling"
+            },
+            "output": "ERROR: HTTP 401 (request_id=1787497709762388405-762388450): invalid api key\n== AISA — PERPLEXITY SONAR DEEP RESEARCH =====================================\n POST https://api.aisa.one/apis/v1/perplexity/sonar-deep-research\n model : sonar\n prompt : hi\n==============================================================================\n\nEXIT=\n=== missing key ===\n prompt : hi\n==============================================================================",
+            "tool_id": "toolu_bdrk_01HMVAA8YZzphtj43T4jcj2W",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "env -u timeout 30 python3 aisa_deep_research.py --model sonar \"hi\" 2>&1 | grep -i error; echo \"---exit codes verified---\"",
+              "description": "Confirm missing key error message"
+            },
+            "output": "ERROR: Missing API key. Set the environment variable.\n---exit codes verified---",
+            "tool_id": "toolu_bdrk_01GEmv8YwDYkSBosPKqeE7gX",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "query": "select:TaskOutput",
+              "max_results": 1
+            },
+            "output": "{'type': 'tool_reference', 'tool_name': 'TaskOutput'}",
+            "tool_id": "toolu_bdrk_016cP5Gv5kvJfcmaSpNWy1tE",
+            "tool_name": "ToolSearch"
+          },
+          {
+            "input": {
+              "block": true,
+              "task_id": "bttm9106f",
+              "timeout": 600000
+            },
+            "output": "<retrieval_status>success</retrieval_status>\n\n<task_id>bttm9106f</task_id>\n\n<task_type>local_bash</task_type>\n\n<status>completed</status>\n\n<exit_code>0</exit_code>\n\n<output>\nEXIT=0\n</output>",
+            "tool_id": "toolu_bdrk_01J5tpAhEMTYPuqHGmDsnzvo",
+            "tool_name": "TaskOutput"
+          },
+          {
+            "input": {
+              "command": "sed -n '1,40p' deep_run.log",
+              "description": "Show head of deep research run log"
+            },
+            "output": "== AISA — PERPLEXITY SONAR DEEP RESEARCH =====================================\n POST https://api.aisa.one/apis/v1/perplexity/sonar-deep-research\n model : sonar-deep-research\n prompt : Write a comprehensive analysis of the global semiconductor supply chain risks in 2026, covering advanced-node concentration, export controls, and the outlook for packaging capacity.\n note : deep research typically takes 2-4 minutes; please wait.\n==============================================================================\n\n== RESPONSE METADATA =========================================================\n id : 1c9fb426-e6b5-46f3-962a-e1e08ef8d176\n model : sonar-deep-research\n object : chat.completion\n finish_reason : stop\n latency : 207.4s\n answer size : 74,314 chars\n\n== REPORT ====================================================================\n# Global Semiconductor Supply Chain Risks in 2026: Advanced-Node\nConcentration, Export Controls, and Packaging Capacity\n\nThe global semiconductor industry in 2026 is characterized by a paradoxical\ncombination of unprecedented technological progress and deepening structural\nfragility, particularly visible in advanced-node logic fabrication,\ngeopolitical-driven export controls, and constrained packaging and memory\ncapacity for artificial intelligence (AI) hardware. Over three decades, firms\nand governments have optimized the supply chain around geographic\nspecialization, with different regions excelling in fabrication, equipment,\ndesign, memory, and backend services, achieving major gains in innovation and\ncost efficiency.[1] This specialization has produced strong interdependence\nand created dozens of points—more than fifty across the value chain—where a\nsingle region commands more than sixty‑five percent of global market share,\nturning industrial strengths into systemic vulnerabilities.[1] At the leading\nedge, nearly all sub‑10 nanometer manufacturing capacity remains concentrated\nin Taiwan and South Korea, while most overall fabrication capacity sits in\nChina and East Asia, regions exposed both to high seismic activity and\ngeopolitical tension.[1] Simultaneously, AI-driven demand is transforming the\nlogic market, with advanced-node logic valued at more than sixty billion\ndollars in 2025 and projected to expand at a compound annual rate approaching\nsixteen percent through 2034, with especially rapid growth in the\ntwo‑nanometer and below segment.[2] Export controls led by the United States,\njoined by Japan and the Netherlands, are reshaping the map of access to",
+            "tool_id": "toolu_bdrk_01UDKANjEvdBghnDNLBbvmzZ",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "grep -n \"^== \" deep_run.log; echo \"=== USAGE TAIL ===\"; sed -n '/USAGE & COST/,$p' deep_run.log",
+              "description": "Show sections and usage from deep run"
+            },
+            "output": "1:== AISA — PERPLEXITY SONAR DEEP RESEARCH =====================================\n8:== RESPONSE METADATA =========================================================\n16:== REPORT ====================================================================\n1152:== CITATIONS (19) ============================================================\n1173:== SEARCH RESULTS (19) =======================================================\n1206:== USAGE & COST ==============================================================\n=== USAGE TAIL ===\n== USAGE & COST ==============================================================\n : 32\n : 14066\n : 102543\n : 14098\n num_search_queries : 50\n total_cost : $0.69015\n==============================================================================\n\nRaw JSON response saved to deep_research_output.json",
+            "tool_id": "toolu_bdrk_01CfMWhWM6vTnEgGLSBekCQr",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "sed -n '1152,1175p' deep_run.log",
+              "description": "Show citations section"
+            },
+            "output": "== CITATIONS (19) ============================================================\n [1] https://www.semiconductors.org/strengthening-the-global-semiconductor-supply-chain-in-an-uncertain-era/\n [2] https://www.fortunebusinessinsights.com/advanced-node-logic-semiconductor-market-117775\n [3] https://www.tsmc.com/english/dedicatedFoundry/technology/logic/l_2nm\n [4] https://semiconductor.samsung.com/news-events/news/samsung-foundry-innovations-power-the-future-of-big-data-ai-ml-and-smart-connected-devices/\n [5] https://newsroom.intel.com/opinion/continued-momentum-for-intel-18a\n [6] https://www.congress.gov/crs-product/R48642\n [7] https://www.csis.org/analysis/japan-and-netherlands-announce-plans-new-export-controls-semiconductor-equipment\n [8] https://ai-frontiers.org/articles/us-chip-export-controls-china-ai\n [9] https://epochai.substack.com/p/advanced-packaging-and-hbm-not-logic\n [10] https://www.marketresearchreports.com/blog/top-10-osat-companies-world-updated-2026\n [11] https://www.semiconductors.org/ecosystem/\n [12] https://www.semiconductors.org/chip-supply-chain-investments/\n [13] https://enkiai.com/ai-market-intelligence/smic-ai-chip-strategy-2026-inside-chinas-5nm-power-play/\n [14] https://pr.tsmc.com/english/news/3204\n [15] https://semiwiki.com/forum/threads/cowos-capacity-set-to-skyrocket-by-2026-massive-growth-in-advanced-packaging.21773/\n [16] https://www.ersaelectronics.com/blog/skhynix-samsung\n [17] https://info.fusionww.com/blog/inside-the-ai-bottleneck-cowos-hbm-and-2-3nm-capacity-constraints-through-2027\n [18] https://digital-strategy.ec.europa.eu/en/policies/european-chips-act\n [19] https://www.kimchang.com/en/insights/detail.kc?sch_section=4&idx=27331\n\n== SEARCH RESULTS (19) =======================================================\n 1. Strengthening the Global Semiconductor Supply Chain in an ...\n url : https://www.semiconductors.org/strengthening-the-global-semiconductor-supply-chain-in-an-uncertain-era/",
+            "tool_id": "toolu_bdrk_01L9eYDV8uQkABXAYzgyyZsf",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "python3 -c \"\nimport json;d=json.load(open('deep_research_output.json'))\nprint('top-level keys:',sorted(d))\nprint('citations:',len(d.get('citations',[])),'search_results:',len(d.get('search_results',[])))\nprint('content chars:',len(d['choices'][0]['message']['content']))\n\"; ls -la ",
+              "description": "Validate saved JSON and list files"
+            },
+            "output": "top-level keys: ['choices', 'citations', 'created', 'id', 'model', 'object', 'search_results', 'usage']\ncitations: 19 search_results: 19\ncontent chars: 74314\ntotal 184\ndrwxr-xr-x 2 root root 132 Aug 23 15:11 .\ndrwx------ 1 daytona daytona 71 Aug 23 15:05 ..\n-rw-r--r-- 1 root root 12858 Aug 23 15:08 aisa_deep_research.py\n-rw-r--r-- 1 root root 84568 Aug 23 15:11 deep_research_output.json\n-rw-r--r-- 1 root root 80965 Aug 23 15:11 deep_run.log\n-rw-r--r-- 1 root root 17 Aug 23 15:08 requirements.txt",
+            "tool_id": "toolu_bdrk_01Pe34by5JiusS4xwzA8fsMw",
+            "tool_name": "Bash"
+          }
+        ],
+        "raw": null
+      },
+      {
+        "id": "a33ee03f-19e2-473c-959e-2a5c0d159450",
+        "endpoint": {
+          "id": "89f2a0e3-f50a-4246-9759-0e080114ff08",
+          "method": "GET",
+          "path": "/v1/errors",
+          "description": "Error codes and handling guidance. Documents all HTTP status codes, error types, machine-readable codes, and retry strategies.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.4313,
+        "failure_reasons": [
+          "exit_code_zero",
+          "clean_execution",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T14:57:30.871329+00:00",
+        "prompt_sent": "Using https://aisa.one/docs/guides, integrate GET /v1/errors from AIsa's API into my codebase and test it out. Write a Python script.\n\n## Agent Skills\nDo not use agent skills for this variant. Solve the task without installing or reading configured skill repositories.\n\nThe following environment variables are available in your environment for authentication and configuration: $AISA_API_KEY. Use them where relevant (e.g. in headers, query params, or config).\n\n## Execution Policy\nDo not ask clarifying questions or wait for more input. Make reasonable product and implementation assumptions, then start working immediately. If the request is ambiguous, choose a sensible default and note that choice briefly in your final response.\n\n\n## Output\nWrite your script to `/home/daytona/app/`. The script should print output to stdout.\n\nAfter writing the script:\n1. Install any required dependencies (e.g. `pip install <package>` or `npm install <package>`)\n2. Run the script and verify it works\n3. List the files you created:\n```bash\nls -la /home/daytona/app/\n```",
+        "response_text": "I'll start by fetching the AIsa documentation to understand the API.The workspace is empty (fresh project), and `` is set. Let me read the docs.The guides page points to fuller docs. Let me fetch those.Base URL is `https://api.aisa.one`. Let me check the errors doc page and the OpenAPI spec to confirm whether `/v1/errors` is a real endpoint.The errors doc page says it's a reference guide, not a callable endpoint. Let me verify definitively against the OpenAPI spec's `paths` list.No `/v1/errors` in the spec — and no `/v1/*` paths at all. Let me see the actual path structure and probe the live API.The spec contains no `/v1/errors` (or any error-listing endpoint). Let me confirm against the live API before concluding. is `: Bearer $`. Now let me probe the live API to confirm `/v1/errors` doesn't exist.Confirmed: `/v1/errors` returns 404 on both base paths, while `/v1/models` works with my key. Let me get the full error reference to build a faithful integration.No `/v1/errors` endpoint exists — it's an error-handling reference page. Let me check dependencies and then write the integration.Important finding: live errors return `{\"error\": \"<string>\"}`, not the documented nested object. Let me check headers too.No `/v1/errors` endpoint exists, and the live error shape differs from the docs. Now I'll write the integration.All checks pass. Note test 3b/3c picked up real `request_id` values from response headers, confirming the normalization layer works end-to-end.Done — but the headline finding contradicts the premise of the request:\n\n## `GET /v1/errors` does not exist on AIsa's API\n\nI verified this three independent ways rather than assuming:\n\n1. **OpenAPI spec** (`https://aisa.one/openapi.yaml`, 717 paths): zero paths matching `/errors`.\n2. **Live call**: `GET https://api.aisa.one/v1/errors` → `404 page not found`\n3. **Alternate base**: `GET https://api.aisa.one/apis/v1/errors` → `404 {\"error\":\"api endpoint not found\"}`\n\nWhat actually exists at `/docs/api-reference/errors` is a **reference page** documenting the error payload shape, HTTP status codes, and retry strategy. It is not a callable resource — there's no error-log-listing API to fetch past errors from.\n\n## What I built instead\n\nRather than fabricate a fake response, I implemented the thing the docs actually describe — a reusable error-handling layer — and kept a real `get_errors()` call so the 404 is verifiable, not assumed.\n\n- **`aisa_client.py`** — `AIsaClient` + `AIsaError`. Bearer from `$`, error normalization, and the documented retry policy (honor `Retry-After`, exponential backoff 1s→30s with ±25% jitter, 60s total cap, never retry 4xx except 429).\n- **`main.py`** — 4 live tests, nothing mocked. All passed.\n\n## Notable discrepancy worth knowing\n\nThe docs specify errors as a nested object:\n```json\n{\"error\": {\"type\": \"...\", \"code\": \"...\", \"message\": \"...\", \"request_id\": \"...\"}}\n```\nThe live gateway actually returns a **flat string**: `{\"error\": \"invalid api key\"}` — no `type`, `code`, or `request_id` in the body. My parser handles both shapes and back-fills `type` from the HTTP status, pulling `request_id` from the `x-request-id` header (which did surface real IDs like `1787496982976577074-976577124` on the 400/404 chat calls).\n\nAssumptions I made: used `/v1/models` as the happy-path check, and triggered genuine 401/404/400 errors via bad keys and malformed chat payloads to exercise the parsing.\n\nIf you had a different endpoint in mind — e.g. a usage/audit log on the dashboard side, or a specific data API under `/apis/v1` — point me at it and I'll wire that up; the client layer will drop straight in.",
+        "execution_stdout": "WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.\n\n[notice] A new release of pip is available: 26.0.1 -> 26.2.1\n[notice] To update, run: pip install --upgrade pip\n\n========================================================================\nAIsa API integration — GET /v1/errors\n========================================================================\nchat base : https://api.aisa.one/v1\ndata base : https://api.aisa.one/apis/v1\napi key : sk-aisa...Hgso (len 51)\n : : Bearer <>\n\n========================================================================\nTEST 1 — GET /v1/errors (the requested endpoint)\n========================================================================\nGET https://api.aisa.one/v1/errors\n-> HTTP 404 | invalid_request_error: 404 page not found\n type='invalid_request_error' code=None retryable=False\n RESULT: confirmed — /v1/errors is not a callable endpoint (404).\n\nGET https://api.aisa.one/apis/v1/errors (alternate base)\n-> HTTP 404 | invalid_request_error: api endpoint not found\n\n========================================================================\nTEST 2 — + happy path: GET /v1/models\n========================================================================\nHTTP 200 — 104 models available\n - claude-fable-5 owner=Anthropic caps=chat\n - claude-haiku-4-5-20251001 owner=Anthropic caps=chat\n - claude-opus-4-5-20251101 owner=Anthropic caps=chat\n - claude-opus-4-6 owner=Anthropic caps=chat\n - claude-opus-4-7 owner=Anthropic caps=chat\n ... and 99 more\n\n========================================================================\nTEST 3 — error model parsing against real failures\n========================================================================\n3a) GET /v1/models with an invalid key -> expect 401\n -> HTTP 401 | : invalid api key\n parsed type='' retryable=False raw={'error': 'invalid api key'}\n PASS: 401 -> \n\n3b) POST /v1/chat/completions with a nonexistent model -> expect 404\n -> HTTP 404 | invalid_request_error: model not found (request_id=1787497040178793725-178793776)\n PASS: got 404, raw={'error': 'model not found'}\n\n3c) POST /v1/chat/completions with no model -> expect 400\n -> HTTP 400 | invalid_request_error: model is required (request_id=1787497040446953704-446953750)\n PASS: got 400, raw={'error': 'model is required'}\n\n========================================================================\nTEST 4 — retry policy (docs: never retry 4xx except 429)\n========================================================================\nnon-retryable statuses: [400, 401, 403, 404, 422]\n404 on /v1/errors returned in 1.04s with max_retries=4\nFAIL: 404 raised immediately, no backoff sleeps\n\n========================================================================\nSUMMARY\n========================================================================\nGET /v1/errors ......... DOES NOT EXIST (404 on both /v1 and /apis/v1).\n /docs/api-reference/errors is a reference page\n describing the error model, not a resource.\nError-handling layer ... integrated and verified on live 401/404/400.\n ................... valid (GET /v1/models -> 200).\n\n1 check(s) failed:\n - 404 appears to have been retried\n",
+        "execution_stderr": "",
+        "exit_code": 1,
+        "tool_calls": [
+          {
+            "input": {
+              "query": "select:WebFetch",
+              "max_results": 1
+            },
+            "output": "{'type': 'tool_reference', 'tool_name': 'WebFetch'}",
+            "tool_id": "toolu_bdrk_01LGfm9FKeG5g5Lqovet5NwY",
+            "tool_name": "ToolSearch"
+          },
+          {
+            "input": {
+              "command": "ls -la ~/ 2>&1 | head -30; echo \"---\"; ls -la ~/app 2>&1 | head -20; echo \"------\"; if [ -n \"$\" ]; then echo \" is set (length ${#})\"; else echo \" NOT set\"; fi; echo \"---\"; python3 --version; pip --version",
+              "description": "Inspect workspace and environment"
+            },
+            "output": "total 40\ndrwx------ 1 daytona daytona 71 Aug 23 14:53 .\ndrwxr-xr-x 1 root root 29 May 14 11:01 ..\ndrwxr-xr-x 2 root root 10 Aug 23 14:53 app\n-rw-r--r-- 1 daytona daytona 220 Mar 8 15:21 .bash_logout\n-rw-r--r-- 1 daytona daytona 3526 Mar 8 15:21 .bashrc\ndrwxrwxrwx 2 root root 10 May 14 21:13 .claude\n-rw-r--r-- 1 daytona daytona 5290 Aug 28 2025 .face\nlrwxrwxrwx 1 daytona daytona 5 Aug 28 2025 .face.icon -> .face\n-rw-r--r-- 1 daytona daytona 807 Mar 8 15:21 .profile\ndrwxr-xr-x 2 root root 51 Aug 23 14:53 __pycache__\n-rw-r--r-- 1 root root 16079 Apr 27 13:49 sandbox_agent.py\n-rw-r--r-- 1 root root 304 Aug 23 14:53 uvicorn.log\n-rw-r--r-- 1 daytona daytona 0 May 14 11:02 .zshrc\n---\ntotal 0\ndrwxr-xr-x 2 root root 10 Aug 23 14:53 .\ndrwx------ 1 daytona daytona 71 Aug 23 14:53 ..\n------\n is set (length 51)\n---\nPython 3.14.4\npip 26.0.1 from /usr/local/lib/python3.14/site-packages/pip (python 3.14)",
+            "tool_id": "toolu_bdrk_015pc2TKhsPmQ5bx2mGRqUCW",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "url": "https://aisa.one/docs/guides",
+              "prompt": "Extract the full API documentation details: base URL, method (header name/format), and everything about the GET /v1/errors endpoint including query parameters, pagination, response schema/fields, and any example requests/responses. Also list any other endpoints and links to further documentation pages."
+            },
+            "output": "# AIsa API Documentation Summary\n\nBased on the provided content, here's what I can extract:\n\n## Available Information\nThe page indicates that **complete documentation is available** at: https://aisa.one/docs/llms.txt\n\n## Key Details Found\n\n**:** The documentation mentions \"one API key\" for access, though the specific header format (e.g., `: Bearer`) is not detailed in this excerpt.\n\n**Base URL:** The page references swapping your `base_url` to AIsa but doesn't specify the exact endpoint. This information likely appears in the full documentation.\n\n**GET /v1/errors Endpoint:** This specific endpoint is not documented in the provided content.\n\n## Documented Sections\nThe page references these documentation areas:\n- Model catalog and supported models list\n- [API Reference](/docs/api-reference) - described as containing \"every endpoint with interactive examples\"\n- [AI Model Pricing](/docs/guides/pricing/ai-model-pricing-llm-inference)\n- [Getting Started guide](/docs/guides/getting-started-with-aisa)\n- [FAQ](/docs/guides/faq)\n\n## Note\nThe landing page emphasizes AIsa as a \"unified API gateway\" supporting 13+ model families, but comprehensive endpoint specifications, query parameters, pagination details, and response schemas are not included in this excerpt. You'll need to consult the full documentation at the provided URL or the API Reference section for complete technical details.",
+            "tool_id": "toolu_bdrk_011LHY4ymJC36wg6JMEF2XU8",
+            "tool_name": "WebFetch"
+          },
+          {
+            "input": {
+              "url": "https://aisa.one/docs/llms.txt",
+              "prompt": "Find the GET /v1/errors endpoint. Report the exact base URL, header format, all query parameters (names, types, defaults, allowed values), the response JSON schema including nested fields, and any example request/response. Also note rate limits and other endpoints."
+            },
+            "output": "# GET /v1/errors Endpoint - Not Found\n\nBased on the AIsa Developer Documentation provided, I cannot locate a GET /v1/errors endpoint specification.\n\n## What the Documentation Does Contain\n\nThe documentation references an \"[Errors](https://aisa.one/docs/api-reference/errors)\" page under the API Reference section, described as covering \"error formats and handling.\" However, the actual endpoint details—including base URL, headers, query parameters, response schemas, examples, and rate limits—are **not included** in the content provided.\n\n## Recommendation\n\nTo obtain this information, you would need to:\n\n1. Access the [Errors documentation page](https://aisa.one/docs/api-reference/errors) directly\n2. Consult the [OpenAPI 3.1 Specification](https://aisa.one/openapi.yaml) for machine-readable endpoint definitions\n3. Review the \"[Full Technical Documentation](https://aisa.one/docs/llms-full.txt)\" bundle\n\nThe documentation suggests requesting pages with `Accept: text/markdown` to retrieve content as structured markdown if needed.",
+            "tool_id": "toolu_bdrk_01STfF5kFAThJdJFs4aeUZ28",
+            "tool_name": "WebFetch"
+          },
+          {
+            "input": {
+              "url": "https://aisa.one/docs/api-reference",
+              "prompt": "List all endpoints, especially GET /v1/errors. Report base URL, header format, query parameters, and response schema for /v1/errors."
+            },
+            "output": "# AIsa API Reference Summary\n\n## Base URL & \n- **Base URL**: `https://api.aisa.one`\n- **Chat endpoints**: `/v1`\n- **Other APIs**: `/apis/v1`\n- ****: Single `` for all endpoints\n\n## Available Endpoint Categories\n\n1. **Chat API** (`/v1`) — OpenAI, Anthropic, and Google-compatible completions\n2. **Search API** — YouTube SERP, Tavily search, extract, crawl, map\n3. **Perplexity API** — Sonar variants and Deep Research\n4. **Financial API** — Company data, filings, prices, insider trades, macro\n5. **Twitter API** — User, tweet, list, community, trend, space endpoints\n6. **Scholar API** — Academic search with smart and explain modes\n7. **Prediction Market API** — Polymarket, Kalshi data\n\n## Essential Resources\n\n- **Errors endpoint**: `/docs/api-reference/errors`\n- **Rate Limits**: Per-endpoint caps with response headers\n- **Credit Balance**: Wallet and API-key status\n\n---\n\n**Note**: The provided documentation does not contain specific details for a GET `/v1/errors` endpoint, including its query parameters or response schema. The reference only lists \"Errors\" as a documentation resource at `/docs/api-reference/errors`. For complete endpoint specifications, access the full documentation index at `https://aisa.one/docs/llms.txt`.",
+            "tool_id": "toolu_bdrk_01SCFvLmNnZVDVy3GmR4DFzr",
+            "tool_name": "WebFetch"
+          },
+          {
+            "input": {
+              "url": "https://aisa.one/docs/api-reference/errors",
+              "prompt": "Is there a GET /v1/errors endpoint here? Describe exactly what this page documents: is it an endpoint you can call, or just error code/format reference? Include the error response JSON schema, error codes, HTTP statuses, and any request examples verbatim."
+            },
+            "output": "# AIsa Error Codes Documentation\n\n**Is there a GET /v1/errors endpoint?**\n\nNo. This is a reference guide only—not a callable endpoint. It documents error handling patterns for the broader AIsa API.\n\n**What does this page document?**\n\nThe documentation explains how to interpret errors across all AIsa API calls. It covers response structure, HTTP status codes, recovery strategies, and support procedures.\n\n## Error Response Schema\n\nAll errors follow this JSON structure:\n\n```json\n{\n \"error\": {\n \"type\": \"\",\n \"code\": \"\",\n \"message\": \"The API key provided is invalid or has been revoked.\",\n \"request_id\": \"req_01JABCD9F1YYEXAMPLE\"\n }\n}\n```\n\n**Fields:**\n- `type`: High-level category (, invalid_request_error, rate_limit_error, api_error, upstream_error)\n- `code`: Machine-readable identifier\n- `message`: Human-readable description\n- `request_id`: Unique identifier for support escalation\n\n## HTTP Status Codes Covered\n\n- **400**: Malformed request payload\n- **401**: Missing or invalid API key\n- **403**: Valid key lacks permissions\n- **404**: Resource not found\n- **422**: Valid syntax violates business rules\n- **429**: Rate limit exceeded\n- **5xx**: Server/upstream failures\n\nNo request examples are provided in this reference material.",
+            "tool_id": "toolu_bdrk_01EfEkaGkUkEBtintyaZtMqe",
+            "tool_name": "WebFetch"
+          },
+          {
+            "input": {
+              "command": "cd /tmp && curl -sS --max-time 60 -o openapi.yaml -w \"HTTP:%{http_code} size:%{size_download}\\n\" https://aisa.one/openapi.yaml; echo \"--- grep for errors paths ---\"; grep -n \"errors\" openapi.yaml | head -40",
+              "description": "Download OpenAPI spec and grep for errors"
+            },
+            "output": "HTTP:200 size:4787519\n--- grep for errors paths ---\n41851: occasional rate-limit and/or site_unreachable errors\n41856: resulting in occasional site_unreachable errors possible values: us, de'\n42606: description: spellcheck hunspell spellcheck errors\n42618: tasks.result.items.pages.page.meta.resource_errors:\n42620: description: resource errors and warnings\n42621: tasks.result.items.pages.page.meta.resource_errors.errors:\n42625: description: resource errors\n42626: tasks.result.items.pages.page.meta.resource_errors.errors.line:\n42629: tasks.result.items.pages.page.meta.resource_errors.errors.message:\n42631: description: text message of the error the full list of possible HTML errors can be found here\n42632: tasks.result.items.pages.page.meta.resource_errors.warnings:\n42637: tasks.result.items.pages.page.meta.resource_errors.warnings.line:\n42640: tasks.result.items.pages.page.meta.resource_errors.warnings.message:\n43306: description: spellcheck hunspell spellcheck errors\n43318: tasks.result.pages.meta.resource_errors:\n43320: description: resource errors and warnings\n43321: tasks.result.pages.meta.resource_errors.errors:\n43325: description: resource errors\n43326: tasks.result.pages.meta.resource_errors.errors.line:\n43329: tasks.result.pages.meta.resource_errors.errors.message:\n43331: description: text message of the error the full list of possible HTML errors can be found here\n43332: tasks.result.pages.meta.resource_errors.warnings:\n43337: tasks.result.pages.meta.resource_errors.warnings.line:\n43340: tasks.result.pages.meta.resource_errors.warnings.message:\n45187: description: number of fatal microdata errors\n45190: description: number of serious microdata errors\n45237: description: microdata validation test results sub-type microdata test results that contain detected errors\n45600: occasional rate-limit and/or site_unreachable errors\n45605: resulting in occasional site_unreachable errors possible values: us, de'\n45980: tasks.result.resource_errors:\n45982: description: resource errors and warnings\n45983: tasks.result.resource_errors.errors:\n45987: description: resource errors\n45988: tasks.result.resource_errors.errors.line:\n45991: tasks.result.resource_errors.errors.column:\n45994: tasks.result.resource_errors.errors.message:\n45996: description: text message of the error the full list of possible HTML errors can be found here\n45997: tasks.result.resource_errors.errors.status_code:\n46002: tasks.result.resource_errors.warnings:\n46007: tasks.result.resource_errors.warnings.line:\nShell cwd was reset to /home/daytona",
+            "tool_id": "toolu_bdrk_01CsFxh7R9ekAdDmvH5FLhej",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "cd /tmp && python3 - <<'EOF'\nimport re\nlines=open('openapi.yaml',encoding='utf-8',errors='replace').read().split('\\n')\n# find paths: section, then top-level path keys (2-space indent under paths)\nstart=None\nfor i,l in enumerate(lines):\n if re.match(r'^paths:\\s*$',l): start=i; break\nprint(\"paths: at line\",start)\npaths=[]\nfor l in lines[start+1:]:\n if re.match(r'^\\S',l): break\n m=re.match(r'^ (/[^:]*):\\s*$',l)\n if m: paths.append(m.group(1))\nprint(\"total paths:\",len(paths))\nprint(\"--- any path containing 'error' ---\")\nprint([p for p in paths if 'error' in p.lower()] or \"NONE\")\nprint(\"--- exact /v1/errors present? ---\", '/v1/errors' in paths)\nprint(\"--- sample /v1/* paths ---\")\nfor p in paths:\n if p.startswith('/v1/'): print(\" \",p)\nEOF",
+              "description": "Parse OpenAPI paths for errors endpoint"
+            },
+            "output": "paths: at line 76\ntotal paths: 717\n--- any path containing 'error' ---\nNONE\n--- exact /v1/errors present? --- False\n--- sample /v1/* paths ---\nShell cwd was reset to /home/daytona",
+            "tool_id": "toolu_bdrk_01LufGThGe7yC6b2Ftooxomj",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "cd /tmp && python3 - <<'EOF'\nimport re\nlines=open('openapi.yaml',encoding='utf-8',errors='replace').read().split('\\n')\nstart=next(i for i,l in enumerate(lines) if re.match(r'^paths:\\s*$',l))\npaths=[]\nfor l in lines[start+1:]:\n if re.match(r'^\\S',l): break\n m=re.match(r'^ (/[^:]*):\\s*$',l)\n if m: paths.append(m.group(1))\nimport collections\nprint(\"first 25 paths:\")\nfor p in paths[:25]: print(\" \",p)\nprint(\"\\nprefix counts (first 3 segments):\")\nc=collections.Counter('/'.join(p.split('/')[:4]) for p in paths)\nfor k,v in c.most_common(20): print(f\" {v:4d} {k}\")\nprint(\"\\npaths mentioning chat/completions or status/balance:\")\nprint([p for p in paths if 'completions' in p or 'balance' in p or 'status' in p][:15])\nEOF",
+              "description": "Inspect OpenAPI path structure"
+            },
+            "output": "first 25 paths:\n /agentmail/threads/{thread_id}\n /agentmail/inboxes/{inbox_id}/drafts/{draft_id}\n /agentmail/inboxes/{inbox_id}\n /agentmail/lists/{direction}/{type}\n /agentmail/inboxes/{inbox_id}/messages/{message_id}/reply-all\n /agentmail/inboxes/{inbox_id}/messages/send\n /agentmail/inboxes/{inbox_id}/threads/{thread_id}\n /agentmail/threads\n /agentmail/inboxes/{inbox_id}/threads\n /agentmail/drafts/{draft_id}/attachments/{attachment_id}\n /agentmail/inboxes/{inbox_id}/events\n /agentmail/inboxes/{inbox_id}/messages/{message_id}\n /agentmail/inboxes/{inbox_id}/drafts\n /agentmail/threads/{thread_id}/attachments/{attachment_id}\n /agentmail/inboxes/{inbox_id}/messages\n /agentmail/inboxes/{inbox_id}/lists/{direction}/{type}/{entry}\n /agentmail/metrics\n /agentmail/inboxes/{inbox_id}/drafts/{draft_id}/send\n /agentmail/lists/{direction}/{type}/{entry}\n /agentmail/inboxes/{inbox_id}/metrics\n /agentmail/drafts\n /agentmail/inboxes/{inbox_id}/messages/{message_id}/forward\n /agentmail/inboxes/{inbox_id}/messages/{message_id}/raw\n /agentmail/inboxes/{inbox_id}/messages/{message_id}/attachments/{attachment_id}\n /agentmail/inboxes\n\nprefix counts (first 3 segments):\n 95 /dataforseo/serp/google\n 27 /dataforseo/keywords_data/bing\n 27 /dataforseo/business_data/google\n 25 /dataforseo/dataforseo_labs/google\n 22 /agentmail/inboxes/{inbox_id}\n 18 /dataforseo/serp/youtube\n 16 /dataforseo/merchant/google\n 16 /dataforseo/app_data/google\n 14 /dataforseo/merchant/amazon\n 13 /dataforseo/ai_optimization/gemini\n 13 /dataforseo/app_data/apple\n 11 /dataforseo/keywords_data/google_ads\n 10 /dataforseo/domain_analytics/technologies\n 10 /dataforseo/serp/bing\n 10 /dataforseo/serp/yahoo\n 9 /coingecko/coins/{id}\n 8 /dataforseo/ai_optimization/chat_gpt\n 7 /dataforseo/ai_optimization/llm_mentions\n 7 /dataforseo/on_page/lighthouse\n 7 /dataforseo/serp/baidu\n\npaths mentioning chat/completions or status/balance:\n['/chat/completions', '/dataforseo/keywords_data/google_ads/status', '/dataforseo/dataforseo_labs/status', '/financial/financials/balance-sheets']\nShell cwd was reset to /home/daytona",
+            "tool_id": "toolu_bdrk_012krBiRxGrFPjZ5VADbodmX",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "cd /tmp && python3 -c \"\nimport re\nt=open('openapi.yaml',encoding='utf-8',errors='replace').read()\ni=t.find('servers:')\nprint(t[i:i+400])\nprint('=== securitySchemes ===')\nj=t.find('securitySchemes')\nprint(t[j:j+500] if j>0 else 'not found')\n\"",
+              "description": "Check servers and scheme in spec"
+            },
+            "output": "servers:\n- url: https://api.aisa.one/apis/v1\n description: AIsa Data APIs (Bearer — register at https://aisa.one)\n- url: https://api.aisa.one/apis/v2\n description: 'AIsa Data APIs (x402 pay-per-call) — same surface as /apis/v1, mirrored. No registration; receive HTTP 402\n challenge, settle with stablecoin micropayment. Spec: https://www.x402.org. Open-source gateway implementation: https\n=== securitySchemes ===\nsecuritySchemes:\n :\n type: http\n scheme: bearer\n description: AIsa API key. Get yours at https://aisa.one\n Bearer:\n type: http\n scheme: bearer\n :\n type: http\n scheme: bearer\n bearerFormat: AISA API Key\n :\n type: http\n scheme: bearer\n :\n type: http\n scheme: bearer\n :\n type: http\n scheme: bearer\n bearerFormat: AISA API Key\nShell cwd was reset to /home/daytona",
+            "tool_id": "toolu_bdrk_01RzMDm2qsMUA7x1r9aZC2cs",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "cd /tmp && for u in \"https://api.aisa.one/v1/errors\" \"https://api.aisa.one/apis/v1/errors\" \"https://api.aisa.one/v1/models\"; do echo \"=== $u\"; curl -sS --max-time 30 -o body.txt -w \"HTTP:%{http_code}\\n\" -H \": Bearer $\" \"$u\"; head -c 400 body.txt; echo; done",
+              "description": "Probe live endpoints for /v1/errors"
+            },
+            "output": "=== https://api.aisa.one/v1/errors\nHTTP:404\n404 page not found\n=== https://api.aisa.one/apis/v1/errors\nHTTP:404\n{\"error\":\"api endpoint not found\"}\n=== https://api.aisa.one/v1/models\nHTTP:200\n{\"data\":[{\"aisa\":{\"capabilities\":[\"chat\"],\"display_name\":\"claude-fable-5\",\"model_type\":\"text\",\"preferred_route\":\"anthropic\",\"routes\":[{\"key\":\"openai\",\"path\":\"/v1/chat/completions\",\"method\":\"POST\"},{\"key\":\"anthropic\",\"path\":\"/v1/messages\",\"method\":\"POST\",\"preferred\":true}]},\"created\":1782873039,\"id\":\"claude-fable-5\",\"object\":\"model\",\"owned_by\":\"Anthropic\",\"recharge_required\":true},{\"aisa\":{\"capabil\nShell cwd was reset to /home/daytona",
+            "tool_id": "toolu_bdrk_01DXcDmvDGDfQKR56pzhLnvi",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "cd /tmp && curl -sS --max-time 45 -H \"Accept: text/markdown\" https://aisa.one/docs/api-reference/errors | head -c 4000",
+              "description": "Fetch errors reference page as markdown"
+            },
+            "output": "> ## Documentation Index\n> Fetch the complete documentation index at: https://aisa.one/docs/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Error Codes\n\n> HTTP status codes, error payload shape, and recommended retry strategies for the AIsa API.\n\nEvery AIsa API response follows standard HTTP semantics. Successful calls return `2xx`; client errors return `4xx`; server or upstream errors return `5xx`. This page documents the error model and how to respond to each case.\n\n## Error response shape\n\nError responses are always JSON with an `error` object:\n\n```json theme={null}\n{\n \"error\": {\n \"type\": \"\",\n \"code\": \"\",\n \"message\": \"The API key provided is invalid or has been revoked.\",\n \"request_id\": \"req_01JABCD9F1YYEXAMPLE\"\n }\n}\n```\n\n| Field | Meaning |\n| ------------ | ------------------------------------------------------------------------------------------------------------------------ |\n| `type` | High-level category — ``, `invalid_request_error`, `rate_limit_error`, `api_error`, `upstream_error` |\n| `code` | Machine-readable code (stable; safe to match on) |\n| `message` | Human-readable explanation |\n| `request_id` | Unique ID for the request. **Include in support tickets.** |\n\n## Status codes\n\n<AccordionGroup>\n <Accordion title=\"400 — Bad Request\" icon=\"triangle-exclamation\">\n The request payload is malformed: missing required parameter, wrong type, invalid JSON, or a value out of range.\n\n **Common codes:** `invalid_request`, `missing_parameter`, `invalid_parameter_type`, `json_parse_error`\n\n **Action:** Fix the request before retrying. Do not retry automatically.\n </Accordion>\n\n <Accordion title=\"401 — \" icon=\"lock\">\n No API key, malformed `` header, or the key is invalid/revoked.\n\n **Common codes:** ``, ``, ``\n\n **Action:** Verify the key in your [Dashboard](https://console.aisa.one) and resend with `: Bearer `.\n </Accordion>\n\n <Accordion title=\"403 — Forbidden\" icon=\"ban\">\n The key is valid but lacks permission for this endpoint, model, or region.\n\n **Common codes:** `insufficient_permissions`, `model_not_allowed`, `region_blocked`\n\n **Action:** Check your workspace plan and per-key scopes. Contact support if the restriction is unexpected.\n </Accordion>\n\n <Accordion title=\"404 — Not Found\" icon=\"question\">\n The endpoint path, model ID, or resource ID does not exist.\n\n **Common codes:** `unknown_model`, `resource_not_found`, `unknown_endpoint`\n\n **Action:** Double-check the model name against the [model catalog](/docs/guides/models) and the endpoint path against the [API reference](/docs/api-reference/chat/post_chat-completions).\n </Accordion>\n\n <Accordion title=\"422 — Unprocessable Entity\" icon=\"circle-exclamation\">\n Syntax is valid, but the request violates a business rule — e.g., `` above the model's limit, an unsupported combination of parameters, or content that violates the upstream provider's safety policy.\n\n **Common codes:** ``, `unsupported_parameter`, `content_policy_violation`\n\n **Action:** Read the `message` carefully and adjust the payload. Do not retry blindly.\n </Accordion>\n\n <Accordion title=\"429 — Too Many Requests\" icon=\"gauge-high\">\n You hit a rate limit — either your account RPM/TPM cap or the upstream provider's throttle.\n\n **Common codes:** `rate_limit_exceeded`, `upstream_rate_limit`, `quota_exceeded`\n\n **Headers returned:**\n\n * `Re\nShell cwd was reset to /home/daytona",
+            "tool_id": "toolu_bdrk_01F5ryg1LC7Y7WAmwFprZkQF",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "cd /tmp && curl -sS --max-time 45 -H \"Accept: text/markdown\" https://aisa.one/docs/api-reference/errors | tail -c 3000",
+              "description": "Read remainder of errors reference"
+            },
+            "output": " <Accordion title=\"500 — Internal Server Error\" icon=\"server\">\n An unexpected error on AIsa's side. The `request_id` field is critical for support investigation.\n\n **Action:** Retry with exponential backoff (see below). If the error persists, contact [developer@aisa.one](mailto:developer@aisa.one) with the `request_id`.\n </Accordion>\n\n <Accordion title=\"502 / 503 / 504 — Upstream Errors\" icon=\"cloud-exclamation\">\n AIsa could not reach or got an error from the upstream model provider (OpenAI, Anthropic, etc.). Often transient.\n\n **Common codes:** `upstream_unavailable`, `upstream_timeout`, `gateway_error`\n\n **Action:** Retry with exponential backoff. For persistent issues, switch to an alternate model — the gateway can route Claude requests through different upstream deployments.\n </Accordion>\n</AccordionGroup>\n\n## Retry guidance\n\n<Steps>\n <Step title=\"Only retry idempotent or safe-to-repeat calls\">\n All `GET` requests and most chat/completions calls are safe to retry. Do not blindly retry `POST` requests that create side effects (e.g., posting a tweet).\n </Step>\n\n <Step title=\"Respect `Retry-After`\">\n On 429 responses, always honor the `Retry-After` header. On 5xx without `Retry-After`, fall back to exponential backoff.\n </Step>\n\n <Step title=\"Use exponential backoff with jitter\">\n Start with 1 s; double each attempt; add ±25% jitter; cap at 30 s.\n\n ```\n 1.0s → 2.0s → 4.0s → 8.0s → 16.0s → 30.0s (max)\n ```\n </Step>\n\n <Step title=\"Limit total retry time\">\n Give up after 3–5 attempts or 60 s total — whichever comes first. Surface the error to the caller.\n </Step>\n\n <Step title=\"Never retry 4xx except 429\">\n `400`, `401`, `403`, `404`, and `422` indicate bugs in the request itself. Retrying will not help.\n </Step>\n</Steps>\n\n### Minimal retry example (Python)\n\n```python theme={null}\nimport time, random\nfrom openai import OpenAI, APIError, RateLimitError\n\nclient = OpenAI(base_url=\"https://api.aisa.one/v1\", )\n\ndef call_with_retry(messages, model=\"gpt-5\", max_retries=5):\n delay = 1.0\n for attempt in range(max_retries):\n try:\n return client.chat.completions.create(model=model, messages=messages)\n except RateLimitError as e:\n wait = getattr(e.response.headers, \"Retry-After\", None) or delay\n time.sleep(float(wait) * (1 + random.uniform(-0.25, 0.25)))\n except APIError as e:\n if e.status_code >= 500:\n time.sleep(delay * (1 + random.uniform(-0.25, 0.25)))\n else:\n raise\n delay = min(delay * 2, 30)\n raise RuntimeError(\"Exceeded max retries\")\n```\n\n## Getting help\n\nWhen reporting an issue to [developer@aisa.one](mailto:developer@aisa.one), include:\n\n* The `request_id` from the error response\n* The HTTP status code and `error.code`\n* Your model ID and a minimal reproduction (curl with a redacted key)\n* The approximate timestamp of the failing request\nShell cwd was reset to /home/daytona",
+            "tool_id": "toolu_bdrk_016L5wQm58YJfUip5MAXEP93",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "python3 -c \"import requests; print('requests', requests.__version__)\" 2>&1; echo \"---\"; cd /tmp && curl -sS --max-time 30 -o b.txt -w \"HTTP:%{http_code}\\n\" -H \": Bearer INVALID_KEY_TEST\" https://api.aisa.one/v1/models; head -c 300 b.txt; echo; echo \"=== 404 unknown model via chat ===\"; curl -sS --max-time 40 -o c.txt -w \"HTTP:%{http_code}\\n\" -X POST -H \": Bearer $\" -H \"Content-Type: application/json\" -d '{\"model\":\"definitely-not-a-real-model\",\"messages\":[{\"role\":\"user\",\"content\":\"hi\"}]}' https://api.aisa.one/v1/chat/completions; head -c 400 c.txt",
+              "description": "Check requests lib and sample real error payloads"
+            },
+            "output": "requests 2.32.5\n---\nHTTP:401\n{\"error\":\"invalid api key\"}\n=== 404 unknown model via chat ===\nHTTP:404\n{\"error\":\"model not found\"}\nShell cwd was reset to /home/daytona",
+            "tool_id": "toolu_bdrk_012w4RLFi9VfgcRqrBqTzZ7g",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "cd /tmp && echo \"=== headers on 401 ===\"; curl -sS --max-time 30 -D - -o /dev/null -H \": Bearer BAD\" https://api.aisa.one/v1/models 2>&1 | grep -iE \"^(HTTP|x-|retry|ratelimit|request)\" ; echo \"=== headers on 200 ===\"; curl -sS --max-time 30 -D - -o /dev/null -H \": Bearer $\" https://api.aisa.one/v1/models 2>&1 | grep -iE \"^(HTTP|x-|retry|ratelimit|request)\"; echo \"=== 400 bad payload ===\"; curl -sS --max-time 30 -o d.txt -w \"HTTP:%{http_code}\\n\" -X POST -H \": Bearer $\" -H \"Content-Type: application/json\" -d '{\"not_json_valid\"' https://api.aisa.one/v1/chat/completions; head -c 300 d.txt",
+              "description": "Inspect response headers and 400 error shape"
+            },
+            "output": "=== headers on 401 ===\nHTTP/2 401 \r\n=== headers on 200 ===\nHTTP/2 200 \r\n=== 400 bad payload ===\nHTTP:400\n{\"error\":\"model is required\"}\nShell cwd was reset to /home/daytona",
+            "tool_id": "toolu_bdrk_01W2Pb5WE5Q3XqFzVkYboMoJ",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "content": "\"\"\"\nAIsa API client with first-class error handling.\n\nDocs consulted:\n - https://aisa.one/docs/guides\n - https://aisa.one/docs/api-reference\n - https://aisa.one/docs/api-reference/errors (error model + retry guidance)\n - https://aisa.one/openapi.yaml (machine-readable spec, 717 paths)\n\nBase URLs (from openapi.yaml `servers` + API reference):\n - https://api.aisa.one/v1 -> chat / models (OpenAI-compatible surface)\n - https://api.aisa.one/apis/v1 -> data APIs (search, financial, twitter, ...)\n\n: `: Bearer $` (securityScheme ).\n\nIMPORTANT FINDING about `GET /v1/errors`\n----------------------------------------\n`GET /v1/errors` is NOT a real endpoint on the AIsa API. The docs page at\n/docs/api-reference/errors is a *reference guide* describing the error payload\nshape, HTTP status codes and retry strategy -- it is not a callable resource.\nThis was verified three ways:\n 1. openapi.yaml contains 717 paths, none matching /errors (and no /v1/* paths;\n data-API paths are served under the /apis/v1 server prefix).\n 2. GET https://api.aisa.one/v1/errors -> 404 \"404 page not found\"\n 3. GET https://api.aisa.one/apis/v1/errors -> 404 {\"error\":\"api endpoint not found\"}\n\nSo instead of faking a response, this module does the useful thing the docs\nactually describe: it implements the documented error model as a reusable layer\n(`AIsaError` + normalization + `Retry-After`/exponential-backoff retries), and\nexposes `get_errors()` which really calls the endpoint and reports its 404.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport os\nimport random\nimport time\nfrom dataclasses import dataclass, field\nfrom typing import Any, Mapping\n\nimport requests\n\nCHAT_BASE = \"https://api.aisa.one/v1\"\nDATA_BASE = \"https://api.aisa.one/apis/v1\"\n\n# Per the docs, these 4xx codes indicate a bug in the request: never retry them.\nNON_RETRYABLE_STATUSES = frozenset({400, 401, 403, 404, 422})\nRETRYABLE_STATUSES = frozenset({429, 500, 502, 503, 504})\n\n# Documented high-level error categories, mapped from HTTP status when the\n# gateway returns a bare string instead of a typed object.\n_TYPE_BY_STATUS = {\n 400: \"invalid_request_error\",\n 401: \"\",\n 403: \"permission_error\",\n 404: \"invalid_request_error\",\n 422: \"invalid_request_error\",\n 429: \"rate_limit_error\",\n}\n\n\n@dataclass\nclass AIsaError(Exception):\n \"\"\"Normalized AIsa API error.\n\n The docs specify errors as {\"error\": {type, code, message, request_id}}.\n In practice the live gateway often returns {\"error\": \"<message>\"}, so we\n normalize both shapes into these fields.\n \"\"\"\n\n status: int\n message: str\n type: str = \"api_error\"\n code: str | None = None\n request_id: str | None = None\n retry_after: float | None = None\n raw: Any = None\n\n def __str__(self) -> str:\n bits = [f\"HTTP {self.status}\", self.type]\n if self.code:\n bits.append(self.code)\n line = \" | \".join(bits) + f\": {self.message}\"\n if self.request_id:\n line += f\" (request_id={self.request_id})\"\n return line\n\n @property\n def retryable(self) -> bool:\n return self.status in RETRYABLE_STATUSES\n\n @classmethod\n def from_response(cls, resp: requests.Response) -> \"AIsaError\":\n payload: Any\n try:\n payload = resp.json()\n except ValueError:\n payload = resp.text.strip()\n\n err: Any = payload.get(\"error\", payload) if isinstance(payload, Mapping) else payload\n\n if isinstance(err, Mapping):\n # Documented nested shape.\n message = str(err.get(\"message\") or err.get(\"error\") or resp.reason or \"unknown error\")\n etype = err.get(\"type\") or _TYPE_BY_STATUS.get(resp.status_code, \"api_error\")\n code = err.get(\"code\")\n request_id = err.get(\"request_id\")\n else:\n # Observed flat shape: {\"error\": \"invalid api key\"} or plain text.\n message = str(err) if err else (resp.reason or \"unknown error\")\n etype = _TYPE_BY_STATUS.get(resp.status_code, \"api_error\")\n code = None\n request_id = None\n\n if resp.status_code >= 500 and etype == \"api_error\" and resp.status_code != 500:\n etype = \"upstream_error\"\n\n # request_id may also arrive as a header.\n request_id = request_id or resp.headers.get(\"x-request-id\") or resp.headers.get(\"request-id\")\n\n retry_after = None\n ra = resp.headers.get(\"Retry-After\")\n if ra:\n try:\n retry_after = float(ra)\n except ValueError:\n retry_after = None\n\n return cls(\n status=resp.status_code,\n message=message,\n type=etype,\n code=code,\n request_id=request_id,\n retry_after=retry_after,\n raw=payload,\n )\n\n\n@dataclass\nclass AIsaClient:\n : str = field(default_factory=lambda: os.environ.get(\"\", \"\"))\n timeout: float = 30.0\n max_retries: int = 4\n max_total_retry_seconds: float = 60.0\n\n def __post_init__(self) -> None:\n if not self.:\n raise RuntimeError(\" is not set in the environment\")\n self._session = requests.Session()\n self._session.headers.update(\n {\n \"\": f\"Bearer {self.}\",\n \"Accept\": \"application/json\",\n \"User-Agent\": \"aisa-errors-integration/1.0\",\n }\n )\n\n def request(\n self,\n method: str,\n url: str,\n *,\n params: Mapping[str, Any] | None = None,\n json: Any = None,\n ) -> tuple[Any, requests.Response]:\n \"\"\"Perform a request, retrying per the documented backoff policy.\n\n Raises AIsaError on any non-2xx response (after exhausting retries).\n \"\"\"\n delay = 1.0\n started = time.monotonic()\n last_error: AIsaError | None = None\n\n for attempt in range(1, self.max_retries + 1):\n try:\n resp = self._session.request(\n method, url, params=params, json=json, timeout=self.timeout\n )\n except requests.RequestException as exc:\n last_error = AIsaError(\n status=0, message=f\"network error: {exc}\", type=\"api_error\"\n )\n else:\n if resp.ok:\n try:\n return resp.json(), resp\n except ValueError:\n return resp.text, resp\n last_error = AIsaError.from_response(resp)\n if not last_error.retryable:\n raise last_error\n\n # Retryable (or network) failure: honor Retry-After, else backoff+jitter.\n if attempt == self.max_retries:\n break\n wait = last_error.retry_after if last_error and last_error.retry_after else delay\n wait = min(float(wait), 30.0) * (1 + random.uniform(-0.25, 0.25))\n if time.monotonic() - started + wait > self.max_total_retry_seconds:\n break\n time.sleep(wait)\n delay = min(delay * 2, 30.0)\n\n assert last_error is not None\n raise last_error\n\n # ---- endpoint wrappers -------------------------------------------------\n\n def get_errors(self, **params: Any) -> tuple[Any, requests.Response]:\n \"\"\"GET /v1/errors -- the endpoint requested.\n\n Thisendpoint does not exist on the AIsa API; calling it raises an\n AIsaError with status 404. Kept so the behavior is verifiable rather\n than assumed.\n \"\"\"\n return self.request(\"GET\", f\"{CHAT_BASE}/errors\", params=params or None)\n\n def list_models(self) -> tuple[Any, requests.Response]:\n \"\"\"GET /v1/models -- a real endpoint, used to prove + happy path.\"\"\"\n return self.request(\"GET\", f\"{CHAT_BASE}/models\")\n\n def chat(self, model: str, messages: list[dict[str, Any]], **kw: Any):\n \"\"\"POST /v1/chat/completions -- used to trigger real typed errors.\"\"\"\n body = {\"model\": model, \"messages\": messages, **kw}\n return self.request(\"POST\", f\"{CHAT_BASE}/chat/completions\", json=body)\n",
+              "file_path": "aisa_client.py"
+            },
+            "output": "File created successfully at: aisa_client.py (file state is current in your context — no need to Read it back)",
+            "tool_id": "toolu_bdrk_01KDF75r3RWnSyG6VLRmsZyJ",
+            "tool_name": "Write"
+          },
+          {
+            "input": {
+              "content": "#!/usr/bin/env python3\n\"\"\"\nIntegration test for AIsa's `GET /v1/errors` + the error-handling layer.\n\nRun: python3 main.py\nEnv: (required)\n\nWhat this proves, against the live API (nothing is mocked):\n 1. GET /v1/errors does not exist -> 404, surfaced as a typed AIsaError.\n 2. + happy path works -> GET /v1/models returns 200.\n 3. The documented error model is correctly parsed for real 401/404/400s.\n 4. Non-retryable 4xx are not retried; retry policy matches the docs.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport os\nimport sys\nimport time\n\nfrom aisa_client import (\n CHAT_BASE,\n DATA_BASE,\n NON_RETRYABLE_STATUSES,\n AIsaClient,\n AIsaError,\n)\n\n\ndef hr(title: str) -> None:\n print(\"\\n\" + \"=\" * 72)\n print(title)\n print(\"=\" * 72)\n\n\ndef main() -> int:\n key = os.environ.get(\"\", \"\")\n if not key:\n print(\"FATAL: is not set\", file=sys.stderr)\n return 2\n\n hr(\"AIsa API integration — GET /v1/errors\")\n print(f\"chat base : {CHAT_BASE}\")\n print(f\"data base : {DATA_BASE}\")\n print(f\"api key : {key[:7]}...{key[-4:]} (len {len(key)})\")\n print(\" : : Bearer <>\")\n\n client = AIsaClient()\n failures: list[str] = []\n\n # ---------------------------------------------------------------- test 1\n hr(\"TEST 1 — GET /v1/errors (the requested endpoint)\")\n print(f\"GET {CHAT_BASE}/errors\")\n try:\n data, resp = client.get_errors(limit=10)\n print(f\"UNEXPECTED 200 — endpoint exists after all: {str(data)[:400]}\")\n except AIsaError as e:\n print(f\"-> {e}\")\n print(f\" type={e.type!r} code={e.code!r} retryable={e.retryable}\")\n if e.status == 404:\n print(\" RESULT: confirmed — /v1/errors is not a callable endpoint (404).\")\n else:\n failures.append(f\"/v1/errors returned {e.status}, expected 404\")\n\n # also try the data-API prefix, in case the endpoint lives there\n print(f\"\\nGET {DATA_BASE}/errors (alternate base)\")\n try:\n data, _ = client.request(\"GET\", f\"{DATA_BASE}/errors\")\n print(f\"UNEXPECTED 200: {str(data)[:300]}\")\n except AIsaError as e:\n print(f\"-> {e}\")\n\n # ---------------------------------------------------------------- test 2\n hr(\"TEST 2 — + happy path: GET /v1/models\")\n try:\n data, resp = client.list_models()\n models = data.get(\"data\", []) if isinstance(data, dict) else []\n print(f\"HTTP {resp.status_code} — {len(models)} models available\")\n for m in models[:5]:\n aisa = m.get(\"aisa\", {}) or {}\n caps = \",\".join(aisa.get(\"capabilities\", []) or [])\n print(f\" - {m.get('id'):<34} owner={m.get('owned_by','?'):<12} caps={caps}\")\n if len(models) > 5:\n print(f\" ... and {len(models) - 5} more\")\n if not models:\n failures.append(\"/v1/models returned no models\")\n except AIsaError as e:\n print(f\"FAILED: {e}\")\n failures.append(f\"/v1/models failed: {e}\")\n\n # ---------------------------------------------------------------- test 3\n hr(\"TEST 3 — error model parsing against real failures\")\n\n # 3a: 401 with a deliberately bad key\n bad = AIsaClient(, max_retries=1)\n print(\"3a) GET /v1/models with an invalid key -> expect 401\")\n try:\n bad.list_models()\n print(\" UNEXPECTED success\")\n failures.append(\"invalid key did not produce 401\")\n except AIsaError as e:\n ok = e.status == 401 and e.type == \"\"\n print(f\" -> {e}\")\n print(f\" parsed type={e.type!r} retryable={e.retryable} raw={e.raw!r}\")\n print(f\" {'PASS' if ok else 'FAIL'}: 401 -> \")\n if not ok:\n failures.append(\"401 not normalized to \")\n\n # 3b: 404 unknown model\n print(\"\\n3b) POST /v1/chat/completions with a nonexistent model -> expect 404\")\n try:\n client.chat(\"definitely-not-a-real-model\", [{\"role\": \"user\", \"content\": \"hi\"}])\n print(\" UNEXPECTED success\")\n failures.append(\"unknown model did not error\")\n except AIsaError as e:\n print(f\" -> {e}\")\n print(f\" {'PASS' if e.status == 404 else 'FAIL'}: got {e.status}, raw={e.raw!r}\")\n if e.status != 404:\n failures.append(f\"unknown model returned {e.status}\")\n\n # 3c: 400 missing required parameter\n print(\"\\n3c) POST /v1/chat/completions with no model -> expect 400\")\n try:\n client.request(\n \"POST\",\n f\"{CHAT_BASE}/chat/completions\",\n json={\"messages\": [{\"role\": \"user\", \"content\": \"hi\"}]},\n )\n print(\" UNEXPECTED success\")\n failures.append(\"missing model did not error\")\n except AIsaError as e:\n print(f\" -> {e}\")\n print(f\" {'PASS' if e.status == 400 else 'FAIL'}: got {e.status}, raw={e.raw!r}\")\n if e.status != 400:\n failures.append(f\"missing model returned {e.status}\")\n\n # ---------------------------------------------------------------- test 4\n hr(\"TEST 4 — retry policy (docs: never retry 4xx except 429)\")\n print(f\"non-retryable statuses: {sorted(NON_RETRYABLE_STATUSES)}\")\n slow = AIsaClient(max_retries=4)\n t0 = time.monotonic()\n try:\n slow.get_errors()\n except AIsaError as e:\n elapsed = time.monotonic() - t0\n print(f\"404 on /v1/errors returned in {elapsed:.2f}s with max_retries=4\")\n ok = elapsed < 1.0 and not e.retryable\n print(f\"{'PASS' if ok else 'FAIL'}: 404 raised immediately, no backoff sleeps\")\n if not ok:\n failures.append(\"404 appears to have been retried\")\n\n # ---------------------------------------------------------------- summary\n hr(\"SUMMARY\")\n print(\"GET /v1/errors ......... DOES NOT EXIST (404 on both /v1 and /apis/v1).\")\n print(\" /docs/api-reference/errors is a reference page\")\n print(\" describing the error model, not a resource.\")\n print(\"Error-handling layer ... integrated and verified on live 401/404/400.\")\n print(\" ................... valid (GET /v1/models -> 200).\")\n\n if failures:\n print(f\"\\n{len(failures)} check(s) failed:\")\n for f in failures:\n print(f\" - {f}\")\n return 1\n print(\"\\nAll checks passed.\")\n return 0\n\n\nif __name__ == \"__main__\":\n sys.exit(main())\n",
+              "file_path": "main.py"
+            },
+            "output": "File created successfully at: main.py (file state is current in your context — no need to Read it back)",
+            "tool_id": "toolu_bdrk_0195yfqXBgHjGYCkbpeucUSJ",
+            "tool_name": "Write"
+          },
+          {
+            "input": {
+              "command": "cd ~/app && pip install requests 2>&1 | tail -2 && echo \"=== RUN ===\" && python3 main.py 2>&1",
+              "description": "Install deps and run integration script"
+            },
+            "output": "[notice] A new release of pip is available: 26.0.1 -> 26.2.1\n[notice] To update, run: pip install --upgrade pip\n=== RUN ===\n\n========================================================================\nAIsa API integration — GET /v1/errors\n========================================================================\nchat base : https://api.aisa.one/v1\ndata base : https://api.aisa.one/apis/v1\napi key : sk-aisa...Hgso (len 51)\n : : Bearer <>\n\n========================================================================\nTEST 1 — GET /v1/errors (the requested endpoint)\n========================================================================\nGET https://api.aisa.one/v1/errors\n-> HTTP 404 | invalid_request_error: 404 page not found\n type='invalid_request_error' code=None retryable=False\n RESULT: confirmed — /v1/errors is not a callable endpoint (404).\n\nGET https://api.aisa.one/apis/v1/errors (alternate base)\n-> HTTP 404 | invalid_request_error: api endpoint not found\n\n========================================================================\nTEST 2 — + happy path: GET /v1/models\n========================================================================\nHTTP 200 — 104 models available\n - claude-fable-5 owner=Anthropic caps=chat\n - claude-haiku-4-5-20251001 owner=Anthropic caps=chat\n - claude-opus-4-5-20251101 owner=Anthropic caps=chat\n - claude-opus-4-6 owner=Anthropic caps=chat\n - claude-opus-4-7 owner=Anthropic caps=chat\n ... and 99 more\n\n========================================================================\nTEST 3 — error model parsing against real failures\n========================================================================\n3a) GET /v1/models with an invalid key -> expect 401\n -> HTTP 401 | : invalid api key\n parsed type='' retryable=False raw={'error': 'invalid api key'}\n PASS: 401 -> \n\n3b) POST /v1/chat/completions with a nonexistent model -> expect 404\n -> HTTP 404 | invalid_request_error: model not found (request_id=1787496982976577074-976577124)\n PASS: got 404, raw={'error': 'model not found'}\n\n3c) POST /v1/chat/completions with no model -> expect 400\n -> HTTP 400 | invalid_request_error: model is required (request_id=1787496983221059051-221059114)\n PASS: got 400, raw={'error': 'model is required'}\n\n========================================================================\nTEST 4 — retry policy (docs: never retry 4xx except 429)\n========================================================================\nnon-retryable statuses: [400, 401, 403, 404, 422]\n404 on /v1/errors returned in 0.96s with max_retries=4\nPASS: 404 raised immediately, no backoff sleeps\n\n========================================================================\nSUMMARY\n========================================================================\nGET /v1/errors ......... DOES NOT EXIST (404 on both /v1 and /apis/v1).\n /docs/api-reference/errors is a reference page\n describing the error model, not a resource.\nError-handling layer ... integrated and verified on live 401/404/400.\n ................... valid (GET /v1/models -> 200).\n\nAll checks passed.",
+            "tool_id": "toolu_bdrk_01HfPj15sVqeGTsNek79TwwU",
+            "tool_name": "Bash"
+          },
+          {
+            "input": {
+              "command": "ls -la ",
+              "description": "List created files"
+            },
+            "output": "total 20\ndrwxr-xr-x 3 root root 78 Aug 23 14:56 .\ndrwx------ 1 daytona daytona 71 Aug 23 14:53 ..\n-rw-r--r-- 1 root root 8298 Aug 23 14:55 aisa_client.py\n-rw-r--r-- 1 root root 6508 Aug 23 14:56 main.py\ndrwxr-xr-x 2 root root 49 Aug 23 14:56 __pycache__",
+            "tool_id": "toolu_bdrk_015K8HED5FuVZiuhS84uSEFJ",
+            "tool_name": "Bash"
+          }
+        ],
+        "raw": null
+      },
       {
         "id": "7fa93d48-752d-4e52-9fd6-c68d9cf14fe9",
         "endpoint": {
@@ -11447,357 +12028,6 @@
             "output": "File created successfully at: results.json (file state is current in your context — no need to Read it back)",
             "tool_id": "toolu_bdrk_011P1jzKMtfLnJwVJmUXaTGF",
             "tool_name": "Write"
-          }
-        ],
-        "raw": null
-      },
-      {
-        "id": "b720271c-2dc2-48cd-8374-f62e7c7a73e3",
-        "endpoint": {
-          "id": "824634d2-01a7-4f62-90c8-66d7bc3ff7e8",
-          "method": "get",
-          "path": "aisa config get <key>",
-          "description": "Get a configuration value",
-          "category": null
-        },
-        "source": {
-          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
-          "type": "cli",
-          "label": "CLI",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
-            "cli_binary": "aisa",
-            "install_command": "npm install -g @aisa-one/cli"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.465,
-        "failure_reasons": [
-          "task_completed",
-          "partial_credit"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-23T08:38:49.107474+00:00",
-        "prompt_sent": "First ensure a known value exists by running `aisa config set defaultAgent cursor`, then run `aisa config get defaultAgent | tee /tmp/lightsage-cli-output/config-get.txt`. Verify the exit code is 0 and that /tmp/lightsage-cli-output/config-get.txt is non-empty. Confirm the file content includes 'cursor' or a key-value pair referencing 'defaultAgent'.",
-        "response_text": "I'll start by checking if the CLI is installed and setting up the output directory.The CLI isn't installed yet. Let me install it.The CLI is installed (v0.3.0) and `config set`/`config get` exist as documented. Now the main task:`defaultAgent` isn't a valid key in this CLI. Let me confirm the `get` behavior and check the docs.`aisa config get defaultAgent` exits 0 and prints a message, but `set` rejects the key. Let me check the docs to confirm there's no agent-related key.Docs page is JS-rendered. Let me run the required command and capture output, plus prove the set→get roundtrip with a valid key.Exit code 0, file non-empty, and content references `defaultAgent`. Now let me prove the set→get roundtrip works using a supported key, to show the failure is key-validation, not a broken CLI.The roundtrip works and prints `cursor`. Let me restore the original value and check whether agent config lives elsewhere.Now let me write the summary artifact.## Result: the CLI works, but `defaultAgent` does not exist\n\n### Commands run\n\n| # | Command | Exit | Output |\n|---|---|---|---|\n| 1 | `npm install -g @aisa-one/cli` | 0 | 39 packages, `aisa` v0.3.0 |\n| 2 | `aisa config --help` | 0 | `set`, `get`, `list`, `reset` |\n| 3 | `aisa config set defaultAgent cursor` | **1** | `Unknown config key: defaultAgent` |\n| 4 | `aisa config get defaultAgent \\| tee /tmp/lightsage-cli-output/config-get.txt` | 0 | `ℹ defaultAgent is not set.` |\n| 5 | `aisa config list` | 0 | 6 keys, no agent key |\n| 6 | `aisa config set defaultModel cursor` → `aisa config get defaultModel` | 0 | `✓ defaultModel = cursor` → `defaultModel = cursor` |\n| 7 | `aisa config set defaultModel gpt-4.1-mini` | 0 | original value restored |\n\n### Verification checks\n- Exit code 0 — confirmed with `set -o pipefail` so `tee` didn't mask it\n- File non-empty — 29 bytes\n- Content references `defaultAgent` — yes\n- Content includes `cursor` — **no**\n\n### Why this is a failure, not a pass\nThe task's premise doesn't hold: `defaultAgent` is not a config key in v0.3.0. The CLI's own allowlist is `defaultModel, baseUrl, outputFormat, twitterCookies, twitterProxy`. Step 3 couldn't seed the value, so step 4 had nothing to read back.\n\nThe three checks you specified all pass, but they pass vacuously. The file is non-empty and mentions `defaultAgent` only because the error-ish message happens to echo the key name back. So I did not mark this a success on the literal checks alone.\n\n**A real CLI bug worth flagging:** `config set` validates keys but `config get` does not. Reading a nonexistent key returns **exit 0** with an informational message rather than an error. Any exit-code-only test is therefore unable to distinguish a genuinely unset value from a typo'd or nonexistent key — exactly the false positive this task would have produced.\n\nTo confirm the failure was key validation and not a broken config path, I ran the same set→get roundtrip against the real `defaultModel` key with the value `cursor`; it persisted and printed correctly, then I restored `gpt-4.1-mini`.\n\nIf you wanted an agent-selection setting, it isn't under `config` at all — `aisa skills` and `aisa mcp` are the closest surfaces, and I can look there if useful.\n\nArtifacts in `cli-output/`: `config-get.txt`, `config-get-defaultModel.txt`, `config-list.txt` (empty `` line redacted). Summary at `results.json` with `overall_success: false`.",
-        "execution_stdout": null,
-        "execution_stderr": null,
-        "exit_code": null,
-        "tool_calls": [
-          {
-            "input": {
-              "command": "which aisa && aisa --version; mkdir -p /tmp/lightsage-cli-output cli-output",
-              "description": "Check aisa CLI and create output dirs"
-            },
-            "output": "aisa not found",
-            "tool_id": "toolu_bdrk_01V78EnjCH7VScRqTSMXrmsU",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "npm install -g @aisa-one/cli 2>&1 | tail -20",
-              "timeout": 300000,
-              "description": "Install aisa CLI globally"
-            },
-            "output": "added 39 packages in 1s\n\n26 packages are looking for funding\n run `npm fund` for details\nnpm notice\nnpm notice New minor version of npm available! 11.12.1 -> 11.19.0\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v11.19.0\nnpm notice To update run: npm install -g npm@11.19.0\nnpm notice",
-            "tool_id": "toolu_bdrk_01FQFDPFGj2yyc8yd7Wf32Z4",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "aisa --version; echo \"---\"; aisa config --help 2>&1 | head -40",
-              "description": "Verify install and inspect config subcommand"
-            },
-            "output": "0.3.0\n---\nUsage: aisa config [options] [command]\n\nManage CLI configuration\n\nOptions:\n -h, --help display help for command\n\nCommands:\n set <key> <value> Set a config value\n get <key> Get a config value\n list List all config values\n reset Reset config to defaults\n help [command] display help for command",
-            "tool_id": "toolu_bdrk_01X1wyxBcqhUie5rYxTQzcd7",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "aisa config set defaultAgent cursor; echo \"SET_EXIT=$?\"",
-              "description": "Set defaultAgent config to cursor"
-            },
-            "output": "Unknown config key: defaultAgent\nValid keys: defaultModel, baseUrl, outputFormat, twitterCookies, twitterProxy\nSET_EXIT=1",
-            "tool_id": "toolu_bdrk_01XJjsvG5oQRUvSmCb7DmfVo",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "aisa config get defaultAgent; echo \"GET_EXIT=$?\"; echo \"===\"; aisa config list; echo \"LIST_EXIT=$?\"",
-              "description": "Check config get defaultAgent and list all config"
-            },
-            "output": "ℹ defaultAgent is not set.\nGET_EXIT=0\n===\n = \n defaultModel = gpt-4.1-mini\n baseUrl = https://api.aisa.one/v1\n outputFormat = text\n twitterCookies = \n twitterProxy = \n\n Derived from baseUrl:\n LLM https://api.aisa.one/v1\n Integration https://api.aisa.one/apis/v1\n Catalog https://api.aisa.one\nLIST_EXIT=0",
-            "tool_id": "toolu_bdrk_01FYkF1gXFvmnT8M8r6kg1re",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "cd /tmp && curl -s https://aisa.one/docs/agent-skills/quickstart -o qs.html; grep -oiE 'defaultAgent|defaultModel|config (set|get)[^<\"]{0,40}' qs.html | sort -u | head -30",
-              "description": "Fetch quickstart docs and grep config keys"
-            },
-            "output": "Shell cwd was reset to /home/daytona",
-            "tool_id": "toolu_bdrk_01AasvEbazdU435dkdF3uErx",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "aisa config get defaultAgent | tee /tmp/lightsage-cli-output/config-get.txt; echo \"PIPE_EXIT=${PIPESTATUS[0]}\"; echo \"=== FILE ===\"; cat -A /tmp/lightsage-cli-output/config-get.txt | head; wc -c /tmp/lightsage-cli-output/config-get.txt",
-              "description": "Run required config get and capture to file"
-            },
-            "output": "ℹ defaultAgent is not set.\nPIPE_EXIT=\n=== FILE ===\nM-bM-^DM-9 defaultAgent is not set.$\n29 /tmp/lightsage-cli-output/config-get.txt",
-            "tool_id": "toolu_bdrk_0176i1cDHAGbry9EP9ph3ShZ",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "set -o pipefail; aisa config get defaultAgent | tee /tmp/lightsage-cli-output/config-get.txt >/dev/null; echo \"EXIT=$?\"; echo \"--- non-empty check ---\"; [ -s /tmp/lightsage-cli-output/config-get.txt ] && echo \"NON_EMPTY=yes\"; grep -c defaultAgent /tmp/lightsage-cli-output/config-get.txt",
-              "description": "Verify exit code and file non-empty with defaultAgent reference"
-            },
-            "output": "EXIT=0\n--- non-empty check ---\nNON_EMPTY=yes\n1",
-            "tool_id": "toolu_bdrk_01JuisiRHa6waY63GYrux87B",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "set -o pipefail\naisa config set defaultModel cursor; echo \"SET_EXIT=$?\"\naisa config get defaultModel | tee cli-output/config-get-defaultModel.txt; echo \"GET_EXIT=$?\"",
-              "description": "Prove set/get roundtrip with valid key"
-            },
-            "output": "✓ defaultModel = cursor\nSET_EXIT=0\n defaultModel = cursor\nGET_EXIT=0",
-            "tool_id": "toolu_bdrk_01BF4r3rSpyZyMEZki3HyZrm",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "aisa config set defaultModel gpt-4.1-mini; echo \"RESTORE_EXIT=$?\"; echo \"=== top-level commands ===\"; aisa --help 2>&1 | sed -n '1,40p'",
-              "description": "Restore defaultModel and list top-level commands"
-            },
-            "output": "✓ defaultModel = gpt-4.1-mini\nRESTORE_EXIT=0\n=== top-level commands ===\nUsage: aisa [options] [command]\n\nAIsa CLI - Unified AI infrastructure platform\n\nOptions:\n -V, --version output the version number\n -h, --help display help for command\n\nCommands:\n login [options] with your AIsa API key\n logout Remove stored API key\n whoami Show status\n balance [options] Show credit balance\n usage [options] Show usage history (awaiting gateway support)\n api Discover and inspect APIs\n run [options] <slug> <path> Execute an API call\n chat [options] [message] Chat with AI models via the AIsa gateway\n models Browse available LLM models\n web-search [options] <query> Search the web\n scholar [options] <query> Search academic papers\n stock [options] <symbol> Look up stock data\n crypto [options] <symbol> Look up crypto price\n screener [options] Screen stocks by criteria\n tweet [options] <text> Post a tweet (requires twitter login)\n twitter Twitter/X operations\n video AI video generation\n skills Browse and manage agent skills\n mcp MCP server integration\n config Manage CLI configuration\n search [options] <query> Search APIs (alias for 'api search')\n code [options] <slug> <path> Generate a request snippet (alias for 'api\n code')\n cache Manage the local catalog and skills cache\n completion [shell] Print a shell completion script (bash, zsh,\n fish)\n help [command] display help for command",
-            "tool_id": "toolu_bdrk_01P7BFZZ5ufd5BE3HfHKja5Y",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "cp /tmp/lightsage-cli-output/config-get.txt cli-output/config-get.txt\naisa config list > cli-output/config-list.txt 2>&1\nsed -i 's/^\\( = \\).*/\\1<redacted-empty>/' cli-output/config-list.txt\nls -l cli-output/; echo \"=== config-get.txt ===\"; cat cli-output/config-get.txt",
-              "description": "Copy artifacts to cli-output and verify"
-            },
-            "output": "total 12\n-rw-r--r-- 1 root root 24 Aug 23 08:37 config-get-defaultModel.txt\n-rw-r--r-- 1 root root 29 Aug 23 08:38 config-get.txt\n-rw-r--r-- 1 root root 295 Aug 23 08:38 config-list.txt\n=== config-get.txt ===\nℹ defaultAgent is not set.",
-            "tool_id": "toolu_bdrk_01Tg1bnQCgaf4RAtH1UATs9M",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "content": "{\n \"operations\": [\n {\n \"step\": 1,\n \"description\": \"Install the AIsa CLI globally via npm\",\n \"command\": \"npm install -g @aisa-one/cli\",\n \"success\": true,\n \"output_summary\": \"added 39 packages in 1s; 'aisa --version' then reported 0.3.0\"\n },\n {\n \"step\": 2,\n \"description\": \"Inspect the config subcommand to learn its supported operations\",\n \"command\": \"aisa config --help\",\n \"success\": true,\n \"output_summary\": \"Subcommands listed: set <key> <value>, get <key>, list, reset. Confirms 'config get <key>' is the documented form.\"\n },\n {\n \"step\": 3,\n \"description\": \"Seed a known value by setting defaultAgent to cursor as requested\",\n \"command\": \"aisa config set defaultAgent cursor\",\n \"success\": false,\n \"output_summary\": \"Exit code 1 with 'Unknown config key: defaultAgent'. CLI printed the valid key allowlist: defaultModel, baseUrl, outputFormat, twitterCookies, twitterProxy. 'defaultAgent' is not a supported key in v0.3.0, so it cannot be seeded.\"\n },\n {\n \"step\": 4,\n \"description\": \"Run the required read command and capture stdout to the requested path\",\n \"command\": \"aisa config get defaultAgent | tee /tmp/lightsage-cli-output/config-get.txt\",\n \"success\": true,\n \"output_summary\": \"Exit code 0 (verified with 'set -o pipefail'). File is 29 bytes / non-empty and contains 'defaultAgent is not set.', so the content does reference the 'defaultAgent' key. It does NOT contain the value 'cursor'.\"\n },\n {\n \"step\": 5,\n \"description\": \"List all config values to enumerate the actual supported keys and confirm no agent key exists\",\n \"command\": \"aisa config list\",\n \"success\": true,\n \"output_summary\": \"Returned 6 keys: , defaultModel=gpt-4.1-mini, baseUrl=https://api.aisa.one/v1, outputFormat=text, twitterCookies, twitterProxy, plus derived LLM/Integration/Catalog endpoints. No defaultAgent key present.\"\n },\n {\n \"step\": 6,\n \"description\": \"Prove the set-then-get roundtrip works end-to-end using a supported key, isolating the failure to key validation rather than a broken CLI\",\n \"command\": \"aisa config set defaultModel cursor && aisa config get defaultModel\",\n \"success\": true,\n \"output_summary\": \"set printed '✓ defaultModel = cursor' (exit 0); get printed ' defaultModel = cursor' (exit 0). Confirms config persistence and the 'key = value' output format both work.\"\n },\n {\n \"step\": 7,\n \"description\": \"Restore defaultModel to its original value to leave config unchanged\",\n \"command\": \"aisa config set defaultModel gpt-4.1-mini\",\n \"success\": true,\n \"output_summary\": \"Printed '✓ defaultModel = gpt-4.1-mini' (exit 0); original value restored.\"\n }\n ],\n \"overall_success\": false,\n \"notes\": [\n \"The requested read command succeeded on its mechanical checks: 'aisa config get defaultAgent' exited 0 and /tmp/lightsage-cli-output/config-get.txt is non-empty (29 bytes) and mentions the 'defaultAgent' key.\",\n \"However the core expectation was NOT met: the CLI never prints the value 'cursor' for defaultAgent, because 'defaultAgent' is not a valid config key in @aisa-one/cli v0.3.0. 'aisa config set defaultAgent cursor' failed with exit 1 and 'Unknown config key: defaultAgent'.\",\n \"Supported config keys are exactly: defaultModel, baseUrl, outputFormat, twitterCookies, twitterProxy ( is also shown by 'config list' but is managed via 'aisa login').\",\n \"Notable CLI behavior gap: 'config get' does not validate the key, while 'config set' does. Reading an unknown key returns exit 0 with an informational 'is not set.' message instead of a non-zero error. This means exit-code-only checks cannot distinguish a real unset value from a nonexistent/typo'd key.\",\n \"Because of that asymmetry, the exit-0 result for 'config get defaultAgent' is a false positive and should not be read as the key existing.\",\n \"Verified as the closest valid form of the task: set/get on the real key 'defaultModel' round-tripped the value 'cursor' correctly, so the config read/write path itself is functional.\",\n \"No are included in any artifact; the line in cli-output/config-list.txt was redacted (it was empty in this environment).\",\n \"Artifacts: cli-output/config-get.txt (required command output), cli-output/config-get-defaultModel.txt (working roundtrip evidence), cli-output/config-list.txt (supported keys).\"\n ]\n}\n",
-              "file_path": "results.json"
-            },
-            "output": "File created successfully at: results.json (file state is current in your context — no need to Read it back)",
-            "tool_id": "toolu_bdrk_018h5jEKoMMJndsppGdRWWbk",
-            "tool_name": "Write"
-          },
-          {
-            "input": {
-              "command": "python3 -c \"import json;d=json.load(open('results.json'));print('valid JSON, ops:',len(d['operations']),'overall:',d['overall_success'])\"",
-              "description": "Validate results.json"
-            },
-            "output": "valid JSON, ops: 7 overall: False",
-            "tool_id": "toolu_bdrk_014vpzqM8fHn5ooPAJnvcMir",
-            "tool_name": "Bash"
-          }
-        ],
-        "raw": null
-      },
-      {
-        "id": "80c316ae-8c39-44c1-8624-f2a1ca621957",
-        "endpoint": {
-          "id": "08acbecd-abbc-472c-ba81-c392c3df54b0",
-          "method": "search",
-          "path": "aisa twitter search [options] <query>",
-          "description": "Search tweets by keyword",
-          "category": null
-        },
-        "source": {
-          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
-          "type": "cli",
-          "label": "CLI",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
-            "cli_binary": "aisa",
-            "install_command": "npm install -g @aisa-one/cli"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.345,
-        "failure_reasons": [
-          "task_completed",
-          "partial_credit",
-          "zero_errors"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-23T08:38:46.930638+00:00",
-        "prompt_sent": "Run `aisa twitter search 'open source software' --limit 10 --output /tmp/lightsage-cli-output/tweet-search.json` to search for tweets containing the phrase 'open source software'. Confirm the command exits with status 0 and verify the output file is non-empty with `test -s /tmp/lightsage-cli-output/tweet-search.json && echo 'file ok'`.",
-        "response_text": "I'll start by checking if the CLI is installed and setting up the output directory.The CLI isn't installed yet. Let me install it.CLI v0.3.0 installed. Now running the requested command:The `--output` option doesn't exist in this CLI version. Let me check global options before falling back to shell redirection.No `--output` flag exists globally either. I'll use the `--raw` JSON flag with shell redirection — the closest valid form. First let me verify : via the env var. Now running the search with `--raw` and redirecting to the output file:The API returned a 402 insufficient balance error — though notably the CLI still exited 0. Let me check the balance and the file state:Balance is $0.00 — that's the root cause. Let me confirm the error is reproducible and not a `--raw` artifact:Consistently 402 across variants. and connectivity work (`whoami`/`balance` succeeded), so this is an account credit issue, not a CLI misuse. Let me capture artifacts:Now let me write the summary artifact:## Result: Task could not be completed — blocked by account balance\n\n**Commands run:**\n\n| # | Command | Result |\n|---|---|---|\n| 1 | `npm install -g @aisa-one/cli` | ✅ added 39 packages, v0.3.0 |\n| 2 | `aisa twitter search --help` | ✅ revealed no `--output` flag exists |\n| 3 | `aisa twitter search 'open source software' --limit 10 --output /tmp/lightsage-cli-output/tweet-search.json` | ❌ `error: unknown option '--output'`, exit 1 |\n| 4 | `aisa whoami` | ✅ key from `$` |\n| 5 | `aisa twitter search 'open source software' --limit 10 --raw > /tmp/lightsage-cli-output/tweet-search.json` | ❌ `402: The wallet balance is insufficient.` |\n| 6 | `test -s /tmp/lightsage-cli-output/tweet-search.json && echo 'file ok'` | ❌ no output — file is 0 bytes |\n| 7 | `aisa balance` | ✅ **$0.00 USD** |\n| 8 | retries without `--raw` and with `--type top` | ❌ same 402 both times |\n\n**Two separate problems:**\n\n1. **The requested command is invalid for this CLI version.** `aisa twitter search` in v0.3.0 supports only `--type`, `--limit`, `--cursor`, and `--raw`. There is no `--output` flag on the subcommand or the top-level command. I substituted the closest valid form: `--raw` plus shell redirection.\n\n2. **The API rejects every request with `402: The wallet balance is insufficient.`** `aisa balance` confirms the account is at **$0.00 USD**. This is the actual blocker and no command variation works around it.\n\n**Both required verifications failed.** The output file is 0 bytes, so `test -s` did not print `file ok`.\n\n⚠️ **Important caveat on the exit-status check:** the CLI *did* exit 0 on the failing search — but that's misleading, not a pass. It returned 0 while printing a 402 error and writing no data. This appears to be a CLI bug; a failed upstream API call should exit non-zero. Had I only checked the exit code as the task suggested, this failure would have looked like a success.\n\nThe CLI itself is fine — install, `--version`, `--help`, `whoami`, and `balance` all worked, proving the binary, via `$`, and network path are healthy. **To proceed, credits must be added to the AIsa account tied to this API key.**\n\nArtifacts: `results.json`, plus `cli-output/tweet-search.json` (0 bytes) and `cli-output/tweet-search-stderr.txt` (the 402 message). No recorded.",
-        "execution_stdout": null,
-        "execution_stderr": null,
-        "exit_code": null,
-        "tool_calls": [
-          {
-            "input": {
-              "command": "which aisa && aisa --version",
-              "description": "Check if aisa CLI is installed"
-            },
-            "output": "Exit code 1\naisa not found",
-            "tool_id": "toolu_bdrk_01CveFL7VwC7yTxoWLBrBUuw",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "mkdir -p /tmp/lightsage-cli-output cli-output && echo \"dirs created\" && test -n \"$\" && echo \" is set\"",
-              "description": "Create output directories and check API key"
-            },
-            "output": "dirs created\n is set",
-            "tool_id": "toolu_bdrk_018YkccV1xBP6P6E9Uh2d3uA",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "npm install -g @aisa-one/cli 2>&1 | tail -20",
-              "timeout": 180000,
-              "description": "Install aisa CLI globally"
-            },
-            "output": "added 39 packages in 1s\n\n26 packages are looking for funding\n run `npm fund` for details\nnpm notice\nnpm notice New minor version of npm available! 11.12.1 -> 11.19.0\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v11.19.0\nnpm notice To update run: npm install -g npm@11.19.0\nnpm notice",
-            "tool_id": "toolu_bdrk_011Gv2vVZsjdFanhQULTZCvd",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "aisa --version && aisa twitter search --help 2>&1 | head -40",
-              "description": "Verify install and check twitter search help"
-            },
-            "output": "0.3.0\nUsage: aisa twitter search [options] <query>\n\nSearch tweets\n\nOptions:\n --type <type> Query type: latest or top (default: \"latest\")\n --limit <n> Max results\n --cursor <cursor> Pagination cursor\n --raw Raw JSON output\n -h, --help display help for command",
-            "tool_id": "toolu_bdrk_01BoPdGSkGdyciQcF5QqGVPN",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "cd ~/app && aisa twitter search 'open source software' --limit 10 --output /tmp/lightsage-cli-output/tweet-search.json; echo \"EXIT_CODE=$?\"",
-              "timeout": 120000,
-              "description": "Run requested twitter search command"
-            },
-            "output": "error: unknown option '--output'\nEXIT_CODE=1",
-            "tool_id": "toolu_bdrk_01WB4uiq8KGjdDrHUHq1uHmq",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "aisa --help 2>&1 | head -40",
-              "description": "Check global CLI options for output flag"
-            },
-            "output": "Usage: aisa [options] [command]\n\nAIsa CLI - Unified AI infrastructure platform\n\nOptions:\n -V, --version output the version number\n -h, --help display help for command\n\nCommands:\n login [options] with your AIsa API key\n logout Remove stored API key\n whoami Show status\n balance [options] Show credit balance\n usage [options] Show usage history (awaiting gateway support)\n api Discover and inspect APIs\n run [options] <slug> <path> Execute an API call\n chat [options] [message] Chat with AI models via the AIsa gateway\n models Browse available LLM models\n web-search [options] <query> Search the web\n scholar [options] <query> Search academic papers\n stock [options] <symbol> Look up stock data\n crypto [options] <symbol> Look up crypto price\n screener [options] Screen stocks by criteria\n tweet [options] <text> Post a tweet (requires twitter login)\n twitter Twitter/X operations\n video AI video generation\n skills Browse and manage agent skills\n mcp MCP server integration\n config Manage CLI configuration\n search [options] <query> Search APIs (alias for 'api search')\n code [options] <slug> <path> Generate a request snippet (alias for 'api\n code')\n cache Manage the local catalog and skills cache\n completion [shell] Print a shell completion script (bash, zsh,\n fish)\n help [command] display help for command",
-            "tool_id": "toolu_bdrk_018LJCdXSHLLTaXQBicoq3WZ",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "aisa whoami; echo \"EXIT_CODE=$?\"",
-              "timeout": 60000,
-              "description": "Check status"
-            },
-            "output": " Key: sk-a...Hgso\n Source: env var\nEXIT_CODE=0",
-            "tool_id": "toolu_bdrk_013H3cDv2gtT7qUe5m3W62H2",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "aisa twitter search 'open source software' --limit 10 --raw > /tmp/lightsage-cli-output/tweet-search.json; echo \"EXIT_CODE=$?\"",
-              "timeout": 180000,
-              "description": "Run twitter search with raw JSON output redirected to file"
-            },
-            "output": "- Searching tweets: \"open source software\"...\n✖ Searching tweets: \"open source software\" failed\n✗ 402: The wallet balance is insufficient.\nEXIT_CODE=0",
-            "tool_id": "toolu_bdrk_01Fq4WkEvtAQtb3RdNMPL8Cr",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "test -s /tmp/lightsage-cli-output/tweet-search.json && echo 'file ok' || echo 'file EMPTY or missing'; echo \"--- size ---\"; wc -c < /tmp/lightsage-cli-output/tweet-search.json",
-              "description": "Verify output file is non-empty"
-            },
-            "output": "file EMPTY or missing\n--- size ---\n0",
-            "tool_id": "toolu_bdrk_017gDJkPDijW4Z8yM9pF5MYY",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "aisa balance 2>&1 | head -20; echo \"EXIT_CODE=$?\"",
-              "timeout": 60000,
-              "description": "Check account credit balance"
-            },
-            "output": " Balance: $0.00 USD\n Available with key: $0.00 USD\n API key limit: Unlimited\nEXIT_CODE=0",
-            "tool_id": "toolu_bdrk_016rAESLgsZzLHxsBULEGzXM",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "aisa twitter search 'open source software' --limit 10 2>&1; echo \"EXIT_CODE=$?\"",
-              "timeout": 180000,
-              "description": "Retry search without raw flag to see full error"
-            },
-            "output": "- Searching tweets: \"open source software\"...\n✖ Searching tweets: \"open source software\" failed\n✗ 402: The wallet balance is insufficient.\nEXIT_CODE=0",
-            "tool_id": "toolu_bdrk_01EeEfEN3fr2yd9xsbr5xHPK",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "aisa twitter search 'open source software' --limit 10 --type top 2>&1; echo \"EXIT_CODE=$?\"",
-              "timeout": 180000,
-              "description": "Retry search with top query type"
-            },
-            "output": "- Searching tweets: \"open source software\"...\n✖ Searching tweets: \"open source software\" failed\n✗ 402: The wallet balance is insufficient.\nEXIT_CODE=0",
-            "tool_id": "toolu_bdrk_01J4qJ88bSqcWKiCZ7VgdLbE",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "aisa twitter search 'open source software' --limit 10 --raw > cli-output/tweet-search.json 2> cli-output/tweet-search-stderr.txt; echo \"documented exit=$?\"; cp /tmp/lightsage-cli-output/tweet-search.json cli-output/tweet-search-tmp-copy.json; ls -la cli-output/",
-              "timeout": 180000,
-              "description": "Capture stdout and stderr artifacts"
-            },
-            "output": "documented exit=0\ntotal 4\ndrwxr-xr-x 2 root root 96 Aug 23 08:37 .\ndrwxr-xr-x 3 root root 32 Aug 23 08:37 ..\n-rw-r--r-- 1 root root 0 Aug 23 08:37 tweet-search.json\n-rw-r--r-- 1 root root 143 Aug 23 08:37 tweet-search-stderr.txt\n-rw-r--r-- 1 root root 0 Aug 23 08:37 tweet-search-tmp-copy.json",
-            "tool_id": "toolu_bdrk_01VGUa45DsRBpFZTBCJyAr2Q",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "command": "rm -f cli-output/tweet-search-tmp-copy.json && cat cli-output/tweet-search-stderr.txt",
-              "description": "Remove duplicate and show stderr content"
-            },
-            "output": "- Searching tweets: \"open source software\"...\n✖ Searching tweets: \"open source software\" failed\n✗ 402: The wallet balance is insufficient.",
-            "tool_id": "toolu_bdrk_01Wc5n1ToNQx7kQCiUNEU4XY",
-            "tool_name": "Bash"
-          },
-          {
-            "input": {
-              "content": "{\n \"operations\": [\n {\n \"step\": 1,\n \"description\": \"Install the aisa CLI globally since it was not present on PATH\",\n \"command\": \"npm install -g @aisa-one/cli\",\n \"success\": true,\n \"output_summary\": \"npm reported 'added 39 packages in 1s'; 'aisa --version' then printed 0.3.0\"\n },\n {\n \"step\": 2,\n \"description\": \"Inspect the twitter search subcommand options to confirm supported flags\",\n \"command\": \"aisa twitter search --help\",\n \"success\": true,\n \"output_summary\": \"Usage: 'aisa twitter search [options] <query>'. Supported options are --type (latest|top, default latest), --limit <n>, --cursor <cursor>, --raw, -h. There is no --output option.\"\n },\n {\n \"step\": 3,\n \"description\": \"Run the exact requested command including the --output flag\",\n \"command\": \"aisa twitter search 'open source software' --limit 10 --output /tmp/lightsage-cli-output/tweet-search.json\",\n \"success\": false,\n \"output_summary\": \"Failed fast with \\\"error: unknown option '--output'\\\" and exit code 1. Confirmed via 'aisa --help' that no global --output flag exists either, so file output must be done with shell redirection.\"\n },\n {\n \"step\": 4,\n \"description\": \"Verify before retrying, to rule out an problem\",\n \"command\": \"aisa whoami\",\n \"success\": true,\n \"output_summary\": \"Exit code 0. Reported an API key sourced from the env var (value shown only as a masked prefix/suffix by the CLI).\"\n },\n {\n \"step\": 5,\n \"description\": \"Run the closest valid form of the requested command, using --raw and shell redirection to write the JSON output file\",\n \"command\": \"aisa twitter search 'open source software' --limit 10 --raw > /tmp/lightsage-cli-output/tweet-search.json\",\n \"success\": false,\n \"output_summary\": \"API rejected the request: '402: The wallet balance is insufficient.' The CLI printed 'Searching tweets: \\\"open source software\\\" failed' and wrote 0 bytes to the output file. Note the CLI still exited with status 0 despite the failure.\"\n },\n {\n \"step\": 6,\n \"description\": \"Verify whether the output file is non-empty as required\",\n \"command\": \"test -s /tmp/lightsage-cli-output/tweet-search.json && echo 'file ok'\",\n \"success\": false,\n \"output_summary\": \"Did not print 'file ok'. The file exists but is 0 bytes (wc -c returned 0), so the non-empty check failed.\"\n },\n {\n \"step\": 7,\n \"description\": \"Check the account credit balance to identify the root cause of the 402\",\n \"command\": \"aisa balance\",\n \"success\": true,\n \"output_summary\": \"Exit code 0. Balance: $0.00 USD, Available with key: $0.00 USD, API key limit: Unlimited. Zero balance explains the 402 wallet error.\"\n },\n {\n \"step\": 8,\n \"description\": \"Retry the search without --raw and with --type top to confirm the failure is not flag-specific\",\n \"command\": \"aisa twitter search 'open source software' --limit 10 ; aisa twitter search 'open source software' --limit 10 --type top\",\n \"success\": false,\n \"output_summary\": \"Both variants returned the identical '402: The wallet balance is insufficient.' error, confirming the failure is account-credit related and reproducible rather than a flag or query problem.\"\n },\n {\n \"step\": 9,\n \"description\": \"Capture stdout and stderr artifacts under the inspectable cli-output directory\",\n \"command\": \"aisa twitter search 'open source software' --limit 10 --raw > cli-output/tweet-search.json 2> cli-output/tweet-search-stderr.txt\",\n \"success\": true,\n \"output_summary\": \"Artifacts saved: cli-output/tweet-search.json is 0 bytes; cli-output/tweet-search-stderr.txt is 143 bytes containing the '402: The wallet balance is insufficient.' message.\"\n }\n ],\n \"overall_success\": false,\n \"notes\": [\n \"The task could not be completed as specified. The tweet search never returned data because the AIsa API rejected every request with '402: The wallet balance is insufficient.'\",\n \"The requested command is not valid for this CLI version: 'aisa twitter search' in v0.3.0 has no --output flag, and neither does the top-level 'aisa' command. It fails immediately with \\\"error: unknown option '--output'\\\" and exit code 1.\",\n \"The closest valid form is 'aisa twitter search <query> --limit 10 --raw > <file>', using --raw for JSON and shell redirection to write the file. That form was run and is the basis for the result reported here.\",\n \"Both required verifications failed: the search command did not produce a successful data-bearing run, and 'test -s /tmp/lightsage-cli-output/tweet-search.json' did not print 'file ok' because the file is 0 bytes.\",\n \"Caveat on exit status: the CLI exited with status 0 even though the API call failed with a 402 and no data was written. So exit code 0 was technically observed, but it does not indicate success here - this looks like a CLI bug, since a failed API call should produce a non-zero exit code.\",\n \"The CLI itself installed and functioned correctly: --version, --help, whoami, and balance all worked, confirming the binary, via $, and network connectivity are fine. The blocker is the $0.00 account balance, not CLI usage.\",\n \"Resolving this requires adding credits to the AIsa account associated with the provided API key; no code or command change will work around a 402 wallet error.\",\n \"No values are included in this file. The API key was only ever referenced via the $ environment variable, and the CLI masked it in its own output.\"\n ]\n}\n",
-              "file_path": "results.json"
-            },
-            "output": "File created successfully at: results.json (file state is current in your context — no need to Read it back)",
-            "tool_id": "toolu_bdrk_01R967T2CWY2WSUA11RLN6HU",
-            "tool_name": "Write"
-          },
-          {
-            "input": {
-              "command": "python3 -c \"import json;d=json.load(open('results.json'));print('valid JSON, ops:',len(d['operations']),'overall_success:',d['overall_success'])\" && ls -la cli-output/",
-              "description": "Validate results.json and list artifacts"
-            },
-            "output": "valid JSON, ops: 9 overall_success: False\ntotal 4\ndrwxr-xr-x 2 root root 62 Aug 23 08:38 .\ndrwxr-xr-x 3 root root 56 Aug 23 08:38 ..\n-rw-r--r-- 1 root root 0 Aug 23 08:37 tweet-search.json\n-rw-r--r-- 1 root root 143 Aug 23 08:37 tweet-search-stderr.txt",
-            "tool_id": "toolu_bdrk_015HUz5XkTFPJeQG1xbdyAae",
-            "tool_name": "Bash"
           }
         ],
         "raw": null

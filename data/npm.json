@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 355,
+  "durationMs": 199,
   "path": "registry.npmjs.org/@aisa-one/cli",
   "body": {
     "name": "@aisa-one/cli",

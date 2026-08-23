@@ -49,12 +49,32 @@ const oraById = new Map(oraChecks.map((c) => [c.id, c]));
 const npmPkg = load("npm");
 const urlCheck = load("url_check");
 const diag = load("ap_diagnose");
+const diagRecent = load("ap_diagnose_recent");
 const diagEx = diag?.examples ?? [];
 const dhay = (e) => [e.response_text, e.execution_stdout, e.execution_stderr].filter(Boolean).join("\n");
 const n401 = diagEx.filter((e) => /\b401\b|unauthorized|invalid api key/i.test(dhay(e))).length;
 const n402 = diagEx.filter((e) => /\b402\b|payment required|insufficient (?:wallet )?balance|paid balance/i.test(dhay(e))).length;
-// Which wall are agents hitting: a rejected credential, or a valid one with no funds?
-const credState = n402 > n401 ? "balance" : n401 > 0 ? "invalid" : null;
+// Credential state is judged on the RECENT window only. The trailing window keeps
+// averaging in runs from before the key and balance were fixed.
+const recentEx = diagRecent?.examples ?? [];
+const r401 = recentEx.filter((e) => /\b401\b|unauthorized|invalid api key/i.test(dhay(e))).length;
+const r402 = recentEx.filter((e) => /\b402\b|payment required|insufficient (?:wallet )?balance|paid balance/i.test(dhay(e))).length;
+// Judge on the recent failure RATE, not substring hits: the recent window
+// returns only failures as examples, and an agent that diagnosed the problem
+// ("an invalid key returns 401") mentions the code without being blocked by it.
+const recentFailRate = diagRecent?.summary?.failure_rate;
+const credState =
+  typeof recentFailRate === "number"
+    ? (recentFailRate < 20 ? null : r402 >= r401 ? "balance" : "invalid")
+    : (n402 > n401 ? "balance" : n401 > 0 ? "invalid" : null);
+
+// "2026-08-23T14:20:00Z" reads badly after the word "last".
+const windowLabel = (v) => {
+  const t = String(v ?? "");
+  return /^\d{4}-\d{2}-\d{2}T/.test(t)
+    ? `since ${t.slice(0, 10)} ${t.slice(11, 16)} UTC`
+    : `last ${t}`;
+};
 const mcpMan = load("aisa_mcp_manifest");
 let csvExport = null;
 try { csvExport = JSON.parse(readFileSync(join(ROOT, "reference", "agent-experience-csv.json"), "utf8")); } catch { /* optional */ }
@@ -380,12 +400,19 @@ if (arena) {
 if (diag) {
   S("Agent experience");
   const sum = diag.summary ?? {};
-  P(`Lightsage's diagnosis of how coding agents actually behave against the API, over the last ${esc(diag.since)}.`, "");
-  P(`| Metric | Value |`, `| --- | --- |`);
-  P(`| Runs analysed | ${num(sum.total_runs)} |`);
-  P(`| Failed | ${num(sum.failed_runs)} (${num(sum.failure_rate)}%) |`);
-  P(`| Passed | ${num(sum.passed_runs)} |`);
-  P("");
+  const rs = diagRecent?.summary;
+  if (rs) {
+    P(`### Current baseline (${esc(windowLabel(diagRecent.since))})`, "");
+    P(`**${num(rs.total_runs - rs.failed_runs)}/${num(rs.total_runs)} runs passed — ${num(100 - rs.failure_rate)}%.**`, "");
+    P(`This is the first clean read on the API. Every earlier number in this report was taken while the eval credential was rejected or the account had no balance, so agents could not complete a live call regardless of endpoint quality. Both are now resolved.`, "");
+    P("");
+    P(`| Window | Runs | Failure rate | What it reflects |`, `| --- | --- | --- | --- |`);
+    P(`| ${esc(windowLabel(diagRecent.since))} | ${num(rs.total_runs)} | **${num(rs.failure_rate)}%** | Current state |`);
+    P(`| ${esc(windowLabel(diag.since))} | ${num(sum.total_runs)} | ${num(sum.failure_rate)}% | Still averaging in pre-fix runs — expect it to fall as this ages out |`);
+    P("");
+  } else {
+    P(`Lightsage's diagnosis of how coding agents actually behave against the API, ${esc(windowLabel(diag.since))}.`, "");
+  }
 
   // The credential story — this dominates everything else.
   if (credState === "balance") {
@@ -407,9 +434,10 @@ if (diag) {
     P(`**The current API Performance scores largely measure a broken credential, not API or documentation quality.**`, "");
   }
 
-  const pats = diag.failure_analysis?.patterns ?? [];
+  const pats = (diagRecent ?? diag).failure_analysis?.patterns ?? [];
   if (pats.length) {
-    P(`### Failure patterns`, "");
+    P(`### Behaviour patterns (${esc(windowLabel((diagRecent ?? diag).since))})`, "");
+    P(`These are counted across **all** runs, not just failures — an agent can complete the task and still have taken four searches to find the docs. With the pass rate now high, these are the remaining friction, and they are documentation problems rather than API problems.`, "");
     P(`| Severity | Pattern | Runs | Share | What it means |`, `| --- | --- | --- | --- | --- |`);
     for (const pt of pats) P(`| ${esc(pt.severity)} | ${esc(pt.label)} | ${num(pt.count)} | ${num(pt.percentage)}% | ${esc(pt.description)} |`);
     P("");

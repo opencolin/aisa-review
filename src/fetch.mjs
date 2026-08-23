@@ -99,6 +99,36 @@ process.stdout.write(`  ${"ap_diagnose".padEnd(22)} `);
   console.log(`${res.ok ? "ok " : "-- "} ${String(res.status).padStart(3)}  ${res.durationMs}ms`);
 }
 
+// Same diagnosis over a short window. The 30-day view keeps averaging in runs
+// from before the eval credential and account balance were fixed, which drags
+// the failure rate down for reasons that are no longer true.
+// The account was topped up at this instant; runs before it were blocked on
+// balance or a rejected key and say nothing about API quality. The diagnose
+// endpoint accepts an ISO timestamp, so anchor to the fix rather than a
+// rolling window that keeps re-absorbing the bad runs. Override with --recent.
+const BASELINE_SINCE = "2026-08-23T14:20:00Z";
+const RECENT_WINDOW = args.recent ?? BASELINE_SINCE;
+process.stdout.write(`  ${"ap_diagnose_recent".padEnd(22)} `);
+{
+  const started = Date.now();
+  let res;
+  try {
+    const r = await fetch(new URL("/v1/api-performance/diagnose", BASE_URL), {
+      method: "POST",
+      headers: { "X-Lightsage-Api-Key": getApiKey(), "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ since: RECENT_WINDOW, format: "json", include_examples: true, max_examples: 50 }),
+      signal: AbortSignal.timeout(120_000),
+    });
+    const body = await r.json();
+    res = { ok: r.ok, status: r.status, durationMs: Date.now() - started, path: `/v1/api-performance/diagnose (since=${RECENT_WINDOW})`, body };
+  } catch (err) {
+    res = { ok: false, status: 0, durationMs: Date.now() - started, path: "/v1/api-performance/diagnose (recent)", body: { error: String(err) } };
+  }
+  writeFileSync(join(dataDir, "ap_diagnose_recent.json"), JSON.stringify(res, null, 2));
+  manifest.push({ key: "ap_diagnose_recent", label: `Agent behaviour diagnosis (${RECENT_WINDOW})`, path: "/v1/api-performance/diagnose", optional: true, ok: res.ok, status: res.status, durationMs: res.durationMs });
+  console.log(`${res.ok ? "ok " : "-- "} ${String(res.status).padStart(3)}  ${res.durationMs}ms`);
+}
+
 // AISA's own MCP manifest. The agent-readiness scanners all report "no MCP
 // server"; this fetches the manifest directly so the report can state what is
 // actually deployed versus what the scanners can see.
