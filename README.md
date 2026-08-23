@@ -1,5 +1,11 @@
 # aisa-report
 
+## 📄 [Read the report → `out/agent-readiness-and-visibility-report.md`](out/agent-readiness-and-visibility-report.md)
+
+That file is the deliverable. Everything else in this repo is the tooling that generates it.
+
+---
+
 Generates the **Agent Readiness & Visibility Report** for **AISA.one**
 from three independent sources:
 
