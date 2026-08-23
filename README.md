@@ -8,6 +8,8 @@ from three independent sources:
 | **Lightsage** (formerly Sapient — `usesapient.com` → `lightsage.com`) | Whether AI engines **cite** AISA: visibility, share of voice, prompts, opportunities, API Performance evals | `AISA_API_KEY` |
 | **Ora** (`ora.ai`) | Agent-readiness score: discovery, access, usability, payments | none |
 | **Cloudflare** (`isitagentready.com`) | Protocol conformance: well-known files, MCP cards, OAuth discovery, ARD, WebMCP, agentic commerce | none |
+| **AISA's own MCP manifest** (`/.well-known/mcp.json`) | What is actually deployed, versus what the scanners can see | none |
+| **npm registry** | Whether published SDK/CLI packages exist independent of discoverability | none |
 
 Lightsage answers *"do agents cite us?"*; Ora and Cloudflare answer *"can agents use us?"*
 Where the two scanners disagree, the report explains why — that divergence is usually a

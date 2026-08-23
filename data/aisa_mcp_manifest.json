@@ -1,0 +1,132 @@
+{
+  "ok": true,
+  "status": 200,
+  "durationMs": 146,
+  "path": "aisa.one/.well-known/mcp.json",
+  "body": {
+    "manifestVersion": "1.0",
+    "publisher": "AIsa",
+    "conformance": {
+      "hasRootName": false,
+      "hasServerInfoName": false
+    },
+    "counts": {
+      "total": 47,
+      "live": 11,
+      "planned": 36
+    },
+    "liveTools": 188,
+    "live": [
+      {
+        "name": "AIsa Apollo",
+        "slug": "apollo",
+        "category": "Sales",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/apollo/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 54
+      },
+      {
+        "name": "AIsa Crypto Market Data",
+        "slug": "crypto-market-data",
+        "category": "Finance",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/crypto-market-data/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 21
+      },
+      {
+        "name": "AIsa Instagram",
+        "slug": "instagram",
+        "category": "Social",
+        "tier": "L1",
+        "endpoint": "https://mcp.aisa.one/instagram/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 17
+      },
+      {
+        "name": "AIsa MarketPulse",
+        "slug": "marketpulse",
+        "category": "Finance",
+        "tier": "L1",
+        "endpoint": "https://mcp.aisa.one/marketpulse/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 21
+      },
+      {
+        "name": "AIsa Pinterest",
+        "slug": "pinterest",
+        "category": "Social",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/pinterest/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 4
+      },
+      {
+        "name": "AIsa Prediction Market Data",
+        "slug": "prediction-market-data",
+        "category": "Finance",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/prediction-market-data/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 5
+      },
+      {
+        "name": "AIsa Reddit",
+        "slug": "reddit",
+        "category": "Social",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/reddit/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 5
+      },
+      {
+        "name": "Stock Pulse",
+        "slug": "stock-pulse",
+        "category": "Finance",
+        "tier": "L1",
+        "endpoint": "https://mcp.aisa.one/stock-pulse/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 4
+      },
+      {
+        "name": "AIsa Twitter API",
+        "slug": "twitter-api",
+        "category": "Social",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/twitter-api/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 29
+      },
+      {
+        "name": "AIsa Web Search",
+        "slug": "web-search",
+        "category": "Search & Research",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/web-search/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 27
+      },
+      {
+        "name": "AIsa YouTube Search",
+        "slug": "youtube-search",
+        "category": "Search",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/youtube-search/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 1
+      }
+    ]
+  }
+}

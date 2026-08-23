@@ -1,0 +1,688 @@
+{
+  "_source": "Lightsage UI export: api-performance-rest-api-2026-08-23 (1).csv",
+  "capturedAt": "2026-08-23",
+  "records": 85,
+  "authFailureRecords": 79,
+  "rows": [
+    {
+      "endpoint": "POST /apis/v1/exa/search",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:34 PM / efdff1be-accd-4a66-84ab-4899d483fc71",
+      "journey": "POST /apis/v1/exa/search, Claude Code / Claude Opus 5, Aug 22, 2026, 6:34 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success) | - Visited https://aisa.one/docs/api-reference/search/post_exa-search (success) | - Visited https://aisa.one/docs/api-reference/search/post_exa-search (success) | - Visited https://aisa.one/docs/api-reference/errors (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /v1/credits/balance",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:33 PM / 9c8399ce-4923-4b92-91d6-cf11c357b880",
+      "journey": "GET /v1/credits/balance, Claude Code / Claude Opus 5, Aug 22, 2026, 6:33 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/perplexity/sonar-pro",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:33 PM / 0bd21a5d-e8db-4a92-8e6f-7062c49508d9",
+      "journey": "POST /apis/v1/perplexity/sonar-pro, Claude Code / Claude Opus 5, Aug 22, 2026, 6:33 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/api-reference/perplexity/post_perplexity-sonar (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/firecrawl/map",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:33 PM / e30462b7-7a32-4e33-addc-84637681793d",
+      "journey": "POST /apis/v1/firecrawl/map, Claude Code / Claude Opus 5, Aug 22, 2026, 6:33 PM | - Visited https://aisa.one/docs/guides (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/exa/agent/runs",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:33 PM / df998fbe-dc2c-429d-b4ff-53cff2ca346c",
+      "journey": "POST /apis/v1/exa/agent/runs, Claude Code / Claude Opus 5, Aug 22, 2026, 6:33 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/financial/financials/cash-flow-statements",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:33 PM / aeb4b6ce-21a6-4652-980c-fcf03e8dc493",
+      "journey": "GET /apis/v1/financial/financials/cash-flow-statements, Claude Code / Claude Opus 5, Aug 22, 2026, 6:33 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /v1/errors",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:33 PM / 46db190b-6fc3-480c-874b-a622eb5acd28",
+      "journey": "GET /v1/errors, Claude Code / Claude Opus 5, Aug 22, 2026, 6:33 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/errors (empty/error) | - Visited https://aisa.one/docs/guides/authentication (success) | - Visited https://aisa.one/docs/llms.txt (success)",
+      "failedPaths": "'- https://aisa.one/docs/guides/errors",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/financial/earnings",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:33 PM / 81038357-75b2-4d73-a55c-db953d1f3a68",
+      "journey": "GET /apis/v1/financial/earnings, Claude Code / Claude Opus 5, Aug 22, 2026, 6:33 PM | - Visited https://aisa.one/docs/guides (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/perplexity/sonar-deep-research",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:33 PM / 73540d76-d2b9-45da-b07d-bd4d9f40d49f",
+      "journey": "POST /apis/v1/perplexity/sonar-deep-research, Claude Code / Claude Opus 5, Aug 22, 2026, 6:33 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success) | - Visited https://aisa.one/docs/api-reference/perplexity/post_perplexity-sonar-deep-research (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/chat/completions",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:32 PM / 196dba5c-6146-4bd3-9af4-8dd5efa9d23a",
+      "journey": "POST /v1/chat/completions, Claude Code / Claude Opus 5, Aug 22, 2026, 6:32 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/getting-started-with-aisa (success) | - Visited https://aisa.one/docs/api-reference/chat/post_chat-completions (success) | - Visited https://aisa.one/docs/guides/models (success) | - Visited https://aisa.one/docs/guides/authentication (success) | - Visited https://aisa.one/docs/agent-quickstart (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /v1/rate-limits",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:32 PM / 5b65d30b-dc72-4e06-8f3a-da2e491227aa",
+      "journey": "GET /v1/rate-limits, Claude Code / Claude Opus 5, Aug 22, 2026, 6:32 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference/rate-limits (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/polymarket/events",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:32 PM / fe7d0fe9-b50c-47c0-903f-076a5ab15476",
+      "journey": "GET /apis/v1/polymarket/events, Claude Code / Claude Opus 5, Aug 22, 2026, 6:32 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference/prediction-market/get_polymarket-events (empty/error) | - Visited https://aisa.one/docs/guides/authentication (success) | - Visited https://aisa.one/docs/api-reference/errors (success)",
+      "failedPaths": "'- https://aisa.one/docs/api-reference/prediction-market/get_polymarket-events",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/tavily/crawl",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:31 PM / 881c8d43-b833-44b0-b954-94b8bcb655e9",
+      "journey": "POST /apis/v1/tavily/crawl, Claude Code / Claude Opus 5, Aug 22, 2026, 6:31 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success) | - Visited https://aisa.one/docs/api-reference/search/post_tavily-crawl (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/youtube/search",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:31 PM / f1ee4e5f-dc33-4c32-a536-6e626c310733",
+      "journey": "GET /apis/v1/youtube/search, Claude Code / Claude Opus 5, Aug 22, 2026, 6:31 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/api-reference/search/get_youtube-search (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/financial/filings/items",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:30 PM / c7588f4e-ec68-427d-9dee-fadc5f25b097",
+      "journey": "GET /apis/v1/financial/filings/items, Claude Code / Claude Opus 5, Aug 22, 2026, 6:30 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/guides/authentication (success) | - Visited https://aisa.one/docs/api-reference/errors (empty/error)",
+      "failedPaths": "'- https://aisa.one/docs/api-reference/errors",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/tavily/map",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:30 PM / 1a56a1ea-d2c8-4c69-b24f-3445e8653727",
+      "journey": "POST /apis/v1/tavily/map, Claude Code / Claude Opus 5, Aug 22, 2026, 6:30 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/getting-started-with-aisa (success) | - Visited https://aisa.one/docs/api-reference/search/post_tavily-map (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/messages",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / 929b24e8-7e0c-436b-a91b-c7891edb8a8d",
+      "journey": "POST /v1/messages, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/api-reference/chat/post_chat-completions (success) | - Visited https://aisa.one/docs/direct-api-access (empty/error) | - Visited https://aisa.one/docs/authentication (empty/error)",
+      "failedPaths": "'- https://aisa.one/docs/direct-api-access | - https://aisa.one/docs/authentication",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/images/generations",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / 97fdb078-503b-476f-985b-e6f8523ba64a",
+      "journey": "POST /v1/images/generations, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/financial/edinet/documents/{docID}",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / c9b69964-06e8-446a-ab19-dc04db16b076",
+      "journey": "GET /apis/v1/financial/edinet/documents/{docID}, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/financial/financial-metrics",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / b00ed2fb-0b2c-4c12-b538-e00b643d6a90",
+      "journey": "GET /apis/v1/financial/financial-metrics, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/financial/analyst-estimates",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / 2ffcb0f9-0a79-4b0f-9738-98284dceeb0b",
+      "journey": "GET /apis/v1/financial/analyst-estimates, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/getting-started-with-aisa (success) | - Visited https://aisa.one/docs/api-reference/financial/get_analyst-estimates (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/firecrawl/search",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / 30c61cbb-7bb8-4c01-a791-9b595d579269",
+      "journey": "POST /apis/v1/firecrawl/search, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/twitter/user/info",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / 1f0d6f4b-475a-46c7-afd8-9ac495508e58",
+      "journey": "GET /apis/v1/twitter/user/info, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/getting-started-with-aisa (success) | - Visited https://aisa.one/docs/api-reference/twitter/get_twitter-user-info (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/images/edits",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / 5063233b-81e5-454f-8d4a-e31d4f9ea617",
+      "journey": "POST /v1/images/edits, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/perplexity/sonar",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / e071823b-10b0-45d6-855b-ff3ae6172298",
+      "journey": "POST /apis/v1/perplexity/sonar, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/api-reference/perplexity/post_perplexity-sonar (success) | - Visited https://aisa.one/docs/guides/authentication (success) | - Visited https://aisa.one/docs/api-reference/errors (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/financial/insider-trades",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / fcdae348-920e-43f0-86e4-dacd6425bbca",
+      "journey": "GET /apis/v1/financial/insider-trades, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/api-reference/financial/get_prices (success) | - Visited https://aisa.one/docs/guides/authentication (success) | - Visited https://aisa.one/docs/api-reference/financial/get_insider-trades (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/firecrawl/parse",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / 5444e394-fc8d-4866-9caa-47e0b8a5d6f7",
+      "journey": "POST /apis/v1/firecrawl/parse, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/getting-started-with-aisa (success) | - Visited https://aisa.one/docs/guides/direct-api-access (empty/error) | - Visited https://aisa.one/docs/api-reference/search/post_firecrawl-parse (success)",
+      "failedPaths": "'- https://aisa.one/docs/guides/direct-api-access",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/firecrawl/crawl",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / f13f0aa8-29b9-4f1a-bef9-34da8bef897a",
+      "journey": "POST /apis/v1/firecrawl/crawl, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/firecrawl/scrape",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / cbffec50-c015-4d21-86b4-49de116743c1",
+      "journey": "POST /apis/v1/firecrawl/scrape, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/embeddings",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / 34fe626f-7262-4688-a60c-354e6b8e92c5",
+      "journey": "POST /v1/embeddings, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/rerank",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / 66321ff3-5c1c-4e2b-a7b1-dc167ec1c80d",
+      "journey": "POST /v1/rerank, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/exa/answer",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / 04a43b0e-aed8-435a-b904-e39242231760",
+      "journey": "POST /apis/v1/exa/answer, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/perplexity/sonar-reasoning-pro",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / 9dfe566f-0e64-4f33-923b-a161c800eb4f",
+      "journey": "POST /apis/v1/perplexity/sonar-reasoning-pro, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference/perplexity/post_perplexity-sonar (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/financial/financials/balance-sheets",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / d6761ae0-e55c-4756-8c6f-4a186a65ca0c",
+      "journey": "GET /apis/v1/financial/financials/balance-sheets, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/tavily/search",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / faf4f13c-443a-426f-94f8-4128b8728357",
+      "journey": "POST /apis/v1/tavily/search, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/guides/authentication (success) | - Visited https://aisa.one/docs/api-reference/errors (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/financial/financial-metrics/snapshot",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / 0d599037-c64c-41d8-84a5-3f9ac12e1813",
+      "journey": "GET /apis/v1/financial/financial-metrics/snapshot, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/getting-started-with-aisa (success) | - Visited https://aisa.one/docs/api-reference/financial/get_financial-metrics-snapshot (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/financial/edinet/documents.json",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:29 PM / 5d8bb39a-92fa-4a1a-8996-5aec8351dca5",
+      "journey": "GET /apis/v1/financial/edinet/documents.json, Claude Code / Claude Opus 5, Aug 22, 2026, 6:29 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/authentication (empty/error) | - Visited https://aisa.one/docs/start/authentication (empty/error)",
+      "failedPaths": "'- https://aisa.one/docs/authentication | - https://aisa.one/docs/start/authentication",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1beta/models/{model}:generateContent",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:28 PM / 853c49d3-3a38-46c3-9032-de1003d65c6f",
+      "journey": "POST /v1beta/models/{model}:generateContent, Claude Code / Claude Opus 5, Aug 22, 2026, 6:28 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success) | - Visited https://aisa.one/docs/guides/models (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/financial/financials/search/screener",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:28 PM / e1b85a6f-a90f-4755-9e44-5d2600c38e22",
+      "journey": "POST /apis/v1/financial/financials/search/screener, Claude Code / Claude Opus 5, Aug 22, 2026, 6:28 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/getting-started-with-aisa (success) | - Visited https://aisa.one/docs/api-reference/financial/get_prices (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/financial/macro/interest-rates",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:28 PM / 50afef46-7490-45d7-bc8c-283639f4d6b5",
+      "journey": "GET /apis/v1/financial/macro/interest-rates, Claude Code / Claude Opus 5, Aug 22, 2026, 6:28 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/financial/filings",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:28 PM / 05ba83bb-12fc-4d42-b872-efed9e75c7a5",
+      "journey": "GET /apis/v1/financial/filings, Claude Code / Claude Opus 5, Aug 22, 2026, 6:28 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/financial/company/facts",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:28 PM / 13323053-76d4-4bb4-a7cb-b109825cce0c",
+      "journey": "GET /apis/v1/financial/company/facts, Claude Code / Claude Opus 5, Aug 22, 2026, 6:28 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/getting-started-with-aisa (success) | - Visited https://aisa.one/docs/api-reference/financial/get_financial-company-facts (empty/error)",
+      "failedPaths": "'- https://aisa.one/docs/api-reference/financial/get_financial-company-facts",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/financial/news",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:28 PM / 1d6ab643-a7c2-4c46-bdb1-3df6041b2683",
+      "journey": "GET /apis/v1/financial/news, Claude Code / Claude Opus 5, Aug 22, 2026, 6:28 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/financial/financials/income-statements",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:28 PM / e7d59dae-15a9-49a2-82e9-7686ad77d2cb",
+      "journey": "GET /apis/v1/financial/financials/income-statements, Claude Code / Claude Opus 5, Aug 22, 2026, 6:28 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/firecrawl/batch-scrape",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:28 PM / 3029a5d7-5d4a-465f-a6bd-761143118060",
+      "journey": "POST /apis/v1/firecrawl/batch-scrape, Claude Code / Claude Opus 5, Aug 22, 2026, 6:28 PM | - Visited https://aisa.one/docs/guides (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/financial/prices/snapshot",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:28 PM / f8cf50c9-fa11-43c4-825f-389fd6ca94bd",
+      "journey": "GET /apis/v1/financial/prices/snapshot, Claude Code / Claude Opus 5, Aug 22, 2026, 6:28 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/guides/authentication (success) | - Visited https://aisa.one/docs/api-reference/financial/get_prices (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/tavily/extract",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:28 PM / dcadd635-7ca6-4393-ac43-02f4de01f67f",
+      "journey": "POST /apis/v1/tavily/extract, Claude Code / Claude Opus 5, Aug 22, 2026, 6:28 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/financial/prices",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:28 PM / 024d553b-94be-45e9-978e-35a567c755b6",
+      "journey": "GET /apis/v1/financial/prices, Claude Code / Claude Opus 5, Aug 22, 2026, 6:28 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/getting-started-with-aisa (success) | - Visited https://aisa.one/docs/api-reference/financial/get_prices (success) | - Visited https://aisa.one/docs/guides/authentication (success) | - Visited https://aisa.one/docs/api-reference/errors (empty/error)",
+      "failedPaths": "'- https://aisa.one/docs/api-reference/errors",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/financial/financials",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:28 PM / 7516d7a8-8157-44f9-b50a-afb730815707",
+      "journey": "GET /apis/v1/financial/financials, Claude Code / Claude Opus 5, Aug 22, 2026, 6:28 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success) | - Visited https://aisa.one/docs/api-reference/financial/get_financials (empty/error)",
+      "failedPaths": "'- https://aisa.one/docs/api-reference/financial/get_financials",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/financial/macro/interest-rates/snapshot",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:28 PM / 7dfa6744-3518-4d6c-a31b-9b5685ee08cd",
+      "journey": "GET /apis/v1/financial/macro/interest-rates/snapshot, Claude Code / Claude Opus 5, Aug 22, 2026, 6:28 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/financial/financials/search/line-items",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:28 PM / bf471e31-0fc6-4d4c-884d-48dfbddbedab",
+      "journey": "POST /apis/v1/financial/financials/search/line-items, Claude Code / Claude Opus 5, Aug 22, 2026, 6:28 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/getting-started-with-aisa (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/exa/contents",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:28 PM / d4ae28fe-6fc1-49e2-82fe-367f6a673638",
+      "journey": "POST /apis/v1/exa/contents, Claude Code / Claude Opus 5, Aug 22, 2026, 6:28 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/scholar/search/scholar",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 22, 2026, 6:27 PM / b408534a-bd5d-432f-91d3-532d50881c1f",
+      "journey": "POST /apis/v1/scholar/search/scholar, Claude Code / Claude Opus 5, Aug 22, 2026, 6:27 PM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference/scholar/post_scholar-search-scholar (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1beta/models/{model}:generateContent",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 1:57 AM / a86bde42-0286-46b8-b3bc-c56dd304acdc",
+      "journey": "POST /v1beta/models/{model}:generateContent, Claude Code / Claude Opus 5, Aug 14, 2026, 1:57 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success)",
+      "failedPaths": "NA",
+      "authFailure": false
+    },
+    {
+      "endpoint": "POST /v1/images/edits",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 1:38 AM / 4eceb09b-4bba-4138-b843-0e8d25820d6a",
+      "journey": "POST /v1/images/edits, Claude Code / Claude Opus 5, Aug 14, 2026, 1:38 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference/images/post_images-edits (empty/error)",
+      "failedPaths": "'- https://aisa.one/docs/api-reference/images/post_images-edits",
+      "authFailure": false
+    },
+    {
+      "endpoint": "POST /v1/images/generations",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 1:36 AM / d4029053-cfdf-4639-b4fa-4f80154498b4",
+      "journey": "POST /v1/images/generations, Claude Code / Claude Opus 5, Aug 14, 2026, 1:36 AM | - Visited https://aisa.one/docs/guides (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/polymarket/events",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 1:34 AM / 85edeccd-a4f8-4ae2-b553-e7be9ec05791",
+      "journey": "GET /apis/v1/polymarket/events, Claude Code / Claude Opus 5, Aug 14, 2026, 1:34 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference/prediction-market/get_polymarket-events (empty/error) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "'- https://aisa.one/docs/api-reference/prediction-market/get_polymarket-events",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/chat/completions",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 1:25 AM / 963ff333-998b-44c6-afc2-baf290ebd5c3",
+      "journey": "POST /v1/chat/completions, Claude Code / Claude Opus 5, Aug 14, 2026, 1:25 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/getting-started-with-aisa (success) | - Visited https://aisa.one/docs/api-reference/chat/post_chat-completions (success) | - Visited https://aisa.one/docs/guides/models (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/messages",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 1:25 AM / c69e8a6c-3cf1-4c74-a422-cdc7d9feb6df",
+      "journey": "POST /v1/messages, Claude Code / Claude Opus 5, Aug 14, 2026, 1:25 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/rerank",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 1:24 AM / bfab0b72-e6b3-4167-b2b8-e885248815a4",
+      "journey": "POST /v1/rerank, Claude Code / Claude Opus 5, Aug 14, 2026, 1:24 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": false
+    },
+    {
+      "endpoint": "POST /apis/v1/scholar/search/scholar",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 1:24 AM / 5cefb75f-e980-4c02-8dfd-c14fc0093f24",
+      "journey": "POST /apis/v1/scholar/search/scholar, Claude Code / Claude Opus 5, Aug 14, 2026, 1:24 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference/scholar/post_scholar-search-scholar (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": false
+    },
+    {
+      "endpoint": "GET /apis/v1/twitter/user/info",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 1:24 AM / a4e9e3e6-5338-45bf-bdb3-124ffeab003e",
+      "journey": "GET /apis/v1/twitter/user/info, Claude Code / Claude Opus 5, Aug 14, 2026, 1:24 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference/twitter/get_twitter-user-info (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/embeddings",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 1:24 AM / 157a1ad6-7aa9-4a65-bc9d-9c1d557afbc2",
+      "journey": "POST /v1/embeddings, Claude Code / Claude Opus 5, Aug 14, 2026, 1:24 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": false
+    },
+    {
+      "endpoint": "POST /v1/chat/completions",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 12:49 AM / a0ed09da-11c5-4c49-a5b5-5d9fb3283f80",
+      "journey": "POST /v1/chat/completions, Claude Code / Claude Opus 5, Aug 14, 2026, 12:49 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/api-reference/chat/post_chat-completions (success) | - Visited https://aisa.one/docs/guides/models (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/exa/agent/runs",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 12:48 AM / 90e22914-92af-4368-ad44-daa50ef5f315",
+      "journey": "POST /apis/v1/exa/agent/runs, Claude Code / Claude Opus 5, Aug 14, 2026, 12:48 AM | - Visited https://aisa.one/docs/guides (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/youtube/search",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 12:40 AM / b1ca1a54-9b9c-45eb-af3e-a3a6b5ff3905",
+      "journey": "GET /apis/v1/youtube/search, Claude Code / Claude Opus 5, Aug 14, 2026, 12:40 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference/search/get_youtube-search (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/exa/answer",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 12:40 AM / e8ca5e16-aa1f-47ee-bd40-20ad33b87c18",
+      "journey": "POST /apis/v1/exa/answer, Claude Code / Claude Opus 5, Aug 14, 2026, 12:40 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/guides/authentication (success) | - Visited https://aisa.one/docs/api-reference/errors (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1beta/models/{model}:generateContent",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 12:39 AM / d1728fe7-09f6-44c3-899d-c1290df3d8b7",
+      "journey": "POST /v1beta/models/{model}:generateContent, Claude Code / Claude Opus 5, Aug 14, 2026, 12:39 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/guides/models (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/images/edits",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 12:39 AM / 605d167e-260c-4f93-838a-76649870f0ad",
+      "journey": "POST /v1/images/edits, Claude Code / Claude Opus 5, Aug 14, 2026, 12:39 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/messages",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 12:39 AM / 15dc8fa7-043e-4920-b056-254155a539f2",
+      "journey": "POST /v1/messages, Claude Code / Claude Opus 5, Aug 14, 2026, 12:39 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/images/generations",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 12:39 AM / 35a9c9d4-8e05-4b41-a292-2cce764ad03c",
+      "journey": "POST /v1/images/generations, Claude Code / Claude Opus 5, Aug 14, 2026, 12:39 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/guides/models (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/rerank",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 12:39 AM / d0ff7167-07f2-4d9a-bf49-ad9b493ce7ad",
+      "journey": "POST /v1/rerank, Claude Code / Claude Opus 5, Aug 14, 2026, 12:39 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/embeddings",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 12:38 AM / 0007fb55-5c31-49fe-a4d4-677a600a7ad0",
+      "journey": "POST /v1/embeddings, Claude Code / Claude Opus 5, Aug 14, 2026, 12:38 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/getting-started-with-aisa (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/embeddings",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 14, 2026, 12:34 AM / 7203363f-1cc3-4993-a233-85f0d8990739",
+      "journey": "POST /v1/embeddings, Claude Code / Claude Opus 5, Aug 14, 2026, 12:34 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/images/edits",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 12, 2026, 5:42 AM / ef3812b5-13a6-4cbb-bdb7-585d1cd84718",
+      "journey": "POST /v1/images/edits, Claude Code / Claude Opus 5, Aug 12, 2026, 5:42 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/images (empty/error) | - Visited https://aisa.one/docs/guides/models (success) | - Visited https://aisa.one/docs/api-reference/image-generation/post_images-edits (empty/error)",
+      "failedPaths": "'- https://aisa.one/docs/guides/images | - https://aisa.one/docs/api-reference/image-generation/post_images-edits",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1beta/models/{model}:generateContent",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 12, 2026, 5:42 AM / 56301c35-6a71-44e2-9b6c-b89508b3e766",
+      "journey": "POST /v1beta/models/{model}:generateContent, Claude Code / Claude Opus 5, Aug 12, 2026, 5:42 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/by-interface (success) | - Visited https://aisa.one/docs/guides/authentication (success) | - Visited https://aisa.one/docs/guides/models (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/exa/agent/runs",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 12, 2026, 5:42 AM / 14a97395-fa62-4bfa-a0b6-ca19f54711be",
+      "journey": "POST /apis/v1/exa/agent/runs, Claude Code / Claude Opus 5, Aug 12, 2026, 5:42 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success) | - Visited https://aisa.one/docs/api-reference/exa/post_exa-agent-runs (empty/error) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/agent-quickstart (success) | - Visited https://aisa.one/docs/llms-full.txt (success) | - Visited https://aisa.one/docs/api-reference/perplexity/post_perplexity-sonar (success) | - Visited https://aisa.one/docs/llms-full.txt (success)",
+      "failedPaths": "'- https://aisa.one/docs/api-reference/exa/post_exa-agent-runs",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /apis/v1/exa/answer",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 12, 2026, 5:41 AM / f929fd98-5994-432c-b38e-d980e0b085de",
+      "journey": "POST /apis/v1/exa/answer, Claude Code / Claude Opus 5, Aug 12, 2026, 5:41 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/embeddings",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 12, 2026, 5:41 AM / 46f6a67c-88f6-4170-bd5f-8fa9c25f95dc",
+      "journey": "POST /v1/embeddings, Claude Code / Claude Opus 5, Aug 12, 2026, 5:41 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/getting-started-with-aisa (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/chat/completions",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 12, 2026, 5:41 AM / 2b539092-21b0-4e1c-bd78-3bf613a84644",
+      "journey": "POST /v1/chat/completions, Claude Code / Claude Opus 5, Aug 12, 2026, 5:41 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference/chat/post_chat-completions (success) | - Visited https://aisa.one/docs/guides/authentication (success) | - Visited https://aisa.one/docs/guides/models (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/messages",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 12, 2026, 5:41 AM / 9b02f789-ccc9-44fa-b9ba-c293131ed0e6",
+      "journey": "POST /v1/messages, Claude Code / Claude Opus 5, Aug 12, 2026, 5:41 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/rerank",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 12, 2026, 5:41 AM / af7e97f9-9483-4114-81c4-3617ccc533dd",
+      "journey": "POST /v1/rerank, Claude Code / Claude Opus 5, Aug 12, 2026, 5:41 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/guides/authentication (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "GET /apis/v1/youtube/search",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 12, 2026, 5:41 AM / bcaec88a-e881-470d-a7b0-f2234a2d2d8e",
+      "journey": "GET /apis/v1/youtube/search, Claude Code / Claude Opus 5, Aug 12, 2026, 5:41 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success)",
+      "failedPaths": "NA",
+      "authFailure": true
+    },
+    {
+      "endpoint": "POST /v1/images/generations",
+      "agent": "Claude Code / Claude Opus 5",
+      "run": "Aug 12, 2026, 5:40 AM / 723548ea-ed87-44bf-8833-0cbe792feabe",
+      "journey": "POST /v1/images/generations, Claude Code / Claude Opus 5, Aug 12, 2026, 5:40 AM | - Visited https://aisa.one/docs/guides (success) | - Visited https://aisa.one/docs/llms.txt (success) | - Visited https://aisa.one/docs/api-reference (success) | - Visited https://aisa.one/docs/api-reference/images (empty/error)",
+      "failedPaths": "'- https://aisa.one/docs/api-reference/images",
+      "authFailure": true
+    },
+    {
+      "endpoint": "'- - - - - - -",
+      "agent": "'- - - - - - -",
+      "run": "'- - - - - - -",
+      "journey": "'- - - - - - -",
+      "failedPaths": "'- - - - - - -",
+      "authFailure": false
+    }
+  ]
+}

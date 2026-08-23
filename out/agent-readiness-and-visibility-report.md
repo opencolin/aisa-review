@@ -2,7 +2,7 @@
 
 **Source** · Lightsage public API (formerly Sapient) · `https://api.lightsage.com`  
 **Window** · 2026-07-24 → 2026-08-23 (30 days) · latest run 2026-08-22  
-**Generated** · Sun, 23 Aug 2026 01:29:59 GMT
+**Generated** · Sun, 23 Aug 2026 03:09:01 GMT
 
 
 ### Dashboards
@@ -35,12 +35,13 @@
 
 **AIsa is effectively invisible to AI answer engines in this window.** 567 prompt runs produced **1 citation** — 8 of 9 tracked prompts returned zero visibility. The category leader, **Composio**, holds 41.57% visibility and 57.85% share of voice — roughly 346× AIsa's visibility.
 
-Four findings drive everything below:
+5 findings drive everything below:
 
-1. **Coding agents are measured for _usage_ but not for _recommendation_.** API Performance and Devtool Arena both run Claude Code against the API (grade C, 69%) — but visibility tracking uses only 3 platforms (Google AI Overviews, Perplexity, ChatGPT), **none of them coding agents**, out of 19 available. So we know how well Claude Code *uses* AIsa once it gets there, and nothing about whether Claude Code, Codex, Cursor or Copilot ever *recommend* it.
-2. **The API works better than the docs do.** 50 API Performance evals passed at 22.00%, and every open site action is a docs problem — 12 actions covering broken URLs and unreadable pages, not API defects.
-3. **The "#1 average position" is a single-citation artifact.** It comes from one citation on one prompt, not from category strength — treat it as noise, not a win.
-4. **Two surfaces exist but don't count.** OIDC discovery is live on `login.aisa.one` yet absent from the apex, and the A2A Agent Card is served but schema-invalid. Ora credits both; Cloudflare fails both. These are the cheapest wins on the board — a redirect and one required field.
+1. **The biggest agent-facing asset AISA has is invisible.** `/.well-known/mcp.json` publishes **11 live MCP servers exposing 188 tools**, yet Ora reports "no MCP server detected", Cloudflare rejects the manifest for a missing `serverInfo.name`, and Lightsage's own Arena checklist scores MCP Server 0. The servers are real and responding; the discovery file just is not in a shape any scanner recognises.
+2. **The API Performance scores are measuring a broken credential.** 41 of 50 sampled runs hit `401 / invalid api key` and none passed; agents wrote working code and then could not authenticate. Fix the eval key and re-run before treating the 79.3% failure rate as a signal about the API.
+3. **Coding agents are measured for _usage_ but not for _recommendation_.** API Performance and Devtool Arena both run Claude Code against the API (grade C, 69%), but visibility tracking uses only 3 platforms (Google AI Overviews, Perplexity, ChatGPT), **none of them coding agents**, out of 19 available. We know how well Claude Code *uses* AIsa once it arrives, and nothing about whether it ever *recommends* it.
+4. **Agent Analytics is switched off.** Lightsage reports no tracking events received, so the inside-out view — which pages agents actually read — does not exist yet. A middleware install closes that gap.
+5. **The "#1 average position" is a single-citation artifact.** It comes from one citation on one prompt, not category strength — noise, not a win.
 
 ---
 
@@ -116,82 +117,107 @@ Tracked: **Google AI Overviews, Perplexity, ChatGPT**
 
 ## 2. API Performance
 
-**11/50 evals passed (22.00%)**, all executed by `global.anthropic.claude-opus-5`.
+**15/50 evals passed (30.00%)**, all executed by `global.anthropic.claude-opus-5`.
 
 | Endpoint | Passed | Avg score |
 | --- | --- | --- |
-| `POST /apis/v1/firecrawl/search` | 0/1 | 0.631 |
-| `POST /apis/v1/perplexity/sonar` | 0/1 | 0.631 |
-| `GET /apis/v1/financial/insider-trades` | 0/1 | 0.506 |
-| `POST /apis/v1/firecrawl/parse` | 0/1 | 0.669 |
-| `POST /apis/v1/firecrawl/crawl` | 0/1 | 0.631 |
-| `POST /apis/v1/firecrawl/scrape` | 0/1 | 0.631 |
-| `POST /apis/v1/exa/answer` | 0/2 | 0.691 |
-| `POST /apis/v1/perplexity/sonar-reasoning-pro` | 0/1 | 0.506 |
-| `GET /apis/v1/financial/financials/balance-sheets` | 0/1 | 0.606 |
-| `POST /apis/v1/tavily/search` | 0/1 | 0.856 |
-| `GET /apis/v1/financial/financial-metrics/snapshot` | 0/1 | 0.506 |
-| `GET /apis/v1/financial/edinet/documents.json` | 0/1 | 0.506 |
-| `POST /apis/v1/financial/financials/search/screener` | 0/1 | 0.631 |
-| `GET /apis/v1/financial/macro/interest-rates` | 0/1 | 0.5 |
-| `GET /apis/v1/financial/filings` | 0/1 | 0.506 |
-| `GET /apis/v1/financial/company/facts` | 0/1 | 0.631 |
-| `GET /apis/v1/financial/news` | 0/1 | 0.669 |
-| `GET /apis/v1/financial/financials/income-statements` | 0/1 | 0.625 |
-| `POST /apis/v1/firecrawl/batch-scrape` | 0/1 | 0.506 |
-| `GET /apis/v1/financial/prices/snapshot` | 0/1 | 0.631 |
-| `POST /apis/v1/tavily/extract` | 0/1 | 0.487 |
-| `GET /apis/v1/financial/prices` | 0/1 | 0.506 |
-| `GET /apis/v1/financial/financials` | 0/1 | 0.856 |
-| `GET /apis/v1/financial/macro/interest-rates/snapshot` | 0/1 | 0.75 |
-| `POST /apis/v1/financial/financials/search/line-items` | 0/1 | 0.631 |
-| `POST /apis/v1/exa/contents` | 0/1 | 0.506 |
-| `POST /apis/v1/exa/agent/runs` | 0/1 | 0.506 |
-| `GET /apis/v1/youtube/search` | 0/1 | 0.669 |
-| `POST /v1/images/edits` | 1/3 | 0.729 |
-| `POST /v1beta/models/{model}:generateContent` | 1/3 | 0.829 |
-| `GET /apis/v1/twitter/user/info` | 1/2 | 0.753 |
-| `POST /v1/embeddings` | 1/2 | 0.816 |
-| `POST /v1/rerank` | 1/2 | 0.672 |
-| `POST /apis/v1/scholar/search/scholar` | 1/2 | 0.753 |
-| `POST /v1/chat/completions` | 1/2 | 0.928 |
-| `POST /v1/messages` | 1/2 | 0.753 |
-| `POST /v1/images/generations` | 2/2 | 1 |
-| `GET /apis/v1/polymarket/events` | 1/1 | 1 |
+| `article aisa twitter article [options] <tweet-id>` | 0/1 | 0.3 |
+| `space aisa twitter space [options] <space-id>` | 0/1 | 0.31 |
+| `install aisa skills install [options] <slug>` | 0/1 | 0.345 |
+| `list-followers aisa twitter list-followers [options] <list-id>` | 0/1 | 0.305 |
+| `trends aisa twitter trends [options]` | 0/1 | 0.31 |
+| `list-members aisa twitter list-members [options] <list-id>` | 0/1 | 0.31 |
+| `community-members aisa twitter community-members [options] <community-id>` | 0/1 | 0.295 |
+| `community-mods aisa twitter community-mods [options] <community-id>` | 0/1 | 0.295 |
+| `mentions aisa twitter mentions [options] <username>` | 0/1 | 0.295 |
+| `community-info aisa twitter community-info [options] <community-id>` | 0/1 | 0.295 |
+| `scholar aisa scholar [options] <query>` | 0/1 | 0.27 |
+| `search aisa skills search [options] <query>` | 0/1 | 0.48 |
+| `list aisa skills list [options]` | 0/1 | 0.445 |
+| `community-search aisa twitter community-search [options] <query>` | 0/1 | 0.305 |
+| `crypto aisa crypto [options] <symbol>` | 0/1 | 0.315 |
+| `upload-media aisa twitter upload-media [options] <file-path>` | 0/1 | 0.315 |
+| `community-tweets aisa twitter community-tweets [options] <community-id>` | 0/1 | 0.305 |
+| `replies aisa twitter replies [options] <tweet-id>` | 0/1 | 0.32 |
+| `status aisa video status [options] <task-id>` | 0/1 | 0.315 |
+| `batch-users aisa twitter batch-users [options] <ids>` | 0/1 | 0.3 |
+| `get aisa config get <key>` | 0/1 | 0.325 |
+| `dm aisa twitter dm [--raw] <user-id> <text>` | 0/1 | 0.315 |
+| `remove aisa skills remove [options] <slug>` | 0/1 | 0.355 |
+| `chat aisa chat [options] [message]` | 0/1 | 0.325 |
+| `create aisa video create [options] <prompt>` | 0/1 | 0.275 |
+| `show aisa skills show <slug>` | 0/1 | 0.395 |
+| `following aisa twitter following [options] <username>` | 0/1 | 0.295 |
+| `followers aisa twitter followers [options] <username>` | 0/1 | 0.305 |
+| `unfollow aisa twitter unfollow [--raw] <user-id>` | 0/1 | 0.34 |
+| `web-search aisa web-search [options] <query>` | 0/1 | 0.31 |
+| `thread aisa twitter thread [options] <tweet-id>` | 0/1 | 0.32 |
+| `search aisa twitter search [options] <query>` | 0/1 | 0.35 |
+| `user aisa twitter user [options] <username>` | 0/1 | 0.315 |
+| `search aisa api search [options] <query>` | 0/1 | 0.381 |
+| `show aisa api show [options] <api> [path]` | 0/1 | 0.36 |
+| `unfollow aisa twitter unfollow [options] <user-id>` | 1/1 | 0.86 |
+| `retweet aisa twitter retweet [options] <tweet-id>` | 1/1 | 0.86 |
+| `follow aisa twitter follow [options] <user-id>` | 1/1 | 0.86 |
+| `reset aisa config reset` | 1/1 | 0.715 |
+| `remove aisa skills remove [--agent <agent>] [--force] <slug>` | 1/1 | 0.715 |
+| `init aisa skills init [options] <name>` | 1/1 | 0.855 |
+| `like aisa twitter like [options] <tweet-id>` | 1/1 | 0.86 |
+| `setup aisa mcp setup [options]` | 1/1 | 0.755 |
+| `search aisa skills search [--limit <n>] [--refresh] <query>` | 1/1 | 0.855 |
+| `unlike aisa twitter unlike [options] <tweet-id>` | 1/1 | 0.82 |
+| `path aisa cache path` | 1/1 | 0.755 |
+| `dm aisa twitter dm [options] <user-id> <text>` | 1/1 | 0.82 |
+| `setup aisa mcp setup [--agent <agent>]` | 1/1 | 0.82 |
+| `delete aisa twitter delete [options] <tweet-id>` | 1/1 | 0.82 |
+| `list aisa api list [options]` | 1/1 | 0.715 |
 
-**Failed criteria** (across 39 failed runs). These are eval checks that did not pass — the names describe the expected condition, not an error:
+**Failed criteria** (across 35 failed runs). These are eval checks that did not pass — the names describe the expected condition, not an error:
 
 | Reason | Count |
 | --- | --- |
-| `exit_code_zero` | 39 |
-| `completed_task` | 31 |
-| `clean_execution` | 14 |
-| `has_endpoint` | 6 |
+| `task_completed` | 35 |
+| `zero_errors` | 33 |
+| `partial_credit` | 31 |
+| `efficiency` | 5 |
+| `time` | 2 |
+| `cost` | 2 |
 
 ### Site actions
 
-11 open of 12 total.
+21 open of 23 total.
 
-**high traffic working url** (6)
+**broken url** (12)
 
-- **[high]** `https://aisa.one/docs/guides/authentication`
-- **[high]** `https://aisa.one/docs/guides`
-- `https://aisa.one/docs/api-reference/chat/post_chat-completions`
-- `https://aisa.one/docs/guides/getting-started-with-aisa`
-- `https://aisa.one/docs/guides/models`
-- `https://aisa.one/docs/api-reference`
-
-**broken url** (5)
-
+- **[high]** `https://aisa.one/docs/authentication`
+- `https://aisa.one/docs/api-reference/errors`
 - `https://aisa.one/docs/guides/images`
+- `https://aisa.one/docs/api-reference/financial/get_financial-company-facts`
+- `https://aisa.one/docs/direct-api-access`
 - `https://aisa.one/docs/api-reference/images/post_images-edits`
 - `https://aisa.one/docs/api-reference/images`
+- `https://aisa.one/docs/guides/direct-api-access`
 - `https://aisa.one/docs/api-reference/image-generation/post_images-edits`
+- `https://aisa.one/docs/guides/errors`
+- `https://aisa.one/docs/start/authentication`
 - `https://aisa.one/docs/api-reference/exa/post_exa-agent-runs`
 
-**page not llm readable** (1)
+**high traffic working url** (9)
+
+- **[high]** `https://aisa.one/docs/guides/authentication`
+- **[high]** `https://aisa.one/docs/agent-skills/quickstart`
+- **[high]** `https://aisa.one/docs/api-reference`
+- **[high]** `https://aisa.one/docs/guides`
+- `https://aisa.one/docs/api-reference/financial/get_prices`
+- `https://aisa.one/docs/api-reference/perplexity/post_perplexity-sonar`
+- `https://aisa.one/docs/api-reference/chat/post_chat-completions`
+- `https://aisa.one/docs/guides/models`
+- `https://aisa.one/docs/guides/getting-started-with-aisa`
+
+**page not llm readable** (2)
 
 - `https://aisa.one/docs/api-reference/prediction-market/get_polymarket-events`
+- `https://aisa.one/docs/api-reference/financial/get_financials`
 
 ### Devtool Arena — Claude Code (Devtool Arena — API)
 
@@ -225,7 +251,45 @@ _Snapshot captured 2026-08-23 from [the Arena page](https://lightsage.com/leader
 
 ---
 
-## 3. Agent readiness
+## 3. Agent experience
+
+Lightsage's diagnosis of how coding agents actually behave against the API, over the last 30d.
+
+| Metric | Value |
+| --- | --- |
+| Runs analysed | 208 |
+| Failed | 165 (79.3%) |
+| Passed | 43 |
+
+### The eval credential is being rejected
+
+**41 of 50 sampled runs hit `401 / invalid api key`, and 0 of them passed.** The CSV export tells the same story — 79 of 85 exported runs mention the same failure.
+
+Agents in these runs wrote working integration code and then could not authenticate. From the transcripts:
+
+
+> "The key is rejected on *every* endpoint, so this is a credential issue, not an integration bug."  
+> "Exit code 0 is misleading — the API actually returned a 401."
+
+This matters for how the rest of this section is read: **the current API Performance scores largely measure a broken credential, not API or documentation quality.** The `AISA_API_KEY` in Lightsage's eval environment is either stale, revoked, or out of credit against `api.aisa.one`. Re-point it at a working key and re-run before drawing conclusions about endpoint quality — and note the top "failure reasons" are `task_completed` and `zero_errors`, which is what a correct integration blocked at the auth boundary looks like.
+
+### Failure patterns
+
+| Severity | Pattern | Runs | Share | What it means |
+| --- | --- | --- | --- | --- |
+| info | Guessed Without Docs | 53 | 53% | Agent used tools without looking up your documentation. May indicate poor doc discoverability. |
+| critical | Auth Flow Unclear | 16 | 16% | Agent got auth error or searched for auth docs. Make your authentication flow clearer. |
+| warning | API Returned Error | 14 | 14% | Agent's API call returned an error (404, 401, 500, etc.). Check endpoint paths and auth requirements. |
+| warning | Wrong Endpoint Used | 12 | 12% | Agent called a different endpoint than expected. Endpoint naming may be ambiguous. |
+| critical | Hard to Discover | 7 | 7% | Agent made 2+ web requests to find your docs. Consider adding llms.txt or improving doc discoverability. |
+
+**Most-failed endpoints** — `POST /apis/v1/exa/agent/runs` (3), `POST /v1/chat/completions` (3), `GET /apis/v1/youtube/search` (3), `POST /v1/messages` (3), `POST /v1/images/edits` (3), `POST /apis/v1/exa/answer` (3), `POST /v1beta/models/{model}:generateContent` (3), `POST /v1/images/generations` (2), `POST /v1/embeddings` (2), `POST /v1/rerank` (2).
+
+_Row-level export of 85 runs across 54 endpoints is committed at `reference/agent-experience-csv.json`._
+
+---
+
+## 4. Agent readiness
 
 Lightsage measures whether agents **cite** AIsa. These two scanners measure whether agents **can use** it — discovery files, protocol conformance, auth, and machine-readable surfaces.
 
@@ -314,20 +378,41 @@ Both scan the same site on the same day, so divergence is signal — usually a s
 - Ora (n/a): No /.well-known/agent-skills/index.json - skip v0.2.0 conformance  
 - Cloudflare (fail): Agent Skills index not found
 
+### The MCP gap
+
+Every scanner in this report says AISA has no MCP server. Fetching `https://aisa.one/.well-known/mcp.json` directly returns **11 live servers exposing 188 tools**, plus 36 planned entries.
+
+| Server | Category | Tools | Endpoint |
+| --- | --- | --- | --- |
+| AIsa Apollo | Sales | 54 | `https://mcp.aisa.one/apollo/mcp` |
+| AIsa Twitter API | Social | 29 | `https://mcp.aisa.one/twitter-api/mcp` |
+| AIsa Web Search | Search & Research | 27 | `https://mcp.aisa.one/web-search/mcp` |
+| AIsa Crypto Market Data | Finance | 21 | `https://mcp.aisa.one/crypto-market-data/mcp` |
+| AIsa MarketPulse | Finance | 21 | `https://mcp.aisa.one/marketpulse/mcp` |
+| AIsa Instagram | Social | 17 | `https://mcp.aisa.one/instagram/mcp` |
+| AIsa Prediction Market Data | Finance | 5 | `https://mcp.aisa.one/prediction-market-data/mcp` |
+| AIsa Reddit | Social | 5 | `https://mcp.aisa.one/reddit/mcp` |
+| AIsa Pinterest | Social | 4 | `https://mcp.aisa.one/pinterest/mcp` |
+| Stock Pulse | Finance | 4 | `https://mcp.aisa.one/stock-pulse/mcp` |
+| AIsa YouTube Search | Search | 1 | `https://mcp.aisa.one/youtube-search/mcp` |
+
+The manifest is AISA's own convention — it has `manifestVersion`, `publisher` and `servers`, but no `serverInfo.name` or root `name`, and nothing at the SEP-2127 path `/.well-known/mcp/server-card.json`. Cloudflare fetches the file, gets valid JSON, and rejects it on the missing field. Ora does not find it at all. Lightsage's own Devtool Arena checklist scores **MCP Server: 0**. So the largest agent-facing asset AISA has built is invisible to every scoring surface that matters.
+
+
 ### Cheapest wins: surfaces that already exist but score zero
 
 Each of these is built and live. They fail only because they sit at the wrong path, omit one required field, or are not linked anywhere a crawler will look.
 
 | Surface | Current state | Fix |
 | --- | --- | --- |
+| **MCP servers** | **11 live servers exposing 188 tools** are published at `/.well-known/mcp.json` (plus 36 planned) — but the manifest is AISA's own format, with no `serverInfo.name`, so every scanner reports "no MCP server" | Publish a conforming card at `/.well-known/mcp/server-card.json` (SEP-2127) alongside the existing manifest. |
 | OIDC discovery | OpenID Connect discovery endpoint found at https://login.aisa.one | Serve or redirect `/.well-known/openid-configuration` from the apex domain. |
 | A2A Agent Card | Served, but missing or empty required field "supportedInterfaces" | Add the missing required field to the existing card. |
-| MCP manifest | `/.well-known/mcp.json` returns 200 JSON but lacks `serverInfo.name` | Add the required field, or move it to `/.well-known/mcp/server-card.json`. |
 | CLI package | `@aisa-one/cli` v0.3.0 is published (16 versions, last updated 2026-08-19) but is not linked from the homepage | Link it from the homepage and docs — three separate checks currently score it zero. |
 
 ---
 
-## 4. Recommended actions
+## 5. Recommended actions
 
 Lightsage's ranked task list for 2026-08-23 — 7 active.
 
@@ -389,7 +474,7 @@ Lightsage's ranked task list for 2026-08-23 — 7 active.
 
 ---
 
-## 5. Opportunities (81)
+## 6. Opportunities (81)
 
 **By category** — GROWTH (11), CITATIONS (70)  
 **By type** — CONTENT GAPS (2), CITATION GAPS (30), HIGH CITATION SOURCES (20), LISTICLE TARGETS (20), COMPETITOR GAPS (7), UNTAPPED TOPICS (2)  
@@ -438,38 +523,73 @@ _45 more in `data/opportunities.json`._
 
 ---
 
-## 6. Data quality caveats
+## 7. Recommended: install the Lightsage Agent Tracker SDK
+
+Lightsage's **Agent Analytics** product is currently empty for AISA — the dashboard reports *"Waiting for first tracking event."* That is the half of Lightsage that measures which pages agents actually read, and it needs a small middleware install to start producing data.
+
+
+Everything in this report so far is *outside-in*: Lightsage running prompts and evals against AISA, and two scanners probing from the public internet. Agent Analytics is the *inside-out* view — real agent traffic hitting real pages. Given that 79.3% of eval runs fail and the Site Audit already flags agent-visited 404s, knowing which docs agents actually request would close the loop.
+
+
+```bash
+npm install @lightsage/agent-tracker
+```
+
+```ts
+// middleware.ts
+import { withAgentTracking } from "@lightsage/agent-tracker/next";
+
+export default withAgentTracking({ apiKey: process.env.LIGHTSAGE_API_KEY });
+
+export const config = {
+  matcher: ["/((?!api|_next|admin).*)"],
+};
+```
+
+Notes for whoever implements it:
+
+- The package is `@lightsage/agent-tracker` (the rebrand of `@usesapient/agent-tracker`); latest is **v0.1.17**, zero runtime dependencies.
+- Read the key from the environment rather than inlining it — Lightsage's own snippet hardcodes `"YOUR_API_KEY"`, which would commit a credential.
+- The middleware runs on every matched request, so confirm the key is available in the deployed runtime, not just at build time.
+- Optional: `@lightsage/agent-tracker/browser` adds `identifyUser` and `trackConversion` to tie agent-assisted visits to sign-ups. Worth doing only after basic traffic data lands.
+- Origin-side tracking only sees requests that reach the origin. Confirm the CDN is not serving cached HTML, or the numbers will undercount.
+
+---
+
+## 8. Data quality caveats
 
 - **Average position is not meaningful.** `average_position = 1` (rank #1) derives from 1 citation. It will regress as citations accumulate.
-- **Opportunity impact scores are saturated.** 29 of 81 opportunities score exactly 100, and 79 are "high" priority — the ranking carries little signal. The ranked task list in §4 is the better prioritisation.
+- **Opportunity impact scores are saturated.** 29 of 81 opportunities score exactly 100, and 79 are "high" priority — the ranking carries little signal. The ranked task list below is the better prioritisation.
 - **Latency is unpopulated.** All 50 eval runs report `latency_ms: null`, so no latency conclusions are available.
 - **Answer engines only.** Visibility covers Google AI Overviews, Perplexity, ChatGPT. Coding-agent visibility — Lightsage's core differentiator — is unmeasured for AIsa.
 - **Window.** Metrics cover 2026-07-24 → 2026-08-23; the latest completed run is 2026-08-22.
 
 ---
 
-## 7. Endpoint coverage
+## 9. Endpoint coverage
 
 | Endpoint | Path | Status | Time |
 | --- | --- | --- | --- |
-| API health | `/v1/status` | ok (200) | 115ms |
-| Key / org identity | `/v1/auth/status` | ok (200) | 671ms |
-| Current visibility | `/v1/visibility/current` | ok (200) | 952ms |
-| Visibility overview | `/v1/visibility/overview` | ok (200) | 3196ms |
-| Per-prompt visibility | `/v1/visibility/prompts` | ok (200) | 2754ms |
-| Tracked prompts | `/v1/prompts` | ok (200) | 502ms |
-| Prompt config / topics | `/v1/prompts/config` | ok (200) | 771ms |
-| Opportunities | `/v1/opportunities` | ok (200) | 7543ms |
-| Daily tasks | `/v1/tasks` | ok (200) | 623ms |
-| API Perf sources | `/v1/api-performance/sources` | ok (200) | 945ms |
-| API Perf targets | `/v1/api-performance/targets` | ok (200) | 360ms |
-| API Perf config | `/v1/api-performance/config` | ok (200) | 1070ms |
-| API Perf runs | `/v1/api-performance/runs` | ok (200) | 2582ms |
-| API Perf actions | `/v1/api-performance/actions` | ok (200) | 1277ms |
-| API Perf eval defs | `/v1/api-performance/evals` | ok (200) | 1342ms |
-| API Perf skills | `/v1/api-performance/skills` | ok (200) | 685ms |
-| Custom evals | `/v1/api-performance/custom-evals` | ok (200) | 2915ms |
-| Starter projects | `/v1/api-performance/starter-projects` | ok (200) | 690ms |
-| Ora agent-readiness | `https://ora.ai/api/score/aisa.one` | ok (200) | 116ms |
-| Cloudflare agent-ready scan | `https://isitagentready.com/api/scan` | ok (200) | 7478ms |
-| npm CLI package | `https://registry.npmjs.org/@aisa-one/cli` | ok (200) | 130ms |
+| API health | `/v1/status` | ok (200) | 193ms |
+| Key / org identity | `/v1/auth/status` | ok (200) | 699ms |
+| Current visibility | `/v1/visibility/current` | ok (200) | 1073ms |
+| Visibility overview | `/v1/visibility/overview` | ok (200) | 3247ms |
+| Per-prompt visibility | `/v1/visibility/prompts` | ok (200) | 2801ms |
+| Tracked prompts | `/v1/prompts` | ok (200) | 452ms |
+| Prompt config / topics | `/v1/prompts/config` | ok (200) | 769ms |
+| Opportunities | `/v1/opportunities` | ok (200) | 8403ms |
+| Daily tasks | `/v1/tasks` | ok (200) | 624ms |
+| API Perf sources | `/v1/api-performance/sources` | ok (200) | 940ms |
+| API Perf targets | `/v1/api-performance/targets` | ok (200) | 352ms |
+| API Perf config | `/v1/api-performance/config` | ok (200) | 1103ms |
+| API Perf runs | `/v1/api-performance/runs` | ok (200) | 3901ms |
+| API Perf actions | `/v1/api-performance/actions` | ok (200) | 1324ms |
+| API Perf eval defs | `/v1/api-performance/evals` | ok (200) | 1374ms |
+| API Perf skills | `/v1/api-performance/skills` | ok (200) | 652ms |
+| Custom evals | `/v1/api-performance/custom-evals` | ok (200) | 2885ms |
+| Starter projects | `/v1/api-performance/starter-projects` | ok (200) | 673ms |
+| Agent behaviour diagnosis | `/v1/api-performance/diagnose` | ok (200) | 5441ms |
+| AISA MCP manifest | `https://aisa.one/.well-known/mcp.json` | ok (200) | 146ms |
+| Ora agent-readiness | `https://ora.ai/api/score/aisa.one` | ok (200) | 344ms |
+| Cloudflare agent-ready scan | `https://isitagentready.com/api/scan` | ok (200) | 7753ms |
+| npm CLI package | `https://registry.npmjs.org/@aisa-one/cli` | ok (200) | 342ms |

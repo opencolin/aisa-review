@@ -1,6 +1,6 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { apiGet, BASE_URL, ROOT } from "./client.mjs";
+import { apiGet, BASE_URL, getApiKey, ROOT } from "./client.mjs";
 
 const args = Object.fromEntries(
   process.argv.slice(2).map((a) => {
@@ -13,6 +13,7 @@ const days = Number(args.days ?? 30);
 const end = args.end ?? new Date().toISOString().slice(0, 10);
 const start = args.start ?? new Date(Date.parse(end) - days * 86_400_000).toISOString().slice(0, 10);
 const window = { start_date: start, end_date: end };
+const oraDomainForMcp = args.domain ?? "aisa.one";
 
 /**
  * Every read-only endpoint in the Lightsage public API (reference/openapi.yml).
@@ -68,10 +69,66 @@ for (const ep of ENDPOINTS) {
   console.log(`${mark} ${String(res.status).padStart(3)}  ${res.durationMs}ms`);
 }
 
+// Agent-behaviour diagnosis. POST-only, so it sits outside the GET loop.
+process.stdout.write(`  ${"ap_diagnose".padEnd(22)} `);
+{
+  const started = Date.now();
+  let res;
+  try {
+    const r = await fetch(new URL("/v1/api-performance/diagnose", BASE_URL), {
+      method: "POST",
+      headers: { "X-Lightsage-Api-Key": getApiKey(), "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ since: `${days}d`, format: "json", include_examples: true, max_examples: 50 }),
+      signal: AbortSignal.timeout(120_000),
+    });
+    const body = await r.json();
+    res = { ok: r.ok, status: r.status, durationMs: Date.now() - started, path: "/v1/api-performance/diagnose", body };
+  } catch (err) {
+    res = { ok: false, status: 0, durationMs: Date.now() - started, path: "/v1/api-performance/diagnose", body: { error: String(err) } };
+  }
+  writeFileSync(join(dataDir, "ap_diagnose.json"), JSON.stringify(res, null, 2));
+  manifest.push({ key: "ap_diagnose", label: "Agent behaviour diagnosis", path: "/v1/api-performance/diagnose", optional: true, ok: res.ok, status: res.status, durationMs: res.durationMs });
+  console.log(`${res.ok ? "ok " : "-- "} ${String(res.status).padStart(3)}  ${res.durationMs}ms`);
+}
+
+// AISA's own MCP manifest. The agent-readiness scanners all report "no MCP
+// server"; this fetches the manifest directly so the report can state what is
+// actually deployed versus what the scanners can see.
+process.stdout.write(`  ${"aisa_mcp_manifest".padEnd(22)} `);
+{
+  const started = Date.now();
+  let res;
+  try {
+    const r = await fetch(`https://${oraDomainForMcp}/.well-known/mcp.json`, { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(60_000) });
+    const m = await r.json();
+    const servers = Array.isArray(m.servers) ? m.servers : [];
+    const live = servers.filter((x) => x.status === "live");
+    res = {
+      ok: r.ok, status: r.status, durationMs: Date.now() - started,
+      path: `${oraDomainForMcp}/.well-known/mcp.json`,
+      body: {
+        manifestVersion: m.manifestVersion,
+        publisher: m.publisher?.name,
+        conformance: { hasRootName: Boolean(m.name), hasServerInfoName: Boolean(m.serverInfo?.name) },
+        counts: { total: servers.length, live: live.length, planned: servers.filter((x) => x.status === "planned").length },
+        liveTools: live.reduce((a, x) => a + (x.tools?.length ?? 0), 0),
+        live: live.map((x) => ({ name: x.name, slug: x.slug, category: x.category, tier: x.tier,
+          endpoint: x.transport?.endpoint, transport: x.transport?.type,
+          auth: x.authentication?.schemes?.join(","), tools: x.tools?.length ?? 0 })),
+      },
+    };
+  } catch (err) {
+    res = { ok: false, status: 0, durationMs: Date.now() - started, path: "/.well-known/mcp.json", body: { error: String(err) } };
+  }
+  writeFileSync(join(dataDir, "aisa_mcp_manifest.json"), JSON.stringify(res, null, 2));
+  manifest.push({ key: "aisa_mcp_manifest", label: "AISA MCP manifest", path: `https://${oraDomainForMcp}/.well-known/mcp.json`, optional: true, ok: res.ok, status: res.status, durationMs: res.durationMs });
+  console.log(`${res.ok ? "ok " : "-- "} ${String(res.status).padStart(3)}  ${res.durationMs}ms`);
+}
+
 // Ora agent-readiness (ora.ai) — public, unauthenticated, separate host.
 // Complements Lightsage: Lightsage measures whether agents *cite* the site,
 // Ora measures whether agents can discover, parse, and integrate with it.
-const oraDomain = args.domain ?? "aisa.one";
+const oraDomain = oraDomainForMcp;
 process.stdout.write(`  ${"ora".padEnd(22)} `);
 {
   const started = Date.now();

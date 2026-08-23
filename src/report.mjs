@@ -28,6 +28,8 @@ const trunc = (s, n) => { const t = esc(s); return t.length > n ? t.slice(0, n -
 
 const md = [];
 const P = (...lines) => md.push(...lines);
+let sectionNo = 0;
+const S = (title) => { sectionNo++; P("---", "", `## ${sectionNo}. ${title}`, ""); };
 
 /* ---------- data ---------- */
 const cur = load("visibility_current") ?? {};
@@ -45,6 +47,10 @@ const ora = load("ora");
 const oraChecks = (ora?.layers ?? []).flatMap((l) => l.checks ?? []);
 const oraById = new Map(oraChecks.map((c) => [c.id, c]));
 const npmPkg = load("npm");
+const diag = load("ap_diagnose");
+const mcpMan = load("aisa_mcp_manifest");
+let csvExport = null;
+try { csvExport = JSON.parse(readFileSync(join(ROOT, "reference", "agent-experience-csv.json"), "utf8")); } catch { /* optional */ }
 const cf = load("cloudflare");
 const cfChecks = Object.entries(cf?.checks ?? {}).flatMap(([cat, checks]) =>
   Object.entries(checks).map(([id, c]) => ({ ...c, id, category: cat })),
@@ -129,21 +135,26 @@ P(`**${company.name} is effectively invisible to AI answer engines in this windo
   (leader ? `The category leader, **${leader.company?.name}**, holds ${pct(leader.visibility_score)} visibility and ${pct(leader.share_of_voice)} share of voice — ` +
   `roughly ${Math.round((leader.visibility_score ?? 0) / (snap.visibility_score || 1))}× ${company.name}'s visibility.` : ""), "");
 
-P(`${ora && cf ? "Four" : "Three"} findings drive everything below:`, "");
-P(`1. **Coding agents are measured for _usage_ but not for _recommendation_.** API Performance and Devtool Arena both run Claude Code against the API` +
-  `${arena ? ` (grade ${arena.grade}, ${arena.finalScore}%)` : ""} — but visibility tracking uses only ${trackedPlatforms.length} platforms ` +
-  `(${trackedPlatforms.map((p) => p.name).join(", ")}), ${trackedCodingAgents.length === 0 ? "**none of them coding agents**" : `${trackedCodingAgents.length} coding agents`}, ` +
-  `out of ${availablePlatforms.length} available. So we know how well Claude Code *uses* ${company.name} once it gets there, and nothing about whether Claude Code, Codex, Cursor or Copilot ever *recommend* it.`);
-P(`2. **The API works better than the docs do.** ${runs.length} API Performance evals passed at ${passRate === null ? "—" : pct(passRate)}, and every open site action is a docs problem — ` +
-  `${actionCounts.total ?? actions.length} actions covering broken URLs and unreadable pages, not API defects.`);
-P(`3. **The "#1 average position" is a single-citation artifact.** It comes from one citation on one prompt, not from category strength — treat it as noise, not a win.`);
-if (ora && cf) {
-  P(`4. **Two surfaces exist but don't count.** OIDC discovery is live on \`login.aisa.one\` yet absent from the apex, and the A2A Agent Card is served but schema-invalid. Ora credits both; Cloudflare fails both. These are the cheapest wins on the board — a redirect and one required field.`);
+const findings = [];
+if (mcpMan?.counts?.live) {
+  findings.push(`**The biggest agent-facing asset AISA has is invisible.** \`/.well-known/mcp.json\` publishes **${mcpMan.counts.live} live MCP servers exposing ${mcpMan.liveTools} tools**, yet Ora reports "no MCP server detected", Cloudflare rejects the manifest for a missing \`serverInfo.name\`, and Lightsage's own Arena checklist scores MCP Server 0. The servers are real and responding; the discovery file just is not in a shape any scanner recognises.`);
 }
+if (diag) {
+  const ex = diag.examples ?? [];
+  const hay = (e) => [e.response_text, e.execution_stdout, e.execution_stderr].filter(Boolean).join("\n");
+  const af = ex.filter((e) => /\b401\b|unauthorized|invalid api key/i.test(hay(e))).length;
+  if (af) findings.push(`**The API Performance scores are measuring a broken credential.** ${af} of ${ex.length} sampled runs hit \`401 / invalid api key\` and none passed; agents wrote working code and then could not authenticate. Fix the eval key and re-run before treating the ${num(diag.summary?.failure_rate)}% failure rate as a signal about the API.`);
+}
+findings.push(`**Coding agents are measured for _usage_ but not for _recommendation_.** API Performance and Devtool Arena both run Claude Code against the API${arena ? ` (grade ${arena.grade}, ${arena.finalScore}%)` : ""}, but visibility tracking uses only ${trackedPlatforms.length} platforms (${trackedPlatforms.map((p) => p.name).join(", ")}), ${trackedCodingAgents.length === 0 ? "**none of them coding agents**" : `${trackedCodingAgents.length} coding agents`}, out of ${availablePlatforms.length} available. We know how well Claude Code *uses* ${company.name} once it arrives, and nothing about whether it ever *recommends* it.`);
+findings.push(`**Agent Analytics is switched off.** Lightsage reports no tracking events received, so the inside-out view — which pages agents actually read — does not exist yet. A middleware install closes that gap.`);
+findings.push(`**The "#1 average position" is a single-citation artifact.** It comes from one citation on one prompt, not category strength — noise, not a win.`);
+
+P(`${findings.length} findings drive everything below:`, "");
+findings.forEach((f, i) => P(`${i + 1}. ${f}`));
 P("");
 
 /* ---------- visibility ---------- */
-P("---", "", "## 1. Visibility", "");
+S("Visibility");
 P(`### Competitive landscape`, "");
 P(`| # | Company | Visibility | Share of voice | Avg position |`, `| --- | --- | --- | --- | --- |`);
 for (const c of ranked) {
@@ -182,7 +193,7 @@ P("");
 
 /* ---------- API performance ---------- */
 if (runs.length) {
-  P("---", "", "## 2. API Performance", "");
+  S("API Performance");
   P(`**${passed}/${runs.length} evals passed (${pct(passRate)})**, all executed by \`${[...new Set(runs.map((r) => r.model))].join(", ")}\`.`, "");
 
   const byEndpoint = new Map();
@@ -241,9 +252,53 @@ if (arena) {
   P(`_Snapshot captured ${arena.capturedAt} from [the Arena page](${arena.sourceUrl}); Lightsage exposes no JSON API for the leaderboard, so this section does not auto-refresh._`, "");
 }
 
+/* ---------- agent experience ---------- */
+if (diag) {
+  S("Agent experience");
+  const sum = diag.summary ?? {};
+  P(`Lightsage's diagnosis of how coding agents actually behave against the API, over the last ${esc(diag.since)}.`, "");
+  P(`| Metric | Value |`, `| --- | --- |`);
+  P(`| Runs analysed | ${num(sum.total_runs)} |`);
+  P(`| Failed | ${num(sum.failed_runs)} (${num(sum.failure_rate)}%) |`);
+  P(`| Passed | ${num(sum.passed_runs)} |`);
+  P("");
+
+  // The credential story — this dominates everything else.
+  const ex = diag.examples ?? [];
+  const hay = (e) => [e.response_text, e.execution_stdout, e.execution_stderr].filter(Boolean).join("\n");
+  const authFails = ex.filter((e) => /\b401\b|unauthorized|invalid api key/i.test(hay(e)));
+  if (authFails.length) {
+    P(`### The eval credential is being rejected`, "");
+    P(`**${authFails.length} of ${ex.length} sampled runs hit \`401 / invalid api key\`, and ${ex.filter((e) => e.passed).length} of them passed.**` +
+      `${csvExport ? ` The CSV export tells the same story — ${csvExport.authFailureRecords} of ${csvExport.records} exported runs mention the same failure.` : ""}`, "");
+    P(`Agents in these runs wrote working integration code and then could not authenticate. From the transcripts:`, "");
+    P("");
+    P("> \"The key is rejected on *every* endpoint, so this is a credential issue, not an integration bug.\"  ");
+    P("> \"Exit code 0 is misleading — the API actually returned a 401.\"", "");
+    P(`This matters for how the rest of this section is read: **the current API Performance scores largely measure a broken credential, not API or documentation quality.** ` +
+      `The \`AISA_API_KEY\` in Lightsage's eval environment is either stale, revoked, or out of credit against \`api.aisa.one\`. ` +
+      `Re-point it at a working key and re-run before drawing conclusions about endpoint quality — and note the top "failure reasons" are \`task_completed\` and \`zero_errors\`, ` +
+      `which is what a correct integration blocked at the auth boundary looks like.`, "");
+  }
+
+  const pats = diag.failure_analysis?.patterns ?? [];
+  if (pats.length) {
+    P(`### Failure patterns`, "");
+    P(`| Severity | Pattern | Runs | Share | What it means |`, `| --- | --- | --- | --- | --- |`);
+    for (const pt of pats) P(`| ${esc(pt.severity)} | ${esc(pt.label)} | ${num(pt.count)} | ${num(pt.percentage)}% | ${esc(pt.description)} |`);
+    P("");
+  }
+
+  const topEp = sum.top_failed_endpoints ?? [];
+  if (topEp.length) {
+    P(`**Most-failed endpoints** — ${topEp.slice(0, 10).map((e) => `\`${esc(e.endpoint)}\` (${e.count})`).join(", ")}.`, "");
+  }
+  if (csvExport) P(`_Row-level export of ${csvExport.records} runs across ${new Set(csvExport.rows.map((r) => r.endpoint)).size} endpoints is committed at \`reference/agent-experience-csv.json\`._`, "");
+}
+
 /* ---------- agent readiness ---------- */
 if (ora || cf) {
-  P("---", "", "## 3. Agent readiness", "");
+  S("Agent readiness");
   P(`Lightsage measures whether agents **cite** ${company.name}. These two scanners measure whether agents **can use** it — discovery files, protocol conformance, auth, and machine-readable surfaces.`, "");
 
   if (ora) {
@@ -325,14 +380,36 @@ if (ora || cf) {
       if (a2a?.status === "fail" && oraById.get("a2a-agent-card")?.status === "pass")
         exists.push(["A2A Agent Card", "Served, but " + esc(a2a.message).replace(/^Invalid A2A Agent Card: /, "").replace(/^./, (m) => m.toLowerCase()), "Add the missing required field to the existing card."]);
       const mcpCard = cfById.get("mcpServerCard");
-      if (mcpCard && /returned JSON but missing/i.test(mcpCard.message ?? ""))
+      if (mcpMan?.counts?.live) {
+        exists.unshift([
+          "**MCP servers**",
+          `**${mcpMan.counts.live} live servers exposing ${mcpMan.liveTools} tools** are published at \`/.well-known/mcp.json\` (plus ${mcpMan.counts.planned} planned) — but the manifest is AISA's own format, with no \`serverInfo.name\`, so every scanner reports "no MCP server"`,
+          "Publish a conforming card at `/.well-known/mcp/server-card.json` (SEP-2127) alongside the existing manifest.",
+        ]);
+      } else if (mcpCard && /returned JSON but missing/i.test(mcpCard.message ?? "")) {
         exists.push(["MCP manifest", "`/.well-known/mcp.json` returns 200 JSON but lacks `serverInfo.name`", "Add the required field, or move it to `/.well-known/mcp/server-card.json`."]);
+      }
       if (npmPkg?.name && !npmPkg.error)
         exists.push([
           "CLI package",
           `\`${esc(npmPkg.name)}\` v${esc(npmPkg.latest)} is published (${npmPkg.versions} versions, last updated ${String(npmPkg.modified).slice(0, 10)}) but is not linked from the homepage`,
           "Link it from the homepage and docs — three separate checks currently score it zero.",
         ]);
+
+      if (mcpMan?.counts?.live) {
+        P(`### The MCP gap`, "");
+        P(`Every scanner in this report says AISA has no MCP server. Fetching \`https://${DOMAIN}/.well-known/mcp.json\` directly returns **${mcpMan.counts.live} live servers exposing ${mcpMan.liveTools} tools**, plus ${mcpMan.counts.planned} planned entries.`, "");
+        P(`| Server | Category | Tools | Endpoint |`, `| --- | --- | --- | --- |`);
+        for (const m of [...mcpMan.live].sort((a, b) => b.tools - a.tools)) {
+          P(`| ${esc(m.name)} | ${esc(m.category)} | ${m.tools} | \`${esc(m.endpoint)}\` |`);
+        }
+        P("");
+        P(`The manifest is AISA's own convention — it has \`manifestVersion\`, \`publisher\` and \`servers\`, but no \`serverInfo.name\` or root \`name\`, and nothing at the SEP-2127 path \`/.well-known/mcp/server-card.json\`. ` +
+          `Cloudflare fetches the file, gets valid JSON, and rejects it on the missing field. Ora does not find it at all. ` +
+          `Lightsage's own Devtool Arena checklist scores **MCP Server: 0**. ` +
+          `So the largest agent-facing asset AISA has built is invisible to every scoring surface that matters.`, "");
+        P("");
+      }
 
       if (exists.length) {
         P(`### Cheapest wins: surfaces that already exist but score zero`, "");
@@ -348,7 +425,7 @@ if (ora || cf) {
 /* ---------- tasks ---------- */
 const taskList = tasks.data ?? [];
 if (taskList.length) {
-  P("---", "", `## 4. Recommended actions`, "");
+  S("Recommended actions");
   P(`Lightsage's ranked task list for ${tasks.action_date ?? "today"} — ${tasks.active_count ?? taskList.length} active.`, "");
   for (const t of taskList) {
     P(`### ${t.rank}. ${esc(t.title)}`, "");
@@ -361,7 +438,7 @@ if (taskList.length) {
 /* ---------- opportunities ---------- */
 const oppList = opps.data ?? [];
 if (oppList.length) {
-  P("---", "", `## 5. Opportunities (${opps.count ?? oppList.length})`, "");
+  S(`Opportunities (${opps.count ?? oppList.length})`);
   const sum = opps.summary ?? {};
   const renderCounts = (obj) => Object.entries(obj ?? {}).map(([k, v]) => `${clean(k)} (${v})`).join(", ");
   P(`**By category** — ${renderCounts(sum.by_category)}  `);
@@ -389,18 +466,39 @@ if (oppList.length) {
 }
 
 /* ---------- caveats ---------- */
-P("---", "", "## 6. Data quality caveats", "");
+if (true) {
+  S("Recommended: install the Lightsage Agent Tracker SDK");
+  P(`Lightsage's **Agent Analytics** product is currently empty for AISA — the dashboard reports *"Waiting for first tracking event."* ` +
+    `That is the half of Lightsage that measures which pages agents actually read, and it needs a small middleware install to start producing data.`, "");
+  P("");
+  P(`Everything in this report so far is *outside-in*: Lightsage running prompts and evals against AISA, and two scanners probing from the public internet. ` +
+    `Agent Analytics is the *inside-out* view — real agent traffic hitting real pages. Given that ${diag ? `${num(diag.summary?.failure_rate)}% of eval runs fail` : "evals are failing"} ` +
+    `and the Site Audit already flags agent-visited 404s, knowing which docs agents actually request would close the loop.`, "");
+  P("");
+  P("```bash", "npm install @lightsage/agent-tracker", "```", "");
+  P("```ts", "// middleware.ts", 'import { withAgentTracking } from "@lightsage/agent-tracker/next";', "",
+    'export default withAgentTracking({ apiKey: process.env.LIGHTSAGE_API_KEY });', "",
+    "export const config = {", '  matcher: ["/((?!api|_next|admin).*)"],', "};", "```", "");
+  P(`Notes for whoever implements it:`, "");
+  P(`- The package is \`@lightsage/agent-tracker\` (the rebrand of \`@usesapient/agent-tracker\`); latest is **v0.1.17**, zero runtime dependencies.`);
+  P(`- Read the key from the environment rather than inlining it — Lightsage's own snippet hardcodes \`"YOUR_API_KEY"\`, which would commit a credential.`);
+  P(`- The middleware runs on every matched request, so confirm the key is available in the deployed runtime, not just at build time.`);
+  P(`- Optional: \`@lightsage/agent-tracker/browser\` adds \`identifyUser\` and \`trackConversion\` to tie agent-assisted visits to sign-ups. Worth doing only after basic traffic data lands.`);
+  P(`- Origin-side tracking only sees requests that reach the origin. Confirm the CDN is not serving cached HTML, or the numbers will undercount.`, "");
+}
+
+S("Data quality caveats");
 P(`- **Average position is not meaningful.** \`average_position = ${num(snap.average_position)}\` (rank #${snap.average_position_rank}) derives from ${citationCount} citation. It will regress as citations accumulate.`);
 if (oppList.length) {
   const saturated = oppList.filter((o) => o.impact_score === 100).length;
-  P(`- **Opportunity impact scores are saturated.** ${saturated} of ${oppList.length} opportunities score exactly 100, and ${opps.summary?.["by_priority"]?.["OpportunityPriority.HIGH"] ?? "most"} are "high" priority — the ranking carries little signal. The ranked task list in §4 is the better prioritisation.`);
+  P(`- **Opportunity impact scores are saturated.** ${saturated} of ${oppList.length} opportunities score exactly 100, and ${opps.summary?.["by_priority"]?.["OpportunityPriority.HIGH"] ?? "most"} are "high" priority — the ranking carries little signal. The ranked task list below is the better prioritisation.`);
 }
 if (runs.length && runs.every((r) => r.latency_ms == null)) P(`- **Latency is unpopulated.** All ${runs.length} eval runs report \`latency_ms: null\`, so no latency conclusions are available.`);
 P(`- **Answer engines only.** Visibility covers ${trackedPlatforms.map((p) => p.name).join(", ")}. Coding-agent visibility — Lightsage's core differentiator — is unmeasured for ${company.name}.`);
 P(`- **Window.** Metrics cover ${w.start} → ${w.end}; the latest completed run is ${ov.date_range?.latest_run_date ?? "—"}.`, "");
 
 /* ---------- coverage ---------- */
-P("---", "", "## 7. Endpoint coverage", "");
+S("Endpoint coverage");
 P(`| Endpoint | Path | Status | Time |`, `| --- | --- | --- | --- |`);
 for (const e of manifest.endpoints) {
   P(`| ${esc(e.label)} | \`${esc(e.path)}\` | ${e.ok ? "ok" : e.optional ? "n/a" : "**failed**"} (${e.status}) | ${e.durationMs}ms |`);

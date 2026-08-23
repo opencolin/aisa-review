@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 2582,
+  "durationMs": 3901,
   "path": "/v1/api-performance/runs?limit=50",
   "body": {
     "company": {
@@ -12,21 +12,22 @@
     },
     "data": [
       {
-        "id": "30c61cbb-7bb8-4c01-a791-9b595d579269",
+        "id": "124eed4e-0a9c-487b-b734-f5deb1e78ab5",
         "endpoint": {
-          "id": "52add107-cc7f-4589-a772-0be67403a96f",
-          "method": "POST",
-          "path": "/apis/v1/firecrawl/search",
-          "description": "Search the web and return ranked results. Synchronous operation; accepts a query (up to 500 characters) and optional result limit (1–100). Costs ~2 Firecrawl credits per 10 results.",
+          "id": "1a69010a-60e8-46aa-96a8-6711f88c0909",
+          "method": "article",
+          "path": "aisa twitter article [options] <tweet-id>",
+          "description": "Get article content associated with a tweet ID",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -34,30 +35,33 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.6313,
+        "score": 0.3,
         "failure_reasons": [
-          "exit_code_zero",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors",
+          "efficiency"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:29:38.103418+00:00"
+        "run_at": "2026-08-23T01:41:40.413608+00:00"
       },
       {
-        "id": "1f0d6f4b-475a-46c7-afd8-9ac495508e58",
+        "id": "5584a208-5493-445b-aa58-2b7a50c4781a",
         "endpoint": {
-          "id": "085e2768-1671-4ec3-96f3-27277cea0d94",
-          "method": "GET",
-          "path": "/apis/v1/twitter/user/info",
-          "description": "Retrieve a single X (Twitter) user's public profile by @handle. Returns display name, bio, follower/following counts, verification status, account creation date, location, and profile images.",
+          "id": "045ceee7-582a-4956-b5fb-8b82d78db412",
+          "method": "space",
+          "path": "aisa twitter space [options] <space-id>",
+          "description": "Get details about a Twitter Space",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -65,31 +69,32 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.5063,
+        "score": 0.31,
         "failure_reasons": [
-          "exit_code_zero",
-          "clean_execution",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:29:35.801875+00:00"
+        "run_at": "2026-08-23T01:41:35.92892+00:00"
       },
       {
-        "id": "5063233b-81e5-454f-8d4a-e31d4f9ea617",
+        "id": "f106f93f-f9d3-42e3-a855-28fcf58796fd",
         "endpoint": {
-          "id": "1e0eabd6-101e-4794-a26c-eb1ec321639c",
-          "method": "POST",
-          "path": "/v1/images/edits",
-          "description": "Edit existing images using AI models.",
+          "id": "b24a21b8-ce7a-46e2-a430-61feab127f70",
+          "method": "install",
+          "path": "aisa skills install [options] <slug>",
+          "description": "Install a skill to configured agent directories (auto-detects Claude Code, Cursor, Copilot, etc.)",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -97,30 +102,32 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.5938,
+        "score": 0.345,
         "failure_reasons": [
-          "exit_code_zero",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:29:29.033135+00:00"
+        "run_at": "2026-08-23T01:40:59.666649+00:00"
       },
       {
-        "id": "e071823b-10b0-45d6-855b-ff3ae6172298",
+        "id": "0a2df459-b18d-4bb9-8a08-ec3735151958",
         "endpoint": {
-          "id": "88ed48a3-c095-4c74-90dd-b9a4373be6bc",
-          "method": "POST",
-          "path": "/apis/v1/perplexity/sonar",
-          "description": "Lightweight search + answer endpoint. Cost-effective model for quick web searches with AI-generated answers containing inline citations. Priced at $0.012 per request.",
+          "id": "ec834fc3-04e3-4363-ad51-c09b23703207",
+          "method": "list-followers",
+          "path": "aisa twitter list-followers [options] <list-id>",
+          "description": "Get followers of a Twitter list",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -128,30 +135,32 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.6313,
+        "score": 0.305,
         "failure_reasons": [
-          "exit_code_zero",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:29:28.962221+00:00"
+        "run_at": "2026-08-23T01:39:19.914272+00:00"
       },
       {
-        "id": "fcdae348-920e-43f0-86e4-dacd6425bbca",
+        "id": "c2573179-f98d-4029-ad9e-d315b2b9dfca",
         "endpoint": {
-          "id": "e66c45f5-81db-442b-9ff2-2f4f4e63a0e1",
-          "method": "GET",
-          "path": "/apis/v1/financial/insider-trades",
-          "description": "Retrieve Form 4 insider trading transactions for a stock ticker. Includes insider details, transaction date/type/shares/price, resulting position, and filing details.",
+          "id": "bdf633c9-3393-410c-b5c2-9dfc9b3fb216",
+          "method": "trends",
+          "path": "aisa twitter trends [options]",
+          "description": "Get current trending topics on Twitter",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -159,31 +168,32 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.5063,
+        "score": 0.31,
         "failure_reasons": [
-          "exit_code_zero",
-          "clean_execution",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:29:27.892437+00:00"
+        "run_at": "2026-08-23T01:39:03.112392+00:00"
       },
       {
-        "id": "5444e394-fc8d-4866-9caa-47e0b8a5d6f7",
+        "id": "da7a3c96-8d56-4af6-8284-23c1b995a61d",
         "endpoint": {
-          "id": "f2fd0044-b768-4ada-9441-6d5b16e728bf",
-          "method": "POST",
-          "path": "/apis/v1/firecrawl/parse",
-          "description": "Accept an uploaded HTML file and convert it into parsed markdown format synchronously. Costs 1 Firecrawl credit per request. Uses multipart form data.",
+          "id": "34ed0d3c-660a-47f7-a1cf-fad86b0684a5",
+          "method": "list-members",
+          "path": "aisa twitter list-members [options] <list-id>",
+          "description": "Get members of a Twitter list",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -191,30 +201,32 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.6688,
+        "score": 0.31,
         "failure_reasons": [
-          "exit_code_zero",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:29:25.15258+00:00"
+        "run_at": "2026-08-23T01:38:49.611175+00:00"
       },
       {
-        "id": "f13f0aa8-29b9-4f1a-bef9-34da8bef897a",
+        "id": "9c39c845-030a-4c42-ac57-56cea3c36e77",
         "endpoint": {
-          "id": "e410e0ca-03f9-47aa-a6fa-b23f4e3dfb67",
-          "method": "POST",
-          "path": "/apis/v1/firecrawl/crawl",
-          "description": "Submit an asynchronous job to crawl an entire site rooted at a given URL. Returns a job ID; callers poll until completion. Costs 1 Firecrawl credit per page, configurable up to 1000 pages.",
+          "id": "9d410e49-82ac-4521-a0ea-205be0a0832d",
+          "method": "community-members",
+          "path": "aisa twitter community-members [options] <community-id>",
+          "description": "Get members of a Twitter community",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -222,30 +234,32 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.6313,
+        "score": 0.295,
         "failure_reasons": [
-          "exit_code_zero",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:29:23.084876+00:00"
+        "run_at": "2026-08-23T01:38:48.520558+00:00"
       },
       {
-        "id": "cbffec50-c015-4d21-86b4-49de116743c1",
+        "id": "7da5b30b-7094-4508-80d7-186063a4c5c4",
         "endpoint": {
-          "id": "94a296c3-ace2-42d2-89a9-4e669267d493",
-          "method": "POST",
-          "path": "/apis/v1/firecrawl/scrape",
-          "description": "Fetch one URL and return its cleaned main content as markdown synchronously. Costs 1 Firecrawl credit per page.",
+          "id": "23b4604a-29ed-4334-ba00-a89058712cbe",
+          "method": "community-mods",
+          "path": "aisa twitter community-mods [options] <community-id>",
+          "description": "Get moderators of a Twitter community",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -253,30 +267,32 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.6313,
+        "score": 0.295,
         "failure_reasons": [
-          "exit_code_zero",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:29:22.434474+00:00"
+        "run_at": "2026-08-23T01:38:44.374197+00:00"
       },
       {
-        "id": "34fe626f-7262-4688-a60c-354e6b8e92c5",
+        "id": "091bd081-5863-4faa-bfea-7682d5d8f093",
         "endpoint": {
-          "id": "859c2888-e361-4626-89d5-44e4f9e60447",
-          "method": "POST",
-          "path": "/v1/embeddings",
-          "description": "Generate 1024-dimensional embedding vectors for one or more input strings using jina-embeddings-v3 or jina-embeddings-v5-text-small. OpenAI-compatible interface.",
+          "id": "fdf50e0c-1416-4529-aace-70a294b5d852",
+          "method": "mentions",
+          "path": "aisa twitter mentions [options] <username>",
+          "description": "Get recent mentions for a user",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -284,30 +300,33 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.6313,
+        "score": 0.295,
         "failure_reasons": [
-          "exit_code_zero",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors",
+          "efficiency"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:29:19.526579+00:00"
+        "run_at": "2026-08-23T01:38:39.843667+00:00"
       },
       {
-        "id": "66321ff3-5c1c-4e2b-a7b1-dc167ec1c80d",
+        "id": "06b12ae2-5249-45d4-a8d0-5e6b3f128604",
         "endpoint": {
-          "id": "c6a3922c-e08d-4975-8757-81e2fc91f3fc",
-          "method": "POST",
-          "path": "/v1/rerank",
-          "description": "Rerank a list of documents against a query using jina-reranker-v3. Returns results sorted by relevance score with an option to limit to the top N most relevant items.",
+          "id": "fb15d7f1-d2ad-46b1-95f0-69a9d0a7700f",
+          "method": "community-info",
+          "path": "aisa twitter community-info [options] <community-id>",
+          "description": "Get information about a Twitter community",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -315,31 +334,32 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.4688,
+        "score": 0.295,
         "failure_reasons": [
-          "exit_code_zero",
-          "clean_execution",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:29:18.864462+00:00"
+        "run_at": "2026-08-23T01:38:35.217667+00:00"
       },
       {
-        "id": "04a43b0e-aed8-435a-b904-e39242231760",
+        "id": "a7ac1299-36c5-4c50-a9f6-04b09f8d1c72",
         "endpoint": {
-          "id": "b05dc8ca-d75e-47f2-a62b-b958571ebcb5",
-          "method": "POST",
-          "path": "/apis/v1/exa/answer",
-          "description": "Get a direct cited answer from Exa. Retrieves relevant sources and generates a direct answer or detailed summary with source citations. Costs $0.08 per request.",
+          "id": "afa0d00c-65ff-4bb7-9a97-beb85a580969",
+          "method": "scholar",
+          "path": "aisa scholar [options] <query>",
+          "description": "Search academic papers; supports --limit and --raw for JSON output",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -347,31 +367,35 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.5063,
+        "score": 0.27,
         "failure_reasons": [
-          "exit_code_zero",
-          "clean_execution",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors",
+          "efficiency",
+          "time",
+          "cost"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:29:13.881041+00:00"
+        "run_at": "2026-08-23T01:38:29.4933+00:00"
       },
       {
-        "id": "9dfe566f-0e64-4f33-923b-a161c800eb4f",
+        "id": "6f9ceebc-54a8-4633-bab8-b68dcd67d514",
         "endpoint": {
-          "id": "630a7d84-acfa-4090-8aef-60cccd47e358",
-          "method": "POST",
-          "path": "/apis/v1/perplexity/sonar-reasoning-pro",
-          "description": "Chain-of-thought reasoning with search. Provides step-by-step analysis backed by web search results for analytical and complex reasoning tasks. Priced at $0.012 per request.",
+          "id": "19488f04-fc89-4ef3-882e-17185ea500b0",
+          "method": "search",
+          "path": "aisa skills search [options] <query>",
+          "description": "Search skills by keyword",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -379,31 +403,30 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.5063,
+        "score": 0.48,
         "failure_reasons": [
-          "exit_code_zero",
-          "has_endpoint",
-          "completed_task"
+          "task_completed"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:29:13.496381+00:00"
+        "run_at": "2026-08-23T01:38:28.590276+00:00"
       },
       {
-        "id": "d6761ae0-e55c-4756-8c6f-4a186a65ca0c",
+        "id": "7da94e85-b7b1-46e1-97fc-d5ce08cd8817",
         "endpoint": {
-          "id": "23dcb3cc-66fa-408e-9e8d-87f7670ab62e",
-          "method": "GET",
-          "path": "/apis/v1/financial/financials/balance-sheets",
-          "description": "Retrieve balance sheet data (~36 fields per period) including total assets, current assets, cash equivalents, inventory, and equity lines. Requires period and ticker or CIK.",
+          "id": "85eca183-4581-44c9-a6f7-2d888ea2b91c",
+          "method": "list",
+          "path": "aisa skills list [options]",
+          "description": "List available skills in the AIsa catalog",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -411,31 +434,30 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.6063,
+        "score": 0.445,
         "failure_reasons": [
-          "exit_code_zero",
-          "clean_execution",
-          "has_endpoint"
+          "task_completed"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:29:10.694564+00:00"
+        "run_at": "2026-08-23T01:38:26.783363+00:00"
       },
       {
-        "id": "faf4f13c-443a-426f-94f8-4128b8728357",
+        "id": "95bfb5e6-e7fc-4953-ac2d-2578bd7c3a19",
         "endpoint": {
-          "id": "814f992a-38fb-418f-9b88-38d5f116e09e",
-          "method": "POST",
-          "path": "/apis/v1/tavily/search",
-          "description": "AI-optimized web search that returns ranked results with page content already extracted. Supports search depth, topic and date range filters, optional LLM-generated answers, and image search.",
+          "id": "22322fc5-2fe3-4d30-8440-141ad32b15bc",
+          "method": "community-search",
+          "path": "aisa twitter community-search [options] <query>",
+          "description": "Search tweets across all Twitter communities",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -443,29 +465,32 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.8563,
+        "score": 0.305,
         "failure_reasons": [
-          "exit_code_zero"
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:29:05.720787+00:00"
+        "run_at": "2026-08-23T01:38:22.217072+00:00"
       },
       {
-        "id": "0d599037-c64c-41d8-84a5-3f9ac12e1813",
+        "id": "fbb424ab-7ad7-4a76-90cc-b8f882230698",
         "endpoint": {
-          "id": "940e59b0-5efb-4021-94f4-d510f330ca35",
-          "method": "GET",
-          "path": "/apis/v1/financial/financial-metrics/snapshot",
-          "description": "Retrieve a current snapshot of about 41 financial metric fields for one company, including valuation multiples, profitability, efficiency, and liquidity metrics. Requires only a ticker or CIK.",
+          "id": "b4b3f0f0-fbbc-4241-9a02-a29a6e78823d",
+          "method": "crypto",
+          "path": "aisa crypto [options] <symbol>",
+          "description": "Look up crypto price; supports --period (current, 1d, 7d, 30d, 90d, 1y), --id for exact CoinGecko id, --source (coingecko or financial), and --raw",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -473,31 +498,32 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.5063,
+        "score": 0.315,
         "failure_reasons": [
-          "exit_code_zero",
-          "has_endpoint",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:29:03.873359+00:00"
+        "run_at": "2026-08-23T01:38:21.395911+00:00"
       },
       {
-        "id": "5d8bb39a-92fa-4a1a-8996-5aec8351dca5",
+        "id": "428b8ed8-ee7a-44a2-a598-ab05e15e34b0",
         "endpoint": {
-          "id": "1cb7768f-692a-4574-af9d-6750e3be379e",
-          "method": "GET",
-          "path": "/apis/v1/financial/edinet/documents.json",
-          "description": "Query the EDINET filing list for a specified date. Returns metadata only (type=1) or metadata plus filing results (type=2). Required date parameter in YYYY-MM-DD format.",
+          "id": "3c64510a-ee5b-4f71-9412-283269188d71",
+          "method": "upload-media",
+          "path": "aisa twitter upload-media [options] <file-path>",
+          "description": "Upload a media file to use in tweets",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -505,31 +531,32 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.5063,
+        "score": 0.315,
         "failure_reasons": [
-          "exit_code_zero",
-          "has_endpoint",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:29:02.013555+00:00"
+        "run_at": "2026-08-23T01:38:13.381815+00:00"
       },
       {
-        "id": "853c49d3-3a38-46c3-9032-de1003d65c6f",
+        "id": "834ba132-9e43-46bf-89c4-5f7892f0ab8d",
         "endpoint": {
-          "id": "6a14d47a-c95c-4fab-af9b-9fac932955dd",
-          "method": "POST",
-          "path": "/v1beta/models/{model}:generateContent",
-          "description": "Generate content using a Gemini-compatible AIsa model. Accepts conversation content, tools, safety settings, and generation configuration.",
+          "id": "cce1842b-c3a0-4690-be0a-05646c878de7",
+          "method": "community-tweets",
+          "path": "aisa twitter community-tweets [options] <community-id>",
+          "description": "Get tweets posted in a Twitter community",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -537,30 +564,32 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.6313,
+        "score": 0.305,
         "failure_reasons": [
-          "exit_code_zero",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:28:59.051926+00:00"
+        "run_at": "2026-08-23T01:38:09.061836+00:00"
       },
       {
-        "id": "e1b85a6f-a90f-4755-9e44-5d2600c38e22",
+        "id": "19f2545e-7fc1-45b6-973d-300d48302885",
         "endpoint": {
-          "id": "e645fe03-7145-4a13-89dc-b5aebeb04124",
-          "method": "POST",
-          "path": "/apis/v1/financial/financials/search/screener",
-          "description": "Find tickers that match numeric conditions on financial metrics. Discover investment candidates by applying filters without needing a ticker upfront. Returns up to 100 results.",
+          "id": "1d3b8f5d-d324-4286-966d-0400eb55e640",
+          "method": "replies",
+          "path": "aisa twitter replies [options] <tweet-id>",
+          "description": "Get replies to a tweet",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -568,30 +597,32 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.6313,
+        "score": 0.32,
         "failure_reasons": [
-          "exit_code_zero",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:28:58.016664+00:00"
+        "run_at": "2026-08-23T01:37:51.585144+00:00"
       },
       {
-        "id": "50afef46-7490-45d7-bc8c-283639f4d6b5",
+        "id": "26947325-f69c-4506-b8f0-8602a6417ade",
         "endpoint": {
-          "id": "41f20bc7-800a-408e-bd7b-c751392568ae",
-          "method": "GET",
-          "path": "/apis/v1/financial/macro/interest-rates",
-          "description": "Retrieve historical policy rate data from a specified central bank. Returns bank code, name, date, and rate. Requires uppercase bank code (e.g., FED, ECB, BOJ) with optional date filters.",
+          "id": "f18c9484-3cb4-4123-89ec-66a24c2d5705",
+          "method": "status",
+          "path": "aisa video status [options] <task-id>",
+          "description": "Check the status of a video generation task",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -599,30 +630,32 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.5,
+        "score": 0.315,
         "failure_reasons": [
-          "exit_code_zero",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:28:57.837492+00:00"
+        "run_at": "2026-08-23T01:37:50.359957+00:00"
       },
       {
-        "id": "05ba83bb-12fc-4d42-b872-efed9e75c7a5",
+        "id": "6c0cec59-e877-46b7-b0e2-a57a5327f571",
         "endpoint": {
-          "id": "0cc5827a-3d25-4d48-8819-2299bf48b07f",
-          "method": "GET",
-          "path": "/apis/v1/financial/filings",
-          "description": "Retrieve a list of SEC filings (not their contents) for a company. Query by ticker or CIK, filter by filing type (10-K, 10-Q, 8-K, 20-F, 6-K), and set a result limit.",
+          "id": "9d3858e4-e095-41df-956d-fbd1f02553f6",
+          "method": "batch-users",
+          "path": "aisa twitter batch-users [options] <ids>",
+          "description": "Get multiple users by comma-separated user IDs",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -630,31 +663,33 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.5063,
+        "score": 0.3,
         "failure_reasons": [
-          "exit_code_zero",
-          "clean_execution",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors",
+          "efficiency"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:28:56.542196+00:00"
+        "run_at": "2026-08-23T01:37:49.728373+00:00"
       },
       {
-        "id": "13323053-76d4-4bb4-a7cb-b109825cce0c",
+        "id": "0478f50e-6deb-45d3-92e0-6ad34467428c",
         "endpoint": {
-          "id": "74648544-2685-4ef1-9c0a-e58fb492f5a3",
-          "method": "GET",
-          "path": "/apis/v1/financial/company/facts",
-          "description": "Retrieve company identity and classification information including name, ticker, CIK, sector, industry, exchange, location, and SIC classification. Accepts ticker or CIK.",
+          "id": "824634d2-01a7-4f62-90c8-66d7bc3ff7e8",
+          "method": "get",
+          "path": "aisa config get <key>",
+          "description": "Get a configuration value",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -662,30 +697,32 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.6313,
+        "score": 0.325,
         "failure_reasons": [
-          "exit_code_zero",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:28:54.950692+00:00"
+        "run_at": "2026-08-23T01:37:46.207817+00:00"
       },
       {
-        "id": "1d6ab643-a7c2-4c46-bdb1-3df6041b2683",
+        "id": "9c8daffa-40e3-41a3-87ea-6217a429d812",
         "endpoint": {
-          "id": "4fd5aeb7-d690-4d08-ad34-5080983d9328",
-          "method": "GET",
-          "path": "/apis/v1/financial/news",
-          "description": "Retrieve recent news headlines for a stock ticker. Returns up to 10 articles with title, source, publication date, and URL. Headlines only — article body is not included.",
+          "id": "6d34a388-52cb-4c78-a7d7-2db11349e0c5",
+          "method": "dm",
+          "path": "aisa twitter dm [--raw] <user-id> <text>",
+          "description": "Send a direct message to a user",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -693,345 +730,32 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.6688,
+        "score": 0.315,
         "failure_reasons": [
-          "exit_code_zero",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-23T01:28:54.604722+00:00"
+        "run_at": "2026-08-23T01:37:45.032515+00:00"
       },
       {
-        "id": "e7d59dae-15a9-49a2-82e9-7686ad77d2cb",
+        "id": "f6eec129-6e74-45d5-86e4-b1306b137303",
         "endpoint": {
-          "id": "9e556d64-27b4-4772-b813-225b6a7ff4a2",
-          "method": "GET",
-          "path": "/apis/v1/financial/financials/income-statements",
-          "description": "Retrieve income statements (~32 fields per period) including revenue, cost of revenue, gross profit, operating income, net income, and EPS metrics. Requires period and ticker or CIK.",
+          "id": "d3044680-318a-4a36-9aa7-4aa8b527122c",
+          "method": "unfollow",
+          "path": "aisa twitter unfollow [options] <user-id>",
+          "description": "Unfollow a user by numeric user ID (requires twitter login)",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.625,
-        "failure_reasons": [
-          "exit_code_zero",
-          "clean_execution",
-          "has_endpoint"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-23T01:28:52.16479+00:00"
-      },
-      {
-        "id": "3029a5d7-5d4a-465f-a6bd-761143118060",
-        "endpoint": {
-          "id": "e63b46d5-27fc-4a37-b3c9-d344e35658c0",
-          "method": "POST",
-          "path": "/apis/v1/firecrawl/batch-scrape",
-          "description": "Submit an asynchronous batch scraping job for 1–1,000 unique HTTPS URLs. Returns a job ID to poll for results. Costs 1 Firecrawl credit per page scraped.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.5063,
-        "failure_reasons": [
-          "exit_code_zero",
-          "clean_execution",
-          "completed_task"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-23T01:28:50.324989+00:00"
-      },
-      {
-        "id": "f8cf50c9-fa11-43c4-825f-389fd6ca94bd",
-        "endpoint": {
-          "id": "f9faf9fa-cb78-459a-a3b6-2375bd9c225e",
-          "method": "GET",
-          "path": "/apis/v1/financial/prices/snapshot",
-          "description": "Retrieve the current price of one stock: price, day_change, day_change_percent, time, and market cap. The fastest, most cost-effective option for real-time price queries.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.6313,
-        "failure_reasons": [
-          "exit_code_zero",
-          "completed_task"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-23T01:28:50.088743+00:00"
-      },
-      {
-        "id": "dcadd635-7ca6-4393-ac43-02f4de01f67f",
-        "endpoint": {
-          "id": "84f0fbe3-0f27-4896-818c-99ce9ce2002e",
-          "method": "POST",
-          "path": "/apis/v1/tavily/extract",
-          "description": "Extract clean, parsed content from one or more URLs you already have. Supports markdown or text output, optional images and favicons, chunk limits, and query-based relevance prioritization.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.4875,
-        "failure_reasons": [
-          "exit_code_zero",
-          "clean_execution",
-          "completed_task"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-23T01:28:45.37936+00:00"
-      },
-      {
-        "id": "024d553b-94be-45e9-978e-35a567c755b6",
-        "endpoint": {
-          "id": "5f64186b-1a9e-41d6-8b53-f3ad85478c43",
-          "method": "GET",
-          "path": "/apis/v1/financial/prices",
-          "description": "Retrieve historical OHLCV bars for one stock across a date range. Requires ticker, interval (day/week/month/year), start date, and end date.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.5063,
-        "failure_reasons": [
-          "exit_code_zero",
-          "clean_execution",
-          "completed_task"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-23T01:28:45.0857+00:00"
-      },
-      {
-        "id": "7516d7a8-8157-44f9-b50a-afb730815707",
-        "endpoint": {
-          "id": "a7356539-a412-40b8-bf8e-ffcb42fd4969",
-          "method": "GET",
-          "path": "/apis/v1/financial/financials",
-          "description": "Retrieve all three financial statements (income statement, balance sheet, cash flow) for a single company in one call. Requires period (annual, quarterly, or ttm) and ticker or CIK.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.8563,
-        "failure_reasons": [
-          "exit_code_zero"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-23T01:28:41.665867+00:00"
-      },
-      {
-        "id": "7dfa6744-3518-4d6c-a31b-9b5685ee08cd",
-        "endpoint": {
-          "id": "ee6db2cb-dead-4e5d-9409-04a7afe9a983",
-          "method": "GET",
-          "path": "/apis/v1/financial/macro/interest-rates/snapshot",
-          "description": "Retrieve current policy rates for ten major central banks (FED, ECB, BOJ, BOE, BOC, RBA, PBOC, SNB, RBI, BOK). Optionally filter by a specific bank code.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.75,
-        "failure_reasons": [
-          "exit_code_zero",
-          "has_endpoint"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-23T01:28:18.47192+00:00"
-      },
-      {
-        "id": "bf471e31-0fc6-4d4c-884d-48dfbddbedab",
-        "endpoint": {
-          "id": "113b20be-7a26-45b4-adc7-ae9558d91916",
-          "method": "POST",
-          "path": "/apis/v1/financial/financials/search/line-items",
-          "description": "Pull named financial line items across one or more companies in a single call. Submit arrays of tickers and specific line items to compare, with optional period type and result limits.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.6313,
-        "failure_reasons": [
-          "exit_code_zero",
-          "completed_task"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-23T01:28:15.757758+00:00"
-      },
-      {
-        "id": "d4ae28fe-6fc1-49e2-82fe-367f6a673638",
-        "endpoint": {
-          "id": "58a1e28a-6774-46f1-8b80-641b0d2f99a7",
-          "method": "POST",
-          "path": "/apis/v1/exa/contents",
-          "description": "Extract full page text, summaries, and metadata for a set of known URLs. Supports text, highlights, summaries, and optional linked subpages. Costs $0.08 per request.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.5063,
-        "failure_reasons": [
-          "exit_code_zero",
-          "clean_execution",
-          "completed_task"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-23T01:28:14.362085+00:00"
-      },
-      {
-        "id": "b408534a-bd5d-432f-91d3-532d50881c1f",
-        "endpoint": {
-          "id": "f5b251a8-0202-42f7-82a2-7a0211e0682d",
-          "method": "POST",
-          "path": "/apis/v1/scholar/search/scholar",
-          "description": "Search academic papers using Google Scholar or similar sources. Returns titles, links, snippets, authors, and citation counts. Supports result limits and publication year range filters.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.5063,
-        "failure_reasons": [
-          "exit_code_zero",
-          "clean_execution",
-          "completed_task"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-23T01:27:58.506152+00:00"
-      },
-      {
-        "id": "a86bde42-0286-46b8-b3bc-c56dd304acdc",
-        "endpoint": {
-          "id": "6a14d47a-c95c-4fab-af9b-9fac932955dd",
-          "method": "POST",
-          "path": "/v1beta/models/{model}:generateContent",
-          "description": "Generate content using a Gemini-compatible AIsa model. Accepts conversation content, tools, safety settings, and generation configuration.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -1039,279 +763,28 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": true,
-        "score": 1,
+        "score": 0.86,
         "failure_reasons": null,
         "latency_ms": null,
-        "run_at": "2026-08-14T08:57:49.435953+00:00"
+        "run_at": "2026-08-23T01:37:40.23984+00:00"
       },
       {
-        "id": "4eceb09b-4bba-4138-b843-0e8d25820d6a",
+        "id": "a884038f-8be1-452f-a80b-6bca3f80d5dd",
         "endpoint": {
-          "id": "1e0eabd6-101e-4794-a26c-eb1ec321639c",
-          "method": "POST",
-          "path": "/v1/images/edits",
-          "description": "Edit existing images using AI models.",
+          "id": "25722481-bfa0-4a3b-8025-a361e8511b3d",
+          "method": "remove",
+          "path": "aisa skills remove [options] <slug>",
+          "description": "Remove an installed skill from agent directories",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": true,
-        "score": 1,
-        "failure_reasons": null,
-        "latency_ms": null,
-        "run_at": "2026-08-14T08:38:19.181105+00:00"
-      },
-      {
-        "id": "d4029053-cfdf-4639-b4fa-4f80154498b4",
-        "endpoint": {
-          "id": "eb971cf2-349b-4854-9f1f-e02d2e54cd6a",
-          "method": "POST",
-          "path": "/v1/images/generations",
-          "description": "Generate images using various AI models including Seedream, Wan, and GPT-Image-2. Returns short-lived URLs to the generated images.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": true,
-        "score": 1,
-        "failure_reasons": null,
-        "latency_ms": null,
-        "run_at": "2026-08-14T08:36:48.820672+00:00"
-      },
-      {
-        "id": "85edeccd-a4f8-4ae2-b553-e7be9ec05791",
-        "endpoint": {
-          "id": "7ab0530c-3077-4462-aecc-b7319894d0a4",
-          "method": "GET",
-          "path": "/apis/v1/polymarket/events",
-          "description": "List Polymarket events — the topic-level grouping that bundles related markets, such as an election or a season-long series.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": true,
-        "score": 1,
-        "failure_reasons": null,
-        "latency_ms": null,
-        "run_at": "2026-08-14T08:34:46.471916+00:00"
-      },
-      {
-        "id": "963ff333-998b-44c6-afc2-baf290ebd5c3",
-        "endpoint": {
-          "id": "545c90c3-a8a0-4bfc-a25c-20c4c6ebb980",
-          "method": "POST",
-          "path": "/v1/chat/completions",
-          "description": "Generates chat responses supporting images, streaming, function calling, and logprobs. OpenAI-compatible interface. Also supports image generation via multimodal content arrays (e.g., seedream-4-5-251128 model).",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": true,
-        "score": 1,
-        "failure_reasons": null,
-        "latency_ms": null,
-        "run_at": "2026-08-14T08:25:39.716424+00:00"
-      },
-      {
-        "id": "c69e8a6c-3cf1-4c74-a422-cdc7d9feb6df",
-        "endpoint": {
-          "id": "554fbe8f-b52a-4ea1-ba00-88eabe2efdfe",
-          "method": "POST",
-          "path": "/v1/messages",
-          "description": "Send a structured conversation to a Claude model and receive a response. Anthropic-compatible interface supporting extended thinking, tool use, and prompt caching.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": true,
-        "score": 1,
-        "failure_reasons": null,
-        "latency_ms": null,
-        "run_at": "2026-08-14T08:25:13.466852+00:00"
-      },
-      {
-        "id": "bfab0b72-e6b3-4167-b2b8-e885248815a4",
-        "endpoint": {
-          "id": "c6a3922c-e08d-4975-8757-81e2fc91f3fc",
-          "method": "POST",
-          "path": "/v1/rerank",
-          "description": "Rerank a list of documents against a query using jina-reranker-v3. Returns results sorted by relevance score with an option to limit to the top N most relevant items.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": true,
-        "score": 0.875,
-        "failure_reasons": null,
-        "latency_ms": null,
-        "run_at": "2026-08-14T08:24:59.623672+00:00"
-      },
-      {
-        "id": "5cefb75f-e980-4c02-8dfd-c14fc0093f24",
-        "endpoint": {
-          "id": "f5b251a8-0202-42f7-82a2-7a0211e0682d",
-          "method": "POST",
-          "path": "/apis/v1/scholar/search/scholar",
-          "description": "Search academic papers using Google Scholar or similar sources. Returns titles, links, snippets, authors, and citation counts. Supports result limits and publication year range filters.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": true,
-        "score": 1,
-        "failure_reasons": null,
-        "latency_ms": null,
-        "run_at": "2026-08-14T08:24:39.66967+00:00"
-      },
-      {
-        "id": "a4e9e3e6-5338-45bf-bdb3-124ffeab003e",
-        "endpoint": {
-          "id": "085e2768-1671-4ec3-96f3-27277cea0d94",
-          "method": "GET",
-          "path": "/apis/v1/twitter/user/info",
-          "description": "Retrieve a single X (Twitter) user's public profile by @handle. Returns display name, bio, follower/following counts, verification status, account creation date, location, and profile images.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": true,
-        "score": 1,
-        "failure_reasons": null,
-        "latency_ms": null,
-        "run_at": "2026-08-14T08:24:12.727583+00:00"
-      },
-      {
-        "id": "157a1ad6-7aa9-4a65-bc9d-9c1d557afbc2",
-        "endpoint": {
-          "id": "859c2888-e361-4626-89d5-44e4f9e60447",
-          "method": "POST",
-          "path": "/v1/embeddings",
-          "description": "Generate 1024-dimensional embedding vectors for one or more input strings using jina-embeddings-v3 or jina-embeddings-v5-text-small. OpenAI-compatible interface.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": true,
-        "score": 1,
-        "failure_reasons": null,
-        "latency_ms": null,
-        "run_at": "2026-08-14T08:24:06.350859+00:00"
-      },
-      {
-        "id": "a0ed09da-11c5-4c49-a5b5-5d9fb3283f80",
-        "endpoint": {
-          "id": "545c90c3-a8a0-4bfc-a25c-20c4c6ebb980",
-          "method": "POST",
-          "path": "/v1/chat/completions",
-          "description": "Generates chat responses supporting images, streaming, function calling, and logprobs. OpenAI-compatible interface. Also supports image generation via multimodal content arrays (e.g., seedream-4-5-251128 model).",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -1319,29 +792,32 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.8563,
+        "score": 0.355,
         "failure_reasons": [
-          "exit_code_zero"
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-14T07:49:31.145942+00:00"
+        "run_at": "2026-08-23T01:37:37.653868+00:00"
       },
       {
-        "id": "90e22914-92af-4368-ad44-daa50ef5f315",
+        "id": "cabac120-dcab-4fa0-9bb6-bb8bfa912354",
         "endpoint": {
-          "id": "c7fb4a00-49f0-4167-ad2b-299b35ed6530",
-          "method": "POST",
-          "path": "/apis/v1/exa/agent/runs",
-          "description": "Submit an asynchronous research task to the Exa Agent. Accepts a natural-language query and processes it in the background, returning a structured result. Costs $0.10 per run.",
+          "id": "85352413-ec86-4132-9808-9dcea0b328a0",
+          "method": "chat",
+          "path": "aisa chat [options] [message]",
+          "description": "Send a message to an AI model; supports --model, --system prompt, --no-stream, --json, --max-tokens, and --temperature",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -1349,185 +825,32 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": false,
-        "score": 0.5063,
+        "score": 0.325,
         "failure_reasons": [
-          "exit_code_zero",
-          "clean_execution",
-          "completed_task"
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
         ],
         "latency_ms": null,
-        "run_at": "2026-08-14T07:48:12.643305+00:00"
+        "run_at": "2026-08-23T01:37:37.277349+00:00"
       },
       {
-        "id": "b1ca1a54-9b9c-45eb-af3e-a3a6b5ff3905",
+        "id": "1391226e-7c57-494d-859f-c5c202726b63",
         "endpoint": {
-          "id": "cdc4edeb-eed5-4641-99be-22dcd72532ac",
-          "method": "GET",
-          "path": "/apis/v1/youtube/search",
-          "description": "Search YouTube and get back matching videos, channels, and playlists. Supports country code and language filters.",
+          "id": "bcf10888-5be8-48bb-a55b-0c160f531d5d",
+          "method": "retweet",
+          "path": "aisa twitter retweet [options] <tweet-id>",
+          "description": "Retweet a tweet (requires twitter login)",
           "category": null
         },
         "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
           "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.6688,
-        "failure_reasons": [
-          "exit_code_zero",
-          "completed_task"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-14T07:40:23.805458+00:00"
-      },
-      {
-        "id": "e8ca5e16-aa1f-47ee-bd40-20ad33b87c18",
-        "endpoint": {
-          "id": "b05dc8ca-d75e-47f2-a62b-b958571ebcb5",
-          "method": "POST",
-          "path": "/apis/v1/exa/answer",
-          "description": "Get a direct cited answer from Exa. Retrieves relevant sources and generates a direct answer or detailed summary with source citations. Costs $0.08 per request.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.875,
-        "failure_reasons": [
-          "exit_code_zero"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-14T07:40:18.80506+00:00"
-      },
-      {
-        "id": "d1728fe7-09f6-44c3-899d-c1290df3d8b7",
-        "endpoint": {
-          "id": "6a14d47a-c95c-4fab-af9b-9fac932955dd",
-          "method": "POST",
-          "path": "/v1beta/models/{model}:generateContent",
-          "description": "Generate content using a Gemini-compatible AIsa model. Accepts conversation content, tools, safety settings, and generation configuration.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.8563,
-        "failure_reasons": [
-          "exit_code_zero"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-14T07:39:44.628396+00:00"
-      },
-      {
-        "id": "605d167e-260c-4f93-838a-76649870f0ad",
-        "endpoint": {
-          "id": "1e0eabd6-101e-4794-a26c-eb1ec321639c",
-          "method": "POST",
-          "path": "/v1/images/edits",
-          "description": "Edit existing images using AI models.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.5938,
-        "failure_reasons": [
-          "exit_code_zero",
-          "completed_task"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-14T07:39:27.636738+00:00"
-      },
-      {
-        "id": "15dc8fa7-043e-4920-b056-254155a539f2",
-        "endpoint": {
-          "id": "554fbe8f-b52a-4ea1-ba00-88eabe2efdfe",
-          "method": "POST",
-          "path": "/v1/messages",
-          "description": "Send a structured conversation to a Claude model and receive a response. Anthropic-compatible interface supporting extended thinking, tool use, and prompt caching.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.5063,
-        "failure_reasons": [
-          "exit_code_zero",
-          "clean_execution",
-          "completed_task"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-14T07:39:17.588725+00:00"
-      },
-      {
-        "id": "35a9c9d4-8e05-4b41-a292-2cce764ad03c",
-        "endpoint": {
-          "id": "eb971cf2-349b-4854-9f1f-e02d2e54cd6a",
-          "method": "POST",
-          "path": "/v1/images/generations",
-          "description": "Generate images using various AI models including Seedream, Wan, and GPT-Image-2. Returns short-lived URLs to the generated images.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
           }
         },
         "eval_type": "integration",
@@ -1535,10 +858,751 @@
         "model_type": "agent",
         "platform": "claude-code",
         "passed": true,
-        "score": 1,
+        "score": 0.86,
         "failure_reasons": null,
         "latency_ms": null,
-        "run_at": "2026-08-14T07:39:16.43382+00:00"
+        "run_at": "2026-08-23T01:37:36.000925+00:00"
+      },
+      {
+        "id": "64d436b5-160b-4d16-b391-1a1fd8e6cc0b",
+        "endpoint": {
+          "id": "1ce526ea-8ef0-41bb-aa44-05a3139efd64",
+          "method": "follow",
+          "path": "aisa twitter follow [options] <user-id>",
+          "description": "Follow a user by numeric user ID (requires twitter login)",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 0.86,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:37:27.574038+00:00"
+      },
+      {
+        "id": "f1bfd589-63fb-4600-87c0-f6711648da4a",
+        "endpoint": {
+          "id": "18692597-c983-4738-99df-924c9c1792ef",
+          "method": "reset",
+          "path": "aisa config reset",
+          "description": "Reset all configuration to defaults",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 0.715,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:37:24.276506+00:00"
+      },
+      {
+        "id": "caa22b03-fb29-4d85-8f0e-038782c680e5",
+        "endpoint": {
+          "id": "d1ec6dc1-f10a-4ae2-9a6a-be521476bf3a",
+          "method": "remove",
+          "path": "aisa skills remove [--agent <agent>] [--force] <slug>",
+          "description": "Remove an installed skill from agent directories",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 0.715,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:37:23.224838+00:00"
+      },
+      {
+        "id": "dff4fa8e-2f6e-471e-bf69-c1bfb417a22d",
+        "endpoint": {
+          "id": "b6726eee-a7f4-488a-9937-e35f7dee3450",
+          "method": "init",
+          "path": "aisa skills init [options] <name>",
+          "description": "Initialize a new custom skill from a template",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 0.855,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:37:22.48566+00:00"
+      },
+      {
+        "id": "0752caf2-5347-4b10-9487-8199993511c7",
+        "endpoint": {
+          "id": "561290e7-8f54-4523-8142-cd809bd9156c",
+          "method": "create",
+          "path": "aisa video create [options] <prompt>",
+          "description": "Create an AI video generation task from a text prompt",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.275,
+        "failure_reasons": [
+          "task_completed",
+          "partial_credit",
+          "zero_errors",
+          "efficiency",
+          "time",
+          "cost"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:37:18.103877+00:00"
+      },
+      {
+        "id": "aa6f0dd2-9664-4cd4-b8a4-0d4a02abea0d",
+        "endpoint": {
+          "id": "f4355e4d-469f-45e5-bf39-8b4191716a38",
+          "method": "like",
+          "path": "aisa twitter like [options] <tweet-id>",
+          "description": "Like a tweet (requires twitter login)",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 0.86,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:37:11.977575+00:00"
+      },
+      {
+        "id": "2d7df60d-9ef8-46df-b9e6-f40bf2959d54",
+        "endpoint": {
+          "id": "a85266d4-1b3e-4180-9dcf-289f96c4ea36",
+          "method": "show",
+          "path": "aisa skills show <slug>",
+          "description": "Show full details for a skill before installing",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.395,
+        "failure_reasons": [
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:37:11.286567+00:00"
+      },
+      {
+        "id": "79d450ee-0639-4fc2-be54-11984ee5b935",
+        "endpoint": {
+          "id": "da29cb80-d845-447f-ae77-eeecfd54e37e",
+          "method": "following",
+          "path": "aisa twitter following [options] <username>",
+          "description": "Get accounts a user is following",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.295,
+        "failure_reasons": [
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:37:09.000878+00:00"
+      },
+      {
+        "id": "a65d357d-9a5f-4a38-bc70-3afabc7a1d6b",
+        "endpoint": {
+          "id": "36c5ab95-76b7-43c7-b9e2-a5e602754560",
+          "method": "followers",
+          "path": "aisa twitter followers [options] <username>",
+          "description": "Get a user's followers list",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.305,
+        "failure_reasons": [
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:37:02.211048+00:00"
+      },
+      {
+        "id": "21cf0440-589a-4c7c-85a2-83f629cafca5",
+        "endpoint": {
+          "id": "eac40b4e-09b8-4b59-924a-de3cb4741d32",
+          "method": "setup",
+          "path": "aisa mcp setup [options]",
+          "description": "Configure the AIsa MCP server for use with AI agents",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 0.755,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:36:59.897629+00:00"
+      },
+      {
+        "id": "ca19d641-68d2-42dc-844c-6570d3ef3e00",
+        "endpoint": {
+          "id": "1b693eea-6b37-4c50-bfc0-84acbb9f7f8f",
+          "method": "search",
+          "path": "aisa skills search [--limit <n>] [--refresh] <query>",
+          "description": "Search skills by keyword",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 0.855,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:36:55.874333+00:00"
+      },
+      {
+        "id": "b49a1c69-0b4b-4ff1-8407-a0420506c227",
+        "endpoint": {
+          "id": "b0c101c6-5820-478d-ac12-60d1d72a88d9",
+          "method": "unfollow",
+          "path": "aisa twitter unfollow [--raw] <user-id>",
+          "description": "Unfollow a user (requires user ID)",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.34,
+        "failure_reasons": [
+          "task_completed",
+          "zero_errors"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:36:54.81581+00:00"
+      },
+      {
+        "id": "2459cb8b-3074-465d-8bd8-60eed54d355f",
+        "endpoint": {
+          "id": "3cb024bf-3b5b-455a-972f-cfc522220041",
+          "method": "unlike",
+          "path": "aisa twitter unlike [options] <tweet-id>",
+          "description": "Unlike a tweet (requires twitter login)",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 0.82,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:36:52.632766+00:00"
+      },
+      {
+        "id": "f4b65d89-cd85-4ea9-a562-d072c1b9a1d5",
+        "endpoint": {
+          "id": "751cf60c-9f9b-4991-bbc3-d1a5b289e926",
+          "method": "path",
+          "path": "aisa cache path",
+          "description": "Print the cache directory path",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 0.755,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:36:51.679264+00:00"
+      },
+      {
+        "id": "60773391-6415-4dc2-a9cf-bc260dcf83e4",
+        "endpoint": {
+          "id": "c89240ee-2994-4cef-9628-dc36cc5aed76",
+          "method": "dm",
+          "path": "aisa twitter dm [options] <user-id> <text>",
+          "description": "Send a direct message to a user by numeric user ID (requires twitter login)",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 0.82,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:36:49.840445+00:00"
+      },
+      {
+        "id": "dbc89625-ac6c-4f74-a34f-b99f4cea3c5a",
+        "endpoint": {
+          "id": "e08e0354-74af-4a5b-a3f7-001e8e2c958b",
+          "method": "setup",
+          "path": "aisa mcp setup [--agent <agent>]",
+          "description": "Configure the AIsa MCP server for AI agents (agents: cursor, claude-desktop, windsurf, all)",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 0.82,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:36:46.709545+00:00"
+      },
+      {
+        "id": "cc1321e7-9691-46d4-908e-a9598dd2ea3b",
+        "endpoint": {
+          "id": "cbb92f59-3b50-46b0-9123-61b30143296c",
+          "method": "delete",
+          "path": "aisa twitter delete [options] <tweet-id>",
+          "description": "Delete a tweet (requires twitter login)",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 0.82,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:36:45.062249+00:00"
+      },
+      {
+        "id": "9ddfb30f-5c20-43bb-b204-16a4bf32beea",
+        "endpoint": {
+          "id": "bf6a8c0d-3358-4874-a0c3-cbc5bd7c1f68",
+          "method": "web-search",
+          "path": "aisa web-search [options] <query>",
+          "description": "Search the web; supports --type (tavily, youtube, scholar, smart, full), --limit, and --raw for JSON output",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.31,
+        "failure_reasons": [
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:36:44.103015+00:00"
+      },
+      {
+        "id": "3ff09966-fad9-48b7-a935-7b2e0f9e0b03",
+        "endpoint": {
+          "id": "42c50abd-0f5f-4001-a602-165c1dbdadcb",
+          "method": "thread",
+          "path": "aisa twitter thread [options] <tweet-id>",
+          "description": "Get the full conversation thread for a tweet",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.32,
+        "failure_reasons": [
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:36:40.06856+00:00"
+      },
+      {
+        "id": "5ce1e1e0-57ef-48b4-a8ee-795362aacdcb",
+        "endpoint": {
+          "id": "8410fa94-0bf5-48a8-890e-9b3cf3fc22c1",
+          "method": "list",
+          "path": "aisa api list [options]",
+          "description": "List all available APIs in the AIsa catalog",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 0.715,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:36:37.868963+00:00"
+      },
+      {
+        "id": "869e02a6-5fbd-4a5a-85e8-c07a5ffd9eb2",
+        "endpoint": {
+          "id": "08acbecd-abbc-472c-ba81-c392c3df54b0",
+          "method": "search",
+          "path": "aisa twitter search [options] <query>",
+          "description": "Search tweets by keyword",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.35,
+        "failure_reasons": [
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:36:24.218041+00:00"
+      },
+      {
+        "id": "4d1871b1-0eea-4d1d-9c55-a01b6c27b065",
+        "endpoint": {
+          "id": "66a887b7-aef0-4470-8136-532f13c5322b",
+          "method": "user",
+          "path": "aisa twitter user [options] <username>",
+          "description": "Get a Twitter user's profile",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.315,
+        "failure_reasons": [
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:36:23.000686+00:00"
+      },
+      {
+        "id": "4989f24b-7285-498a-af92-7bb3677f69a9",
+        "endpoint": {
+          "id": "ba5efd04-c1ed-4568-b749-035ae24382cc",
+          "method": "search",
+          "path": "aisa api search [options] <query>",
+          "description": "Search APIs and endpoints by keyword",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.381,
+        "failure_reasons": [
+          "task_completed",
+          "zero_errors"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:36:19.700968+00:00"
+      },
+      {
+        "id": "0d6eb74f-0de9-433f-9794-ca9ecc8f767f",
+        "endpoint": {
+          "id": "5b631c3f-a31b-4c08-8e56-cef98cf8939e",
+          "method": "show",
+          "path": "aisa api show [options] <api> [path]",
+          "description": "Show an API's endpoints, or detailed info for a single endpoint",
+          "category": null
+        },
+        "source": {
+          "id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+          "type": "cli",
+          "label": "CLI",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
+            "cli_binary": "aisa",
+            "install_command": "npm install -g @aisa-one/cli"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.36,
+        "failure_reasons": [
+          "task_completed",
+          "partial_credit",
+          "zero_errors"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:36:19.450643+00:00"
       }
     ],
     "meta": {
