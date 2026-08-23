@@ -41,6 +41,17 @@ const runs = load("ap_runs")?.data ?? [];
 const actions = load("ap_actions")?.data ?? [];
 const actionCounts = load("ap_actions")?.counts ?? {};
 
+const ora = load("ora");
+const oraChecks = (ora?.layers ?? []).flatMap((l) => l.checks ?? []);
+const oraById = new Map(oraChecks.map((c) => [c.id, c]));
+const cf = load("cloudflare");
+const cfChecks = Object.entries(cf?.checks ?? {}).flatMap(([cat, checks]) =>
+  Object.entries(checks).map(([id, c]) => ({ ...c, id, category: cat })),
+);
+const cfById = new Map(cfChecks.map((c) => [c.id, c]));
+const cfScored = cfChecks.filter((c) => c.status !== "neutral");
+const cfPass = cfScored.filter((c) => c.status === "pass").length;
+
 const company = cur.company ?? ov.company ?? { name: "AIsa", domain: "aisa.one" };
 const snap = ov.snapshot ?? cur;
 const w = manifest.window;
@@ -78,6 +89,14 @@ P(`| Total citations | ${num(snap.total_citations ?? vp.summary?.metrics?.citati
 P(`| Prompt runs | ${num(vp.summary?.metrics?.run_count)} across ${num(vp.summary?.prompt_count)} prompts / ${num(vp.summary?.topic_count)} topics | — |`);
 P("");
 
+if (ora || cf) {
+  P(`**Agent-readiness scorecards** (independent of visibility — these measure whether agents *can* use the site, not whether they cite it):`, "");
+  P(`| Scanner | Score | Verdict | Scanned |`, `| --- | --- | --- | --- |`);
+  if (ora) P(`| Ora (ora.ai) | ${ora.score}/${ora.maxScore ?? ora.scoreMax ?? 100} | grade ${ora.grade} | ${String(ora.scannedAt).slice(0, 10)} |`);
+  if (cf) P(`| Cloudflare (isitagentready.com) | ${cfPass}/${cfScored.length} checks | Level ${cf.level} — ${esc(cf.levelName)} | ${String(cf.scannedAt).slice(0, 10)} |`);
+  P("");
+}
+
 const citationCount = snap.total_citations ?? vp.summary?.metrics?.citation_count ?? 0;
 const runCount = vp.summary?.metrics?.run_count ?? 0;
 P(`**${company.name} is effectively invisible to AI answer engines in this window.** ` +
@@ -86,13 +105,17 @@ P(`**${company.name} is effectively invisible to AI answer engines in this windo
   (leader ? `The category leader, **${leader.company?.name}**, holds ${pct(leader.visibility_score)} visibility and ${pct(leader.share_of_voice)} share of voice — ` +
   `roughly ${Math.round((leader.visibility_score ?? 0) / (snap.visibility_score || 1))}× ${company.name}'s visibility.` : ""), "");
 
-P("Three findings drive everything below:", "");
+P(`${ora && cf ? "Four" : "Three"} findings drive everything below:`, "");
 P(`1. **No coding agents are being tracked.** ${availablePlatforms.length} platforms are available; only ${trackedPlatforms.length} are configured (${trackedPlatforms.map((p) => p.name).join(", ")}) — ` +
   `${trackedCodingAgents.length === 0 ? "**none of them coding agents**" : `${trackedCodingAgents.length} coding agents`}. ` +
   `Claude Code, Codex, Cursor, Copilot and Gemini CLI are all available and unmeasured.`);
 P(`2. **The API works better than the docs do.** ${runs.length} API Performance evals passed at ${passRate === null ? "—" : pct(passRate)}, and every open site action is a docs problem — ` +
   `${actionCounts.total ?? actions.length} actions covering broken URLs and unreadable pages, not API defects.`);
-P(`3. **The "#1 average position" is a single-citation artifact.** It comes from one citation on one prompt, not from category strength — treat it as noise, not a win.`, "");
+P(`3. **The "#1 average position" is a single-citation artifact.** It comes from one citation on one prompt, not from category strength — treat it as noise, not a win.`);
+if (ora && cf) {
+  P(`4. **Two surfaces exist but don't count.** OIDC discovery is live on \`login.aisa.one\` yet absent from the apex, and the A2A Agent Card is served but schema-invalid. Ora credits both; Cloudflare fails both. These are the cheapest wins on the board — a redirect and one required field.`);
+}
+P("");
 
 /* ---------- visibility ---------- */
 P("---", "", "## 1. Visibility", "");
@@ -172,10 +195,88 @@ if (actions.length) {
   }
 }
 
+/* ---------- agent readiness ---------- */
+if (ora || cf) {
+  P("---", "", "## 3. Agent readiness", "");
+  P(`Lightsage measures whether agents **cite** ${company.name}. These two scanners measure whether agents **can use** it — discovery files, protocol conformance, auth, and machine-readable surfaces.`, "");
+
+  if (ora) {
+    P(`### Ora — ${ora.score}/${ora.maxScore ?? ora.scoreMax ?? 100} (grade ${ora.grade})`, "");
+    if (ora.agenticSummary) P(`> ${esc(ora.agenticSummary)}`, "");
+    P(`| Layer | Score |`, `| --- | --- |`);
+    for (const l of ora.layers ?? []) P(`| ${esc(l.name)} | ${l.score}/${l.maxScore} |`);
+    P("");
+
+    const fixes = oraChecks
+      .filter((c) => c.status === "fail" && typeof c.estScoreGain === "number")
+      .sort((a, b) => b.estScoreGain - a.estScoreGain);
+    if (fixes.length) {
+      P(`**Highest-value fixes** (Ora's own estimated score gain):`, "");
+      P(`| Est. gain | Tier | Check | Finding |`, `| --- | --- | --- | --- |`);
+      for (const f of fixes.slice(0, 12)) P(`| +${num(f.estScoreGain)} | ${esc(f.tier)} | ${esc(f.name)} | ${trunc(f.details, 100)} |`);
+      P("");
+    }
+  }
+
+  if (cf) {
+    P(`### Cloudflare — Level ${cf.level}: ${esc(cf.levelName)}`, "");
+    P(`${cfPass}/${cfScored.length} scored checks passing (${cfChecks.length - cfScored.length} informational).`, "");
+    const byCat = new Map();
+    for (const c of cfChecks) byCat.set(c.category, [...(byCat.get(c.category) ?? []), c]);
+    P(`| Category | Passing |`, `| --- | --- |`);
+    for (const [cat, list] of byCat) {
+      const scored = list.filter((c) => c.status !== "neutral");
+      P(`| ${esc(cat)} | ${scored.filter((c) => c.status === "pass").length}/${scored.length}${scored.length === 0 ? " (informational)" : ""} |`);
+    }
+    P("");
+    const failing = cfChecks.filter((c) => c.status === "fail");
+    if (failing.length) {
+      P(`**Failing checks (${failing.length})**`, "");
+      P(`| Check | Finding |`, `| --- | --- |`);
+      for (const c of failing) P(`| \`${esc(c.id)}\` | ${trunc(c.message, 120)} |`);
+      P("");
+    }
+  }
+
+  /* ---- reconciliation ---- */
+  if (ora && cf) {
+    const pairs = [
+      { topic: "OAuth / OIDC discovery", oraId: "oauth-support", cfId: "oauthDiscovery" },
+      { topic: "A2A Agent Card", oraId: "a2a-agent-card", cfId: "a2aAgentCard" },
+      { topic: "MCP server", oraId: "mcp-server", cfId: "mcpServerCard" },
+      { topic: "ARD / ai-catalog", oraId: "ard-catalog", cfId: "ard" },
+      { topic: "Link headers (RFC 8288)", oraId: "link-headers-discovery", cfId: "linkHeaders" },
+      { topic: "Markdown negotiation", oraId: "markdown-negotiation", cfId: "markdownNegotiation" },
+      { topic: "Sitemap", oraId: "sitemap", cfId: "sitemap" },
+      { topic: "Agent Skills index", oraId: "agent-skills-index-v2", cfId: "agentSkills" },
+    ];
+    const norm = (st) => (st === "pass" ? "pass" : st === "na" || st === "neutral" ? "n/a" : st === "warning" ? "partial" : "fail");
+    const rows = pairs
+      .map((p) => ({ ...p, o: oraById.get(p.oraId), c: cfById.get(p.cfId) }))
+      .filter((r) => r.o && r.c);
+    if (rows.length) {
+      P(`### Where the two scanners disagree`, "");
+      P(`Both scan the same site on the same day, so divergence is signal — usually a surface that exists but is misplaced or malformed.`, "");
+      P(`| Topic | Ora | Cloudflare | Reading |`, `| --- | --- | --- | --- |`);
+      for (const r of rows) {
+        const a = norm(r.o.status), b = norm(r.c.status);
+        const verdict = a === b ? "agree" : "**disagree**";
+        P(`| ${esc(r.topic)} | ${a} | ${b} | ${verdict} |`);
+      }
+      P("");
+      for (const r of rows.filter((x) => norm(x.o.status) !== norm(x.c.status))) {
+        P(`**${esc(r.topic)}**  `);
+        P(`- Ora (${norm(r.o.status)}): ${esc(r.o.details)}  `);
+        P(`- Cloudflare (${norm(r.c.status)}): ${esc(r.c.message)}`, "");
+      }
+    }
+  }
+}
+
 /* ---------- tasks ---------- */
 const taskList = tasks.data ?? [];
 if (taskList.length) {
-  P("---", "", `## 3. Recommended actions`, "");
+  P("---", "", `## 4. Recommended actions`, "");
   P(`Lightsage's ranked task list for ${tasks.action_date ?? "today"} — ${tasks.active_count ?? taskList.length} active.`, "");
   for (const t of taskList) {
     P(`### ${t.rank}. ${esc(t.title)}`, "");
@@ -188,7 +289,7 @@ if (taskList.length) {
 /* ---------- opportunities ---------- */
 const oppList = opps.data ?? [];
 if (oppList.length) {
-  P("---", "", `## 4. Opportunities (${opps.count ?? oppList.length})`, "");
+  P("---", "", `## 5. Opportunities (${opps.count ?? oppList.length})`, "");
   const sum = opps.summary ?? {};
   const renderCounts = (obj) => Object.entries(obj ?? {}).map(([k, v]) => `${clean(k)} (${v})`).join(", ");
   P(`**By category** — ${renderCounts(sum.by_category)}  `);
@@ -216,18 +317,18 @@ if (oppList.length) {
 }
 
 /* ---------- caveats ---------- */
-P("---", "", "## 5. Data quality caveats", "");
+P("---", "", "## 6. Data quality caveats", "");
 P(`- **Average position is not meaningful.** \`average_position = ${num(snap.average_position)}\` (rank #${snap.average_position_rank}) derives from ${citationCount} citation. It will regress as citations accumulate.`);
 if (oppList.length) {
   const saturated = oppList.filter((o) => o.impact_score === 100).length;
-  P(`- **Opportunity impact scores are saturated.** ${saturated} of ${oppList.length} opportunities score exactly 100, and ${opps.summary?.["by_priority"]?.["OpportunityPriority.HIGH"] ?? "most"} are "high" priority — the ranking carries little signal. The ranked task list in §3 is the better prioritisation.`);
+  P(`- **Opportunity impact scores are saturated.** ${saturated} of ${oppList.length} opportunities score exactly 100, and ${opps.summary?.["by_priority"]?.["OpportunityPriority.HIGH"] ?? "most"} are "high" priority — the ranking carries little signal. The ranked task list in §4 is the better prioritisation.`);
 }
 if (runs.length && runs.every((r) => r.latency_ms == null)) P(`- **Latency is unpopulated.** All ${runs.length} eval runs report \`latency_ms: null\`, so no latency conclusions are available.`);
 P(`- **Answer engines only.** Visibility covers ${trackedPlatforms.map((p) => p.name).join(", ")}. Coding-agent visibility — Lightsage's core differentiator — is unmeasured for ${company.name}.`);
 P(`- **Window.** Metrics cover ${w.start} → ${w.end}; the latest completed run is ${ov.date_range?.latest_run_date ?? "—"}.`, "");
 
 /* ---------- coverage ---------- */
-P("---", "", "## 6. Endpoint coverage", "");
+P("---", "", "## 7. Endpoint coverage", "");
 P(`| Endpoint | Path | Status | Time |`, `| --- | --- | --- | --- |`);
 for (const e of manifest.endpoints) {
   P(`| ${esc(e.label)} | \`${esc(e.path)}\` | ${e.ok ? "ok" : e.optional ? "n/a" : "**failed**"} (${e.status}) | ${e.durationMs}ms |`);

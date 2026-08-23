@@ -1,0 +1,72 @@
+{
+  "ok": true,
+  "status": 200,
+  "durationMs": 1066,
+  "path": "/v1/api-performance/config",
+  "body": {
+    "models": [
+      "claude-code"
+    ],
+    "targets": [
+      {
+        "id": "74ced55a-8bfb-4703-ad3e-56e371894523",
+        "source_id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+        "target_type": "agent",
+        "execution_platform": "claude-code",
+        "model_id": "global.anthropic.claude-opus-5",
+        "frequency": "daily",
+        "enabled": true,
+        "next_run_at": "2026-08-13T09:00:00+00:00",
+        "last_run_at": null,
+        "last_skipped_at": null,
+        "skip_reason": null,
+        "created_at": "2026-08-12T12:32:53.774435+00:00",
+        "updated_at": "2026-08-14T08:19:18.847177+00:00"
+      },
+      {
+        "id": "bb1c7300-f564-4c60-b3f8-b8c14a0d261e",
+        "source_id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
+        "target_type": "agent",
+        "execution_platform": "claude-code",
+        "model_id": "global.anthropic.claude-opus-5",
+        "frequency": "daily",
+        "enabled": true,
+        "next_run_at": "2026-08-15T09:00:00+00:00",
+        "last_run_at": null,
+        "last_skipped_at": null,
+        "skip_reason": null,
+        "created_at": "2026-08-14T06:58:49.249982+00:00",
+        "updated_at": "2026-08-14T07:05:48.987354+00:00"
+      }
+    ],
+    "operation_ids": [
+      "64ccfe9d-153b-4fa4-be65-03565a3f22c9",
+      "a4e77e28-c951-45f5-8844-dd78c51cd64f",
+      "542034e6-9f0f-4b07-9024-ba2feda9b185",
+      "ae6ea5eb-1726-4659-9327-a75f13d50475",
+      "d2abdab5-c249-43e0-862b-8856f0dc2888",
+      "e373ef8b-7d64-48e0-9e80-977c93644920",
+      "44bba48e-a1d5-4100-b675-aa978c8a0ae9",
+      "f7771d87-d1b3-4897-9768-8a2c1b6e53ff",
+      "ef526f1a-65cc-4e69-aa6f-293bb0c0c4b8",
+      "3247ac97-d8df-4f56-a4d0-747927903157"
+    ],
+    "custom_eval_ids": [],
+    "env_var_keys": [
+      "AISA_API_KEY"
+    ],
+    "env_profiles": [
+      {
+        "id": "default",
+        "name": "Default",
+        "env_var_keys": [
+          "AISA_API_KEY"
+        ]
+      }
+    ],
+    "default_env_profile_id": "default",
+    "source_id": null,
+    "api_base_url": "https://api.aisa.one",
+    "can_configure_per_model_schedules": false
+  }
+}

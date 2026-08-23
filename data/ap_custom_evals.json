@@ -1,0 +1,559 @@
+{
+  "ok": true,
+  "status": 200,
+  "durationMs": 2978,
+  "path": "/v1/api-performance/custom-evals",
+  "body": {
+    "data": [
+      {
+        "id": "a9c1ca8c-9a03-4e57-8341-9fc69a1a5735",
+        "prompt": "basic nextjs app with aisa api",
+        "prompt_template": "basic nextjs app with aisa api",
+        "description": null,
+        "tag": null,
+        "competitor": null,
+        "prompt_competitor": null,
+        "prompt_competitor_group": null,
+        "category": {
+          "id": "593a9ea9-bf41-429b-942c-640dedf6a0d8",
+          "name": "Quickstart",
+          "slug": "quickstart"
+        },
+        "eval": {
+          "id": "8011e0ff-a454-41d1-867c-e5ec11776880",
+          "operation_id": "a9c1ca8c-9a03-4e57-8341-9fc69a1a5735",
+          "source_id": null,
+          "source": null,
+          "eval_type": "integration",
+          "prompt": "basic nextjs app with aisa api",
+          "custom_prompt": null,
+          "expected_behavior": "Complete the use case successfully.",
+          "starting_project_id": null,
+          "docs_mode": "default",
+          "include_env_vars": true,
+          "env_profile_ids": [],
+          "model_ids": [],
+          "compare_skills": false,
+          "skills_mode": "none",
+          "skills_enabled": false,
+          "skill_ids": [],
+          "mcp_enabled": false,
+          "run_context": {
+            "starting_project": {
+              "id": "9aa783e1-f966-5488-89a0-59655be68f45",
+              "ref": "main",
+              "name": "Next.js Starter",
+              "source": "sapient_template",
+              "subdir": "",
+              "repo_url": "https://github.com/Sapient-Templates/nextjs-starter",
+              "framework": "nextjs",
+              "install_steps": [
+                "if [ -f package.json ]; then bun install; fi"
+              ]
+            }
+          },
+          "enabled": true
+        },
+        "created_at": "2026-08-12T12:33:29.861075+00:00",
+        "updated_at": "2026-08-12T12:33:29.861075+00:00"
+      },
+      {
+        "id": "333b6fb1-5b2f-4514-88ab-b63999880649",
+        "prompt": "basic vite app with aisa api",
+        "prompt_template": "basic vite app with aisa api",
+        "description": null,
+        "tag": null,
+        "competitor": null,
+        "prompt_competitor": null,
+        "prompt_competitor_group": null,
+        "category": {
+          "id": "593a9ea9-bf41-429b-942c-640dedf6a0d8",
+          "name": "Quickstart",
+          "slug": "quickstart"
+        },
+        "eval": {
+          "id": "6457f893-0ecd-4826-84d4-d185c5f7493b",
+          "operation_id": "333b6fb1-5b2f-4514-88ab-b63999880649",
+          "source_id": null,
+          "source": null,
+          "eval_type": "integration",
+          "prompt": "basic vite app with aisa api",
+          "custom_prompt": null,
+          "expected_behavior": "Complete the use case successfully.",
+          "starting_project_id": null,
+          "docs_mode": "default",
+          "include_env_vars": true,
+          "env_profile_ids": [],
+          "model_ids": [],
+          "compare_skills": false,
+          "skills_mode": "none",
+          "skills_enabled": false,
+          "skill_ids": [],
+          "mcp_enabled": false,
+          "run_context": {
+            "starting_project": {
+              "id": "cd14c02d-2957-596e-bc3a-7e9647ada194",
+              "ref": "main",
+              "name": "Vite Starter",
+              "source": "sapient_template",
+              "subdir": "",
+              "repo_url": "https://github.com/Sapient-Templates/vite-starter",
+              "framework": "vite",
+              "install_steps": [
+                "if [ -f package.json ]; then bun install; fi"
+              ]
+            }
+          },
+          "enabled": true
+        },
+        "created_at": "2026-08-12T12:33:49.721663+00:00",
+        "updated_at": "2026-08-12T12:33:49.721663+00:00"
+      },
+      {
+        "id": "bfb81bf9-6313-4b5b-bf14-2f4801477e5b",
+        "prompt": "Integrate AIsa into a Next.js app",
+        "prompt_template": "Integrate {{company_name}} into a Next.js app",
+        "description": null,
+        "tag": null,
+        "competitor": null,
+        "prompt_competitor": null,
+        "prompt_competitor_group": null,
+        "category": {
+          "id": "c502f7dc-b109-4555-8386-36f63d753591",
+          "name": "Competitor",
+          "slug": "competitor"
+        },
+        "eval": {
+          "id": "b5e19ddf-c7da-46cf-9866-51752dcfdf03",
+          "operation_id": "bfb81bf9-6313-4b5b-bf14-2f4801477e5b",
+          "source_id": null,
+          "source": null,
+          "eval_type": "integration",
+          "prompt": "Integrate AIsa into a Next.js app",
+          "custom_prompt": null,
+          "expected_behavior": "Complete the use case successfully.",
+          "starting_project_id": null,
+          "docs_mode": "default",
+          "include_env_vars": true,
+          "env_profile_ids": [],
+          "model_ids": [],
+          "compare_skills": false,
+          "skills_mode": "none",
+          "skills_enabled": false,
+          "skill_ids": [],
+          "mcp_enabled": false,
+          "run_context": {
+            "starting_project": {
+              "id": "9aa783e1-f966-5488-89a0-59655be68f45",
+              "ref": "main",
+              "name": "Next.js Starter",
+              "source": "sapient_template",
+              "subdir": "",
+              "repo_url": "https://github.com/Sapient-Templates/nextjs-starter",
+              "framework": "nextjs",
+              "install_steps": [
+                "if [ -f package.json ]; then bun install; fi"
+              ]
+            }
+          },
+          "enabled": true
+        },
+        "created_at": "2026-08-12T12:34:13.094942+00:00",
+        "updated_at": "2026-08-12T12:34:13.094942+00:00"
+      },
+      {
+        "id": "0d425ca9-2b9e-465b-8060-6a0469dcbf22",
+        "prompt": "Integrate Composio into a Next.js app",
+        "prompt_template": "Integrate {{company_name}} into a Next.js app",
+        "description": null,
+        "tag": null,
+        "competitor": "776e4c28-ab93-4eca-87ac-ad9b57aad734",
+        "prompt_competitor": "Composio",
+        "prompt_competitor_group": "bfb81bf9-6313-4b5b-bf14-2f4801477e5b",
+        "category": {
+          "id": "c502f7dc-b109-4555-8386-36f63d753591",
+          "name": "Competitor",
+          "slug": "competitor"
+        },
+        "eval": {
+          "id": "891bdd68-e41f-42a9-a1e7-40f865cc4589",
+          "operation_id": "0d425ca9-2b9e-465b-8060-6a0469dcbf22",
+          "source_id": null,
+          "source": null,
+          "eval_type": "integration",
+          "prompt": "Integrate Composio into a Next.js app",
+          "custom_prompt": null,
+          "expected_behavior": "Complete the use case successfully.",
+          "starting_project_id": null,
+          "docs_mode": "default",
+          "include_env_vars": true,
+          "env_profile_ids": [],
+          "model_ids": [],
+          "compare_skills": false,
+          "skills_mode": "none",
+          "skills_enabled": false,
+          "skill_ids": [],
+          "mcp_enabled": false,
+          "run_context": {
+            "starting_project": {
+              "id": "9aa783e1-f966-5488-89a0-59655be68f45",
+              "ref": "main",
+              "name": "Next.js Starter",
+              "source": "sapient_template",
+              "subdir": "",
+              "repo_url": "https://github.com/Sapient-Templates/nextjs-starter",
+              "framework": "nextjs",
+              "install_steps": [
+                "if [ -f package.json ]; then bun install; fi"
+              ]
+            }
+          },
+          "enabled": true
+        },
+        "created_at": "2026-08-12T12:34:13.65459+00:00",
+        "updated_at": "2026-08-12T12:34:13.65459+00:00"
+      },
+      {
+        "id": "3bec47f1-614b-43c2-a632-915ad6565c3d",
+        "prompt": "Integrate RapidAPI into a Next.js app",
+        "prompt_template": "Integrate {{company_name}} into a Next.js app",
+        "description": null,
+        "tag": null,
+        "competitor": "340082ce-db95-46ac-a281-f5cb63ba4a3b",
+        "prompt_competitor": "RapidAPI",
+        "prompt_competitor_group": "bfb81bf9-6313-4b5b-bf14-2f4801477e5b",
+        "category": {
+          "id": "c502f7dc-b109-4555-8386-36f63d753591",
+          "name": "Competitor",
+          "slug": "competitor"
+        },
+        "eval": {
+          "id": "1802db74-953a-44e1-8be9-c30f577eb50c",
+          "operation_id": "3bec47f1-614b-43c2-a632-915ad6565c3d",
+          "source_id": null,
+          "source": null,
+          "eval_type": "integration",
+          "prompt": "Integrate RapidAPI into a Next.js app",
+          "custom_prompt": null,
+          "expected_behavior": "Complete the use case successfully.",
+          "starting_project_id": null,
+          "docs_mode": "default",
+          "include_env_vars": true,
+          "env_profile_ids": [],
+          "model_ids": [],
+          "compare_skills": false,
+          "skills_mode": "none",
+          "skills_enabled": false,
+          "skill_ids": [],
+          "mcp_enabled": false,
+          "run_context": {
+            "starting_project": {
+              "id": "9aa783e1-f966-5488-89a0-59655be68f45",
+              "ref": "main",
+              "name": "Next.js Starter",
+              "source": "sapient_template",
+              "subdir": "",
+              "repo_url": "https://github.com/Sapient-Templates/nextjs-starter",
+              "framework": "nextjs",
+              "install_steps": [
+                "if [ -f package.json ]; then bun install; fi"
+              ]
+            }
+          },
+          "enabled": true
+        },
+        "created_at": "2026-08-12T12:34:14.416327+00:00",
+        "updated_at": "2026-08-12T12:34:14.416327+00:00"
+      },
+      {
+        "id": "668672e4-c7f4-46be-b765-b86d9d3a5208",
+        "prompt": "Integrate Toolhouse into a Next.js app",
+        "prompt_template": "Integrate {{company_name}} into a Next.js app",
+        "description": null,
+        "tag": null,
+        "competitor": "eba219f2-a9e9-4f74-b4ea-099d8e9aa252",
+        "prompt_competitor": "Toolhouse",
+        "prompt_competitor_group": "bfb81bf9-6313-4b5b-bf14-2f4801477e5b",
+        "category": {
+          "id": "c502f7dc-b109-4555-8386-36f63d753591",
+          "name": "Competitor",
+          "slug": "competitor"
+        },
+        "eval": {
+          "id": "e6f597d1-3ddc-4053-9240-91ced55fec6f",
+          "operation_id": "668672e4-c7f4-46be-b765-b86d9d3a5208",
+          "source_id": null,
+          "source": null,
+          "eval_type": "integration",
+          "prompt": "Integrate Toolhouse into a Next.js app",
+          "custom_prompt": null,
+          "expected_behavior": "Complete the use case successfully.",
+          "starting_project_id": null,
+          "docs_mode": "default",
+          "include_env_vars": true,
+          "env_profile_ids": [],
+          "model_ids": [],
+          "compare_skills": false,
+          "skills_mode": "none",
+          "skills_enabled": false,
+          "skill_ids": [],
+          "mcp_enabled": false,
+          "run_context": {
+            "starting_project": {
+              "id": "9aa783e1-f966-5488-89a0-59655be68f45",
+              "ref": "main",
+              "name": "Next.js Starter",
+              "source": "sapient_template",
+              "subdir": "",
+              "repo_url": "https://github.com/Sapient-Templates/nextjs-starter",
+              "framework": "nextjs",
+              "install_steps": [
+                "if [ -f package.json ]; then bun install; fi"
+              ]
+            }
+          },
+          "enabled": true
+        },
+        "created_at": "2026-08-12T12:34:15.227764+00:00",
+        "updated_at": "2026-08-12T12:34:15.227764+00:00"
+      },
+      {
+        "id": "0ec2691e-095b-44ba-8401-e90c02d23d0d",
+        "prompt": "Integrate Arcade into a Next.js app",
+        "prompt_template": "Integrate {{company_name}} into a Next.js app",
+        "description": null,
+        "tag": null,
+        "competitor": "1ab55740-16d1-4318-9436-c3c8a3fee95d",
+        "prompt_competitor": "Arcade",
+        "prompt_competitor_group": "bfb81bf9-6313-4b5b-bf14-2f4801477e5b",
+        "category": {
+          "id": "c502f7dc-b109-4555-8386-36f63d753591",
+          "name": "Competitor",
+          "slug": "competitor"
+        },
+        "eval": {
+          "id": "8fcd581a-5b8a-49d5-8a84-db68ef4262be",
+          "operation_id": "0ec2691e-095b-44ba-8401-e90c02d23d0d",
+          "source_id": null,
+          "source": null,
+          "eval_type": "integration",
+          "prompt": "Integrate Arcade into a Next.js app",
+          "custom_prompt": null,
+          "expected_behavior": "Complete the use case successfully.",
+          "starting_project_id": null,
+          "docs_mode": "default",
+          "include_env_vars": true,
+          "env_profile_ids": [],
+          "model_ids": [],
+          "compare_skills": false,
+          "skills_mode": "none",
+          "skills_enabled": false,
+          "skill_ids": [],
+          "mcp_enabled": false,
+          "run_context": {
+            "starting_project": {
+              "id": "9aa783e1-f966-5488-89a0-59655be68f45",
+              "ref": "main",
+              "name": "Next.js Starter",
+              "source": "sapient_template",
+              "subdir": "",
+              "repo_url": "https://github.com/Sapient-Templates/nextjs-starter",
+              "framework": "nextjs",
+              "install_steps": [
+                "if [ -f package.json ]; then bun install; fi"
+              ]
+            }
+          },
+          "enabled": true
+        },
+        "created_at": "2026-08-12T12:34:15.980748+00:00",
+        "updated_at": "2026-08-12T12:34:15.980748+00:00"
+      },
+      {
+        "id": "288e0555-6afa-4add-bb4b-14603ea2fbcd",
+        "prompt": "Integrate Apify into a Next.js app",
+        "prompt_template": "Integrate {{company_name}} into a Next.js app",
+        "description": null,
+        "tag": null,
+        "competitor": "d43519b1-ee68-410b-9732-c57b2f24606d",
+        "prompt_competitor": "Apify",
+        "prompt_competitor_group": "bfb81bf9-6313-4b5b-bf14-2f4801477e5b",
+        "category": {
+          "id": "c502f7dc-b109-4555-8386-36f63d753591",
+          "name": "Competitor",
+          "slug": "competitor"
+        },
+        "eval": {
+          "id": "02fef9ff-0018-4981-82c3-9c0e94b0590f",
+          "operation_id": "288e0555-6afa-4add-bb4b-14603ea2fbcd",
+          "source_id": null,
+          "source": null,
+          "eval_type": "integration",
+          "prompt": "Integrate Apify into a Next.js app",
+          "custom_prompt": null,
+          "expected_behavior": "Complete the use case successfully.",
+          "starting_project_id": null,
+          "docs_mode": "default",
+          "include_env_vars": true,
+          "env_profile_ids": [],
+          "model_ids": [],
+          "compare_skills": false,
+          "skills_mode": "none",
+          "skills_enabled": false,
+          "skill_ids": [],
+          "mcp_enabled": false,
+          "run_context": {
+            "starting_project": {
+              "id": "9aa783e1-f966-5488-89a0-59655be68f45",
+              "ref": "main",
+              "name": "Next.js Starter",
+              "source": "sapient_template",
+              "subdir": "",
+              "repo_url": "https://github.com/Sapient-Templates/nextjs-starter",
+              "framework": "nextjs",
+              "install_steps": [
+                "if [ -f package.json ]; then bun install; fi"
+              ]
+            }
+          },
+          "enabled": true
+        },
+        "created_at": "2026-08-12T12:34:16.743619+00:00",
+        "updated_at": "2026-08-12T12:34:16.743619+00:00"
+      },
+      {
+        "id": "60e5179c-027d-4796-9d72-6b1843974a1b",
+        "prompt": "Integrate AgentOps into a Next.js app",
+        "prompt_template": "Integrate {{company_name}} into a Next.js app",
+        "description": null,
+        "tag": null,
+        "competitor": "65b1cef9-89dc-4cb6-8670-38e5abed9d2f",
+        "prompt_competitor": "AgentOps",
+        "prompt_competitor_group": "bfb81bf9-6313-4b5b-bf14-2f4801477e5b",
+        "category": {
+          "id": "c502f7dc-b109-4555-8386-36f63d753591",
+          "name": "Competitor",
+          "slug": "competitor"
+        },
+        "eval": {
+          "id": "c3bfa328-aba2-420f-92e8-e7bfd78a5cb2",
+          "operation_id": "60e5179c-027d-4796-9d72-6b1843974a1b",
+          "source_id": null,
+          "source": null,
+          "eval_type": "integration",
+          "prompt": "Integrate AgentOps into a Next.js app",
+          "custom_prompt": null,
+          "expected_behavior": "Complete the use case successfully.",
+          "starting_project_id": null,
+          "docs_mode": "default",
+          "include_env_vars": true,
+          "env_profile_ids": [],
+          "model_ids": [],
+          "compare_skills": false,
+          "skills_mode": "none",
+          "skills_enabled": false,
+          "skill_ids": [],
+          "mcp_enabled": false,
+          "run_context": {
+            "starting_project": {
+              "id": "9aa783e1-f966-5488-89a0-59655be68f45",
+              "ref": "main",
+              "name": "Next.js Starter",
+              "source": "sapient_template",
+              "subdir": "",
+              "repo_url": "https://github.com/Sapient-Templates/nextjs-starter",
+              "framework": "nextjs",
+              "install_steps": [
+                "if [ -f package.json ]; then bun install; fi"
+              ]
+            }
+          },
+          "enabled": true
+        },
+        "created_at": "2026-08-12T12:34:17.553909+00:00",
+        "updated_at": "2026-08-12T12:34:17.553909+00:00"
+      },
+      {
+        "id": "f7c46d47-5379-44fc-ab5f-e0e10911c17c",
+        "prompt": "Using aisa agent skills, help me to connect to this app",
+        "prompt_template": "Using aisa agent skills, help me to connect to this app",
+        "description": null,
+        "tag": null,
+        "competitor": null,
+        "prompt_competitor": null,
+        "prompt_competitor_group": null,
+        "category": {
+          "id": "6de53ba0-89f1-413c-a208-6ac6c906e07d",
+          "name": "agent skills",
+          "slug": "agent-skills"
+        },
+        "eval": {
+          "id": "5e4c4b91-d3b7-4985-aee3-80133b4a066e",
+          "operation_id": "f7c46d47-5379-44fc-ab5f-e0e10911c17c",
+          "source_id": null,
+          "source": null,
+          "eval_type": "integration",
+          "prompt": "Using aisa agent skills, help me to connect to this app",
+          "custom_prompt": null,
+          "expected_behavior": "Complete the use case successfully.",
+          "starting_project_id": null,
+          "docs_mode": "default",
+          "include_env_vars": true,
+          "env_profile_ids": [],
+          "model_ids": [],
+          "compare_skills": false,
+          "skills_mode": "none",
+          "skills_enabled": false,
+          "skill_ids": [],
+          "mcp_enabled": false,
+          "run_context": {},
+          "enabled": true
+        },
+        "created_at": "2026-08-13T13:29:08.959953+00:00",
+        "updated_at": "2026-08-13T13:29:08.959953+00:00"
+      },
+      {
+        "id": "02bddd68-1c27-4ea9-86c7-c974e0537819",
+        "prompt": "using https://aisa.one/docs/llms.txt docs, can u find if have an MCP server and find how many tools",
+        "prompt_template": "using https://aisa.one/docs/llms.txt docs, can u find if have an MCP server and find how many tools",
+        "description": null,
+        "tag": null,
+        "competitor": null,
+        "prompt_competitor": null,
+        "prompt_competitor_group": null,
+        "category": {
+          "id": "840f0faa-b3a1-464b-a68b-d73429609592",
+          "name": "mcp test",
+          "slug": "mcp-test"
+        },
+        "eval": {
+          "id": "8a58ebe1-0610-49bb-8989-cce1a64fdc3b",
+          "operation_id": "02bddd68-1c27-4ea9-86c7-c974e0537819",
+          "source_id": null,
+          "source": null,
+          "eval_type": "integration",
+          "prompt": "using https://aisa.one/docs/llms.txt docs, can u find if have an MCP server and find how many tools",
+          "custom_prompt": null,
+          "expected_behavior": "Complete the use case successfully.",
+          "starting_project_id": null,
+          "docs_mode": "default",
+          "include_env_vars": true,
+          "env_profile_ids": [],
+          "model_ids": [],
+          "compare_skills": false,
+          "skills_mode": "none",
+          "skills_enabled": false,
+          "skill_ids": [],
+          "mcp_enabled": false,
+          "run_context": {},
+          "enabled": true
+        },
+        "created_at": "2026-08-13T13:43:02.106712+00:00",
+        "updated_at": "2026-08-13T14:00:40.62647+00:00"
+      }
+    ],
+    "meta": {
+      "count": 11
+    }
+  }
+}

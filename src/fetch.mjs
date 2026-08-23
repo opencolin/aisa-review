@@ -68,6 +68,53 @@ for (const ep of ENDPOINTS) {
   console.log(`${mark} ${String(res.status).padStart(3)}  ${res.durationMs}ms`);
 }
 
+// Ora agent-readiness (ora.ai) — public, unauthenticated, separate host.
+// Complements Lightsage: Lightsage measures whether agents *cite* the site,
+// Ora measures whether agents can discover, parse, and integrate with it.
+const oraDomain = args.domain ?? "aisa.one";
+process.stdout.write(`  ${"ora".padEnd(22)} `);
+{
+  const started = Date.now();
+  let res;
+  try {
+    const r = await fetch(`https://ora.ai/api/score/${encodeURIComponent(oraDomain)}`, {
+      headers: { Accept: "application/json" },
+      signal: AbortSignal.timeout(60_000),
+    });
+    const body = await r.json();
+    res = { ok: r.ok, status: r.status, durationMs: Date.now() - started, path: `ora.ai/api/score/${oraDomain}`, body };
+  } catch (err) {
+    res = { ok: false, status: 0, durationMs: Date.now() - started, path: `ora.ai/api/score/${oraDomain}`, body: { error: String(err) } };
+  }
+  writeFileSync(join(dataDir, "ora.json"), JSON.stringify(res, null, 2));
+  manifest.push({ key: "ora", label: "Ora agent-readiness", path: `https://ora.ai/api/score/${oraDomain}`, optional: true, ok: res.ok, status: res.status, durationMs: res.durationMs });
+  console.log(`${res.ok ? "ok " : "-- "} ${String(res.status).padStart(3)}  ${res.durationMs}ms`);
+}
+
+// Cloudflare "Is it agent ready?" (isitagentready.com) — public, POST-only.
+// Third lens: protocol/well-known conformance (MCP cards, OAuth discovery,
+// ARD, agent-skills, WebMCP, agentic-commerce).
+process.stdout.write(`  ${"cloudflare".padEnd(22)} `);
+{
+  const started = Date.now();
+  let res;
+  try {
+    const r = await fetch("https://isitagentready.com/api/scan", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ url: `https://${oraDomain}` }),
+      signal: AbortSignal.timeout(180_000),
+    });
+    const body = await r.json();
+    res = { ok: r.ok, status: r.status, durationMs: Date.now() - started, path: "isitagentready.com/api/scan", body };
+  } catch (err) {
+    res = { ok: false, status: 0, durationMs: Date.now() - started, path: "isitagentready.com/api/scan", body: { error: String(err) } };
+  }
+  writeFileSync(join(dataDir, "cloudflare.json"), JSON.stringify(res, null, 2));
+  manifest.push({ key: "cloudflare", label: "Cloudflare agent-ready scan", path: "https://isitagentready.com/api/scan", optional: true, ok: res.ok, status: res.status, durationMs: res.durationMs });
+  console.log(`${res.ok ? "ok " : "-- "} ${String(res.status).padStart(3)}  ${res.durationMs}ms`);
+}
+
 writeFileSync(
   join(dataDir, "_manifest.json"),
   JSON.stringify({ generatedAt: new Date().toISOString(), baseUrl: BASE_URL, window: { start, end, days }, endpoints: manifest }, null, 2),

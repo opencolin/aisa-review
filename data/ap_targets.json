@@ -1,0 +1,826 @@
+{
+  "ok": true,
+  "status": 200,
+  "durationMs": 354,
+  "path": "/v1/api-performance/targets",
+  "body": {
+    "text_models": [
+      {
+        "id": "openai/gpt-5.4",
+        "label": "GPT-5.4",
+        "platform": "openai",
+        "cost_per_1m_input": 2.5,
+        "cost_per_1m_output": 15,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "openai/gpt-5.4"
+        }
+      },
+      {
+        "id": "openai/gpt-5.4-pro",
+        "label": "GPT-5.4 Pro",
+        "platform": "openai",
+        "cost_per_1m_input": 30,
+        "cost_per_1m_output": 180,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "openai/gpt-5.4-pro"
+        }
+      },
+      {
+        "id": "openai/gpt-5-mini",
+        "label": "GPT-5 Mini",
+        "platform": "openai",
+        "cost_per_1m_input": 0.25,
+        "cost_per_1m_output": 2,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "openai/gpt-5-mini"
+        }
+      },
+      {
+        "id": "openai/gpt-5-nano",
+        "label": "GPT-5 Nano",
+        "platform": "openai",
+        "cost_per_1m_input": 0.05,
+        "cost_per_1m_output": 0.4,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "openai/gpt-5-nano"
+        }
+      },
+      {
+        "id": "openai/gpt-4.1",
+        "label": "GPT-4.1",
+        "platform": "openai",
+        "cost_per_1m_input": 2,
+        "cost_per_1m_output": 8,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "openai/gpt-4.1"
+        }
+      },
+      {
+        "id": "anthropic/claude-opus-4.6",
+        "label": "Claude Opus 4.6",
+        "platform": "anthropic",
+        "cost_per_1m_input": 5,
+        "cost_per_1m_output": 25,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "anthropic/claude-opus-4.6"
+        }
+      },
+      {
+        "id": "anthropic/claude-sonnet-4.6",
+        "label": "Claude Sonnet 4.6",
+        "platform": "anthropic",
+        "cost_per_1m_input": 3,
+        "cost_per_1m_output": 15,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "anthropic/claude-sonnet-4.6"
+        }
+      },
+      {
+        "id": "anthropic/claude-opus-4.5",
+        "label": "Claude Opus 4.5",
+        "platform": "anthropic",
+        "cost_per_1m_input": 5,
+        "cost_per_1m_output": 25,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "anthropic/claude-opus-4.5"
+        }
+      },
+      {
+        "id": "anthropic/claude-sonnet-4.5",
+        "label": "Claude Sonnet 4.5",
+        "platform": "anthropic",
+        "cost_per_1m_input": 3,
+        "cost_per_1m_output": 15,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "anthropic/claude-sonnet-4.5"
+        }
+      },
+      {
+        "id": "anthropic/claude-haiku-4.5",
+        "label": "Claude Haiku 4.5",
+        "platform": "anthropic",
+        "cost_per_1m_input": 1,
+        "cost_per_1m_output": 5,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "anthropic/claude-haiku-4.5"
+        }
+      },
+      {
+        "id": "google/gemini-3.1-pro-preview",
+        "label": "Gemini 3.1 Pro",
+        "platform": "google",
+        "cost_per_1m_input": 2,
+        "cost_per_1m_output": 12,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "google/gemini-3.1-pro-preview"
+        }
+      },
+      {
+        "id": "google/gemini-3.1-flash-lite-preview",
+        "label": "Gemini 3.1 Flash Lite",
+        "platform": "google",
+        "cost_per_1m_input": 0.25,
+        "cost_per_1m_output": 1.5,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "google/gemini-3.1-flash-lite-preview"
+        }
+      },
+      {
+        "id": "google/gemini-3-flash-preview",
+        "label": "Gemini 3 Flash",
+        "platform": "google",
+        "cost_per_1m_input": 0.5,
+        "cost_per_1m_output": 3,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "google/gemini-3-flash-preview"
+        }
+      },
+      {
+        "id": "moonshotai/kimi-k2.5",
+        "label": "Kimi K2.5",
+        "platform": "moonshotai",
+        "cost_per_1m_input": 0.45,
+        "cost_per_1m_output": 2.2,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "moonshotai/kimi-k2.5"
+        }
+      },
+      {
+        "id": "deepseek/deepseek-v3.2",
+        "label": "DeepSeek V3.2",
+        "platform": "deepseek",
+        "cost_per_1m_input": 0.26,
+        "cost_per_1m_output": 0.38,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "deepseek/deepseek-v3.2"
+        }
+      },
+      {
+        "id": "deepseek/deepseek-chat-v3.1",
+        "label": "DeepSeek Chat V3.1",
+        "platform": "deepseek",
+        "cost_per_1m_input": 0.15,
+        "cost_per_1m_output": 0.75,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "deepseek/deepseek-chat-v3.1"
+        }
+      },
+      {
+        "id": "z-ai/glm-5",
+        "label": "GLM-5",
+        "platform": "z-ai",
+        "cost_per_1m_input": 0.72,
+        "cost_per_1m_output": 2.3,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "z-ai/glm-5"
+        }
+      },
+      {
+        "id": "z-ai/glm-5-turbo",
+        "label": "GLM-5 Turbo",
+        "platform": "z-ai",
+        "cost_per_1m_input": 0.96,
+        "cost_per_1m_output": 3.2,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "z-ai/glm-5-turbo"
+        }
+      },
+      {
+        "id": "x-ai/grok-4.20-multi-agent-beta",
+        "label": "Grok 4.20 Multi-Agent",
+        "platform": "x-ai",
+        "cost_per_1m_input": 2,
+        "cost_per_1m_output": 6,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "x-ai/grok-4.20-multi-agent-beta"
+        }
+      },
+      {
+        "id": "x-ai/grok-4.20-beta",
+        "label": "Grok 4.20",
+        "platform": "x-ai",
+        "cost_per_1m_input": 2,
+        "cost_per_1m_output": 6,
+        "target": {
+          "target_type": "text",
+          "execution_platform": "openrouter",
+          "model_id": "x-ai/grok-4.20-beta"
+        }
+      }
+    ],
+    "coding_agents": [
+      {
+        "id": "claude-code",
+        "label": "Claude Code",
+        "platform": "claude_code",
+        "cost_estimate_per_eval": 0.05,
+        "default_model_id": "global.anthropic.claude-opus-5",
+        "target": {
+          "target_type": "agent",
+          "execution_platform": "claude-code",
+          "model_id": "global.anthropic.claude-opus-5"
+        },
+        "models": [
+          {
+            "id": "global.anthropic.claude-opus-5",
+            "label": "Claude Opus 5",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "claude-code",
+              "model_id": "global.anthropic.claude-opus-5"
+            }
+          },
+          {
+            "id": "global.anthropic.claude-sonnet-5",
+            "label": "Claude Sonnet 5",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "claude-code",
+              "model_id": "global.anthropic.claude-sonnet-5"
+            }
+          },
+          {
+            "id": "global.anthropic.claude-sonnet-4-6",
+            "label": "Claude Sonnet 4.6",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "claude-code",
+              "model_id": "global.anthropic.claude-sonnet-4-6"
+            }
+          },
+          {
+            "id": "global.anthropic.claude-opus-4-6-v1",
+            "label": "Claude Opus 4.6",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "claude-code",
+              "model_id": "global.anthropic.claude-opus-4-6-v1"
+            }
+          },
+          {
+            "id": "global.anthropic.claude-opus-4-7",
+            "label": "Claude Opus 4.7",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "claude-code",
+              "model_id": "global.anthropic.claude-opus-4-7"
+            }
+          },
+          {
+            "id": "global.anthropic.claude-opus-4-8",
+            "label": "Claude Opus 4.8",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "claude-code",
+              "model_id": "global.anthropic.claude-opus-4-8"
+            }
+          },
+          {
+            "id": "global.anthropic.claude-sonnet-4-5-20250929-v1:0",
+            "label": "Claude Sonnet 4.5",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "claude-code",
+              "model_id": "global.anthropic.claude-sonnet-4-5-20250929-v1:0"
+            }
+          },
+          {
+            "id": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+            "label": "Claude Haiku 4.5",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "claude-code",
+              "model_id": "us.anthropic.claude-haiku-4-5-20251001-v1:0"
+            }
+          }
+        ]
+      },
+      {
+        "id": "codex",
+        "label": "Codex CLI",
+        "platform": "codex",
+        "cost_estimate_per_eval": 0.03,
+        "default_model_id": "gpt-5.4",
+        "target": {
+          "target_type": "agent",
+          "execution_platform": "codex",
+          "model_id": "gpt-5.4"
+        },
+        "models": [
+          {
+            "id": "gpt-5.4",
+            "label": "GPT-5.4",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "codex",
+              "model_id": "gpt-5.4"
+            }
+          },
+          {
+            "id": "gpt-5.4-mini",
+            "label": "GPT-5.4 Mini",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "codex",
+              "model_id": "gpt-5.4-mini"
+            }
+          },
+          {
+            "id": "gpt-5.5",
+            "label": "GPT-5.5",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "codex",
+              "model_id": "gpt-5.5"
+            }
+          },
+          {
+            "id": "gpt-5.6-sol",
+            "label": "GPT-5.6 Sol",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "codex",
+              "model_id": "gpt-5.6-sol"
+            }
+          },
+          {
+            "id": "gpt-5.6-terra",
+            "label": "GPT-5.6 Terra",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "codex",
+              "model_id": "gpt-5.6-terra"
+            }
+          },
+          {
+            "id": "gpt-5.6-luna",
+            "label": "GPT-5.6 Luna",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "codex",
+              "model_id": "gpt-5.6-luna"
+            }
+          },
+          {
+            "id": "azure-foundry/Kimi-K2.6",
+            "label": "Kimi K2.6",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "codex",
+              "model_id": "azure-foundry/Kimi-K2.6"
+            }
+          }
+        ]
+      },
+      {
+        "id": "cursor",
+        "label": "Cursor Agent",
+        "platform": "cursor",
+        "cost_estimate_per_eval": 0.04,
+        "default_model_id": "auto",
+        "target": {
+          "target_type": "agent",
+          "execution_platform": "cursor",
+          "model_id": "auto"
+        },
+        "models": [
+          {
+            "id": "auto",
+            "label": "Auto",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "cursor",
+              "model_id": "auto"
+            }
+          }
+        ]
+      },
+      {
+        "id": "github-copilot",
+        "label": "GitHub Copilot",
+        "platform": "github_copilot",
+        "cost_estimate_per_eval": 0.03,
+        "default_model_id": "gpt-5.4",
+        "target": {
+          "target_type": "agent",
+          "execution_platform": "github-copilot",
+          "model_id": "gpt-5.4"
+        },
+        "models": [
+          {
+            "id": "gpt-5.4",
+            "label": "GPT-5.4",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "github-copilot",
+              "model_id": "gpt-5.4"
+            }
+          },
+          {
+            "id": "gpt-5.4-mini",
+            "label": "GPT-5.4 Mini",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "github-copilot",
+              "model_id": "gpt-5.4-mini"
+            }
+          },
+          {
+            "id": "gpt-5.5",
+            "label": "GPT-5.5",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "github-copilot",
+              "model_id": "gpt-5.5"
+            }
+          }
+        ]
+      },
+      {
+        "id": "antigravity",
+        "label": "Antigravity",
+        "platform": "antigravity",
+        "cost_estimate_per_eval": 0.03,
+        "default_model_id": "gemini-3.6-flash-low",
+        "target": {
+          "target_type": "agent",
+          "execution_platform": "antigravity",
+          "model_id": "gemini-3.6-flash-low"
+        },
+        "models": [
+          {
+            "id": "gemini-3.6-flash-low",
+            "label": "Gemini 3.6 Flash (Low)",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "antigravity",
+              "model_id": "gemini-3.6-flash-low"
+            }
+          },
+          {
+            "id": "gemini-3.5-flash-low",
+            "label": "Gemini 3.5 Flash (Low)",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "antigravity",
+              "model_id": "gemini-3.5-flash-low"
+            }
+          },
+          {
+            "id": "claude-sonnet-4-6",
+            "label": "Claude Sonnet 4.6",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "antigravity",
+              "model_id": "claude-sonnet-4-6"
+            }
+          }
+        ]
+      },
+      {
+        "id": "gemini-cli",
+        "label": "Gemini CLI",
+        "platform": "gemini_cli",
+        "cost_estimate_per_eval": 0.02,
+        "default_model_id": "gemini-2.5-pro",
+        "target": {
+          "target_type": "agent",
+          "execution_platform": "gemini-cli",
+          "model_id": "gemini-2.5-pro"
+        },
+        "models": [
+          {
+            "id": "gemini-2.5-pro",
+            "label": "Gemini 2.5 Pro",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "gemini-cli",
+              "model_id": "gemini-2.5-pro"
+            }
+          }
+        ]
+      },
+      {
+        "id": "openclaw",
+        "label": "OpenClaw",
+        "platform": "openclaw",
+        "cost_estimate_per_eval": 0.03,
+        "default_model_id": "azure/gpt-5.4-mini",
+        "target": {
+          "target_type": "agent",
+          "execution_platform": "openclaw",
+          "model_id": "azure/gpt-5.4-mini"
+        },
+        "models": [
+          {
+            "id": "azure/gpt-5.4-mini",
+            "label": "GPT-5.4 Mini",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "openclaw",
+              "model_id": "azure/gpt-5.4-mini"
+            }
+          },
+          {
+            "id": "azure/gpt-5.5",
+            "label": "GPT-5.5",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "openclaw",
+              "model_id": "azure/gpt-5.5"
+            }
+          },
+          {
+            "id": "azure/gpt-5.4",
+            "label": "GPT-5.4",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "openclaw",
+              "model_id": "azure/gpt-5.4"
+            }
+          }
+        ]
+      },
+      {
+        "id": "opencode",
+        "label": "OpenCode",
+        "platform": "opencode",
+        "cost_estimate_per_eval": 0.04,
+        "default_model_id": "amazon-bedrock/global.anthropic.claude-sonnet-5",
+        "target": {
+          "target_type": "agent",
+          "execution_platform": "opencode",
+          "model_id": "amazon-bedrock/global.anthropic.claude-sonnet-5"
+        },
+        "models": [
+          {
+            "id": "amazon-bedrock/global.anthropic.claude-sonnet-5",
+            "label": "Claude Sonnet 5",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "opencode",
+              "model_id": "amazon-bedrock/global.anthropic.claude-sonnet-5"
+            }
+          },
+          {
+            "id": "amazon-bedrock/anthropic.claude-sonnet-4-6",
+            "label": "Claude Sonnet 4.6",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "opencode",
+              "model_id": "amazon-bedrock/anthropic.claude-sonnet-4-6"
+            }
+          },
+          {
+            "id": "azure/gpt-5.4-mini",
+            "label": "GPT-5.4 Mini",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "opencode",
+              "model_id": "azure/gpt-5.4-mini"
+            }
+          },
+          {
+            "id": "azure/gpt-5.5",
+            "label": "GPT-5.5",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "opencode",
+              "model_id": "azure/gpt-5.5"
+            }
+          },
+          {
+            "id": "azure-foundry/Kimi-K2.6",
+            "label": "Kimi K2.6",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "opencode",
+              "model_id": "azure-foundry/Kimi-K2.6"
+            }
+          }
+        ]
+      },
+      {
+        "id": "hermes",
+        "label": "Hermes",
+        "platform": "hermes",
+        "cost_estimate_per_eval": 0.04,
+        "default_model_id": "us.anthropic.claude-sonnet-5",
+        "target": {
+          "target_type": "agent",
+          "execution_platform": "hermes",
+          "model_id": "us.anthropic.claude-sonnet-5"
+        },
+        "models": [
+          {
+            "id": "us.anthropic.claude-sonnet-5",
+            "label": "Claude Sonnet 5",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "hermes",
+              "model_id": "us.anthropic.claude-sonnet-5"
+            }
+          },
+          {
+            "id": "us.anthropic.claude-sonnet-4-6",
+            "label": "Claude Sonnet 4.6",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "hermes",
+              "model_id": "us.anthropic.claude-sonnet-4-6"
+            }
+          },
+          {
+            "id": "gpt-5.5",
+            "label": "GPT-5.5",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "hermes",
+              "model_id": "gpt-5.5"
+            }
+          }
+        ]
+      },
+      {
+        "id": "pi",
+        "label": "Pi",
+        "platform": "pi",
+        "cost_estimate_per_eval": 0.03,
+        "default_model_id": "global.anthropic.claude-sonnet-5",
+        "target": {
+          "target_type": "agent",
+          "execution_platform": "pi",
+          "model_id": "global.anthropic.claude-sonnet-5"
+        },
+        "models": [
+          {
+            "id": "global.anthropic.claude-sonnet-5",
+            "label": "Claude Sonnet 5",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "pi",
+              "model_id": "global.anthropic.claude-sonnet-5"
+            }
+          },
+          {
+            "id": "global.anthropic.claude-sonnet-4-6",
+            "label": "Claude Sonnet 4.6",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "pi",
+              "model_id": "global.anthropic.claude-sonnet-4-6"
+            }
+          },
+          {
+            "id": "gpt-5.5",
+            "label": "GPT-5.5",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "pi",
+              "model_id": "gpt-5.5"
+            }
+          },
+          {
+            "id": "azure-foundry/Kimi-K2.6",
+            "label": "Kimi K2.6",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "pi",
+              "model_id": "azure-foundry/Kimi-K2.6"
+            }
+          }
+        ]
+      },
+      {
+        "id": "kilo",
+        "label": "Kilo Code",
+        "platform": "kilo",
+        "cost_estimate_per_eval": 0.03,
+        "default_model_id": "amazon-bedrock/global.anthropic.claude-sonnet-5",
+        "target": {
+          "target_type": "agent",
+          "execution_platform": "kilo",
+          "model_id": "amazon-bedrock/global.anthropic.claude-sonnet-5"
+        },
+        "models": [
+          {
+            "id": "amazon-bedrock/global.anthropic.claude-sonnet-5",
+            "label": "Claude Sonnet 5",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "kilo",
+              "model_id": "amazon-bedrock/global.anthropic.claude-sonnet-5"
+            }
+          },
+          {
+            "id": "amazon-bedrock/global.anthropic.claude-sonnet-4-6",
+            "label": "Claude Sonnet 4.6",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "kilo",
+              "model_id": "amazon-bedrock/global.anthropic.claude-sonnet-4-6"
+            }
+          },
+          {
+            "id": "azure/gpt-5.4-mini",
+            "label": "GPT-5.4 Mini",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "kilo",
+              "model_id": "azure/gpt-5.4-mini"
+            }
+          },
+          {
+            "id": "azure/gpt-5.5",
+            "label": "GPT-5.5",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "kilo",
+              "model_id": "azure/gpt-5.5"
+            }
+          },
+          {
+            "id": "azure-foundry/Kimi-K2.6",
+            "label": "Kimi K2.6",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "kilo",
+              "model_id": "azure-foundry/Kimi-K2.6"
+            }
+          }
+        ]
+      },
+      {
+        "id": "grok",
+        "label": "Grok",
+        "platform": "grok",
+        "cost_estimate_per_eval": 0.04,
+        "default_model_id": "grok-4.5",
+        "target": {
+          "target_type": "agent",
+          "execution_platform": "grok",
+          "model_id": "grok-4.5"
+        },
+        "models": [
+          {
+            "id": "grok-4.5",
+            "label": "Grok 4.5",
+            "target": {
+              "target_type": "agent",
+              "execution_platform": "grok",
+              "model_id": "grok-4.5"
+            }
+          }
+        ]
+      }
+    ],
+    "frequencies": [
+      "daily",
+      "every_other_day",
+      "weekly",
+      "manual"
+    ],
+    "meta": {
+      "text_model_count": 20,
+      "coding_agent_count": 12
+    }
+  }
+}

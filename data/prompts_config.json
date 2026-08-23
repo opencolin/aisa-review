@@ -1,0 +1,437 @@
+{
+  "ok": true,
+  "status": 200,
+  "durationMs": 787,
+  "path": "/v1/prompts/config",
+  "body": {
+    "topics": [
+      {
+        "id": "990d226e-b2e6-4ddf-a86b-fda83b106d27",
+        "name": "AI Agent API Gateway",
+        "created_at": "2026-07-26T08:53:15.510864+00:00",
+        "updated_at": "2026-07-26T08:53:15.510864+00:00"
+      },
+      {
+        "id": "3e11af1e-1f96-4d74-a4e8-c7bf05371c68",
+        "name": "Agent Payment Infrastructure",
+        "created_at": "2026-07-26T08:53:15.510864+00:00",
+        "updated_at": "2026-07-26T08:53:15.510864+00:00"
+      },
+      {
+        "id": "3894007e-bf0e-42d2-9921-8718fde2fc83",
+        "name": "AI Agent Marketplace Tools",
+        "created_at": "2026-07-26T08:53:15.510864+00:00",
+        "updated_at": "2026-07-26T08:53:15.510864+00:00"
+      }
+    ],
+    "platforms": [
+      {
+        "id": "250cbdd1-cf5d-445d-aff2-27880f60d01a",
+        "name": "Claude Code",
+        "model": "claude-code-sdk",
+        "credits_per_prompt": 5
+      },
+      {
+        "id": "4966b52c-7634-4877-9c0b-fd5a67880d58",
+        "name": "Codex",
+        "model": "openai/codex-cli",
+        "credits_per_prompt": 5
+      },
+      {
+        "id": "d08c7ac4-f233-4be5-8e52-ec1e616a4b8c",
+        "name": "Cursor",
+        "model": "sonnet-4.6",
+        "credits_per_prompt": 5
+      },
+      {
+        "id": "a3267c66-254c-46ed-9366-1094e98c829d",
+        "name": "GitHub Copilot",
+        "model": "openai/gpt-5.4",
+        "credits_per_prompt": 5
+      },
+      {
+        "id": "eff3a0fe-40af-4d1a-903f-0ff54ce70355",
+        "name": "Gemini CLI",
+        "model": "gemini-2.5-pro",
+        "credits_per_prompt": 5
+      },
+      {
+        "id": "f624dae7-92de-4330-a533-84fa977c66c9",
+        "name": "OpenClaw",
+        "model": "openai/gpt-5.4",
+        "credits_per_prompt": 5
+      },
+      {
+        "id": "edfaa71a-f763-43d0-8095-831bc4e2363a",
+        "name": "OpenCode",
+        "model": "opencode/opencode-cli",
+        "credits_per_prompt": 5
+      },
+      {
+        "id": "5a3a14a2-4288-4e9e-9baa-78816e00e2ef",
+        "name": "Hermes",
+        "model": "hermes/hermes-cli",
+        "credits_per_prompt": 5
+      },
+      {
+        "id": "bb3846df-90a8-4fb3-81b9-4868de342bf6",
+        "name": "Pi",
+        "model": "pi/pi-cli",
+        "credits_per_prompt": 5
+      },
+      {
+        "id": "c06ff40e-39a2-4724-a66c-0384fa869bc7",
+        "name": "Kilo",
+        "model": "kilo/kilo-cli",
+        "credits_per_prompt": 5
+      },
+      {
+        "id": "c0900b3f-a2b4-4668-8cd8-f734a80c7bb2",
+        "name": "ChatGPT",
+        "model": "openai/gpt-5.4",
+        "credits_per_prompt": 1
+      },
+      {
+        "id": "772a0718-7ff2-4329-b754-0d691f970610",
+        "name": "Claude",
+        "model": "anthropic/claude-sonnet-4.6",
+        "credits_per_prompt": 1
+      },
+      {
+        "id": "8ad3a83d-867a-4858-8d56-c1d4cb055473",
+        "name": "Copilot",
+        "model": "openai/gpt-4o",
+        "credits_per_prompt": 1
+      },
+      {
+        "id": "7d5177d2-039d-441b-ac4b-aacad2e80eb8",
+        "name": "Google AI Overviews",
+        "model": "google/gemini-3.1-pro-preview",
+        "credits_per_prompt": 1
+      },
+      {
+        "id": "63ec5e76-c454-427d-b110-162c501ddfde",
+        "name": "Perplexity",
+        "model": "perplexity/sonar-pro",
+        "credits_per_prompt": 1
+      },
+      {
+        "id": "6fe096c7-c8c4-4e16-ae13-04ac275db9c3",
+        "name": "Gemini Search",
+        "model": "brightdata/gemini-search",
+        "credits_per_prompt": 1
+      },
+      {
+        "id": "b2321e1d-12e5-4569-86cf-ddaf3c526d5c",
+        "name": "Google AI Mode",
+        "model": "brightdata/google-ai-mode",
+        "credits_per_prompt": 1
+      },
+      {
+        "id": "0faba5f1-13cc-4db5-a3b2-886c15cca11c",
+        "name": "Grok",
+        "model": "grok-4.5",
+        "credits_per_prompt": 1
+      },
+      {
+        "id": "23b9a879-0f4c-408a-bc32-111141f6e766",
+        "name": "Antigravity",
+        "model": "gemini-3.6-flash-high",
+        "credits_per_prompt": 1
+      }
+    ],
+    "languages": [
+      {
+        "id": "5499e2fe-710a-4567-943b-b211b55e06eb",
+        "name": "Chinese (Simplified)",
+        "code": "zh-CN"
+      },
+      {
+        "id": "07264c5a-2c9a-494c-bd01-0c96f23f6f03",
+        "name": "English",
+        "code": "en-US"
+      },
+      {
+        "id": "c6ef04a4-853d-440b-8cf1-49bca5540ebc",
+        "name": "French",
+        "code": "fr-FR"
+      },
+      {
+        "id": "1476d2b6-4435-4cd5-bdab-bb6c824256dd",
+        "name": "German",
+        "code": "de-DE"
+      },
+      {
+        "id": "154b91f0-9e39-4b6d-9213-366055937113",
+        "name": "Japanese",
+        "code": "ja-JP"
+      },
+      {
+        "id": "bb3a9be5-81ba-452f-8f69-38ca41025d04",
+        "name": "Korean",
+        "code": "ko-KR"
+      },
+      {
+        "id": "a672967d-cd3b-4007-af9b-b9ed9e04d5ee",
+        "name": "Portuguese",
+        "code": "pt-BR"
+      },
+      {
+        "id": "3d2d05c6-67a4-44d4-b602-d1a6bf89c351",
+        "name": "Spanish",
+        "code": "es-ES"
+      }
+    ],
+    "regions": [
+      {
+        "id": "2f985ea0-ac23-49e3-af78-004e5892747d",
+        "country": "Argentina",
+        "country_code": "AR"
+      },
+      {
+        "id": "28a411ff-1277-4cf6-8911-6bfcd5c5660b",
+        "country": "Australia",
+        "country_code": "AU"
+      },
+      {
+        "id": "2395b5f8-e55e-4b49-823d-1f594e71899e",
+        "country": "Austria",
+        "country_code": "AT"
+      },
+      {
+        "id": "69fdfa6f-f8d9-4115-afc0-cbe9c74d6f27",
+        "country": "Bangladesh",
+        "country_code": "BD"
+      },
+      {
+        "id": "83fb18ee-be01-45f4-8611-a8d2d58f600c",
+        "country": "Belgium",
+        "country_code": "BE"
+      },
+      {
+        "id": "cc84d468-0a88-41b6-a04a-34dc6047b10f",
+        "country": "Brazil",
+        "country_code": "BR"
+      },
+      {
+        "id": "3b973f4f-66b4-4a51-afbd-261bee1e1ab5",
+        "country": "Canada",
+        "country_code": "CA"
+      },
+      {
+        "id": "dc059508-3a45-4c47-9ad7-8c9bde76737c",
+        "country": "Chile",
+        "country_code": "CL"
+      },
+      {
+        "id": "13e675ad-2fd6-41cc-9f56-96b5d9f718ae",
+        "country": "China",
+        "country_code": "CN"
+      },
+      {
+        "id": "3c32f0f9-67b9-45a9-88bf-5ad05e613d73",
+        "country": "Colombia",
+        "country_code": "CO"
+      },
+      {
+        "id": "4c9a41cc-a441-45ff-b19c-3098111433f3",
+        "country": "Czech Republic",
+        "country_code": "CZ"
+      },
+      {
+        "id": "1ff75117-88bd-443e-97fb-2e6232297fce",
+        "country": "Denmark",
+        "country_code": "DK"
+      },
+      {
+        "id": "006c383d-112c-465a-b053-8200855a19d0",
+        "country": "Egypt",
+        "country_code": "EG"
+      },
+      {
+        "id": "7cffbbd6-7758-4923-8d52-bc0d4607905c",
+        "country": "Finland",
+        "country_code": "FI"
+      },
+      {
+        "id": "873751e3-f252-4c16-ba75-42263b68690c",
+        "country": "France",
+        "country_code": "FR"
+      },
+      {
+        "id": "fac022f1-bbaa-45ed-be62-f7cf15913987",
+        "country": "Germany",
+        "country_code": "DE"
+      },
+      {
+        "id": "85da5043-5bee-4a2d-bf42-4784ac9d0a41",
+        "country": "Hong Kong",
+        "country_code": "HK"
+      },
+      {
+        "id": "3a2d0535-bf7c-42b3-9070-945f7c4291e4",
+        "country": "India",
+        "country_code": "IN"
+      },
+      {
+        "id": "4a20dce3-aef5-4b45-9443-d72bef3fddeb",
+        "country": "Indonesia",
+        "country_code": "ID"
+      },
+      {
+        "id": "38991018-cd4b-4122-a950-fe100bc51e0c",
+        "country": "Ireland",
+        "country_code": "IE"
+      },
+      {
+        "id": "4618b8a2-d7b2-478a-bec0-e5f99295d750",
+        "country": "Israel",
+        "country_code": "IL"
+      },
+      {
+        "id": "40d3723c-d8fa-43b8-8fef-ba0f65f09d8e",
+        "country": "Italy",
+        "country_code": "IT"
+      },
+      {
+        "id": "1fd478bd-4c29-4baf-bdbc-e96d6d7a42eb",
+        "country": "Japan",
+        "country_code": "JP"
+      },
+      {
+        "id": "e2f78aed-1d2d-4c9b-b86f-3f4137e45c04",
+        "country": "Malaysia",
+        "country_code": "MY"
+      },
+      {
+        "id": "bbe07bed-fbb5-4fca-8c5d-410e241c67a6",
+        "country": "Mexico",
+        "country_code": "MX"
+      },
+      {
+        "id": "6af8a9dc-55a7-49b1-b3a4-dc94db321059",
+        "country": "Netherlands",
+        "country_code": "NL"
+      },
+      {
+        "id": "dca44e4a-4aef-4999-ab78-1921cdd5f36e",
+        "country": "New Zealand",
+        "country_code": "NZ"
+      },
+      {
+        "id": "ae1554a1-30ef-4a93-b292-dcb9dacb89c5",
+        "country": "Nigeria",
+        "country_code": "NG"
+      },
+      {
+        "id": "e02c29ea-941f-4aa8-829d-6df6210cfdfe",
+        "country": "Norway",
+        "country_code": "NO"
+      },
+      {
+        "id": "1d30062f-2264-4c6c-8337-9920d2584ad7",
+        "country": "Pakistan",
+        "country_code": "PK"
+      },
+      {
+        "id": "2338cc82-bcd7-4325-b2e4-795b18895d98",
+        "country": "Peru",
+        "country_code": "PE"
+      },
+      {
+        "id": "0dd9bab6-b9a3-4de0-9be2-42ed02dc7638",
+        "country": "Philippines",
+        "country_code": "PH"
+      },
+      {
+        "id": "b44ac2b2-4b23-4399-9493-6220a9018f8f",
+        "country": "Poland",
+        "country_code": "PL"
+      },
+      {
+        "id": "613f0f8b-e88e-411c-9d08-8d678ae98f8f",
+        "country": "Portugal",
+        "country_code": "PT"
+      },
+      {
+        "id": "dfecc9ae-eef0-402d-96ba-1c25bc94c133",
+        "country": "Russia",
+        "country_code": "RU"
+      },
+      {
+        "id": "11d83688-2ba1-4d3c-9133-0025762c283b",
+        "country": "Saudi Arabia",
+        "country_code": "SA"
+      },
+      {
+        "id": "88f7dd16-086a-41bb-81ed-40eecd4299c1",
+        "country": "Singapore",
+        "country_code": "SG"
+      },
+      {
+        "id": "98a4d9fb-009f-435b-b40b-c6c5e8bdca33",
+        "country": "South Africa",
+        "country_code": "ZA"
+      },
+      {
+        "id": "9528e079-59cf-414d-8785-d1fa6b7da647",
+        "country": "South Korea",
+        "country_code": "KR"
+      },
+      {
+        "id": "67d5e69e-0c26-4015-a187-10a06b699056",
+        "country": "Spain",
+        "country_code": "ES"
+      },
+      {
+        "id": "86f2af05-d827-4df6-a896-82b2424a0361",
+        "country": "Sweden",
+        "country_code": "SE"
+      },
+      {
+        "id": "3196e5c8-60a5-4a72-9bd2-fc9f95d58711",
+        "country": "Switzerland",
+        "country_code": "CH"
+      },
+      {
+        "id": "7c721955-6427-4ec6-baa5-bf7c1d9a75b7",
+        "country": "Taiwan",
+        "country_code": "TW"
+      },
+      {
+        "id": "b07c94a3-ebc2-4803-9349-b4d507c84c2c",
+        "country": "Thailand",
+        "country_code": "TH"
+      },
+      {
+        "id": "3f1a29f0-cf95-4a28-ba78-a3313abef182",
+        "country": "Turkey",
+        "country_code": "TR"
+      },
+      {
+        "id": "0f472eca-cf21-4608-9953-aee2ffbd6ecd",
+        "country": "United Arab Emirates",
+        "country_code": "AE"
+      },
+      {
+        "id": "c9c22dc7-fdfa-4c4e-ab30-914cb8e729fe",
+        "country": "United Kingdom",
+        "country_code": "GB"
+      },
+      {
+        "id": "42947df5-a29a-44d6-ab0c-20a687ff3935",
+        "country": "United States",
+        "country_code": "US"
+      },
+      {
+        "id": "8c07e78d-1779-4551-a287-406be737a9c2",
+        "country": "Vietnam",
+        "country_code": "VN"
+      }
+    ],
+    "defaults": {
+      "language_id": "07264c5a-2c9a-494c-bd01-0c96f23f6f03",
+      "region_id": "42947df5-a29a-44d6-ab0c-20a687ff3935"
+    }
+  }
+}

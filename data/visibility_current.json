@@ -1,0 +1,25 @@
+{
+  "ok": true,
+  "status": 200,
+  "durationMs": 946,
+  "path": "/v1/visibility/current?start_date=2026-07-24&end_date=2026-08-23",
+  "body": {
+    "company": {
+      "name": "AIsa",
+      "domain": "aisa.one",
+      "logo_url": null,
+      "relationship": "primary"
+    },
+    "visibility_score": 0.0012,
+    "visibility_score_rank": 7,
+    "share_of_voice": 0.0018,
+    "share_of_voice_rank": 7,
+    "average_position": 1,
+    "average_position_rank": 1,
+    "date": "2026-08-22",
+    "start_date": "2026-07-24",
+    "end_date": "2026-08-23",
+    "active_prompts_only": true,
+    "has_data": true
+  }
+}

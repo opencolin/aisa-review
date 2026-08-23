@@ -1,0 +1,2349 @@
+{
+  "ok": true,
+  "status": 200,
+  "durationMs": 1272,
+  "path": "/v1/api-performance/actions?limit=100",
+  "body": {
+    "data": [
+      {
+        "id": "44a9b933-90a0-43c7-b457-1fdcd29548c6",
+        "source_id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+        "action_type": "high_traffic_working_url",
+        "status": "open",
+        "priority": "high",
+        "confidence": 0.95,
+        "effort": "medium",
+        "title": "Optimize high-traffic agent page: https://aisa.one/docs/guides/authentication",
+        "description": "Agents frequently read this working page. Validate that it parses cleanly, then add direct answers, FAQs, examples, or next-step links to reduce journey steps.",
+        "primary_url": "https://aisa.one/docs/guides/authentication",
+        "affected_urls": [
+          "https://aisa.one/docs/guides/authentication"
+        ],
+        "evidence": {
+          "models": [
+            "agent:claude-code:global.anthropic.claude-opus-5"
+          ],
+          "source": "api_endpoint_eval_runs.tool_calls",
+          "run_ids": [
+            "14a97395-fa62-4bfa-a0b6-ca19f54711be",
+            "157a1ad6-7aa9-4a65-bc9d-9c1d557afbc2",
+            "15dc8fa7-043e-4920-b056-254155a539f2",
+            "2b539092-21b0-4e1c-bd78-3bf613a84644",
+            "46f6a67c-88f6-4170-bd5f-8fa9c25f95dc",
+            "56301c35-6a71-44e2-9b6c-b89508b3e766",
+            "5cefb75f-e980-4c02-8dfd-c14fc0093f24",
+            "605d167e-260c-4f93-838a-76649870f0ad",
+            "7203363f-1cc3-4993-a233-85f0d8990739",
+            "85edeccd-a4f8-4ae2-b553-e7be9ec05791",
+            "9b02f789-ccc9-44fa-b9ba-c293131ed0e6",
+            "a4e9e3e6-5338-45bf-bdb3-124ffeab003e",
+            "af7e97f9-9483-4114-81c4-3617ccc533dd",
+            "b1ca1a54-9b9c-45eb-af3e-a3a6b5ff3905",
+            "bfab0b72-e6b3-4167-b2b8-e885248815a4",
+            "d0ff7167-07f2-4d9a-bf49-ad9b493ce7ad",
+            "e8ca5e16-aa1f-47ee-bd40-20ad33b87c18",
+            "f929fd98-5994-432c-b38e-d980e0b085de"
+          ],
+          "endpoints": [
+            {
+              "count": 3,
+              "endpoint": "POST /v1/embeddings"
+            },
+            {
+              "count": 3,
+              "endpoint": "POST /v1/rerank"
+            },
+            {
+              "count": 2,
+              "endpoint": "POST /apis/v1/exa/answer"
+            },
+            {
+              "count": 2,
+              "endpoint": "POST /v1/messages"
+            },
+            {
+              "count": 1,
+              "endpoint": "POST /v1beta/models/{model}:generateContent"
+            },
+            {
+              "count": 1,
+              "endpoint": "POST /apis/v1/exa/agent/runs"
+            },
+            {
+              "count": 1,
+              "endpoint": "POST /v1/chat/completions"
+            },
+            {
+              "count": 1,
+              "endpoint": "GET /apis/v1/youtube/search"
+            },
+            {
+              "count": 1,
+              "endpoint": "POST /v1/images/edits"
+            },
+            {
+              "count": 1,
+              "endpoint": "GET /apis/v1/polymarket/events"
+            }
+          ],
+          "sample_runs": [
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "85edeccd-a4f8-4ae2-b553-e7be9ec05791",
+              "success": true,
+              "endpoint": {
+                "path": "/apis/v1/polymarket/events",
+                "method": "GET"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "bfab0b72-e6b3-4167-b2b8-e885248815a4",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/rerank",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "5cefb75f-e980-4c02-8dfd-c14fc0093f24",
+              "success": true,
+              "endpoint": {
+                "path": "/apis/v1/scholar/search/scholar",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "a4e9e3e6-5338-45bf-bdb3-124ffeab003e",
+              "success": true,
+              "endpoint": {
+                "path": "/apis/v1/twitter/user/info",
+                "method": "GET"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "157a1ad6-7aa9-4a65-bc9d-9c1d557afbc2",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/embeddings",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "b1ca1a54-9b9c-45eb-af3e-a3a6b5ff3905",
+              "success": true,
+              "endpoint": {
+                "path": "/apis/v1/youtube/search",
+                "method": "GET"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "e8ca5e16-aa1f-47ee-bd40-20ad33b87c18",
+              "success": true,
+              "endpoint": {
+                "path": "/apis/v1/exa/answer",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "605d167e-260c-4f93-838a-76649870f0ad",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/images/edits",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "15dc8fa7-043e-4920-b056-254155a539f2",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/messages",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "d0ff7167-07f2-4d9a-bf49-ad9b493ce7ad",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/rerank",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            }
+          ],
+          "visit_count": 18,
+          "last_seen_at": "2026-08-14T08:34:46.471916+00:00",
+          "status_codes": {},
+          "failed_visits": 0,
+          "failure_kinds": {},
+          "first_seen_at": "2026-08-12T12:41:33.02217+00:00",
+          "revisit_count": 0,
+          "failed_run_ids": [],
+          "last_url_check": {
+            "ok": true,
+            "url": "https://aisa.one/docs/guides/authentication",
+            "error": null,
+            "robots": null,
+            "sitemap": null,
+            "parsable": true,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/guides/authentication",
+            "checked_at": "2026-08-14T08:57:59.151358+00:00",
+            "redirected": false,
+            "sample_text": "Authentication - AIsa \n Documentation Index\n Fetch the complete documentation index at: /docs/llms.txt \n Use this file to discover all available pages before exploring further.\n Skip to main content \n AIsa home page English \n Search...\n ⌘ K \n Get Started \n Get Started \n Search... \n Navigation \n AIsa Documentation \n Authentication\n Guides \n API Reference \n Agent Skills \n AIsa Documentation \n Welcome to AIsa \n Getting Started with AIsa - Unified LLM API for AI Agents \n Agent Quickstart - Connect AIsa in Any AI Agent \n AIsa LLM Model Catalog - API Endpoints, Capabilities, Context Windows \n Model ",
+            "status_code": 200,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 7300
+          },
+          "error_occurrences": 0,
+          "initial_url_check": {
+            "ok": true,
+            "url": "https://aisa.one/docs/guides/authentication",
+            "error": null,
+            "robots": null,
+            "sitemap": null,
+            "parsable": true,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/guides/authentication",
+            "checked_at": "2026-08-14T08:57:59.151358+00:00",
+            "redirected": false,
+            "sample_text": "Authentication - AIsa \n Documentation Index\n Fetch the complete documentation index at: /docs/llms.txt \n Use this file to discover all available pages before exploring further.\n Skip to main content \n AIsa home page English \n Search...\n ⌘ K \n Get Started \n Get Started \n Search... \n Navigation \n AIsa Documentation \n Authentication\n Guides \n API Reference \n Agent Skills \n AIsa Documentation \n Welcome to AIsa \n Getting Started with AIsa - Unified LLM API for AI Agents \n Agent Quickstart - Connect AIsa in Any AI Agent \n AIsa LLM Model Catalog - API Endpoints, Capabilities, Context Windows \n Model ",
+            "status_code": 200,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 7300
+          },
+          "successful_visits": 18,
+          "total_source_runs": 32,
+          "dominant_failure_kind": null
+        },
+        "recommendation": {
+          "steps": [
+            {
+              "key": "check_llm_parsability",
+              "label": "Confirm the page is LLM parsable with readable headings, examples, and code snippets."
+            },
+            {
+              "key": "understanding_test",
+              "label": "Test whether AI answers intended questions correctly after reading this page."
+            },
+            {
+              "key": "add_faq_and_shortcuts",
+              "label": "Add FAQ, canonical next links, and concise examples so agents get the needed information faster."
+            }
+          ],
+          "summary": "Use this successful page to shorten future agent journeys.",
+          "verification": "Run URL verification and compare average agent steps after the next eval batch."
+        },
+        "impact": {
+          "failed_runs": 0,
+          "visit_count": 18,
+          "affected_runs": 18,
+          "revisit_count": 0,
+          "affected_models": 1,
+          "error_occurrences": 0,
+          "affected_endpoints": 12,
+          "failed_visit_count": 0
+        },
+        "source": "api_eval_runs",
+        "fingerprint": "501ef85cbcd177f70e7cc8d160dc4a272e71cfa48f66f6c52545f862b432f003",
+        "owner_user_id": null,
+        "ignored_reason": null,
+        "first_seen_at": "2026-08-12T12:41:33.02217+00:00",
+        "last_seen_at": "2026-08-14T08:34:46.471916+00:00",
+        "resolved_at": null,
+        "verified_at": null,
+        "created_at": "2026-08-12T12:42:58.97118+00:00",
+        "updated_at": "2026-08-14T08:58:02.207441+00:00"
+      },
+      {
+        "id": "0bc56da8-f1c3-4a00-a1da-cd3571b71551",
+        "source_id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+        "action_type": "high_traffic_working_url",
+        "status": "open",
+        "priority": "high",
+        "confidence": 0.95,
+        "effort": "medium",
+        "title": "Optimize high-traffic agent page: https://aisa.one/docs/guides",
+        "description": "Agents frequently read this working page. Validate that it parses cleanly, then add direct answers, FAQs, examples, or next-step links to reduce journey steps.",
+        "primary_url": "https://aisa.one/docs/guides",
+        "affected_urls": [
+          "https://aisa.one/docs/guides"
+        ],
+        "evidence": {
+          "models": [
+            "agent:claude-code:global.anthropic.claude-opus-5"
+          ],
+          "source": "api_endpoint_eval_runs.tool_calls",
+          "run_ids": [
+            "0007fb55-5c31-49fe-a4d4-677a600a7ad0",
+            "14a97395-fa62-4bfa-a0b6-ca19f54711be",
+            "157a1ad6-7aa9-4a65-bc9d-9c1d557afbc2",
+            "15dc8fa7-043e-4920-b056-254155a539f2",
+            "2b539092-21b0-4e1c-bd78-3bf613a84644",
+            "35a9c9d4-8e05-4b41-a292-2cce764ad03c",
+            "46f6a67c-88f6-4170-bd5f-8fa9c25f95dc",
+            "4eceb09b-4bba-4138-b843-0e8d25820d6a",
+            "56301c35-6a71-44e2-9b6c-b89508b3e766",
+            "5cefb75f-e980-4c02-8dfd-c14fc0093f24",
+            "605d167e-260c-4f93-838a-76649870f0ad",
+            "7203363f-1cc3-4993-a233-85f0d8990739",
+            "723548ea-ed87-44bf-8833-0cbe792feabe",
+            "85edeccd-a4f8-4ae2-b553-e7be9ec05791",
+            "90e22914-92af-4368-ad44-daa50ef5f315",
+            "963ff333-998b-44c6-afc2-baf290ebd5c3",
+            "9b02f789-ccc9-44fa-b9ba-c293131ed0e6",
+            "a0ed09da-11c5-4c49-a5b5-5d9fb3283f80",
+            "a4e9e3e6-5338-45bf-bdb3-124ffeab003e",
+            "a86bde42-0286-46b8-b3bc-c56dd304acdc",
+            "af7e97f9-9483-4114-81c4-3617ccc533dd",
+            "b1ca1a54-9b9c-45eb-af3e-a3a6b5ff3905",
+            "bcaec88a-e881-470d-a7b0-f2234a2d2d8e",
+            "bfab0b72-e6b3-4167-b2b8-e885248815a4",
+            "c69e8a6c-3cf1-4c74-a422-cdc7d9feb6df",
+            "d0ff7167-07f2-4d9a-bf49-ad9b493ce7ad",
+            "d1728fe7-09f6-44c3-899d-c1290df3d8b7",
+            "d4029053-cfdf-4639-b4fa-4f80154498b4",
+            "e8ca5e16-aa1f-47ee-bd40-20ad33b87c18",
+            "ef3812b5-13a6-4cbb-bdb7-585d1cd84718",
+            "f929fd98-5994-432c-b38e-d980e0b085de"
+          ],
+          "endpoints": [
+            {
+              "count": 4,
+              "endpoint": "POST /v1/embeddings"
+            },
+            {
+              "count": 3,
+              "endpoint": "POST /v1/images/edits"
+            },
+            {
+              "count": 3,
+              "endpoint": "POST /v1beta/models/{model}:generateContent"
+            },
+            {
+              "count": 3,
+              "endpoint": "POST /v1/chat/completions"
+            },
+            {
+              "count": 3,
+              "endpoint": "POST /v1/messages"
+            },
+            {
+              "count": 3,
+              "endpoint": "POST /v1/rerank"
+            },
+            {
+              "count": 3,
+              "endpoint": "POST /v1/images/generations"
+            },
+            {
+              "count": 2,
+              "endpoint": "POST /apis/v1/exa/agent/runs"
+            },
+            {
+              "count": 2,
+              "endpoint": "POST /apis/v1/exa/answer"
+            },
+            {
+              "count": 2,
+              "endpoint": "GET /apis/v1/youtube/search"
+            }
+          ],
+          "sample_runs": [
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "a86bde42-0286-46b8-b3bc-c56dd304acdc",
+              "success": true,
+              "endpoint": {
+                "path": "/v1beta/models/{model}:generateContent",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "4eceb09b-4bba-4138-b843-0e8d25820d6a",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/images/edits",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "d4029053-cfdf-4639-b4fa-4f80154498b4",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/images/generations",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "85edeccd-a4f8-4ae2-b553-e7be9ec05791",
+              "success": true,
+              "endpoint": {
+                "path": "/apis/v1/polymarket/events",
+                "method": "GET"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "963ff333-998b-44c6-afc2-baf290ebd5c3",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/chat/completions",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "c69e8a6c-3cf1-4c74-a422-cdc7d9feb6df",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/messages",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "bfab0b72-e6b3-4167-b2b8-e885248815a4",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/rerank",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "5cefb75f-e980-4c02-8dfd-c14fc0093f24",
+              "success": true,
+              "endpoint": {
+                "path": "/apis/v1/scholar/search/scholar",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "a4e9e3e6-5338-45bf-bdb3-124ffeab003e",
+              "success": true,
+              "endpoint": {
+                "path": "/apis/v1/twitter/user/info",
+                "method": "GET"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "157a1ad6-7aa9-4a65-bc9d-9c1d557afbc2",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/embeddings",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            }
+          ],
+          "visit_count": 31,
+          "last_seen_at": "2026-08-14T08:57:49.435953+00:00",
+          "status_codes": {},
+          "failed_visits": 0,
+          "failure_kinds": {},
+          "first_seen_at": "2026-08-12T12:40:44.123479+00:00",
+          "revisit_count": 0,
+          "failed_run_ids": [],
+          "last_url_check": {
+            "ok": true,
+            "url": "https://aisa.one/docs/guides",
+            "error": null,
+            "robots": null,
+            "sitemap": null,
+            "parsable": true,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/guides",
+            "checked_at": "2026-08-14T08:57:59.148769+00:00",
+            "redirected": false,
+            "sample_text": "Welcome to AIsa - AIsa \n Documentation Index\n Fetch the complete documentation index at: /docs/llms.txt \n Use this file to discover all available pages before exploring further.\n Skip to main content \n AIsa home page English \n Search...\n ⌘ K \n Get Started \n Get Started \n Search... \n Navigation \n AIsa Documentation \n Welcome to AIsa\n Guides \n API Reference \n Agent Skills \n AIsa Documentation \n Welcome to AIsa \n Getting Started with AIsa - Unified LLM API for AI Agents \n Agent Quickstart - Connect AIsa in Any AI Agent \n AIsa LLM Model Catalog - API Endpoints, Capabilities, Context Windows \n Mode",
+            "status_code": 200,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 5396
+          },
+          "error_occurrences": 0,
+          "initial_url_check": {
+            "ok": true,
+            "url": "https://aisa.one/docs/guides",
+            "error": null,
+            "robots": null,
+            "sitemap": null,
+            "parsable": true,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/guides",
+            "checked_at": "2026-08-14T08:57:59.148769+00:00",
+            "redirected": false,
+            "sample_text": "Welcome to AIsa - AIsa \n Documentation Index\n Fetch the complete documentation index at: /docs/llms.txt \n Use this file to discover all available pages before exploring further.\n Skip to main content \n AIsa home page English \n Search...\n ⌘ K \n Get Started \n Get Started \n Search... \n Navigation \n AIsa Documentation \n Welcome to AIsa\n Guides \n API Reference \n Agent Skills \n AIsa Documentation \n Welcome to AIsa \n Getting Started with AIsa - Unified LLM API for AI Agents \n Agent Quickstart - Connect AIsa in Any AI Agent \n AIsa LLM Model Catalog - API Endpoints, Capabilities, Context Windows \n Mode",
+            "status_code": 200,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 5396
+          },
+          "successful_visits": 31,
+          "total_source_runs": 32,
+          "dominant_failure_kind": null
+        },
+        "recommendation": {
+          "steps": [
+            {
+              "key": "check_llm_parsability",
+              "label": "Confirm the page is LLM parsable with readable headings, examples, and code snippets."
+            },
+            {
+              "key": "understanding_test",
+              "label": "Test whether AI answers intended questions correctly after reading this page."
+            },
+            {
+              "key": "add_faq_and_shortcuts",
+              "label": "Add FAQ, canonical next links, and concise examples so agents get the needed information faster."
+            }
+          ],
+          "summary": "Use this successful page to shorten future agent journeys.",
+          "verification": "Run URL verification and compare average agent steps after the next eval batch."
+        },
+        "impact": {
+          "failed_runs": 0,
+          "visit_count": 31,
+          "affected_runs": 31,
+          "revisit_count": 0,
+          "affected_models": 1,
+          "error_occurrences": 0,
+          "affected_endpoints": 13,
+          "failed_visit_count": 0
+        },
+        "source": "api_eval_runs",
+        "fingerprint": "f3b93cd5a9d4d89608926c6a24f5258e8d7c23dfa9f813ad9475a3b1fa9ff36a",
+        "owner_user_id": null,
+        "ignored_reason": null,
+        "first_seen_at": "2026-08-12T12:40:44.123479+00:00",
+        "last_seen_at": "2026-08-14T08:57:49.435953+00:00",
+        "resolved_at": null,
+        "verified_at": null,
+        "created_at": "2026-08-12T12:42:58.695794+00:00",
+        "updated_at": "2026-08-14T08:58:01.998025+00:00"
+      },
+      {
+        "id": "fc0ff02d-e122-4a2e-b173-fe9dbbf8f227",
+        "source_id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+        "action_type": "broken_url",
+        "status": "open",
+        "priority": "medium",
+        "confidence": 0.49,
+        "effort": "low",
+        "title": "Fix agent-visited 404 URL: https://aisa.one/docs/guides/images",
+        "description": "Agents reached this URL and received HTTP 404 (1 visits). Add a redirect, fallback page, or markdown-readable guidance so future evals can recover.",
+        "primary_url": "https://aisa.one/docs/guides/images",
+        "affected_urls": [
+          "https://aisa.one/docs/guides/images"
+        ],
+        "evidence": {
+          "models": [
+            "agent:claude-code:global.anthropic.claude-opus-5"
+          ],
+          "source": "api_endpoint_eval_runs.tool_calls",
+          "run_ids": [
+            "ef3812b5-13a6-4cbb-bdb7-585d1cd84718"
+          ],
+          "endpoints": [
+            {
+              "count": 1,
+              "endpoint": "POST /v1/images/edits"
+            }
+          ],
+          "sample_runs": [
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "ef3812b5-13a6-4cbb-bdb7-585d1cd84718",
+              "success": false,
+              "endpoint": {
+                "path": "/v1/images/edits",
+                "method": "POST"
+              },
+              "status_code": 404,
+              "failure_kind": "404"
+            }
+          ],
+          "visit_count": 1,
+          "last_seen_at": "2026-08-12T12:42:47.099094+00:00",
+          "status_codes": {
+            "404": 1
+          },
+          "failed_visits": 1,
+          "failure_kinds": {
+            "404": 1
+          },
+          "first_seen_at": "2026-08-12T12:42:47.099094+00:00",
+          "revisit_count": 0,
+          "failed_run_ids": [
+            "ef3812b5-13a6-4cbb-bdb7-585d1cd84718"
+          ],
+          "last_url_check": {
+            "ok": false,
+            "url": "https://aisa.one/docs/guides/images",
+            "error": null,
+            "robots": {
+              "url": "https://aisa.one/robots.txt",
+              "error": null,
+              "status_code": 200,
+              "allows_target": true
+            },
+            "sitemap": {
+              "url": "https://aisa.one/sitemap.xml",
+              "error": null,
+              "status_code": 200,
+              "mentions_target": false
+            },
+            "parsable": false,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/guides/images",
+            "checked_at": "2026-08-14T08:57:59.134606+00:00",
+            "redirected": false,
+            "sample_text": "",
+            "status_code": 404,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 0
+          },
+          "last_verified_at": "2026-08-14T08:58:03.684358+00:00",
+          "error_occurrences": 1,
+          "initial_url_check": {
+            "ok": false,
+            "url": "https://aisa.one/docs/guides/images",
+            "error": null,
+            "robots": {
+              "url": "https://aisa.one/robots.txt",
+              "error": null,
+              "status_code": 200,
+              "allows_target": true
+            },
+            "sitemap": {
+              "url": "https://aisa.one/sitemap.xml",
+              "error": null,
+              "status_code": 200,
+              "mentions_target": false
+            },
+            "parsable": false,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/guides/images",
+            "checked_at": "2026-08-14T08:57:59.134606+00:00",
+            "redirected": false,
+            "sample_text": "",
+            "status_code": 404,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 0
+          },
+          "successful_visits": 0,
+          "total_source_runs": 32,
+          "dominant_failure_kind": "404"
+        },
+        "recommendation": {
+          "steps": [
+            {
+              "key": "check_llm_parsability",
+              "label": "Check if the page is LLM parsable; if not, inspect robots.txt and sitemap.xml."
+            },
+            {
+              "key": "set_redirect",
+              "label": "If this URL returns 404, set up a redirect to the canonical docs or resource."
+            },
+            {
+              "key": "add_fallback_content",
+              "label": "If no canonical replacement exists, add markdown/static content that points agents to the right path."
+            },
+            {
+              "key": "scan_github_references",
+              "label": "Scan the connected GitHub/docs repo for stale references to this path and update or remove them."
+            },
+            {
+              "key": "external_mentions",
+              "label": "Review public mentions of the old path in search results, blogs, Medium, articles, and GitHub repos."
+            }
+          ],
+          "summary": "Repair this URL in the agent journey.",
+          "verification": "Run URL verification, then rerun affected API Performance evals."
+        },
+        "impact": {
+          "failed_runs": 1,
+          "visit_count": 1,
+          "affected_runs": 1,
+          "revisit_count": 0,
+          "affected_models": 1,
+          "error_occurrences": 1,
+          "affected_endpoints": 1,
+          "failed_visit_count": 1
+        },
+        "source": "api_eval_runs",
+        "fingerprint": "80d7365e2b6df973a53c8464ff3f5fc882937dec972a1e8a7aa62be2da4ee9a6",
+        "owner_user_id": null,
+        "ignored_reason": null,
+        "first_seen_at": "2026-08-12T12:42:47.099094+00:00",
+        "last_seen_at": "2026-08-12T12:42:47.099094+00:00",
+        "resolved_at": null,
+        "verified_at": null,
+        "created_at": "2026-08-12T12:42:57.482767+00:00",
+        "updated_at": "2026-08-14T08:58:04.249275+00:00"
+      },
+      {
+        "id": "8f83665a-7a0c-4fba-b0b3-0408f57bab3c",
+        "source_id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+        "action_type": "broken_url",
+        "status": "open",
+        "priority": "medium",
+        "confidence": 0.49,
+        "effort": "low",
+        "title": "Fix agent-visited 404 URL: https://aisa.one/docs/api-reference/images/post_images-edits",
+        "description": "Agents reached this URL but the fetched content looked empty, blocked, or unusable. Check parsability, robots.txt, and sitemap coverage.",
+        "primary_url": "https://aisa.one/docs/api-reference/images/post_images-edits",
+        "affected_urls": [
+          "https://aisa.one/docs/api-reference/images/post_images-edits"
+        ],
+        "evidence": {
+          "models": [
+            "agent:claude-code:global.anthropic.claude-opus-5"
+          ],
+          "source": "api_endpoint_eval_runs.tool_calls",
+          "run_ids": [
+            "4eceb09b-4bba-4138-b843-0e8d25820d6a"
+          ],
+          "endpoints": [
+            {
+              "count": 1,
+              "endpoint": "POST /v1/images/edits"
+            }
+          ],
+          "sample_runs": [
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "4eceb09b-4bba-4138-b843-0e8d25820d6a",
+              "success": false,
+              "endpoint": {
+                "path": "/v1/images/edits",
+                "method": "POST"
+              },
+              "status_code": 402,
+              "failure_kind": "402"
+            }
+          ],
+          "visit_count": 1,
+          "last_seen_at": "2026-08-14T08:38:19.181105+00:00",
+          "status_codes": {
+            "402": 1
+          },
+          "failed_visits": 1,
+          "failure_kinds": {
+            "402": 1
+          },
+          "first_seen_at": "2026-08-14T08:38:19.181105+00:00",
+          "revisit_count": 0,
+          "failed_run_ids": [
+            "4eceb09b-4bba-4138-b843-0e8d25820d6a"
+          ],
+          "last_url_check": {
+            "ok": false,
+            "url": "https://aisa.one/docs/api-reference/images/post_images-edits",
+            "error": null,
+            "robots": {
+              "url": "https://aisa.one/robots.txt",
+              "error": null,
+              "status_code": 200,
+              "allows_target": true
+            },
+            "sitemap": {
+              "url": "https://aisa.one/sitemap.xml",
+              "error": null,
+              "status_code": 200,
+              "mentions_target": false
+            },
+            "parsable": false,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/api-reference/images/post_images-edits",
+            "checked_at": "2026-08-14T08:57:59.133023+00:00",
+            "redirected": false,
+            "sample_text": "",
+            "status_code": 404,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 0
+          },
+          "last_verified_at": "2026-08-14T08:58:03.684358+00:00",
+          "error_occurrences": 1,
+          "initial_url_check": {
+            "ok": false,
+            "url": "https://aisa.one/docs/api-reference/images/post_images-edits",
+            "error": null,
+            "robots": {
+              "url": "https://aisa.one/robots.txt",
+              "error": null,
+              "status_code": 200,
+              "allows_target": true
+            },
+            "sitemap": {
+              "url": "https://aisa.one/sitemap.xml",
+              "error": null,
+              "status_code": 200,
+              "mentions_target": false
+            },
+            "parsable": false,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/api-reference/images/post_images-edits",
+            "checked_at": "2026-08-14T08:57:59.133023+00:00",
+            "redirected": false,
+            "sample_text": "",
+            "status_code": 404,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 0
+          },
+          "successful_visits": 0,
+          "total_source_runs": 32,
+          "dominant_failure_kind": "402"
+        },
+        "recommendation": {
+          "steps": [
+            {
+              "key": "check_llm_parsability",
+              "label": "Check if the page is LLM parsable; if not, inspect robots.txt and sitemap.xml."
+            },
+            {
+              "key": "set_redirect",
+              "label": "If this URL returns 404, set up a redirect to the canonical docs or resource."
+            },
+            {
+              "key": "add_fallback_content",
+              "label": "If no canonical replacement exists, add markdown/static content that points agents to the right path."
+            },
+            {
+              "key": "scan_github_references",
+              "label": "Scan the connected GitHub/docs repo for stale references to this path and update or remove them."
+            },
+            {
+              "key": "external_mentions",
+              "label": "Review public mentions of the old path in search results, blogs, Medium, articles, and GitHub repos."
+            }
+          ],
+          "summary": "Repair this URL in the agent journey.",
+          "verification": "Run URL verification, then rerun affected API Performance evals."
+        },
+        "impact": {
+          "failed_runs": 1,
+          "visit_count": 1,
+          "affected_runs": 1,
+          "revisit_count": 0,
+          "affected_models": 1,
+          "error_occurrences": 1,
+          "affected_endpoints": 1,
+          "failed_visit_count": 1
+        },
+        "source": "api_eval_runs",
+        "fingerprint": "ad009bfee8e777ab0455471bd7c823a22ec0b0d69d3ad28530b11a6e78fc56c1",
+        "owner_user_id": null,
+        "ignored_reason": null,
+        "first_seen_at": "2026-08-14T08:38:19.181105+00:00",
+        "last_seen_at": "2026-08-14T08:38:19.181105+00:00",
+        "resolved_at": null,
+        "verified_at": null,
+        "created_at": "2026-08-14T08:58:00.655342+00:00",
+        "updated_at": "2026-08-14T08:58:04.151613+00:00"
+      },
+      {
+        "id": "88de1015-03d4-4bb5-a99f-0769280a9184",
+        "source_id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+        "action_type": "broken_url",
+        "status": "open",
+        "priority": "medium",
+        "confidence": 0.49,
+        "effort": "low",
+        "title": "Fix agent-visited 404 URL: https://aisa.one/docs/api-reference/images",
+        "description": "Agents reached this URL and received HTTP 404 (1 visits). Add a redirect, fallback page, or markdown-readable guidance so future evals can recover.",
+        "primary_url": "https://aisa.one/docs/api-reference/images",
+        "affected_urls": [
+          "https://aisa.one/docs/api-reference/images"
+        ],
+        "evidence": {
+          "models": [
+            "agent:claude-code:global.anthropic.claude-opus-5"
+          ],
+          "source": "api_endpoint_eval_runs.tool_calls",
+          "run_ids": [
+            "723548ea-ed87-44bf-8833-0cbe792feabe"
+          ],
+          "endpoints": [
+            {
+              "count": 1,
+              "endpoint": "POST /v1/images/generations"
+            }
+          ],
+          "sample_runs": [
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "723548ea-ed87-44bf-8833-0cbe792feabe",
+              "success": false,
+              "endpoint": {
+                "path": "/v1/images/generations",
+                "method": "POST"
+              },
+              "status_code": 404,
+              "failure_kind": "404"
+            }
+          ],
+          "visit_count": 1,
+          "last_seen_at": "2026-08-12T12:40:44.123479+00:00",
+          "status_codes": {
+            "404": 1
+          },
+          "failed_visits": 1,
+          "failure_kinds": {
+            "404": 1
+          },
+          "first_seen_at": "2026-08-12T12:40:44.123479+00:00",
+          "revisit_count": 0,
+          "failed_run_ids": [
+            "723548ea-ed87-44bf-8833-0cbe792feabe"
+          ],
+          "last_url_check": {
+            "ok": false,
+            "url": "https://aisa.one/docs/api-reference/images",
+            "error": null,
+            "robots": {
+              "url": "https://aisa.one/robots.txt",
+              "error": null,
+              "status_code": 200,
+              "allows_target": true
+            },
+            "sitemap": {
+              "url": "https://aisa.one/sitemap.xml",
+              "error": null,
+              "status_code": 200,
+              "mentions_target": false
+            },
+            "parsable": false,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/api-reference/images",
+            "checked_at": "2026-08-14T08:57:59.147544+00:00",
+            "redirected": false,
+            "sample_text": "",
+            "status_code": 404,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 0
+          },
+          "last_verified_at": "2026-08-14T08:58:03.684358+00:00",
+          "error_occurrences": 1,
+          "initial_url_check": {
+            "ok": false,
+            "url": "https://aisa.one/docs/api-reference/images",
+            "error": null,
+            "robots": {
+              "url": "https://aisa.one/robots.txt",
+              "error": null,
+              "status_code": 200,
+              "allows_target": true
+            },
+            "sitemap": {
+              "url": "https://aisa.one/sitemap.xml",
+              "error": null,
+              "status_code": 200,
+              "mentions_target": false
+            },
+            "parsable": false,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/api-reference/images",
+            "checked_at": "2026-08-14T08:57:59.147544+00:00",
+            "redirected": false,
+            "sample_text": "",
+            "status_code": 404,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 0
+          },
+          "successful_visits": 0,
+          "total_source_runs": 32,
+          "dominant_failure_kind": "404"
+        },
+        "recommendation": {
+          "steps": [
+            {
+              "key": "check_llm_parsability",
+              "label": "Check if the page is LLM parsable; if not, inspect robots.txt and sitemap.xml."
+            },
+            {
+              "key": "set_redirect",
+              "label": "If this URL returns 404, set up a redirect to the canonical docs or resource."
+            },
+            {
+              "key": "add_fallback_content",
+              "label": "If no canonical replacement exists, add markdown/static content that points agents to the right path."
+            },
+            {
+              "key": "scan_github_references",
+              "label": "Scan the connected GitHub/docs repo for stale references to this path and update or remove them."
+            },
+            {
+              "key": "external_mentions",
+              "label": "Review public mentions of the old path in search results, blogs, Medium, articles, and GitHub repos."
+            }
+          ],
+          "summary": "Repair this URL in the agent journey.",
+          "verification": "Run URL verification, then rerun affected API Performance evals."
+        },
+        "impact": {
+          "failed_runs": 1,
+          "visit_count": 1,
+          "affected_runs": 1,
+          "revisit_count": 0,
+          "affected_models": 1,
+          "error_occurrences": 1,
+          "affected_endpoints": 1,
+          "failed_visit_count": 1
+        },
+        "source": "api_eval_runs",
+        "fingerprint": "2c3eae176ccb0b60c70acea28ee885d9db313d2c2d342abf5554e39e7f5d0ba9",
+        "owner_user_id": null,
+        "ignored_reason": null,
+        "first_seen_at": "2026-08-12T12:40:44.123479+00:00",
+        "last_seen_at": "2026-08-12T12:40:44.123479+00:00",
+        "resolved_at": null,
+        "verified_at": null,
+        "created_at": "2026-08-12T12:42:58.392291+00:00",
+        "updated_at": "2026-08-14T08:58:04.056129+00:00"
+      },
+      {
+        "id": "3b06033b-a27f-4157-9081-e719a2b04136",
+        "source_id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+        "action_type": "broken_url",
+        "status": "open",
+        "priority": "medium",
+        "confidence": 0.49,
+        "effort": "low",
+        "title": "Fix agent-visited 404 URL: https://aisa.one/docs/api-reference/image-generation/post_images-edits",
+        "description": "Agents reached this URL and received HTTP 404 (1 visits). Add a redirect, fallback page, or markdown-readable guidance so future evals can recover.",
+        "primary_url": "https://aisa.one/docs/api-reference/image-generation/post_images-edits",
+        "affected_urls": [
+          "https://aisa.one/docs/api-reference/image-generation/post_images-edits"
+        ],
+        "evidence": {
+          "models": [
+            "agent:claude-code:global.anthropic.claude-opus-5"
+          ],
+          "source": "api_endpoint_eval_runs.tool_calls",
+          "run_ids": [
+            "ef3812b5-13a6-4cbb-bdb7-585d1cd84718"
+          ],
+          "endpoints": [
+            {
+              "count": 1,
+              "endpoint": "POST /v1/images/edits"
+            }
+          ],
+          "sample_runs": [
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "ef3812b5-13a6-4cbb-bdb7-585d1cd84718",
+              "success": false,
+              "endpoint": {
+                "path": "/v1/images/edits",
+                "method": "POST"
+              },
+              "status_code": 404,
+              "failure_kind": "404"
+            }
+          ],
+          "visit_count": 1,
+          "last_seen_at": "2026-08-12T12:42:47.099094+00:00",
+          "status_codes": {
+            "404": 1
+          },
+          "failed_visits": 1,
+          "failure_kinds": {
+            "404": 1
+          },
+          "first_seen_at": "2026-08-12T12:42:47.099094+00:00",
+          "revisit_count": 0,
+          "failed_run_ids": [
+            "ef3812b5-13a6-4cbb-bdb7-585d1cd84718"
+          ],
+          "last_url_check": {
+            "ok": false,
+            "url": "https://aisa.one/docs/api-reference/image-generation/post_images-edits",
+            "error": null,
+            "robots": {
+              "url": "https://aisa.one/robots.txt",
+              "error": null,
+              "status_code": 200,
+              "allows_target": true
+            },
+            "sitemap": {
+              "url": "https://aisa.one/sitemap.xml",
+              "error": null,
+              "status_code": 200,
+              "mentions_target": false
+            },
+            "parsable": false,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/api-reference/image-generation/post_images-edits",
+            "checked_at": "2026-08-14T08:57:59.139328+00:00",
+            "redirected": false,
+            "sample_text": "",
+            "status_code": 404,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 0
+          },
+          "last_verified_at": "2026-08-14T08:58:03.684358+00:00",
+          "error_occurrences": 1,
+          "initial_url_check": {
+            "ok": false,
+            "url": "https://aisa.one/docs/api-reference/image-generation/post_images-edits",
+            "error": null,
+            "robots": {
+              "url": "https://aisa.one/robots.txt",
+              "error": null,
+              "status_code": 200,
+              "allows_target": true
+            },
+            "sitemap": {
+              "url": "https://aisa.one/sitemap.xml",
+              "error": null,
+              "status_code": 200,
+              "mentions_target": false
+            },
+            "parsable": false,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/api-reference/image-generation/post_images-edits",
+            "checked_at": "2026-08-14T08:57:59.139328+00:00",
+            "redirected": false,
+            "sample_text": "",
+            "status_code": 404,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 0
+          },
+          "successful_visits": 0,
+          "total_source_runs": 32,
+          "dominant_failure_kind": "404"
+        },
+        "recommendation": {
+          "steps": [
+            {
+              "key": "check_llm_parsability",
+              "label": "Check if the page is LLM parsable; if not, inspect robots.txt and sitemap.xml."
+            },
+            {
+              "key": "set_redirect",
+              "label": "If this URL returns 404, set up a redirect to the canonical docs or resource."
+            },
+            {
+              "key": "add_fallback_content",
+              "label": "If no canonical replacement exists, add markdown/static content that points agents to the right path."
+            },
+            {
+              "key": "scan_github_references",
+              "label": "Scan the connected GitHub/docs repo for stale references to this path and update or remove them."
+            },
+            {
+              "key": "external_mentions",
+              "label": "Review public mentions of the old path in search results, blogs, Medium, articles, and GitHub repos."
+            }
+          ],
+          "summary": "Repair this URL in the agent journey.",
+          "verification": "Run URL verification, then rerun affected API Performance evals."
+        },
+        "impact": {
+          "failed_runs": 1,
+          "visit_count": 1,
+          "affected_runs": 1,
+          "revisit_count": 0,
+          "affected_models": 1,
+          "error_occurrences": 1,
+          "affected_endpoints": 1,
+          "failed_visit_count": 1
+        },
+        "source": "api_eval_runs",
+        "fingerprint": "95905fbb6df0b703ecfd6416a3c1b1e9989897f131324b67b3806c968ba0704f",
+        "owner_user_id": null,
+        "ignored_reason": null,
+        "first_seen_at": "2026-08-12T12:42:47.099094+00:00",
+        "last_seen_at": "2026-08-12T12:42:47.099094+00:00",
+        "resolved_at": null,
+        "verified_at": null,
+        "created_at": "2026-08-12T12:42:57.798185+00:00",
+        "updated_at": "2026-08-14T08:58:03.950592+00:00"
+      },
+      {
+        "id": "12a26e44-6a94-4fd7-be74-5dcd80d5e4b1",
+        "source_id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+        "action_type": "broken_url",
+        "status": "open",
+        "priority": "medium",
+        "confidence": 0.49,
+        "effort": "low",
+        "title": "Fix agent-visited 404 URL: https://aisa.one/docs/api-reference/exa/post_exa-agent-runs",
+        "description": "Agents reached this URL and received HTTP 404 (1 visits). Add a redirect, fallback page, or markdown-readable guidance so future evals can recover.",
+        "primary_url": "https://aisa.one/docs/api-reference/exa/post_exa-agent-runs",
+        "affected_urls": [
+          "https://aisa.one/docs/api-reference/exa/post_exa-agent-runs"
+        ],
+        "evidence": {
+          "models": [
+            "agent:claude-code:global.anthropic.claude-opus-5"
+          ],
+          "source": "api_endpoint_eval_runs.tool_calls",
+          "run_ids": [
+            "14a97395-fa62-4bfa-a0b6-ca19f54711be"
+          ],
+          "endpoints": [
+            {
+              "count": 1,
+              "endpoint": "POST /apis/v1/exa/agent/runs"
+            }
+          ],
+          "sample_runs": [
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "14a97395-fa62-4bfa-a0b6-ca19f54711be",
+              "success": false,
+              "endpoint": {
+                "path": "/apis/v1/exa/agent/runs",
+                "method": "POST"
+              },
+              "status_code": 404,
+              "failure_kind": "404"
+            }
+          ],
+          "visit_count": 1,
+          "last_seen_at": "2026-08-12T12:42:29.809888+00:00",
+          "status_codes": {
+            "404": 1
+          },
+          "failed_visits": 1,
+          "failure_kinds": {
+            "404": 1
+          },
+          "first_seen_at": "2026-08-12T12:42:29.809888+00:00",
+          "revisit_count": 0,
+          "failed_run_ids": [
+            "14a97395-fa62-4bfa-a0b6-ca19f54711be"
+          ],
+          "last_url_check": {
+            "ok": false,
+            "url": "https://aisa.one/docs/api-reference/exa/post_exa-agent-runs",
+            "error": null,
+            "robots": {
+              "url": "https://aisa.one/robots.txt",
+              "error": null,
+              "status_code": 200,
+              "allows_target": true
+            },
+            "sitemap": {
+              "url": "https://aisa.one/sitemap.xml",
+              "error": null,
+              "status_code": 200,
+              "mentions_target": false
+            },
+            "parsable": false,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/api-reference/exa/post_exa-agent-runs",
+            "checked_at": "2026-08-14T08:57:59.143310+00:00",
+            "redirected": false,
+            "sample_text": "",
+            "status_code": 404,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 0
+          },
+          "last_verified_at": "2026-08-14T08:58:03.684358+00:00",
+          "error_occurrences": 1,
+          "initial_url_check": {
+            "ok": false,
+            "url": "https://aisa.one/docs/api-reference/exa/post_exa-agent-runs",
+            "error": null,
+            "robots": {
+              "url": "https://aisa.one/robots.txt",
+              "error": null,
+              "status_code": 200,
+              "allows_target": true
+            },
+            "sitemap": {
+              "url": "https://aisa.one/sitemap.xml",
+              "error": null,
+              "status_code": 200,
+              "mentions_target": false
+            },
+            "parsable": false,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/api-reference/exa/post_exa-agent-runs",
+            "checked_at": "2026-08-14T08:57:59.143310+00:00",
+            "redirected": false,
+            "sample_text": "",
+            "status_code": 404,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 0
+          },
+          "successful_visits": 0,
+          "total_source_runs": 32,
+          "dominant_failure_kind": "404"
+        },
+        "recommendation": {
+          "steps": [
+            {
+              "key": "check_llm_parsability",
+              "label": "Check if the page is LLM parsable; if not, inspect robots.txt and sitemap.xml."
+            },
+            {
+              "key": "set_redirect",
+              "label": "If this URL returns 404, set up a redirect to the canonical docs or resource."
+            },
+            {
+              "key": "add_fallback_content",
+              "label": "If no canonical replacement exists, add markdown/static content that points agents to the right path."
+            },
+            {
+              "key": "scan_github_references",
+              "label": "Scan the connected GitHub/docs repo for stale references to this path and update or remove them."
+            },
+            {
+              "key": "external_mentions",
+              "label": "Review public mentions of the old path in search results, blogs, Medium, articles, and GitHub repos."
+            }
+          ],
+          "summary": "Repair this URL in the agent journey.",
+          "verification": "Run URL verification, then rerun affected API Performance evals."
+        },
+        "impact": {
+          "failed_runs": 1,
+          "visit_count": 1,
+          "affected_runs": 1,
+          "revisit_count": 0,
+          "affected_models": 1,
+          "error_occurrences": 1,
+          "affected_endpoints": 1,
+          "failed_visit_count": 1
+        },
+        "source": "api_eval_runs",
+        "fingerprint": "5c2ace14f0fad2c2e6179e44465788dc0c141b1989c84dcdf5c69b5b3714323b",
+        "owner_user_id": null,
+        "ignored_reason": null,
+        "first_seen_at": "2026-08-12T12:42:29.809888+00:00",
+        "last_seen_at": "2026-08-12T12:42:29.809888+00:00",
+        "resolved_at": null,
+        "verified_at": null,
+        "created_at": "2026-08-12T12:42:58.08885+00:00",
+        "updated_at": "2026-08-14T08:58:03.840161+00:00"
+      },
+      {
+        "id": "02342205-6502-4643-8317-e1aa4dfdd149",
+        "source_id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+        "action_type": "page_not_llm_readable",
+        "status": "verified",
+        "priority": "medium",
+        "confidence": 0.49,
+        "effort": "medium",
+        "title": "Make agent-visited page LLM-readable: https://aisa.one/docs/api-reference/prediction-market/get_polymarket-events",
+        "description": "Agents reached this URL but the fetched content looked empty, blocked, or unusable. Check parsability, robots.txt, and sitemap coverage.",
+        "primary_url": "https://aisa.one/docs/api-reference/prediction-market/get_polymarket-events",
+        "affected_urls": [
+          "https://aisa.one/docs/api-reference/prediction-market/get_polymarket-events"
+        ],
+        "evidence": {
+          "models": [
+            "agent:claude-code:global.anthropic.claude-opus-5"
+          ],
+          "source": "api_endpoint_eval_runs.tool_calls",
+          "run_ids": [
+            "85edeccd-a4f8-4ae2-b553-e7be9ec05791"
+          ],
+          "endpoints": [
+            {
+              "count": 1,
+              "endpoint": "GET /apis/v1/polymarket/events"
+            }
+          ],
+          "sample_runs": [
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "85edeccd-a4f8-4ae2-b553-e7be9ec05791",
+              "success": false,
+              "endpoint": {
+                "path": "/apis/v1/polymarket/events",
+                "method": "GET"
+              },
+              "status_code": 500,
+              "failure_kind": "500"
+            }
+          ],
+          "visit_count": 1,
+          "last_seen_at": "2026-08-14T08:34:46.471916+00:00",
+          "status_codes": {
+            "500": 1
+          },
+          "failed_visits": 1,
+          "failure_kinds": {
+            "500": 1
+          },
+          "first_seen_at": "2026-08-14T08:34:46.471916+00:00",
+          "revisit_count": 0,
+          "failed_run_ids": [
+            "85edeccd-a4f8-4ae2-b553-e7be9ec05791"
+          ],
+          "last_url_check": {
+            "ok": true,
+            "url": "https://aisa.one/docs/api-reference/prediction-market/get_polymarket-events",
+            "error": null,
+            "robots": null,
+            "sitemap": null,
+            "parsable": true,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/api-reference/prediction-market/get_polymarket-events",
+            "checked_at": "2026-08-14T08:57:59.133675+00:00",
+            "redirected": false,
+            "sample_text": "Get Polymarket Events - AIsa \n Documentation Index\n Fetch the complete documentation index at: /docs/llms.txt \n Use this file to discover all available pages before exploring further.\n Skip to main content \n AIsa home page English \n Search...\n ⌘ K \n Get Started \n Get Started \n Search... \n Navigation \n Polymarket \n Get Polymarket Events\n Guides \n API Reference \n Agent Skills \n Overview \n API Reference \n Chat API \n POST \n OpenAI Chat \n POST \n Claude Messages \n POST \n Gemini Generate Content \n POST \n Image Generation via Chat \n POST \n OpenAI-Compatible Image Generations \n Embeddings & Rerank \n PO",
+            "status_code": 200,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 10751
+          },
+          "last_verified_at": "2026-08-14T08:58:03.684358+00:00",
+          "error_occurrences": 1,
+          "initial_url_check": {
+            "ok": true,
+            "url": "https://aisa.one/docs/api-reference/prediction-market/get_polymarket-events",
+            "error": null,
+            "robots": null,
+            "sitemap": null,
+            "parsable": true,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/api-reference/prediction-market/get_polymarket-events",
+            "checked_at": "2026-08-14T08:57:59.133675+00:00",
+            "redirected": false,
+            "sample_text": "Get Polymarket Events - AIsa \n Documentation Index\n Fetch the complete documentation index at: /docs/llms.txt \n Use this file to discover all available pages before exploring further.\n Skip to main content \n AIsa home page English \n Search...\n ⌘ K \n Get Started \n Get Started \n Search... \n Navigation \n Polymarket \n Get Polymarket Events\n Guides \n API Reference \n Agent Skills \n Overview \n API Reference \n Chat API \n POST \n OpenAI Chat \n POST \n Claude Messages \n POST \n Gemini Generate Content \n POST \n Image Generation via Chat \n POST \n OpenAI-Compatible Image Generations \n Embeddings & Rerank \n PO",
+            "status_code": 200,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 10751
+          },
+          "successful_visits": 0,
+          "total_source_runs": 32,
+          "dominant_failure_kind": "500"
+        },
+        "recommendation": {
+          "steps": [
+            {
+              "key": "check_llm_parsability",
+              "label": "Check if the page is LLM parsable; if not, inspect robots.txt and sitemap.xml."
+            },
+            {
+              "key": "set_redirect",
+              "label": "If this URL returns 404, set up a redirect to the canonical docs or resource."
+            },
+            {
+              "key": "add_fallback_content",
+              "label": "If no canonical replacement exists, add markdown/static content that points agents to the right path."
+            },
+            {
+              "key": "scan_github_references",
+              "label": "Scan the connected GitHub/docs repo for stale references to this path and update or remove them."
+            },
+            {
+              "key": "external_mentions",
+              "label": "Review public mentions of the old path in search results, blogs, Medium, articles, and GitHub repos."
+            }
+          ],
+          "summary": "Repair this URL in the agent journey.",
+          "verification": "Run URL verification, then rerun affected API Performance evals."
+        },
+        "impact": {
+          "failed_runs": 1,
+          "visit_count": 1,
+          "affected_runs": 1,
+          "revisit_count": 0,
+          "affected_models": 1,
+          "error_occurrences": 1,
+          "affected_endpoints": 1,
+          "failed_visit_count": 1
+        },
+        "source": "api_eval_runs",
+        "fingerprint": "0cd4df916a4c6fdc320e62320626de4032f13053fbf0889d280a5d5761cec91c",
+        "owner_user_id": null,
+        "ignored_reason": null,
+        "first_seen_at": "2026-08-14T08:34:46.471916+00:00",
+        "last_seen_at": "2026-08-14T08:34:46.471916+00:00",
+        "resolved_at": "2026-08-14T08:58:03.684358+00:00",
+        "verified_at": "2026-08-14T08:58:03.684358+00:00",
+        "created_at": "2026-08-14T08:58:00.969852+00:00",
+        "updated_at": "2026-08-14T08:58:03.737785+00:00"
+      },
+      {
+        "id": "821094d2-8d6d-40fd-a005-8d877681af10",
+        "source_id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+        "action_type": "high_traffic_working_url",
+        "status": "open",
+        "priority": "medium",
+        "confidence": 0.57,
+        "effort": "medium",
+        "title": "Optimize high-traffic agent page: https://aisa.one/docs/api-reference/chat/post_chat-completions",
+        "description": "Agents frequently read this working page. Validate that it parses cleanly, then add direct answers, FAQs, examples, or next-step links to reduce journey steps.",
+        "primary_url": "https://aisa.one/docs/api-reference/chat/post_chat-completions",
+        "affected_urls": [
+          "https://aisa.one/docs/api-reference/chat/post_chat-completions"
+        ],
+        "evidence": {
+          "models": [
+            "agent:claude-code:global.anthropic.claude-opus-5"
+          ],
+          "source": "api_endpoint_eval_runs.tool_calls",
+          "run_ids": [
+            "2b539092-21b0-4e1c-bd78-3bf613a84644",
+            "963ff333-998b-44c6-afc2-baf290ebd5c3",
+            "a0ed09da-11c5-4c49-a5b5-5d9fb3283f80"
+          ],
+          "endpoints": [
+            {
+              "count": 3,
+              "endpoint": "POST /v1/chat/completions"
+            }
+          ],
+          "sample_runs": [
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "963ff333-998b-44c6-afc2-baf290ebd5c3",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/chat/completions",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "a0ed09da-11c5-4c49-a5b5-5d9fb3283f80",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/chat/completions",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "2b539092-21b0-4e1c-bd78-3bf613a84644",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/chat/completions",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            }
+          ],
+          "visit_count": 3,
+          "last_seen_at": "2026-08-14T08:25:39.716424+00:00",
+          "status_codes": {},
+          "failed_visits": 0,
+          "failure_kinds": {},
+          "first_seen_at": "2026-08-12T12:41:46.540924+00:00",
+          "revisit_count": 0,
+          "failed_run_ids": [],
+          "last_url_check": {
+            "ok": true,
+            "url": "https://aisa.one/docs/api-reference/chat/post_chat-completions",
+            "error": null,
+            "robots": null,
+            "sitemap": null,
+            "parsable": true,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/api-reference/chat/post_chat-completions",
+            "checked_at": "2026-08-14T08:57:59.810435+00:00",
+            "redirected": false,
+            "sample_text": "OpenAI Chat - AIsa \n Documentation Index\n Fetch the complete documentation index at: /docs/llms.txt \n Use this file to discover all available pages before exploring further.\n Skip to main content \n AIsa home page English \n Search...\n ⌘ K \n Get Started \n Get Started \n Search... \n Navigation \n Chat API \n OpenAI Chat\n Guides \n API Reference \n Agent Skills \n Overview \n API Reference \n Chat API \n POST \n OpenAI Chat \n POST \n Claude Messages \n POST \n Gemini Generate Content \n POST \n Image Generation via Chat \n POST \n OpenAI-Compatible Image Generations \n Embeddings & Rerank \n POST \n Create Embeddings",
+            "status_code": 200,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 15725
+          },
+          "error_occurrences": 0,
+          "initial_url_check": {
+            "ok": true,
+            "url": "https://aisa.one/docs/api-reference/chat/post_chat-completions",
+            "error": null,
+            "robots": null,
+            "sitemap": null,
+            "parsable": true,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/api-reference/chat/post_chat-completions",
+            "checked_at": "2026-08-14T08:57:59.810435+00:00",
+            "redirected": false,
+            "sample_text": "OpenAI Chat - AIsa \n Documentation Index\n Fetch the complete documentation index at: /docs/llms.txt \n Use this file to discover all available pages before exploring further.\n Skip to main content \n AIsa home page English \n Search...\n ⌘ K \n Get Started \n Get Started \n Search... \n Navigation \n Chat API \n OpenAI Chat\n Guides \n API Reference \n Agent Skills \n Overview \n API Reference \n Chat API \n POST \n OpenAI Chat \n POST \n Claude Messages \n POST \n Gemini Generate Content \n POST \n Image Generation via Chat \n POST \n OpenAI-Compatible Image Generations \n Embeddings & Rerank \n POST \n Create Embeddings",
+            "status_code": 200,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 15725
+          },
+          "successful_visits": 3,
+          "total_source_runs": 32,
+          "dominant_failure_kind": null
+        },
+        "recommendation": {
+          "steps": [
+            {
+              "key": "check_llm_parsability",
+              "label": "Confirm the page is LLM parsable with readable headings, examples, and code snippets."
+            },
+            {
+              "key": "understanding_test",
+              "label": "Test whether AI answers intended questions correctly after reading this page."
+            },
+            {
+              "key": "add_faq_and_shortcuts",
+              "label": "Add FAQ, canonical next links, and concise examples so agents get the needed information faster."
+            }
+          ],
+          "summary": "Use this successful page to shorten future agent journeys.",
+          "verification": "Run URL verification and compare average agent steps after the next eval batch."
+        },
+        "impact": {
+          "failed_runs": 0,
+          "visit_count": 3,
+          "affected_runs": 3,
+          "revisit_count": 0,
+          "affected_models": 1,
+          "error_occurrences": 0,
+          "affected_endpoints": 1,
+          "failed_visit_count": 0
+        },
+        "source": "api_eval_runs",
+        "fingerprint": "c1e6145b3458154f7577b2d2aef175045ea5e8b4d0600cad4fa5b170f96733c8",
+        "owner_user_id": null,
+        "ignored_reason": null,
+        "first_seen_at": "2026-08-12T12:41:46.540924+00:00",
+        "last_seen_at": "2026-08-14T08:25:39.716424+00:00",
+        "resolved_at": null,
+        "verified_at": null,
+        "created_at": "2026-08-14T08:58:03.22049+00:00",
+        "updated_at": "2026-08-14T08:58:03.22049+00:00"
+      },
+      {
+        "id": "dcb1fba7-afc5-4552-93f3-2ccb5b01c015",
+        "source_id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+        "action_type": "high_traffic_working_url",
+        "status": "open",
+        "priority": "medium",
+        "confidence": 0.57,
+        "effort": "medium",
+        "title": "Optimize high-traffic agent page: https://aisa.one/docs/guides/getting-started-with-aisa",
+        "description": "Agents frequently read this working page. Validate that it parses cleanly, then add direct answers, FAQs, examples, or next-step links to reduce journey steps.",
+        "primary_url": "https://aisa.one/docs/guides/getting-started-with-aisa",
+        "affected_urls": [
+          "https://aisa.one/docs/guides/getting-started-with-aisa"
+        ],
+        "evidence": {
+          "models": [
+            "agent:claude-code:global.anthropic.claude-opus-5"
+          ],
+          "source": "api_endpoint_eval_runs.tool_calls",
+          "run_ids": [
+            "0007fb55-5c31-49fe-a4d4-677a600a7ad0",
+            "46f6a67c-88f6-4170-bd5f-8fa9c25f95dc",
+            "963ff333-998b-44c6-afc2-baf290ebd5c3"
+          ],
+          "endpoints": [
+            {
+              "count": 2,
+              "endpoint": "POST /v1/embeddings"
+            },
+            {
+              "count": 1,
+              "endpoint": "POST /v1/chat/completions"
+            }
+          ],
+          "sample_runs": [
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "963ff333-998b-44c6-afc2-baf290ebd5c3",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/chat/completions",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "0007fb55-5c31-49fe-a4d4-677a600a7ad0",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/embeddings",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "46f6a67c-88f6-4170-bd5f-8fa9c25f95dc",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/embeddings",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            }
+          ],
+          "visit_count": 3,
+          "last_seen_at": "2026-08-14T08:25:39.716424+00:00",
+          "status_codes": {},
+          "failed_visits": 0,
+          "failure_kinds": {},
+          "first_seen_at": "2026-08-12T12:41:48.361777+00:00",
+          "revisit_count": 0,
+          "failed_run_ids": [],
+          "last_url_check": {
+            "ok": true,
+            "url": "https://aisa.one/docs/guides/getting-started-with-aisa",
+            "error": null,
+            "robots": null,
+            "sitemap": null,
+            "parsable": true,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/guides/getting-started-with-aisa",
+            "checked_at": "2026-08-14T08:57:59.488355+00:00",
+            "redirected": false,
+            "sample_text": "Getting Started with AIsa - Unified LLM API for AI Agents - AIsa \n Documentation Index\n Fetch the complete documentation index at: /docs/llms.txt \n Use this file to discover all available pages before exploring further.\n Skip to main content \n AIsa home page English \n Search...\n ⌘ K \n Get Started \n Get Started \n Search... \n Navigation \n AIsa Documentation \n Getting Started with AIsa - Unified LLM API for AI Agents\n Guides \n API Reference \n Agent Skills \n AIsa Documentation \n Welcome to AIsa \n Getting Started with AIsa - Unified LLM API for AI Agents \n Agent Quickstart - Connect AIsa in Any AI ",
+            "status_code": 200,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 7958
+          },
+          "error_occurrences": 0,
+          "initial_url_check": {
+            "ok": true,
+            "url": "https://aisa.one/docs/guides/getting-started-with-aisa",
+            "error": null,
+            "robots": null,
+            "sitemap": null,
+            "parsable": true,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/guides/getting-started-with-aisa",
+            "checked_at": "2026-08-14T08:57:59.488355+00:00",
+            "redirected": false,
+            "sample_text": "Getting Started with AIsa - Unified LLM API for AI Agents - AIsa \n Documentation Index\n Fetch the complete documentation index at: /docs/llms.txt \n Use this file to discover all available pages before exploring further.\n Skip to main content \n AIsa home page English \n Search...\n ⌘ K \n Get Started \n Get Started \n Search... \n Navigation \n AIsa Documentation \n Getting Started with AIsa - Unified LLM API for AI Agents\n Guides \n API Reference \n Agent Skills \n AIsa Documentation \n Welcome to AIsa \n Getting Started with AIsa - Unified LLM API for AI Agents \n Agent Quickstart - Connect AIsa in Any AI ",
+            "status_code": 200,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 7958
+          },
+          "successful_visits": 3,
+          "total_source_runs": 32,
+          "dominant_failure_kind": null
+        },
+        "recommendation": {
+          "steps": [
+            {
+              "key": "check_llm_parsability",
+              "label": "Confirm the page is LLM parsable with readable headings, examples, and code snippets."
+            },
+            {
+              "key": "understanding_test",
+              "label": "Test whether AI answers intended questions correctly after reading this page."
+            },
+            {
+              "key": "add_faq_and_shortcuts",
+              "label": "Add FAQ, canonical next links, and concise examples so agents get the needed information faster."
+            }
+          ],
+          "summary": "Use this successful page to shorten future agent journeys.",
+          "verification": "Run URL verification and compare average agent steps after the next eval batch."
+        },
+        "impact": {
+          "failed_runs": 0,
+          "visit_count": 3,
+          "affected_runs": 3,
+          "revisit_count": 0,
+          "affected_models": 1,
+          "error_occurrences": 0,
+          "affected_endpoints": 2,
+          "failed_visit_count": 0
+        },
+        "source": "api_eval_runs",
+        "fingerprint": "981ae0736681388d567730846d4eccf333166f47091e8326df1fd2286eade7f3",
+        "owner_user_id": null,
+        "ignored_reason": null,
+        "first_seen_at": "2026-08-12T12:41:48.361777+00:00",
+        "last_seen_at": "2026-08-14T08:25:39.716424+00:00",
+        "resolved_at": null,
+        "verified_at": null,
+        "created_at": "2026-08-14T08:58:02.910114+00:00",
+        "updated_at": "2026-08-14T08:58:02.910114+00:00"
+      },
+      {
+        "id": "6d043931-b165-4e3b-bf98-b31d4f73ef5c",
+        "source_id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+        "action_type": "high_traffic_working_url",
+        "status": "open",
+        "priority": "medium",
+        "confidence": 0.73,
+        "effort": "medium",
+        "title": "Optimize high-traffic agent page: https://aisa.one/docs/guides/models",
+        "description": "Agents frequently read this working page. Validate that it parses cleanly, then add direct answers, FAQs, examples, or next-step links to reduce journey steps.",
+        "primary_url": "https://aisa.one/docs/guides/models",
+        "affected_urls": [
+          "https://aisa.one/docs/guides/models"
+        ],
+        "evidence": {
+          "models": [
+            "agent:claude-code:global.anthropic.claude-opus-5"
+          ],
+          "source": "api_endpoint_eval_runs.tool_calls",
+          "run_ids": [
+            "2b539092-21b0-4e1c-bd78-3bf613a84644",
+            "35a9c9d4-8e05-4b41-a292-2cce764ad03c",
+            "56301c35-6a71-44e2-9b6c-b89508b3e766",
+            "963ff333-998b-44c6-afc2-baf290ebd5c3",
+            "a0ed09da-11c5-4c49-a5b5-5d9fb3283f80",
+            "d1728fe7-09f6-44c3-899d-c1290df3d8b7",
+            "ef3812b5-13a6-4cbb-bdb7-585d1cd84718"
+          ],
+          "endpoints": [
+            {
+              "count": 3,
+              "endpoint": "POST /v1/chat/completions"
+            },
+            {
+              "count": 2,
+              "endpoint": "POST /v1beta/models/{model}:generateContent"
+            },
+            {
+              "count": 1,
+              "endpoint": "POST /v1/images/edits"
+            },
+            {
+              "count": 1,
+              "endpoint": "POST /v1/images/generations"
+            }
+          ],
+          "sample_runs": [
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "963ff333-998b-44c6-afc2-baf290ebd5c3",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/chat/completions",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "a0ed09da-11c5-4c49-a5b5-5d9fb3283f80",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/chat/completions",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "d1728fe7-09f6-44c3-899d-c1290df3d8b7",
+              "success": true,
+              "endpoint": {
+                "path": "/v1beta/models/{model}:generateContent",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "35a9c9d4-8e05-4b41-a292-2cce764ad03c",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/images/generations",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "ef3812b5-13a6-4cbb-bdb7-585d1cd84718",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/images/edits",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "56301c35-6a71-44e2-9b6c-b89508b3e766",
+              "success": true,
+              "endpoint": {
+                "path": "/v1beta/models/{model}:generateContent",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "2b539092-21b0-4e1c-bd78-3bf613a84644",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/chat/completions",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            }
+          ],
+          "visit_count": 7,
+          "last_seen_at": "2026-08-14T08:25:39.716424+00:00",
+          "status_codes": {},
+          "failed_visits": 0,
+          "failure_kinds": {},
+          "first_seen_at": "2026-08-12T12:41:46.540924+00:00",
+          "revisit_count": 0,
+          "failed_run_ids": [],
+          "last_url_check": {
+            "ok": true,
+            "url": "https://aisa.one/docs/guides/models",
+            "error": null,
+            "robots": null,
+            "sitemap": null,
+            "parsable": true,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/guides/models",
+            "checked_at": "2026-08-14T08:57:59.487621+00:00",
+            "redirected": false,
+            "sample_text": "AIsa LLM Model Catalog - API Endpoints, Capabilities, Context Windows - AIsa \n Documentation Index\n Fetch the complete documentation index at: /docs/llms.txt \n Use this file to discover all available pages before exploring further.\n Skip to main content \n AIsa home page English \n Search...\n ⌘ K \n Get Started \n Get Started \n Search... \n Navigation \n AIsa Documentation \n AIsa LLM Model Catalog - API Endpoints, Capabilities, Context Windows\n Guides \n API Reference \n Agent Skills \n AIsa Documentation \n Welcome to AIsa \n Getting Started with AIsa - Unified LLM API for AI Agents \n Agent Quickstart -",
+            "status_code": 200,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 34649
+          },
+          "error_occurrences": 0,
+          "initial_url_check": {
+            "ok": true,
+            "url": "https://aisa.one/docs/guides/models",
+            "error": null,
+            "robots": null,
+            "sitemap": null,
+            "parsable": true,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/guides/models",
+            "checked_at": "2026-08-14T08:57:59.487621+00:00",
+            "redirected": false,
+            "sample_text": "AIsa LLM Model Catalog - API Endpoints, Capabilities, Context Windows - AIsa \n Documentation Index\n Fetch the complete documentation index at: /docs/llms.txt \n Use this file to discover all available pages before exploring further.\n Skip to main content \n AIsa home page English \n Search...\n ⌘ K \n Get Started \n Get Started \n Search... \n Navigation \n AIsa Documentation \n AIsa LLM Model Catalog - API Endpoints, Capabilities, Context Windows\n Guides \n API Reference \n Agent Skills \n AIsa Documentation \n Welcome to AIsa \n Getting Started with AIsa - Unified LLM API for AI Agents \n Agent Quickstart -",
+            "status_code": 200,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 34649
+          },
+          "successful_visits": 7,
+          "total_source_runs": 32,
+          "dominant_failure_kind": null
+        },
+        "recommendation": {
+          "steps": [
+            {
+              "key": "check_llm_parsability",
+              "label": "Confirm the page is LLM parsable with readable headings, examples, and code snippets."
+            },
+            {
+              "key": "understanding_test",
+              "label": "Test whether AI answers intended questions correctly after reading this page."
+            },
+            {
+              "key": "add_faq_and_shortcuts",
+              "label": "Add FAQ, canonical next links, and concise examples so agents get the needed information faster."
+            }
+          ],
+          "summary": "Use this successful page to shorten future agent journeys.",
+          "verification": "Run URL verification and compare average agent steps after the next eval batch."
+        },
+        "impact": {
+          "failed_runs": 0,
+          "visit_count": 7,
+          "affected_runs": 7,
+          "revisit_count": 0,
+          "affected_models": 1,
+          "error_occurrences": 0,
+          "affected_endpoints": 4,
+          "failed_visit_count": 0
+        },
+        "source": "api_eval_runs",
+        "fingerprint": "4ff8b664ab9cc12d9cf986d0037a2ee06480248a40315ef4e537780d37565f17",
+        "owner_user_id": null,
+        "ignored_reason": null,
+        "first_seen_at": "2026-08-12T12:41:46.540924+00:00",
+        "last_seen_at": "2026-08-14T08:25:39.716424+00:00",
+        "resolved_at": null,
+        "verified_at": null,
+        "created_at": "2026-08-12T12:42:59.264522+00:00",
+        "updated_at": "2026-08-14T08:58:02.618617+00:00"
+      },
+      {
+        "id": "76a74674-e7af-417a-9ceb-3b06a9d650d5",
+        "source_id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+        "action_type": "high_traffic_working_url",
+        "status": "open",
+        "priority": "medium",
+        "confidence": 0.81,
+        "effort": "medium",
+        "title": "Optimize high-traffic agent page: https://aisa.one/docs/api-reference",
+        "description": "Agents frequently read this working page. Validate that it parses cleanly, then add direct answers, FAQs, examples, or next-step links to reduce journey steps.",
+        "primary_url": "https://aisa.one/docs/api-reference",
+        "affected_urls": [
+          "https://aisa.one/docs/api-reference"
+        ],
+        "evidence": {
+          "models": [
+            "agent:claude-code:global.anthropic.claude-opus-5"
+          ],
+          "source": "api_endpoint_eval_runs.tool_calls",
+          "run_ids": [
+            "14a97395-fa62-4bfa-a0b6-ca19f54711be",
+            "35a9c9d4-8e05-4b41-a292-2cce764ad03c",
+            "605d167e-260c-4f93-838a-76649870f0ad",
+            "723548ea-ed87-44bf-8833-0cbe792feabe",
+            "a0ed09da-11c5-4c49-a5b5-5d9fb3283f80",
+            "a86bde42-0286-46b8-b3bc-c56dd304acdc",
+            "d0ff7167-07f2-4d9a-bf49-ad9b493ce7ad",
+            "d1728fe7-09f6-44c3-899d-c1290df3d8b7",
+            "e8ca5e16-aa1f-47ee-bd40-20ad33b87c18"
+          ],
+          "endpoints": [
+            {
+              "count": 2,
+              "endpoint": "POST /v1/images/generations"
+            },
+            {
+              "count": 2,
+              "endpoint": "POST /v1beta/models/{model}:generateContent"
+            },
+            {
+              "count": 1,
+              "endpoint": "POST /v1/chat/completions"
+            },
+            {
+              "count": 1,
+              "endpoint": "POST /apis/v1/exa/answer"
+            },
+            {
+              "count": 1,
+              "endpoint": "POST /v1/images/edits"
+            },
+            {
+              "count": 1,
+              "endpoint": "POST /v1/rerank"
+            },
+            {
+              "count": 1,
+              "endpoint": "POST /apis/v1/exa/agent/runs"
+            }
+          ],
+          "sample_runs": [
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "a86bde42-0286-46b8-b3bc-c56dd304acdc",
+              "success": true,
+              "endpoint": {
+                "path": "/v1beta/models/{model}:generateContent",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "a0ed09da-11c5-4c49-a5b5-5d9fb3283f80",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/chat/completions",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "e8ca5e16-aa1f-47ee-bd40-20ad33b87c18",
+              "success": true,
+              "endpoint": {
+                "path": "/apis/v1/exa/answer",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "d1728fe7-09f6-44c3-899d-c1290df3d8b7",
+              "success": true,
+              "endpoint": {
+                "path": "/v1beta/models/{model}:generateContent",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "605d167e-260c-4f93-838a-76649870f0ad",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/images/edits",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "35a9c9d4-8e05-4b41-a292-2cce764ad03c",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/images/generations",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": true,
+              "run_id": "d0ff7167-07f2-4d9a-bf49-ad9b493ce7ad",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/rerank",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "14a97395-fa62-4bfa-a0b6-ca19f54711be",
+              "success": true,
+              "endpoint": {
+                "path": "/apis/v1/exa/agent/runs",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            },
+            {
+              "model": "agent:claude-code:global.anthropic.claude-opus-5",
+              "passed": false,
+              "run_id": "723548ea-ed87-44bf-8833-0cbe792feabe",
+              "success": true,
+              "endpoint": {
+                "path": "/v1/images/generations",
+                "method": "POST"
+              },
+              "status_code": null,
+              "failure_kind": null
+            }
+          ],
+          "visit_count": 9,
+          "last_seen_at": "2026-08-14T08:57:49.435953+00:00",
+          "status_codes": {},
+          "failed_visits": 0,
+          "failure_kinds": {},
+          "first_seen_at": "2026-08-12T12:40:44.123479+00:00",
+          "revisit_count": 0,
+          "failed_run_ids": [],
+          "last_url_check": {
+            "ok": true,
+            "url": "https://aisa.one/docs/api-reference",
+            "error": null,
+            "robots": null,
+            "sitemap": null,
+            "parsable": true,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/api-reference",
+            "checked_at": "2026-08-14T08:57:59.486952+00:00",
+            "redirected": false,
+            "sample_text": "API Reference - AIsa \n Documentation Index\n Fetch the complete documentation index at: /docs/llms.txt \n Use this file to discover all available pages before exploring further.\n Skip to main content \n AIsa home page English \n Search...\n ⌘ K \n Get Started \n Get Started \n Search... \n Navigation \n Overview \n API Reference\n Guides \n API Reference \n Agent Skills \n Overview \n API Reference \n Chat API \n POST \n OpenAI Chat \n POST \n Claude Messages \n POST \n Gemini Generate Content \n POST \n Image Generation via Chat \n POST \n OpenAI-Compatible Image Generations \n Embeddings & Rerank \n POST \n Create Embedd",
+            "status_code": 200,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 4282
+          },
+          "error_occurrences": 0,
+          "initial_url_check": {
+            "ok": true,
+            "url": "https://aisa.one/docs/api-reference",
+            "error": null,
+            "robots": null,
+            "sitemap": null,
+            "parsable": true,
+            "soft_404": false,
+            "final_url": "https://aisa.one/docs/api-reference",
+            "checked_at": "2026-08-14T08:57:59.486952+00:00",
+            "redirected": false,
+            "sample_text": "API Reference - AIsa \n Documentation Index\n Fetch the complete documentation index at: /docs/llms.txt \n Use this file to discover all available pages before exploring further.\n Skip to main content \n AIsa home page English \n Search...\n ⌘ K \n Get Started \n Get Started \n Search... \n Navigation \n Overview \n API Reference\n Guides \n API Reference \n Agent Skills \n Overview \n API Reference \n Chat API \n POST \n OpenAI Chat \n POST \n Claude Messages \n POST \n Gemini Generate Content \n POST \n Image Generation via Chat \n POST \n OpenAI-Compatible Image Generations \n Embeddings & Rerank \n POST \n Create Embedd",
+            "status_code": 200,
+            "content_type": "text/html; charset=utf-8",
+            "readable_text_length": 4282
+          },
+          "successful_visits": 9,
+          "total_source_runs": 32,
+          "dominant_failure_kind": null
+        },
+        "recommendation": {
+          "steps": [
+            {
+              "key": "check_llm_parsability",
+              "label": "Confirm the page is LLM parsable with readable headings, examples, and code snippets."
+            },
+            {
+              "key": "understanding_test",
+              "label": "Test whether AI answers intended questions correctly after reading this page."
+            },
+            {
+              "key": "add_faq_and_shortcuts",
+              "label": "Add FAQ, canonical next links, and concise examples so agents get the needed information faster."
+            }
+          ],
+          "summary": "Use this successful page to shorten future agent journeys.",
+          "verification": "Run URL verification and compare average agent steps after the next eval batch."
+        },
+        "impact": {
+          "failed_runs": 0,
+          "visit_count": 9,
+          "affected_runs": 9,
+          "revisit_count": 0,
+          "affected_models": 1,
+          "error_occurrences": 0,
+          "affected_endpoints": 7,
+          "failed_visit_count": 0
+        },
+        "source": "api_eval_runs",
+        "fingerprint": "7c558cbf999fbba7c27cd835ab38a1c35eabab1c226c515815677c368cb59bcb",
+        "owner_user_id": null,
+        "ignored_reason": null,
+        "first_seen_at": "2026-08-12T12:40:44.123479+00:00",
+        "last_seen_at": "2026-08-14T08:57:49.435953+00:00",
+        "resolved_at": null,
+        "verified_at": null,
+        "created_at": "2026-08-14T07:49:43.559755+00:00",
+        "updated_at": "2026-08-14T08:58:02.413388+00:00"
+      }
+    ],
+    "counts": {
+      "open": 11,
+      "in_progress": 0,
+      "ignored": 0,
+      "fixed": 0,
+      "verified": 1,
+      "critical": 0,
+      "high": 2,
+      "medium": 10,
+      "low": 0,
+      "total": 12
+    },
+    "summary": {
+      "total": 12,
+      "open": 11,
+      "critical": 0,
+      "high": 2,
+      "affected_runs": 77,
+      "affected_failed_runs": 6,
+      "diagnostics_phase": {
+        "url_phase_complete": false,
+        "url_phase_cutoff_at": null,
+        "had_url_issues": true,
+        "open_url_actions": 5,
+        "post_fix_run_count": 0,
+        "usage_extract_ready": true
+      }
+    }
+  }
+}

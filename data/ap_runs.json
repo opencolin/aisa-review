@@ -1,0 +1,934 @@
+{
+  "ok": true,
+  "status": 200,
+  "durationMs": 1966,
+  "path": "/v1/api-performance/runs?limit=50",
+  "body": {
+    "company": {
+      "name": "AIsa",
+      "domain": "aisa.one",
+      "logo_url": null,
+      "relationship": "primary"
+    },
+    "data": [
+      {
+        "id": "a86bde42-0286-46b8-b3bc-c56dd304acdc",
+        "endpoint": {
+          "id": "6a14d47a-c95c-4fab-af9b-9fac932955dd",
+          "method": "POST",
+          "path": "/v1beta/models/{model}:generateContent",
+          "description": "Generate content using a Gemini-compatible AIsa model. Accepts conversation content, tools, safety settings, and generation configuration.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 1,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-14T08:57:49.435953+00:00"
+      },
+      {
+        "id": "4eceb09b-4bba-4138-b843-0e8d25820d6a",
+        "endpoint": {
+          "id": "1e0eabd6-101e-4794-a26c-eb1ec321639c",
+          "method": "POST",
+          "path": "/v1/images/edits",
+          "description": "Edit existing images using AI models.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 1,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-14T08:38:19.181105+00:00"
+      },
+      {
+        "id": "d4029053-cfdf-4639-b4fa-4f80154498b4",
+        "endpoint": {
+          "id": "eb971cf2-349b-4854-9f1f-e02d2e54cd6a",
+          "method": "POST",
+          "path": "/v1/images/generations",
+          "description": "Generate images using various AI models including Seedream, Wan, and GPT-Image-2. Returns short-lived URLs to the generated images.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 1,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-14T08:36:48.820672+00:00"
+      },
+      {
+        "id": "85edeccd-a4f8-4ae2-b553-e7be9ec05791",
+        "endpoint": {
+          "id": "7ab0530c-3077-4462-aecc-b7319894d0a4",
+          "method": "GET",
+          "path": "/apis/v1/polymarket/events",
+          "description": "List Polymarket events — the topic-level grouping that bundles related markets, such as an election or a season-long series.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 1,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-14T08:34:46.471916+00:00"
+      },
+      {
+        "id": "963ff333-998b-44c6-afc2-baf290ebd5c3",
+        "endpoint": {
+          "id": "545c90c3-a8a0-4bfc-a25c-20c4c6ebb980",
+          "method": "POST",
+          "path": "/v1/chat/completions",
+          "description": "Generates chat responses supporting images, streaming, function calling, and logprobs. OpenAI-compatible interface. Also supports image generation via multimodal content arrays (e.g., seedream-4-5-251128 model).",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 1,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-14T08:25:39.716424+00:00"
+      },
+      {
+        "id": "c69e8a6c-3cf1-4c74-a422-cdc7d9feb6df",
+        "endpoint": {
+          "id": "554fbe8f-b52a-4ea1-ba00-88eabe2efdfe",
+          "method": "POST",
+          "path": "/v1/messages",
+          "description": "Send a structured conversation to a Claude model and receive a response. Anthropic-compatible interface supporting extended thinking, tool use, and prompt caching.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 1,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-14T08:25:13.466852+00:00"
+      },
+      {
+        "id": "bfab0b72-e6b3-4167-b2b8-e885248815a4",
+        "endpoint": {
+          "id": "c6a3922c-e08d-4975-8757-81e2fc91f3fc",
+          "method": "POST",
+          "path": "/v1/rerank",
+          "description": "Rerank a list of documents against a query using jina-reranker-v3. Returns results sorted by relevance score with an option to limit to the top N most relevant items.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 0.875,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-14T08:24:59.623672+00:00"
+      },
+      {
+        "id": "5cefb75f-e980-4c02-8dfd-c14fc0093f24",
+        "endpoint": {
+          "id": "f5b251a8-0202-42f7-82a2-7a0211e0682d",
+          "method": "POST",
+          "path": "/apis/v1/scholar/search/scholar",
+          "description": "Search academic papers using Google Scholar or similar sources. Returns titles, links, snippets, authors, and citation counts. Supports result limits and publication year range filters.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 1,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-14T08:24:39.66967+00:00"
+      },
+      {
+        "id": "a4e9e3e6-5338-45bf-bdb3-124ffeab003e",
+        "endpoint": {
+          "id": "085e2768-1671-4ec3-96f3-27277cea0d94",
+          "method": "GET",
+          "path": "/apis/v1/twitter/user/info",
+          "description": "Retrieve a single X (Twitter) user's public profile by @handle. Returns display name, bio, follower/following counts, verification status, account creation date, location, and profile images.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 1,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-14T08:24:12.727583+00:00"
+      },
+      {
+        "id": "157a1ad6-7aa9-4a65-bc9d-9c1d557afbc2",
+        "endpoint": {
+          "id": "859c2888-e361-4626-89d5-44e4f9e60447",
+          "method": "POST",
+          "path": "/v1/embeddings",
+          "description": "Generate 1024-dimensional embedding vectors for one or more input strings using jina-embeddings-v3 or jina-embeddings-v5-text-small. OpenAI-compatible interface.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 1,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-14T08:24:06.350859+00:00"
+      },
+      {
+        "id": "a0ed09da-11c5-4c49-a5b5-5d9fb3283f80",
+        "endpoint": {
+          "id": "545c90c3-a8a0-4bfc-a25c-20c4c6ebb980",
+          "method": "POST",
+          "path": "/v1/chat/completions",
+          "description": "Generates chat responses supporting images, streaming, function calling, and logprobs. OpenAI-compatible interface. Also supports image generation via multimodal content arrays (e.g., seedream-4-5-251128 model).",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.8563,
+        "failure_reasons": [
+          "exit_code_zero"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-14T07:49:31.145942+00:00"
+      },
+      {
+        "id": "90e22914-92af-4368-ad44-daa50ef5f315",
+        "endpoint": {
+          "id": "c7fb4a00-49f0-4167-ad2b-299b35ed6530",
+          "method": "POST",
+          "path": "/apis/v1/exa/agent/runs",
+          "description": "Submit an asynchronous research task to the Exa Agent. Accepts a natural-language query and processes it in the background, returning a structured result. Costs $0.10 per run.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.5063,
+        "failure_reasons": [
+          "exit_code_zero",
+          "clean_execution",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-14T07:48:12.643305+00:00"
+      },
+      {
+        "id": "b1ca1a54-9b9c-45eb-af3e-a3a6b5ff3905",
+        "endpoint": {
+          "id": "cdc4edeb-eed5-4641-99be-22dcd72532ac",
+          "method": "GET",
+          "path": "/apis/v1/youtube/search",
+          "description": "Search YouTube and get back matching videos, channels, and playlists. Supports country code and language filters.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.6688,
+        "failure_reasons": [
+          "exit_code_zero",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-14T07:40:23.805458+00:00"
+      },
+      {
+        "id": "e8ca5e16-aa1f-47ee-bd40-20ad33b87c18",
+        "endpoint": {
+          "id": "b05dc8ca-d75e-47f2-a62b-b958571ebcb5",
+          "method": "POST",
+          "path": "/apis/v1/exa/answer",
+          "description": "Get a direct cited answer from Exa. Retrieves relevant sources and generates a direct answer or detailed summary with source citations. Costs $0.08 per request.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.875,
+        "failure_reasons": [
+          "exit_code_zero"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-14T07:40:18.80506+00:00"
+      },
+      {
+        "id": "d1728fe7-09f6-44c3-899d-c1290df3d8b7",
+        "endpoint": {
+          "id": "6a14d47a-c95c-4fab-af9b-9fac932955dd",
+          "method": "POST",
+          "path": "/v1beta/models/{model}:generateContent",
+          "description": "Generate content using a Gemini-compatible AIsa model. Accepts conversation content, tools, safety settings, and generation configuration.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.8563,
+        "failure_reasons": [
+          "exit_code_zero"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-14T07:39:44.628396+00:00"
+      },
+      {
+        "id": "605d167e-260c-4f93-838a-76649870f0ad",
+        "endpoint": {
+          "id": "1e0eabd6-101e-4794-a26c-eb1ec321639c",
+          "method": "POST",
+          "path": "/v1/images/edits",
+          "description": "Edit existing images using AI models.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.5938,
+        "failure_reasons": [
+          "exit_code_zero",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-14T07:39:27.636738+00:00"
+      },
+      {
+        "id": "15dc8fa7-043e-4920-b056-254155a539f2",
+        "endpoint": {
+          "id": "554fbe8f-b52a-4ea1-ba00-88eabe2efdfe",
+          "method": "POST",
+          "path": "/v1/messages",
+          "description": "Send a structured conversation to a Claude model and receive a response. Anthropic-compatible interface supporting extended thinking, tool use, and prompt caching.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.5063,
+        "failure_reasons": [
+          "exit_code_zero",
+          "clean_execution",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-14T07:39:17.588725+00:00"
+      },
+      {
+        "id": "35a9c9d4-8e05-4b41-a292-2cce764ad03c",
+        "endpoint": {
+          "id": "eb971cf2-349b-4854-9f1f-e02d2e54cd6a",
+          "method": "POST",
+          "path": "/v1/images/generations",
+          "description": "Generate images using various AI models including Seedream, Wan, and GPT-Image-2. Returns short-lived URLs to the generated images.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 1,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-14T07:39:16.43382+00:00"
+      },
+      {
+        "id": "d0ff7167-07f2-4d9a-bf49-ad9b493ce7ad",
+        "endpoint": {
+          "id": "c6a3922c-e08d-4975-8757-81e2fc91f3fc",
+          "method": "POST",
+          "path": "/v1/rerank",
+          "description": "Rerank a list of documents against a query using jina-reranker-v3. Returns results sorted by relevance score with an option to limit to the top N most relevant items.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 0.875,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-14T07:39:12.025823+00:00"
+      },
+      {
+        "id": "0007fb55-5c31-49fe-a4d4-677a600a7ad0",
+        "endpoint": {
+          "id": "859c2888-e361-4626-89d5-44e4f9e60447",
+          "method": "POST",
+          "path": "/v1/embeddings",
+          "description": "Generate 1024-dimensional embedding vectors for one or more input strings using jina-embeddings-v3 or jina-embeddings-v5-text-small. OpenAI-compatible interface.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 1,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-14T07:38:55.362219+00:00"
+      },
+      {
+        "id": "7203363f-1cc3-4993-a233-85f0d8990739",
+        "endpoint": {
+          "id": "859c2888-e361-4626-89d5-44e4f9e60447",
+          "method": "POST",
+          "path": "/v1/embeddings",
+          "description": "Generate 1024-dimensional embedding vectors for one or more input strings using jina-embeddings-v3 or jina-embeddings-v5-text-small. OpenAI-compatible interface.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": true,
+        "score": 1,
+        "failure_reasons": null,
+        "latency_ms": null,
+        "run_at": "2026-08-14T07:34:16.937183+00:00"
+      },
+      {
+        "id": "ef3812b5-13a6-4cbb-bdb7-585d1cd84718",
+        "endpoint": {
+          "id": "1e0eabd6-101e-4794-a26c-eb1ec321639c",
+          "method": "POST",
+          "path": "/v1/images/edits",
+          "description": "Edit existing images using AI models.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.8563,
+        "failure_reasons": [
+          "exit_code_zero"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-12T12:42:47.099094+00:00"
+      },
+      {
+        "id": "56301c35-6a71-44e2-9b6c-b89508b3e766",
+        "endpoint": {
+          "id": "6a14d47a-c95c-4fab-af9b-9fac932955dd",
+          "method": "POST",
+          "path": "/v1beta/models/{model}:generateContent",
+          "description": "Generate content using a Gemini-compatible AIsa model. Accepts conversation content, tools, safety settings, and generation configuration.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.845,
+        "failure_reasons": [
+          "exit_code_zero"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-12T12:42:30.892752+00:00"
+      },
+      {
+        "id": "14a97395-fa62-4bfa-a0b6-ca19f54711be",
+        "endpoint": {
+          "id": "c7fb4a00-49f0-4167-ad2b-299b35ed6530",
+          "method": "POST",
+          "path": "/apis/v1/exa/agent/runs",
+          "description": "Submit an asynchronous research task to the Exa Agent. Accepts a natural-language query and processes it in the background, returning a structured result. Costs $0.10 per run.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.875,
+        "failure_reasons": [
+          "exit_code_zero"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-12T12:42:29.809888+00:00"
+      },
+      {
+        "id": "f929fd98-5994-432c-b38e-d980e0b085de",
+        "endpoint": {
+          "id": "b05dc8ca-d75e-47f2-a62b-b958571ebcb5",
+          "method": "POST",
+          "path": "/apis/v1/exa/answer",
+          "description": "Get a direct cited answer from Exa. Retrieves relevant sources and generates a direct answer or detailed summary with source citations. Costs $0.08 per request.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.7313,
+        "failure_reasons": [
+          "exit_code_zero",
+          "clean_execution"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-12T12:41:52.114545+00:00"
+      },
+      {
+        "id": "46f6a67c-88f6-4170-bd5f-8fa9c25f95dc",
+        "endpoint": {
+          "id": "859c2888-e361-4626-89d5-44e4f9e60447",
+          "method": "POST",
+          "path": "/v1/embeddings",
+          "description": "Generate 1024-dimensional embedding vectors for one or more input strings using jina-embeddings-v3 or jina-embeddings-v5-text-small. OpenAI-compatible interface.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.5063,
+        "failure_reasons": [
+          "exit_code_zero",
+          "clean_execution",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-12T12:41:48.361777+00:00"
+      },
+      {
+        "id": "2b539092-21b0-4e1c-bd78-3bf613a84644",
+        "endpoint": {
+          "id": "545c90c3-a8a0-4bfc-a25c-20c4c6ebb980",
+          "method": "POST",
+          "path": "/v1/chat/completions",
+          "description": "Generates chat responses supporting images, streaming, function calling, and logprobs. OpenAI-compatible interface. Also supports image generation via multimodal content arrays (e.g., seedream-4-5-251128 model).",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.6313,
+        "failure_reasons": [
+          "exit_code_zero",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-12T12:41:46.540924+00:00"
+      },
+      {
+        "id": "9b02f789-ccc9-44fa-b9ba-c293131ed0e6",
+        "endpoint": {
+          "id": "554fbe8f-b52a-4ea1-ba00-88eabe2efdfe",
+          "method": "POST",
+          "path": "/v1/messages",
+          "description": "Send a structured conversation to a Claude model and receive a response. Anthropic-compatible interface supporting extended thinking, tool use, and prompt caching.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.6313,
+        "failure_reasons": [
+          "exit_code_zero",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-12T12:41:38.176015+00:00"
+      },
+      {
+        "id": "af7e97f9-9483-4114-81c4-3617ccc533dd",
+        "endpoint": {
+          "id": "c6a3922c-e08d-4975-8757-81e2fc91f3fc",
+          "method": "POST",
+          "path": "/v1/rerank",
+          "description": "Rerank a list of documents against a query using jina-reranker-v3. Returns results sorted by relevance score with an option to limit to the top N most relevant items.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.845,
+        "failure_reasons": [
+          "exit_code_zero"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-12T12:41:33.02217+00:00"
+      },
+      {
+        "id": "bcaec88a-e881-470d-a7b0-f2234a2d2d8e",
+        "endpoint": {
+          "id": "cdc4edeb-eed5-4641-99be-22dcd72532ac",
+          "method": "GET",
+          "path": "/apis/v1/youtube/search",
+          "description": "Search YouTube and get back matching videos, channels, and playlists. Supports country code and language filters.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.7313,
+        "failure_reasons": [
+          "exit_code_zero",
+          "clean_execution"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-12T12:41:07.597774+00:00"
+      },
+      {
+        "id": "723548ea-ed87-44bf-8833-0cbe792feabe",
+        "endpoint": {
+          "id": "eb971cf2-349b-4854-9f1f-e02d2e54cd6a",
+          "method": "POST",
+          "path": "/v1/images/generations",
+          "description": "Generate images using various AI models including Seedream, Wan, and GPT-Image-2. Returns short-lived URLs to the generated images.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.8563,
+        "failure_reasons": [
+          "exit_code_zero"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-12T12:40:44.123479+00:00"
+      }
+    ],
+    "meta": {
+      "limit": 50,
+      "count": 31
+    }
+  }
+}

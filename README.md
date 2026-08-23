@@ -1,7 +1,17 @@
 # aisa-report
 
-Generates an AI-visibility report for **AISA.one** from the **Lightsage** public API
-(Lightsage is the rebrand of Sapient — `usesapient.com` now redirects to `lightsage.com`).
+Generates a combined agent-visibility and agent-readiness report for **AISA.one**
+from three independent sources:
+
+| Source | What it measures | Auth |
+| --- | --- | --- |
+| **Lightsage** (formerly Sapient — `usesapient.com` → `lightsage.com`) | Whether AI engines **cite** AISA: visibility, share of voice, prompts, opportunities, API Performance evals | `AISA_API_KEY` |
+| **Ora** (`ora.ai`) | Agent-readiness score: discovery, access, usability, payments | none |
+| **Cloudflare** (`isitagentready.com`) | Protocol conformance: well-known files, MCP cards, OAuth discovery, ARD, WebMCP, agentic commerce | none |
+
+Lightsage answers *"do agents cite us?"*; Ora and Cloudflare answer *"can agents use us?"*
+Where the two scanners disagree, the report explains why — that divergence is usually a
+surface that exists but is misplaced or malformed.
 
 Zero dependencies. Needs Node 20+.
 
