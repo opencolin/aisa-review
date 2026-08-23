@@ -2,7 +2,7 @@
   "name": "aisa-report",
   "version": "0.1.0",
   "private": true,
-  "description": "Lightsage (formerly Sapient) AI-visibility report for AISA.one",
+  "description": "Agent Readiness & Visibility Report for AISA.one (Lightsage + Ora + Cloudflare)",
   "type": "module",
   "engines": { "node": ">=20" },
   "scripts": {

@@ -1,6 +1,6 @@
 # aisa-report
 
-Generates a combined agent-visibility and agent-readiness report for **AISA.one**
+Generates the **Agent Readiness & Visibility Report** for **AISA.one**
 from three independent sources:
 
 | Source | What it measures | Auth |
@@ -32,7 +32,7 @@ the export to `~/.zshenv` if you want it everywhere.
 ```bash
 npm run all             # fetch + render
 npm run fetch           # pull raw JSON into data/
-npm run report          # render out/aisa-report.md from data/
+npm run report          # render out/agent-readiness-and-visibility-report.md from data/
 ```
 
 Options:
@@ -48,7 +48,7 @@ node src/fetch.mjs --start=2026-01-01 --end=2026-03-31
 | --- | --- |
 | `src/client.mjs` | API client: `.env` loading, auth header, key redaction |
 | `src/fetch.mjs` | Pulls every read-only endpoint into `data/` |
-| `src/report.mjs` | Renders `out/aisa-report.md` |
+| `src/report.mjs` | Renders `out/agent-readiness-and-visibility-report.md` |
 | `reference/openapi.yml` | Lightsage OpenAPI spec (JSON, despite the extension) |
 | `data/`, `out/` | Generated, gitignored |
 

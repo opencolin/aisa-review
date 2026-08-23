@@ -92,7 +92,7 @@ const passed = runs.filter((r) => r.passed).length;
 const passRate = runs.length ? passed / runs.length : null;
 
 /* ---------- header ---------- */
-P(`# AI Visibility Report — ${company.name} (${company.domain})`, "");
+P(`# Agent Readiness & Visibility Report — ${company.name} (${company.domain})`, "");
 P(`**Source** · Lightsage public API (formerly Sapient) · \`${manifest.baseUrl}\`  `);
 P(`**Window** · ${w.start} → ${w.end} (${w.days} days) · latest run ${ov.date_range?.latest_run_date ?? cur.date ?? "—"}  `);
 P(`**Generated** · ${new Date(manifest.generatedAt).toUTCString()}`, "");
@@ -407,6 +407,6 @@ for (const e of manifest.endpoints) {
 }
 P("");
 
-const outPath = join(outDir, "aisa-report.md");
+const outPath = join(outDir, "agent-readiness-and-visibility-report.md");
 writeFileSync(outPath, md.join("\n"));
 console.log(`Report written: ${outPath} (${md.join("\n").length} bytes)`);

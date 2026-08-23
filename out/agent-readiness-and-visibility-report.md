@@ -1,4 +1,4 @@
-# AI Visibility Report — AIsa (aisa.one)
+# Agent Readiness & Visibility Report — AIsa (aisa.one)
 
 **Source** · Lightsage public API (formerly Sapient) · `https://api.lightsage.com`  
 **Window** · 2026-07-24 → 2026-08-23 (30 days) · latest run 2026-08-22  
