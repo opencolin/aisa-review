@@ -226,18 +226,36 @@ P("");
 /* ---------- API performance ---------- */
 if (runs.length) {
   S("API Performance");
+  const bySource = new Map();
+  for (const r of runs) {
+    const k = r.source?.type ?? "unknown";
+    const v = bySource.get(k) ?? { pass: 0, total: 0 };
+    v.total++; if (r.passed) v.pass++; bySource.set(k, v);
+  }
+  const srcLine = [...bySource.entries()].map(([k, v]) => `${k} ${v.pass}/${v.total}`).join(", ");
+
   P(`**${passed}/${runs.length} evals passed (${pct(passRate)})**, all executed by \`${[...new Set(runs.map((r) => r.model))].join(", ")}\`.`, "");
+  if (credState === "balance" || credState === "invalid") {
+    P(`> **Read these scores with the caveat above.** ${credState === "balance"
+      ? "Most runs fail on `402 — insufficient wallet balance`, not on anything about the endpoint. Until the eval account is funded, this table ranks which endpoints an agent reached before the payment wall, not which ones work."
+      : "Most runs fail on a rejected credential, not on anything about the endpoint."}`, "");
+  }
+  P(`This section covers the **${runs.length} most recent runs** (the API caps the list at 50). Full-window figures — ${num(diag?.summary?.total_runs)} runs over ${esc(diag?.since)} — are in the Agent experience section.`, "");
+  if (bySource.size > 1) {
+    P(`**Source split: ${srcLine}.** Note this batch is overwhelmingly ${[...bySource.entries()].sort((a, b) => b[1].total - a[1].total)[0][0]} evals, so the headline rate is not a REST API pass rate.`, "");
+  }
+  P("");
 
   const byEndpoint = new Map();
   for (const r of runs) {
     const k = `${r.endpoint?.method ?? "?"} ${r.endpoint?.path ?? "?"}`;
-    const e = byEndpoint.get(k) ?? { pass: 0, total: 0, scores: [] };
+    const e = byEndpoint.get(k) ?? { pass: 0, total: 0, scores: [], source: r.source?.type ?? "?" };
     e.total++; if (r.passed) e.pass++; e.scores.push(r.score ?? 0);
     byEndpoint.set(k, e);
   }
-  P(`| Endpoint | Passed | Avg score |`, `| --- | --- | --- |`);
+  P(`| Source | Endpoint / command | Passed | Avg score |`, `| --- | --- | --- | --- |`);
   for (const [k, e] of [...byEndpoint.entries()].sort((a, b) => a[1].pass / a[1].total - b[1].pass / b[1].total)) {
-    P(`| \`${esc(k)}\` | ${e.pass}/${e.total} | ${num(e.scores.reduce((a, b) => a + b, 0) / e.scores.length)} |`);
+    P(`| ${esc(e.source)} | \`${esc(k)}\` | ${e.pass}/${e.total} | ${num(e.scores.reduce((a, b) => a + b, 0) / e.scores.length)} |`);
   }
   P("");
 
@@ -281,7 +299,8 @@ if (arena) {
   const missing = arena.checklist.filter((c) => c.points === 0).map((c) => c.item);
   P(`**Checklist** — earned: ${earned.map((x) => esc(x)).join(", ")}. Missing: **${missing.map((x) => esc(x)).join(", ")}**.`, "");
   P(`> ${esc(arena.observedFriction)}`, "");
-  P(`_Snapshot captured ${arena.capturedAt} from [the Arena page](${arena.sourceUrl}); Lightsage exposes no JSON API for the leaderboard, so this section does not auto-refresh._`, "");
+  P(`_Snapshot captured ${arena.capturedAt} from [the Arena page](${arena.sourceUrl}); Lightsage exposes no JSON API for the leaderboard, so this section does not auto-refresh._  `);
+  P(`_This eval ran ${arena.completedAt}, **before** the eval credential was replaced — and its transcript shows the agent downgrading models until it found a free one. Expect the grade to move once the account is funded and the Arena eval is re-run._`, "");
 }
 
 /* ---------- agent experience ---------- */

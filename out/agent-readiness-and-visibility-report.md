@@ -134,58 +134,65 @@ Tracked: **Google AI Overviews, ChatGPT, Perplexity**
 
 **15/50 evals passed (30.00%)**, all executed by `global.anthropic.claude-opus-5`.
 
-| Endpoint | Passed | Avg score |
-| --- | --- | --- |
-| `POST /apis/v1/firecrawl/batch-scrape` | 0/1 | 0.856 |
-| `community-search aisa twitter community-search [options] <query>` | 0/1 | 0.285 |
-| `space aisa twitter space [options] <space-id>` | 0/1 | 0.285 |
-| `upload-media aisa twitter upload-media [options] <file-path>` | 0/1 | 0.31 |
-| `community-mods aisa twitter community-mods [options] <community-id>` | 0/1 | 0.295 |
-| `list aisa skills list [options]` | 0/1 | 0.345 |
-| `community-members aisa twitter community-members [options] <community-id>` | 0/1 | 0.295 |
-| `install aisa skills install [options] <slug>` | 0/1 | 0.345 |
-| `article aisa twitter article [options] <tweet-id>` | 0/1 | 0.37 |
-| `community-tweets aisa twitter community-tweets [options] <community-id>` | 0/1 | 0.295 |
-| `check-follow aisa twitter check-follow [options] <source> <target>` | 0/1 | 0.29 |
-| `remove aisa skills remove [options] <slug>` | 0/1 | 0.37 |
-| `list-followers aisa twitter list-followers [options] <list-id>` | 0/1 | 0.385 |
-| `trends aisa twitter trends [options]` | 0/1 | 0.37 |
-| `search aisa skills search [options] <query>` | 0/1 | 0.34 |
-| `list-members aisa twitter list-members [options] <list-id>` | 0/1 | 0.39 |
-| `stock aisa stock [options] <symbol>` | 0/1 | 0.315 |
-| `scholar aisa scholar [options] <query>` | 0/1 | 0.33 |
-| `set aisa config set <key> <value>` | 0/1 | 0.295 |
-| `dm aisa twitter dm [--raw] <user-id> <text>` | 0/1 | 0.35 |
-| `retweeters aisa twitter retweeters [options] <tweet-id>` | 0/1 | 0.285 |
-| `crypto aisa crypto [options] <symbol>` | 0/1 | 0.315 |
-| `chat aisa chat [options] [message]` | 0/1 | 0.38 |
-| `community-info aisa twitter community-info [options] <community-id>` | 0/1 | 0.385 |
-| `following aisa twitter following [options] <username>` | 0/1 | 0.355 |
-| `create aisa video create [options] <prompt>` | 0/1 | 0.295 |
-| `detail aisa twitter detail [options] <ids>` | 0/1 | 0.37 |
-| `search aisa api search [options] <query>` | 0/1 | 0.49 |
-| `user-about aisa twitter user-about [options] <username>` | 0/1 | 0.34 |
-| `list aisa models list [options]` | 0/1 | 0.295 |
-| `quotes aisa twitter quotes [options] <tweet-id>` | 0/1 | 0.33 |
-| `user aisa twitter user [options] <username>` | 0/1 | 0.33 |
-| `run aisa run [options] <slug> <path>` | 0/1 | 0.305 |
-| `thread aisa twitter thread [options] <tweet-id>` | 0/1 | 0.355 |
-| `community-mods aisa twitter community-mods [--raw] <community-id>` | 0/1 | 0.325 |
-| `setup aisa mcp setup [options]` | 1/1 | 0.82 |
-| `unfollow aisa twitter unfollow [options] <user-id>` | 1/1 | 0.82 |
-| `unlike aisa twitter unlike [options] <tweet-id>` | 1/1 | 0.86 |
-| `follow aisa twitter follow [options] <user-id>` | 1/1 | 0.86 |
-| `init aisa skills init [options] <name>` | 1/1 | 0.92 |
-| `delete aisa twitter delete [options] <tweet-id>` | 1/1 | 0.86 |
-| `list aisa config list` | 1/1 | 0.755 |
-| `list aisa api list [options]` | 1/1 | 0.715 |
-| `like aisa twitter like [options] <tweet-id>` | 1/1 | 0.86 |
-| `dm aisa twitter dm [options] <user-id> <text>` | 1/1 | 0.82 |
-| `list aisa skills list [--category <cat>] [--limit <n>] [--refresh]` | 1/1 | 0.83 |
-| `setup aisa mcp setup [--agent <agent>]` | 1/1 | 0.795 |
-| `reset aisa config reset` | 1/1 | 0.755 |
-| `retweet aisa twitter retweet [options] <tweet-id>` | 1/1 | 0.86 |
-| `tweet aisa tweet [options] <text>` | 1/1 | 0.86 |
+> **Read these scores with the caveat above.** Most runs fail on `402 — insufficient wallet balance`, not on anything about the endpoint. Until the eval account is funded, this table ranks which endpoints an agent reached before the payment wall, not which ones work.
+
+This section covers the **50 most recent runs** (the API caps the list at 50). Full-window figures — 384 runs over 30d — are in the Agent experience section.
+
+**Source split: rest_api 0/1, cli 15/49.** Note this batch is overwhelmingly cli evals, so the headline rate is not a REST API pass rate.
+
+
+| Source | Endpoint / command | Passed | Avg score |
+| --- | --- | --- | --- |
+| rest_api | `POST /apis/v1/firecrawl/batch-scrape` | 0/1 | 0.856 |
+| cli | `community-search aisa twitter community-search [options] <query>` | 0/1 | 0.285 |
+| cli | `space aisa twitter space [options] <space-id>` | 0/1 | 0.285 |
+| cli | `upload-media aisa twitter upload-media [options] <file-path>` | 0/1 | 0.31 |
+| cli | `community-mods aisa twitter community-mods [options] <community-id>` | 0/1 | 0.295 |
+| cli | `list aisa skills list [options]` | 0/1 | 0.345 |
+| cli | `community-members aisa twitter community-members [options] <community-id>` | 0/1 | 0.295 |
+| cli | `install aisa skills install [options] <slug>` | 0/1 | 0.345 |
+| cli | `article aisa twitter article [options] <tweet-id>` | 0/1 | 0.37 |
+| cli | `community-tweets aisa twitter community-tweets [options] <community-id>` | 0/1 | 0.295 |
+| cli | `check-follow aisa twitter check-follow [options] <source> <target>` | 0/1 | 0.29 |
+| cli | `remove aisa skills remove [options] <slug>` | 0/1 | 0.37 |
+| cli | `list-followers aisa twitter list-followers [options] <list-id>` | 0/1 | 0.385 |
+| cli | `trends aisa twitter trends [options]` | 0/1 | 0.37 |
+| cli | `search aisa skills search [options] <query>` | 0/1 | 0.34 |
+| cli | `list-members aisa twitter list-members [options] <list-id>` | 0/1 | 0.39 |
+| cli | `stock aisa stock [options] <symbol>` | 0/1 | 0.315 |
+| cli | `scholar aisa scholar [options] <query>` | 0/1 | 0.33 |
+| cli | `set aisa config set <key> <value>` | 0/1 | 0.295 |
+| cli | `dm aisa twitter dm [--raw] <user-id> <text>` | 0/1 | 0.35 |
+| cli | `retweeters aisa twitter retweeters [options] <tweet-id>` | 0/1 | 0.285 |
+| cli | `crypto aisa crypto [options] <symbol>` | 0/1 | 0.315 |
+| cli | `chat aisa chat [options] [message]` | 0/1 | 0.38 |
+| cli | `community-info aisa twitter community-info [options] <community-id>` | 0/1 | 0.385 |
+| cli | `following aisa twitter following [options] <username>` | 0/1 | 0.355 |
+| cli | `create aisa video create [options] <prompt>` | 0/1 | 0.295 |
+| cli | `detail aisa twitter detail [options] <ids>` | 0/1 | 0.37 |
+| cli | `search aisa api search [options] <query>` | 0/1 | 0.49 |
+| cli | `user-about aisa twitter user-about [options] <username>` | 0/1 | 0.34 |
+| cli | `list aisa models list [options]` | 0/1 | 0.295 |
+| cli | `quotes aisa twitter quotes [options] <tweet-id>` | 0/1 | 0.33 |
+| cli | `user aisa twitter user [options] <username>` | 0/1 | 0.33 |
+| cli | `run aisa run [options] <slug> <path>` | 0/1 | 0.305 |
+| cli | `thread aisa twitter thread [options] <tweet-id>` | 0/1 | 0.355 |
+| cli | `community-mods aisa twitter community-mods [--raw] <community-id>` | 0/1 | 0.325 |
+| cli | `setup aisa mcp setup [options]` | 1/1 | 0.82 |
+| cli | `unfollow aisa twitter unfollow [options] <user-id>` | 1/1 | 0.82 |
+| cli | `unlike aisa twitter unlike [options] <tweet-id>` | 1/1 | 0.86 |
+| cli | `follow aisa twitter follow [options] <user-id>` | 1/1 | 0.86 |
+| cli | `init aisa skills init [options] <name>` | 1/1 | 0.92 |
+| cli | `delete aisa twitter delete [options] <tweet-id>` | 1/1 | 0.86 |
+| cli | `list aisa config list` | 1/1 | 0.755 |
+| cli | `list aisa api list [options]` | 1/1 | 0.715 |
+| cli | `like aisa twitter like [options] <tweet-id>` | 1/1 | 0.86 |
+| cli | `dm aisa twitter dm [options] <user-id> <text>` | 1/1 | 0.82 |
+| cli | `list aisa skills list [--category <cat>] [--limit <n>] [--refresh]` | 1/1 | 0.83 |
+| cli | `setup aisa mcp setup [--agent <agent>]` | 1/1 | 0.795 |
+| cli | `reset aisa config reset` | 1/1 | 0.755 |
+| cli | `retweet aisa twitter retweet [options] <tweet-id>` | 1/1 | 0.86 |
+| cli | `tweet aisa tweet [options] <text>` | 1/1 | 0.86 |
 
 **Failed criteria** (across 35 failed runs). These are eval checks that did not pass — the names describe the expected condition, not an error:
 
@@ -269,7 +276,8 @@ The run finished successfully: 24 tool calls, 169s, $0.3208, 410,439 tokens — 
 
 > The agent completed the task but spent 36% of its run in Debug. The transcript shows it cycling through models after access failures - the premium model required a paid balance, then gpt-4o, gpt-4o-mini and DeepSeek were each rejected before qwen-flash finally worked. The friction was model access and billing, not API or SDK design.
 
-_Snapshot captured 2026-08-23 from [the Arena page](https://lightsage.com/leaderboard/claudecode/api/aisa); Lightsage exposes no JSON API for the leaderboard, so this section does not auto-refresh._
+_Snapshot captured 2026-08-23 from [the Arena page](https://lightsage.com/leaderboard/claudecode/api/aisa); Lightsage exposes no JSON API for the leaderboard, so this section does not auto-refresh._  
+_This eval ran 2026-08-11, **before** the eval credential was replaced — and its transcript shows the agent downgrading models until it found a free one. Expect the grade to move once the account is funded and the Arena eval is re-run._
 
 ---
 
