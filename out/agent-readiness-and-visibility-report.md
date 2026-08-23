@@ -5,6 +5,21 @@
 **Generated** · Sun, 23 Aug 2026 03:09:01 GMT
 
 
+## Read this first
+
+Most of what follows is not "build something new." AIsa has already built the agent-facing surfaces — MCP servers, an OpenAPI spec, llms.txt, an A2A card, OIDC, a published CLI. The recurring finding is that these exist but are not **discoverable or conformant**, so scanners, agents and scorecards score them zero. That is a much cheaper problem to fix than the scores suggest.
+
+Two items should be actioned before anyone reads the rest, because they distort everything downstream:
+
+
+**1. The Lightsage eval credential is being rejected.** 41 of 50 sampled API Performance runs returned `401 / invalid api key` against `api.aisa.one`, and none passed. Agents wrote working integration code and then could not authenticate — the top "failure reasons" are `task_completed` and `zero_errors`. **Until this key is replaced and the evals re-run, the 79.3% failure rate measures the credential, not the API.** Do not action the endpoint scores until then.
+
+**2. 11 live MCP servers are invisible to every scanner.** `/.well-known/mcp.json` serves 11 servers exposing 188 tools, all responding. Ora reports "no MCP server detected", Cloudflare rejects the manifest for a missing `serverInfo.name`, and Lightsage's own Arena checklist scores MCP Server 0. The fix is a conforming card at `/.well-known/mcp/server-card.json` alongside the existing manifest — it moves three scorecards at once.
+
+
+After those two, the highest-return work is the "cheapest wins" table further down: an OIDC redirect, one missing JSON field on the A2A card, and a homepage link to the already-published CLI.
+
+
 ### Dashboards
 
 | Page | What's there |

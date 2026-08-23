@@ -103,6 +103,34 @@ P(`**Source** · Lightsage public API (formerly Sapient) · \`${manifest.baseUrl
 P(`**Window** · ${w.start} → ${w.end} (${w.days} days) · latest run ${ov.date_range?.latest_run_date ?? cur.date ?? "—"}  `);
 P(`**Generated** · ${new Date(manifest.generatedAt).toUTCString()}`, "");
 P("");
+
+/* ---- read-this-first: the two items that need action before anything else ---- */
+{
+  const ex = diag?.examples ?? [];
+  const hay = (e) => [e.response_text, e.execution_stdout, e.execution_stderr].filter(Boolean).join("\n");
+  const af = ex.filter((e) => /\b401\b|unauthorized|invalid api key/i.test(hay(e))).length;
+
+  P("## Read this first", "");
+  P(`Most of what follows is not "build something new." ${company.name} has already built the agent-facing surfaces — MCP servers, an OpenAPI spec, llms.txt, an A2A card, OIDC, a published CLI. ` +
+    `The recurring finding is that these exist but are not **discoverable or conformant**, so scanners, agents and scorecards score them zero. ` +
+    `That is a much cheaper problem to fix than the scores suggest.`, "");
+  P(`Two items should be actioned before anyone reads the rest, because they distort everything downstream:`, "");
+  P("");
+  if (af) {
+    P(`**1. The Lightsage eval credential is being rejected.** ${af} of ${ex.length} sampled API Performance runs returned \`401 / invalid api key\` against \`api.${DOMAIN}\`, and none passed. ` +
+      `Agents wrote working integration code and then could not authenticate — the top "failure reasons" are \`task_completed\` and \`zero_errors\`. ` +
+      `**Until this key is replaced and the evals re-run, the ${num(diag?.summary?.failure_rate)}% failure rate measures the credential, not the API.** Do not action the endpoint scores until then.`, "");
+  }
+  if (mcpMan?.counts?.live) {
+    P(`**${af ? "2" : "1"}. ${mcpMan.counts.live} live MCP servers are invisible to every scanner.** \`/.well-known/mcp.json\` serves ${mcpMan.counts.live} servers exposing ${mcpMan.liveTools} tools, all responding. ` +
+      `Ora reports "no MCP server detected", Cloudflare rejects the manifest for a missing \`serverInfo.name\`, and Lightsage's own Arena checklist scores MCP Server 0. ` +
+      `The fix is a conforming card at \`/.well-known/mcp/server-card.json\` alongside the existing manifest — it moves three scorecards at once.`, "");
+  }
+  P("");
+  P(`After those two, the highest-return work is the "cheapest wins" table further down: an OIDC redirect, one missing JSON field on the A2A card, and a homepage link to the already-published CLI.`, "");
+  P("");
+}
+
 P("### Dashboards", "");
 P(`| Page | What's there |`, `| --- | --- |`);
 for (const [label, url, blurb] of LINKS) P(`| [${esc(label)}](${url}) | ${esc(blurb)} |`);
