@@ -79,9 +79,11 @@ Every recommendation in this report, in one list, ordered by leverage. "Effort" 
 | 1 | Write doc pages for shipped endpoints that have none (10 URLs) | Docs | M | `/v1/rerank`, `/v1/images/edits` and `/apis/v1/firecrawl/search` are live and evaluated, but an agent following the OpenAPI spec to the matching doc URL finds nothing. |
 | 2 | Serve OIDC discovery from the apex domain | Platform | S | `/.well-known/openid-configuration` exists only on `login.aisa.one`. Scanners and agents probe the apex, so it reads as absent. |
 | 3 | Add the missing `supportedInterfaces` field to the A2A agent card | Platform | XS | The card is already served; one required field makes it valid. |
-| 4 | Link `@aisa-one/cli` from the homepage and docs | Web | XS | The CLI is published and maintained, but nothing links to it, so three separate checks score it zero. |
+| 4 | Surface the CLI and MCP entry points on the site | Web | XS | `@aisa-one/cli` is published and maintained but nothing links to it, so three separate checks score it zero. The MCP endpoints are equally unadvertised outside the manifest — link both from the homepage and docs nav. |
 | 5 | Install `@lightsage/agent-tracker` middleware | Web | S | Agent Analytics has received no events, so there is no data on which pages agents actually read. |
-| 6 | Add coding agents to Lightsage visibility tracking | Growth | XS | 3 of 19 platforms are tracked and none are coding agents. Claude Code, Codex, Cursor and Copilot recommendations are entirely unmeasured — a settings change, not engineering work. |
+| 6 | Provision a capped evaluation wallet | Platform | S | A dedicated, spend-capped credential for Lightsage's eval sandbox means a future retest can never again confuse a payment failure with a product failure — which is exactly what happened here twice. Keeps the eval environment isolated from production spend. |
+| 7 | Verify each fix against the scanners that flagged it | Platform | S | Re-run Ora, Cloudflare and the doc link check after shipping. Ora exposes `run_checks` for re-verifying individual checks, and `npm run fetch` in this repo re-requests every flagged doc URL, so the fix list shrinks on its own as items land. |
+| 8 | Add coding agents to Lightsage visibility tracking | Growth | XS | 3 of 19 platforms are tracked and none are coding agents. Claude Code, Codex, Cursor and Copilot recommendations are entirely unmeasured — a settings change, not engineering work. |
 
 #### P2 — worth scheduling
 
@@ -93,8 +95,44 @@ Every recommendation in this report, in one list, ordered by leverage. "Effort" 
 | 4 | Make the docs worth opening | Docs | M | 65% of runs are `Guessed Without Docs` — agents reach for the API without consulting documentation at all. That is survivable on REST, where the spec carries them, but it is why CLI runs fail: there is no spec to guess from. |
 | 5 | Fix the remaining 3 medium CLI defects | CLI | M | Documented options are not implemented; `aisa twitter space` returns 404; `aisa skills` subcommands fail or no-op. |
 | 6 | Confirm `GET /v1/errors` is real and documented | API | S | Scored 0.43 — the agent could not confirm the endpoint exists, and `/docs/api-reference/errors` was separately flagged. |
-| 7 | Publish `/.well-known/ai-catalog.json` (ARD) and Content Signals in robots.txt | Platform | M | Both are required-tier checks on Ora and Cloudflare that currently score zero. |
-| 8 | Work the Lightsage GEO task list (Reddit, arXiv, comparison pages) | Growth | L | Seven ranked tasks aimed at citation share, detailed later in this report. Slower payback than the items above. |
+| 7 | Complete the JSON-LD Organization schema | Web | S | Ora scores JSON-LD 2/4 — the Organization type is present but missing `name` and `description`, and Organization completeness is 1/2 for missing `contactPoint` and `address`. Note FAQPage is already present; the gap is the Organization block, plus `Service` or `AggregateRating` for breadth. |
+| 8 | Publish `/.well-known/ai-catalog.json` (ARD) and Content Signals in robots.txt | Platform | M | Both are required-tier checks on Ora and Cloudflare that currently score zero. |
+| 9 | Work the Lightsage GEO task list (Reddit, arXiv, comparison pages) | Growth | L | Seven ranked tasks aimed at citation share, detailed later in this report. Slower payback than the items above. |
+
+#### Define the retest baseline
+
+Fixes should be measured against a fixed set of numbers, re-read after each batch lands. Current values:
+
+| Metric | Now | Source |
+| --- | --- | --- |
+| MCP servers discoverable by scanners | 0 of 11 live | Ora `mcp-server`, Cloudflare `mcpServerCard` |
+| Documentation URLs returning 404 | 19 | re-checked live by `npm run fetch` |
+| Agent-analytics events received | 0 | Lightsage Agent Analytics |
+| REST eval pass rate | 52/54 | Lightsage API Performance |
+| CLI eval pass rate | 64/124 | Lightsage API Performance |
+| Citations across the tracked prompt set | 1 over 594 runs | Lightsage Visibility |
+| Ora agent-readiness score | 62/100 (C) | ora.ai |
+| Cloudflare level | 1 — Basic Web Presence | isitagentready.com |
+
+`npm run all` in this repo regenerates every row above from live sources, so the retest is a single command rather than a manual audit.
+
+
+#### Cross-check against the team's proposed order
+
+The AISA team proposed a five-step order after reading an earlier draft: unblock discovery, unblock execution, make the funnel measurable, improve recommendation visibility, retest against a baseline. That sequencing is right and matches this list. Their plan prompted four additions above — the capped eval wallet, scanner re-verification, the JSON-LD Organization fix, and the retest baseline table.
+
+
+Five things their order does not yet cover:
+
+
+1. **The CLI defects — the largest omission.** Their plan predates the CLI eval sweep, which found 5 defects (2 high severity) across 124 runs at a 51.6% pass rate and **zero perfect scores**. Six Twitter community/social commands fail on *every* documented invocation, and the CLI exits 0 on failure. None of this is discovery or documentation — it is broken product, and no amount of surfacing work fixes it.
+2. **Coding-agent visibility is unmeasured.** Their step 4 targets positioning and structured data, which addresses answer engines. But 3 of 19 platforms are tracked and none are coding agents, so Claude Code, Codex, Cursor and Copilot recommendations are invisible. For a developer API that is the audience that matters, and it is a settings change, not a project.
+3. **The broken-URL count is 19, not 16 — and "fix or 301-redirect" is two different jobs.** Only about nine have an existing page to redirect to. The rest are shipped endpoints (`/v1/rerank`, `/v1/images/edits`, `/apis/v1/firecrawl/search`) with no documentation page at all; those need writing, which is a materially larger task than a redirect map.
+4. **OIDC discovery is absent from the apex.** It exists only on `login.aisa.one`, so scanners and agents that probe the apex conclude there is no OAuth support. A redirect fixes it and it is not in their step 1.
+5. **Machine-readable entry points.** Markdown negotiation, RFC 8288 `Link` headers and markdown-bodied 404s all target the 65% "Guessed Without Docs" pattern directly — agents that never open the docs. Their plan improves the docs' *content* but not their *reachability by machine*.
+
+One correction to their step 4: **FAQPage structured data is already present** on the site. Ora credits it. The actual schema gap is the Organization block — missing `name`, `description`, `contactPoint` and `address` — plus `Service` or `AggregateRating` for breadth.
+
 
 **The through-line:** 2 genuine CLI defects and the rest is surfacing work. AIsa has built the MCP servers, the OpenAPI spec, the CLI, the A2A card and the OIDC endpoint — they are simply not where agents and scanners look for them.
 

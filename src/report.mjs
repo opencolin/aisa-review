@@ -246,10 +246,14 @@ P("");
       `\`/.well-known/openid-configuration\` exists only on \`login.${DOMAIN}\`. Scanners and agents probe the apex, so it reads as absent.`],
     ["P1", "Add the missing `supportedInterfaces` field to the A2A agent card", "Platform", "XS",
       `The card is already served; one required field makes it valid.`],
-    ["P1", `Link \`${npmPkg?.name ?? "@aisa-one/cli"}\` from the homepage and docs`, "Web", "XS",
-      `The CLI is published and maintained, but nothing links to it, so three separate checks score it zero.`],
+    ["P1", `Surface the CLI and MCP entry points on the site`, "Web", "XS",
+      `\`${esc(npmPkg?.name ?? "@aisa-one/cli")}\` is published and maintained but nothing links to it, so three separate checks score it zero. The MCP endpoints are equally unadvertised outside the manifest — link both from the homepage and docs nav.`],
     ["P1", "Install `@lightsage/agent-tracker` middleware", "Web", "S",
       `Agent Analytics has received no events, so there is no data on which pages agents actually read.`],
+    ["P1", "Provision a capped evaluation wallet", "Platform", "S",
+      `A dedicated, spend-capped credential for Lightsage's eval sandbox means a future retest can never again confuse a payment failure with a product failure — which is exactly what happened here twice. Keeps the eval environment isolated from production spend.`],
+    ["P1", "Verify each fix against the scanners that flagged it", "Platform", "S",
+      `Re-run Ora, Cloudflare and the doc link check after shipping. Ora exposes \`run_checks\` for re-verifying individual checks, and \`npm run fetch\` in this repo re-requests every flagged doc URL, so the fix list shrinks on its own as items land.`],
     ["P1", "Add coding agents to Lightsage visibility tracking", "Growth", "XS",
       `${trackedPlatforms.length} of ${availablePlatforms.length} platforms are tracked and none are coding agents. Claude Code, Codex, Cursor and Copilot recommendations are entirely unmeasured — a settings change, not engineering work.`],
     ["P2", "Serve markdown to agents (`Accept: text/markdown` or `/index.md`)", "Platform", "M",
@@ -264,6 +268,8 @@ P("");
       cliMed.map((d) => d.title).join("; ") + "."],
     ["P2", "Confirm `GET /v1/errors` is real and documented", "API", "S",
       `Scored 0.43 — the agent could not confirm the endpoint exists, and \`/docs/api-reference/errors\` was separately flagged.`],
+    ["P2", "Complete the JSON-LD Organization schema", "Web", "S",
+      `Ora scores JSON-LD 2/4 — the Organization type is present but missing \`name\` and \`description\`, and Organization completeness is 1/2 for missing \`contactPoint\` and \`address\`. Note FAQPage is already present; the gap is the Organization block, plus \`Service\` or \`AggregateRating\` for breadth.`],
     ["P2", "Publish `/.well-known/ai-catalog.json` (ARD) and Content Signals in robots.txt", "Platform", "M",
       `Both are required-tier checks on Ora and Cloudflare that currently score zero.`],
     ["P2", "Work the Lightsage GEO task list (Reddit, arXiv, comparison pages)", "Growth", "L",
@@ -282,6 +288,45 @@ P("");
     P(`| ${idx} | ${action} | ${owner} | ${effort} | ${why} |`);
   }
   P("");
+  P(`#### Define the retest baseline`, "");
+  P(`Fixes should be measured against a fixed set of numbers, re-read after each batch lands. Current values:`, "");
+  P(`| Metric | Now | Source |`, `| --- | --- | --- |`);
+  P(`| MCP servers discoverable by scanners | 0 of ${mcpMan?.counts?.live ?? "?"} live | Ora \`mcp-server\`, Cloudflare \`mcpServerCard\` |`);
+  P(`| Documentation URLs returning 404 | ${(urlCheck?.urls ?? []).filter((u) => u.stillBroken).length} | re-checked live by \`npm run fetch\` |`);
+  P(`| Agent-analytics events received | 0 | Lightsage Agent Analytics |`);
+  P(`| REST eval pass rate | ${(() => { const r = (load("ap_runs")?.data ?? []).filter((x) => String(x.run_at) >= "2026-08-23T14:20" && x.source?.type === "rest_api"); return r.length ? `${r.filter((x) => x.passed).length}/${r.length}` : "—"; })()} | Lightsage API Performance |`);
+  P(`| CLI eval pass rate | ${(() => { const r = (load("ap_runs")?.data ?? []).filter((x) => String(x.run_at) >= "2026-08-23T14:20" && x.source?.type === "cli"); return r.length ? `${r.filter((x) => x.passed).length}/${r.length}` : "—"; })()} | Lightsage API Performance |`);
+  P(`| Citations across the tracked prompt set | ${num(vp.summary?.metrics?.citation_count)} over ${num(vp.summary?.metrics?.run_count)} runs | Lightsage Visibility |`);
+  P(`| Ora agent-readiness score | ${ora ? `${ora.score}/${ora.maxScore ?? 100} (${ora.grade})` : "—"} | ora.ai |`);
+  P(`| Cloudflare level | ${cf ? `${cf.level} — ${esc(cf.levelName)}` : "—"} | isitagentready.com |`);
+  P("");
+  P(`\`npm run all\` in this repo regenerates every row above from live sources, so the retest is a single command rather than a manual audit.`, "");
+  P("");
+
+  // Cross-check against the plan the AISA team proposed after reading an
+  // earlier draft. Their ordering is sound; these are the items it omits.
+  {
+    const brokenNow = (urlCheck?.urls ?? []).filter((u) => u.stillBroken).length;
+    const cliDefects = cliFindings?.defects ?? [];
+    const cliHighN = cliDefects.filter((d) => d.severity === "high").length;
+
+    P(`#### Cross-check against the team's proposed order`, "");
+    P(`The AISA team proposed a five-step order after reading an earlier draft: unblock discovery, unblock execution, make the funnel measurable, improve recommendation visibility, retest against a baseline. That sequencing is right and matches this list. Their plan prompted four additions above — the capped eval wallet, scanner re-verification, the JSON-LD Organization fix, and the retest baseline table.`, "");
+    P("");
+    P(`Five things their order does not yet cover:`, "");
+    P("");
+    if (cliDefects.length) {
+      P(`1. **The CLI defects — the largest omission.** Their plan predates the CLI eval sweep, which found ${cliDefects.length} defects (${cliHighN} high severity) across ${cliFindings.sweep.evals} runs at a ${cliFindings.sweep.passRate}% pass rate and **zero perfect scores**. Six Twitter community/social commands fail on *every* documented invocation, and the CLI exits 0 on failure. None of this is discovery or documentation — it is broken product, and no amount of surfacing work fixes it.`);
+    }
+    P(`${cliDefects.length ? 2 : 1}. **Coding-agent visibility is unmeasured.** Their step 4 targets positioning and structured data, which addresses answer engines. But ${trackedPlatforms.length} of ${availablePlatforms.length} platforms are tracked and none are coding agents, so Claude Code, Codex, Cursor and Copilot recommendations are invisible. For a developer API that is the audience that matters, and it is a settings change, not a project.`);
+    P(`${cliDefects.length ? 3 : 2}. **The broken-URL count is ${brokenNow}, not 16 — and "fix or 301-redirect" is two different jobs.** Only about nine have an existing page to redirect to. The rest are shipped endpoints (\`/v1/rerank\`, \`/v1/images/edits\`, \`/apis/v1/firecrawl/search\`) with no documentation page at all; those need writing, which is a materially larger task than a redirect map.`);
+    P(`${cliDefects.length ? 4 : 3}. **OIDC discovery is absent from the apex.** It exists only on \`login.${DOMAIN}\`, so scanners and agents that probe the apex conclude there is no OAuth support. A redirect fixes it and it is not in their step 1.`);
+    P(`${cliDefects.length ? 5 : 4}. **Machine-readable entry points.** Markdown negotiation, RFC 8288 \`Link\` headers and markdown-bodied 404s all target the ${(() => { const g = ((diagRecent ?? diag)?.failure_analysis?.patterns ?? []).find((x) => /guessed without docs/i.test(x.label)); return g ? `${g.percentage}% "Guessed Without Docs"` : "dominant"; })()} pattern directly — agents that never open the docs. Their plan improves the docs' *content* but not their *reachability by machine*.`);
+    P("");
+    P(`One correction to their step 4: **FAQPage structured data is already present** on the site. Ora credits it. The actual schema gap is the Organization block — missing \`name\`, \`description\`, \`contactPoint\` and \`address\` — plus \`Service\` or \`AggregateRating\` for breadth.`, "");
+    P("");
+  }
+
   P(`**The through-line:** ${cliHigh.length ? `${cliHigh.length} genuine CLI defects and ` : ""}the rest is surfacing work. ${company.name} has built the MCP servers, the OpenAPI spec, the CLI, the A2A card and the OIDC endpoint — they are simply not where agents and scanners look for them.`, "");
 }
 
