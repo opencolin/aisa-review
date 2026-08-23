@@ -4,6 +4,16 @@
 
 That file is the deliverable. Everything else in this repo is the tooling that generates it.
 
+**Tracking:** every recommendation is also filed as a
+[GitHub issue](https://github.com/opencolin/aisa-review/issues), labelled by
+priority (`P0`/`P1`/`P2`) and owner (`owner:platform`, `owner:api`, `owner:cli`,
+`owner:docs`, `owner:web`, `owner:growth`).
+
+```bash
+node src/issues.mjs --dry-run    # preview
+node src/issues.mjs              # create; skips titles that already exist
+```
+
 ---
 
 Generates the **Agent Readiness & Visibility Report** for **AISA.one**

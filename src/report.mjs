@@ -276,6 +276,24 @@ P("");
       `Seven ranked tasks aimed at citation share, detailed later in this report. Slower payback than the items above.`],
   ];
 
+  // Emit the action list as data so other tooling (issue creation, tracking)
+  // works from the same source the report renders from.
+  writeFileSync(
+    join(outDir, "actions.json"),
+    JSON.stringify(
+      {
+        generatedAt: manifest.generatedAt,
+        domain: DOMAIN,
+        reportUrl: "https://github.com/opencolin/aisa-review/blob/main/out/agent-readiness-and-visibility-report.md",
+        actions: ACTIONS.map(([priority, title, owner, effort, why], i) => ({
+          n: i + 1, priority, title, owner, effort, why,
+        })),
+      },
+      null,
+      2,
+    ),
+  );
+
   let tier = "";
   for (const [t, action, owner, effort, why] of ACTIONS) {
     if (t !== tier) {
