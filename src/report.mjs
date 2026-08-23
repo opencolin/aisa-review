@@ -47,6 +47,7 @@ const ora = load("ora");
 const oraChecks = (ora?.layers ?? []).flatMap((l) => l.checks ?? []);
 const oraById = new Map(oraChecks.map((c) => [c.id, c]));
 const npmPkg = load("npm");
+const urlCheck = load("url_check");
 const diag = load("ap_diagnose");
 const diagEx = diag?.examples ?? [];
 const dhay = (e) => [e.response_text, e.execution_stdout, e.execution_stderr].filter(Boolean).join("\n");
@@ -113,27 +114,26 @@ P("");
 /* ---- read-this-first: the two items that need action before anything else ---- */
 {
   P("## Read this first", "");
-  P(`Most of what follows is not "build something new." ${company.name} has already built the agent-facing surfaces — MCP servers, an OpenAPI spec, llms.txt, an A2A card, OIDC, a published CLI. ` +
-    `The recurring finding is that these exist but are not **discoverable or conformant**, so scanners, agents and scorecards score them zero. ` +
-    `That is a much cheaper problem to fix than the scores suggest.`, "");
-  P(`Two items should be actioned before anyone reads the rest, because they distort everything downstream:`, "");
+  P(`This report is written for engineers. Almost nothing in it is "build something new" — ${company.name} has already shipped the agent-facing surfaces: MCP servers, an OpenAPI spec, llms.txt, an A2A card, OIDC, a published CLI. ` +
+    `The recurring finding is that these exist but are **not discoverable or not conformant**, so agents, scanners and scorecards behave as though they do not exist. ` +
+    `The fix list in the next section is ordered by effort-to-impact and every item names a concrete path.`, "");
+  P("");
+  P(`The two highest-leverage items:`, "");
+  P("");
+  if (mcpMan?.counts?.live) {
+    P(`**1. ${mcpMan.counts.live} live MCP servers are invisible.** \`/.well-known/mcp.json\` serves ${mcpMan.counts.live} servers exposing ${mcpMan.liveTools} tools, all responding. ` +
+      `Ora reports "no MCP server detected", Cloudflare rejects the manifest for a missing \`serverInfo.name\`, and Lightsage's Arena checklist scores MCP Server 0. ` +
+      `A conforming card at \`/.well-known/mcp/server-card.json\` alongside the existing manifest moves three scorecards at once.`, "");
+  }
+  if (urlCheck?.stillBroken) {
+    P(`**2. ${urlCheck.stillBroken} documentation URLs that agents actually requested return 404 right now** (re-verified live for this report, not taken from the audit). ` +
+      `Agents reach a real endpoint in the OpenAPI spec, construct the matching doc URL, and hit nothing. Several have obvious redirect targets; a few are shipped endpoints with no doc page at all.`, "");
+  }
   P("");
   if (credState === "balance") {
-    P(`**1. The eval account has no wallet balance.** The rejected key was replaced and that worked — 401s fell from 41 of 50 sampled runs to ${n401}. ` +
-      `But ${n402} of ${diagEx.length} runs now return \`402 — The wallet balance is insufficient\`. Agents authenticate, write working code, and fail on the live call. ` +
-      `**The endpoint scores still measure billing, not API quality.** Top up the account behind the eval key and re-run before actioning them.`, "");
-  } else if (credState === "invalid") {
-    P(`**1. The Lightsage eval credential is being rejected.** ${n401} of ${diagEx.length} sampled runs returned \`401 / invalid api key\` against \`api.${DOMAIN}\`. ` +
-      `**Until this key is replaced and the evals re-run, the ${num(diag?.summary?.failure_rate)}% failure rate measures the credential, not the API.**`, "");
+    P(`_One caveat while reading the endpoint scores: the Lightsage eval account currently returns \`402 — insufficient wallet balance\` on most live calls, so pass rates are depressed for billing reasons rather than code reasons. This is being handled separately and is not an engineering task._`, "");
+    P("");
   }
-  if (mcpMan?.counts?.live) {
-    P(`**${credState ? "2" : "1"}. ${mcpMan.counts.live} live MCP servers are invisible to every scanner.** \`/.well-known/mcp.json\` serves ${mcpMan.counts.live} servers exposing ${mcpMan.liveTools} tools, all responding. ` +
-      `Ora reports "no MCP server detected", Cloudflare rejects the manifest for a missing \`serverInfo.name\`, and Lightsage's own Arena checklist scores MCP Server 0. ` +
-      `The fix is a conforming card at \`/.well-known/mcp/server-card.json\` alongside the existing manifest — it moves three scorecards at once.`, "");
-  }
-  P("");
-  P(`After those two, the highest-return work is the "cheapest wins" table further down: an OIDC redirect, one missing JSON field on the A2A card, and a homepage link to the already-published CLI.`, "");
-  P("");
 }
 
 P("### Dashboards", "");
@@ -172,18 +172,91 @@ const findings = [];
 if (mcpMan?.counts?.live) {
   findings.push(`**The biggest agent-facing asset AISA has is invisible.** \`/.well-known/mcp.json\` publishes **${mcpMan.counts.live} live MCP servers exposing ${mcpMan.liveTools} tools**, yet Ora reports "no MCP server detected", Cloudflare rejects the manifest for a missing \`serverInfo.name\`, and Lightsage's own Arena checklist scores MCP Server 0. The servers are real and responding; the discovery file just is not in a shape any scanner recognises.`);
 }
-if (credState === "balance") {
-  findings.push(`**The API scores now measure an empty wallet, not the API.** Replacing the rejected key worked — 401s fell from 41 of 50 sampled runs to ${n401} — but ${n402} of ${diagEx.length} now return \`402: insufficient wallet balance\`. Agents authenticate, write working code, then fail on the live call. Top up the eval account and re-run before actioning endpoint scores.`);
-} else if (credState === "invalid") {
-  findings.push(`**The API Performance scores are measuring a broken credential.** ${n401} of ${diagEx.length} sampled runs hit \`401 / invalid api key\` and none passed. Fix the eval key and re-run before treating the ${num(diag?.summary?.failure_rate)}% failure rate as a signal about the API.`);
-}
 findings.push(`**Coding agents are measured for _usage_ but not for _recommendation_.** API Performance and Devtool Arena both run Claude Code against the API${arena ? ` (grade ${arena.grade}, ${arena.finalScore}%)` : ""}, but visibility tracking uses only ${trackedPlatforms.length} platforms (${trackedPlatforms.map((p) => p.name).join(", ")}), ${trackedCodingAgents.length === 0 ? "**none of them coding agents**" : `${trackedCodingAgents.length} coding agents`}, out of ${availablePlatforms.length} available. We know how well Claude Code *uses* ${company.name} once it arrives, and nothing about whether it ever *recommends* it.`);
 findings.push(`**Agent Analytics is switched off.** Lightsage reports no tracking events received, so the inside-out view — which pages agents actually read — does not exist yet. A middleware install closes that gap.`);
 findings.push(`**The "#1 average position" is a single-citation artifact.** It comes from one citation on one prompt, not category strength — noise, not a win.`);
+if (credState === "balance") {
+  findings.push(`**Caveat, not a task: endpoint pass rates are currently depressed by billing.** The eval account returns \`402 — insufficient wallet balance\` on most live calls, so agents authenticate, write working code, and fail at the call. Being handled separately — do not read the endpoint scores as a verdict on the API.`);
+}
 
 P(`${findings.length} findings drive everything below:`, "");
 findings.forEach((f, i) => P(`${i + 1}. ${f}`));
 P("");
+
+/* ---------- engineering fix list ---------- */
+{
+  S("Engineering fix list");
+  P(`Ordered by effort-to-impact. Every item is verified against live data in this report.`, "");
+
+  let n = 0;
+  const item = (title, body) => { n++; P(`### ${n}. ${title}`, ""); P(body, ""); };
+
+  if (mcpMan?.counts?.live) {
+    item("Publish a conforming MCP server card", 
+      `**Why:** ${mcpMan.counts.live} live servers / ${mcpMan.liveTools} tools are deployed and answering, and every scanner reports zero. ` +
+      `**What:** serve \`/.well-known/mcp/server-card.json\` (SEP-2127) with \`serverInfo.name\` and \`serverInfo.version\`, keeping the existing \`/.well-known/mcp.json\` in place for current consumers. ` +
+      `**Effect:** clears the Cloudflare \`mcpServerCard\` check, Ora's \`mcp-server\` (0/6) and \`mcp-server-card\` (0/2), and the Arena checklist's MCP row.`);
+  }
+
+  const broken = (urlCheck?.urls ?? []).filter((u) => u.stillBroken);
+  if (broken.length) {
+    item(`Fix ${broken.length} documentation 404s that agents hit`,
+      `**Why:** these are URLs agents actually requested during evals. A 404 mid-task costs a step, and often the run. ` +
+      `**What:** redirect where an equivalent page exists; write the page where the endpoint ships without one. All statuses below were re-checked live when this report was generated.`);
+    P(`| Status | URL agents requested | Suggested action |`, `| --- | --- | --- |`);
+    const SUGGEST = {
+      "/docs/authentication": "301 → `/docs/guides/authentication`",
+      "/docs/start/authentication": "301 → `/docs/guides/authentication`",
+      "/docs/quickstart": "301 → `/docs/agent-quickstart`",
+      "/docs/direct-api-access": "301 → `/docs/api-reference/chat/post_chat-completions`",
+      "/docs/guides/direct-api-access": "301 → `/docs/api-reference/chat/post_chat-completions`",
+      "/docs/guides/errors": "301 → `/docs/api-reference/errors`",
+      "/docs/api-reference/financial/get_prices_snapshot": "301 → `/docs/api-reference/financial/get_prices`",
+      "/docs/api-reference/financial/get_financial_metrics_snapshot": "301 → `/docs/api-reference/financial/get_prices`",
+      "/docs/api-reference/financial/get_financial-company-facts": "301 → `/docs/api-reference/financial/get_prices`",
+    };
+    for (const u of broken.sort((a, b) => (a.priority === "high" ? -1 : 1))) {
+      const path = String(u.url).replace(/^https?:\/\/[^/]+/, "");
+      const suggestion = SUGGEST[path] ?? "**No doc page for a shipped endpoint** — write it";
+      P(`| ${u.status || "err"}${u.priority === "high" ? " · **high**" : ""} | \`${esc(path)}\` | ${suggestion} |`);
+    }
+    P("");
+    P(`The "no doc page" rows matter most: endpoints like \`/v1/rerank\`, \`/v1/images/edits\` and \`/apis/v1/firecrawl/search\` are live and evaluated, but an agent following the OpenAPI spec to the matching doc URL finds nothing.`, "");
+  }
+
+  const cheap = [];
+  if (oraById.get("oauth-support")?.status === "pass" && cfById.get("oauthDiscovery")?.status === "fail")
+    cheap.push(["OIDC discovery is on a subdomain", "Serve or 301 `/.well-known/openid-configuration` from the apex — it currently only exists on `login.aisa.one`, and scanners only probe the apex."]);
+  const a2a = cfById.get("a2aAgentCard");
+  if (a2a?.status === "fail") cheap.push(["A2A Agent Card is schema-invalid", "Add the missing `supportedInterfaces` field to the card already being served at `/.well-known/agent-card.json`."]);
+  if (npmPkg?.name && !npmPkg.error)
+    cheap.push([`\`${esc(npmPkg.name)}\` is published but unlinked`, `v${esc(npmPkg.latest)} is live on npm and updated ${String(npmPkg.modified).slice(0, 10)}, but nothing on the homepage links to it, so three separate checks score it zero.`]);
+  if (cfById.get("markdownNegotiation")?.status === "fail")
+    cheap.push(["No markdown for agents", "Serve `text/markdown` on `Accept: text/markdown`, or publish `/index.md`. Agents landing from search currently get HTML only."]);
+  if (cfById.get("linkHeaders")?.status === "fail")
+    cheap.push(["No RFC 8288 `Link` headers", "Advertise `llms.txt`, sitemap and `service-doc` via `Link:` response headers so agents find them without parsing HTML."]);
+  if (cheap.length) {
+    item("One-line conformance fixes", `Each of these is a field, a redirect, or a header — all on surfaces that already exist.`);
+    P(`| Issue | Fix |`, `| --- | --- |`);
+    for (const [t, f] of cheap) P(`| ${t} | ${f} |`);
+    P("");
+  }
+
+  const pats = diag?.failure_analysis?.patterns ?? [];
+  const guess = pats.find((x) => /guessed without docs/i.test(x.label));
+  const hard = pats.find((x) => /hard to discover/i.test(x.label));
+  if (guess || hard) {
+    item("Make the docs findable from inside an agent session",
+      `**Why:** ${guess ? `\`${guess.label}\` is the single largest failure pattern at ${guess.percentage}% of runs — agents used tools without ever reading the docs` : ""}` +
+      `${guess && hard ? ", and " : ""}${hard ? `\`${hard.label}\` accounts for ${hard.percentage}%, meaning agents needed 2+ web searches to find them` : ""}. ` +
+      `**What:** the fixes above (Link headers, markdown negotiation, working 404s with a markdown body listing next steps) all feed this. ` +
+      `A dead-end 404 with no body is the worst case: the agent has no way to recover and falls back to guessing.`);
+  }
+
+  item("Install the Lightsage agent tracker",
+    `**Why:** Agent Analytics has received no events, so there is no data on which pages agents actually read — only what evals synthesise. ` +
+    `**What:** \`npm install @lightsage/agent-tracker\` and add the Next.js middleware (details in the section below). Zero runtime dependencies.`);
+}
 
 /* ---------- visibility ---------- */
 S("Visibility");

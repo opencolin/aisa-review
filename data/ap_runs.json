@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 4030,
+  "durationMs": 4413,
   "path": "/v1/api-performance/runs?limit=50",
   "body": {
     "company": {

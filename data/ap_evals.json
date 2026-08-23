@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 1410,
+  "durationMs": 1380,
   "path": "/v1/api-performance/evals",
   "body": {
     "data": [

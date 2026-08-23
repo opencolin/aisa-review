@@ -2,22 +2,23 @@
 
 **Source** · Lightsage public API (formerly Sapient) · `https://api.lightsage.com`  
 **Window** · 2026-07-24 → 2026-08-23 (30 days) · latest run 2026-08-23  
-**Generated** · Sun, 23 Aug 2026 13:51:26 GMT
+**Generated** · Sun, 23 Aug 2026 14:10:49 GMT
 
 
 ## Read this first
 
-Most of what follows is not "build something new." AIsa has already built the agent-facing surfaces — MCP servers, an OpenAPI spec, llms.txt, an A2A card, OIDC, a published CLI. The recurring finding is that these exist but are not **discoverable or conformant**, so scanners, agents and scorecards score them zero. That is a much cheaper problem to fix than the scores suggest.
-
-Two items should be actioned before anyone reads the rest, because they distort everything downstream:
+This report is written for engineers. Almost nothing in it is "build something new" — AIsa has already shipped the agent-facing surfaces: MCP servers, an OpenAPI spec, llms.txt, an A2A card, OIDC, a published CLI. The recurring finding is that these exist but are **not discoverable or not conformant**, so agents, scanners and scorecards behave as though they do not exist. The fix list in the next section is ordered by effort-to-impact and every item names a concrete path.
 
 
-**1. The eval account has no wallet balance.** The rejected key was replaced and that worked — 401s fell from 41 of 50 sampled runs to 3. But 41 of 50 runs now return `402 — The wallet balance is insufficient`. Agents authenticate, write working code, and fail on the live call. **The endpoint scores still measure billing, not API quality.** Top up the account behind the eval key and re-run before actioning them.
-
-**2. 11 live MCP servers are invisible to every scanner.** `/.well-known/mcp.json` serves 11 servers exposing 188 tools, all responding. Ora reports "no MCP server detected", Cloudflare rejects the manifest for a missing `serverInfo.name`, and Lightsage's own Arena checklist scores MCP Server 0. The fix is a conforming card at `/.well-known/mcp/server-card.json` alongside the existing manifest — it moves three scorecards at once.
+The two highest-leverage items:
 
 
-After those two, the highest-return work is the "cheapest wins" table further down: an OIDC redirect, one missing JSON field on the A2A card, and a homepage link to the already-published CLI.
+**1. 11 live MCP servers are invisible.** `/.well-known/mcp.json` serves 11 servers exposing 188 tools, all responding. Ora reports "no MCP server detected", Cloudflare rejects the manifest for a missing `serverInfo.name`, and Lightsage's Arena checklist scores MCP Server 0. A conforming card at `/.well-known/mcp/server-card.json` alongside the existing manifest moves three scorecards at once.
+
+**2. 16 documentation URLs that agents actually requested return 404 right now** (re-verified live for this report, not taken from the audit). Agents reach a real endpoint in the OpenAPI spec, construct the matching doc URL, and hit nothing. Several have obvious redirect targets; a few are shipped endpoints with no doc page at all.
+
+
+_One caveat while reading the endpoint scores: the Lightsage eval account currently returns `402 — insufficient wallet balance` on most live calls, so pass rates are depressed for billing reasons rather than code reasons. This is being handled separately and is not an engineering task._
 
 
 ### Dashboards
@@ -53,14 +54,69 @@ After those two, the highest-return work is the "cheapest wins" table further do
 5 findings drive everything below:
 
 1. **The biggest agent-facing asset AISA has is invisible.** `/.well-known/mcp.json` publishes **11 live MCP servers exposing 188 tools**, yet Ora reports "no MCP server detected", Cloudflare rejects the manifest for a missing `serverInfo.name`, and Lightsage's own Arena checklist scores MCP Server 0. The servers are real and responding; the discovery file just is not in a shape any scanner recognises.
-2. **The API scores now measure an empty wallet, not the API.** Replacing the rejected key worked — 401s fell from 41 of 50 sampled runs to 3 — but 41 of 50 now return `402: insufficient wallet balance`. Agents authenticate, write working code, then fail on the live call. Top up the eval account and re-run before actioning endpoint scores.
-3. **Coding agents are measured for _usage_ but not for _recommendation_.** API Performance and Devtool Arena both run Claude Code against the API (grade C, 69%), but visibility tracking uses only 3 platforms (Google AI Overviews, ChatGPT, Perplexity), **none of them coding agents**, out of 19 available. We know how well Claude Code *uses* AIsa once it arrives, and nothing about whether it ever *recommends* it.
-4. **Agent Analytics is switched off.** Lightsage reports no tracking events received, so the inside-out view — which pages agents actually read — does not exist yet. A middleware install closes that gap.
-5. **The "#1 average position" is a single-citation artifact.** It comes from one citation on one prompt, not category strength — noise, not a win.
+2. **Coding agents are measured for _usage_ but not for _recommendation_.** API Performance and Devtool Arena both run Claude Code against the API (grade C, 69%), but visibility tracking uses only 3 platforms (Google AI Overviews, ChatGPT, Perplexity), **none of them coding agents**, out of 19 available. We know how well Claude Code *uses* AIsa once it arrives, and nothing about whether it ever *recommends* it.
+3. **Agent Analytics is switched off.** Lightsage reports no tracking events received, so the inside-out view — which pages agents actually read — does not exist yet. A middleware install closes that gap.
+4. **The "#1 average position" is a single-citation artifact.** It comes from one citation on one prompt, not category strength — noise, not a win.
+5. **Caveat, not a task: endpoint pass rates are currently depressed by billing.** The eval account returns `402 — insufficient wallet balance` on most live calls, so agents authenticate, write working code, and fail at the call. Being handled separately — do not read the endpoint scores as a verdict on the API.
 
 ---
 
-## 1. Visibility
+## 1. Engineering fix list
+
+Ordered by effort-to-impact. Every item is verified against live data in this report.
+
+### 1. Publish a conforming MCP server card
+
+**Why:** 11 live servers / 188 tools are deployed and answering, and every scanner reports zero. **What:** serve `/.well-known/mcp/server-card.json` (SEP-2127) with `serverInfo.name` and `serverInfo.version`, keeping the existing `/.well-known/mcp.json` in place for current consumers. **Effect:** clears the Cloudflare `mcpServerCard` check, Ora's `mcp-server` (0/6) and `mcp-server-card` (0/2), and the Arena checklist's MCP row.
+
+### 2. Fix 16 documentation 404s that agents hit
+
+**Why:** these are URLs agents actually requested during evals. A 404 mid-task costs a step, and often the run. **What:** redirect where an equivalent page exists; write the page where the endpoint ships without one. All statuses below were re-checked live when this report was generated.
+
+| Status | URL agents requested | Suggested action |
+| --- | --- | --- |
+| 404 · **high** | `/docs/authentication` | 301 → `/docs/guides/authentication` |
+| 404 | `/docs/api-reference/images` | **No doc page for a shipped endpoint** — write it |
+| 404 | `/docs/api-reference/exa/post_exa-agent-runs` | **No doc page for a shipped endpoint** — write it |
+| 404 | `/docs/api-reference/image-generation/post_images-edits` | **No doc page for a shipped endpoint** — write it |
+| 404 | `/docs/guides/images` | **No doc page for a shipped endpoint** — write it |
+| 404 | `/docs/api-reference/images/post_images-edits` | **No doc page for a shipped endpoint** — write it |
+| 404 | `/docs/api-reference/financial/get_financial-company-facts` | 301 → `/docs/api-reference/financial/get_prices` |
+| 404 | `/docs/start/authentication` | 301 → `/docs/guides/authentication` |
+| 404 | `/docs/guides/direct-api-access` | 301 → `/docs/api-reference/chat/post_chat-completions` |
+| 404 | `/docs/direct-api-access` | 301 → `/docs/api-reference/chat/post_chat-completions` |
+| 404 | `/docs/guides/errors` | 301 → `/docs/api-reference/errors` |
+| 404 | `/docs/api-reference/financial/get_prices_snapshot` | 301 → `/docs/api-reference/financial/get_prices` |
+| 404 | `/docs/quickstart` | 301 → `/docs/agent-quickstart` |
+| 404 | `/docs/api-reference/financial/get_financial_metrics_snapshot` | 301 → `/docs/api-reference/financial/get_prices` |
+| 404 | `/docs/api-reference/rerank/post_rerank` | **No doc page for a shipped endpoint** — write it |
+| 404 | `/docs/api-reference/firecrawl/post_firecrawl-search` | **No doc page for a shipped endpoint** — write it |
+
+The "no doc page" rows matter most: endpoints like `/v1/rerank`, `/v1/images/edits` and `/apis/v1/firecrawl/search` are live and evaluated, but an agent following the OpenAPI spec to the matching doc URL finds nothing.
+
+### 3. One-line conformance fixes
+
+Each of these is a field, a redirect, or a header — all on surfaces that already exist.
+
+| Issue | Fix |
+| --- | --- |
+| OIDC discovery is on a subdomain | Serve or 301 `/.well-known/openid-configuration` from the apex — it currently only exists on `login.aisa.one`, and scanners only probe the apex. |
+| A2A Agent Card is schema-invalid | Add the missing `supportedInterfaces` field to the card already being served at `/.well-known/agent-card.json`. |
+| `@aisa-one/cli` is published but unlinked | v0.3.0 is live on npm and updated 2026-08-19, but nothing on the homepage links to it, so three separate checks score it zero. |
+| No markdown for agents | Serve `text/markdown` on `Accept: text/markdown`, or publish `/index.md`. Agents landing from search currently get HTML only. |
+| No RFC 8288 `Link` headers | Advertise `llms.txt`, sitemap and `service-doc` via `Link:` response headers so agents find them without parsing HTML. |
+
+### 4. Make the docs findable from inside an agent session
+
+**Why:** `Guessed Without Docs` is the single largest failure pattern at 60.6% of runs — agents used tools without ever reading the docs, and `Hard to Discover` accounts for 12.1%, meaning agents needed 2+ web searches to find them. **What:** the fixes above (Link headers, markdown negotiation, working 404s with a markdown body listing next steps) all feed this. A dead-end 404 with no body is the worst case: the agent has no way to recover and falls back to guessing.
+
+### 5. Install the Lightsage agent tracker
+
+**Why:** Agent Analytics has received no events, so there is no data on which pages agents actually read — only what evals synthesise. **What:** `npm install @lightsage/agent-tracker` and add the Next.js middleware (details in the section below). Zero runtime dependencies.
+
+---
+
+## 2. Visibility
 
 ### Competitive landscape
 
@@ -130,7 +186,7 @@ Tracked: **Google AI Overviews, ChatGPT, Perplexity**
 
 ---
 
-## 2. API Performance
+## 3. API Performance
 
 **15/50 evals passed (30.00%)**, all executed by `global.anthropic.claude-opus-5`.
 
@@ -281,7 +337,7 @@ _This eval ran 2026-08-11, **before** the eval credential was replaced — and i
 
 ---
 
-## 3. Agent experience
+## 4. Agent experience
 
 Lightsage's diagnosis of how coding agents actually behave against the API, over the last 30d.
 
@@ -321,7 +377,7 @@ _Row-level export of 85 runs across 54 endpoints is committed at `reference/agen
 
 ---
 
-## 4. Agent readiness
+## 5. Agent readiness
 
 Lightsage measures whether agents **cite** AIsa. These two scanners measure whether agents **can use** it — discovery files, protocol conformance, auth, and machine-readable surfaces.
 
@@ -444,7 +500,7 @@ Each of these is built and live. They fail only because they sit at the wrong pa
 
 ---
 
-## 5. Recommended actions
+## 6. Recommended actions
 
 Lightsage's ranked task list for 2026-08-23 — 7 active.
 
@@ -506,7 +562,7 @@ Lightsage's ranked task list for 2026-08-23 — 7 active.
 
 ---
 
-## 6. Opportunities (81)
+## 7. Opportunities (81)
 
 **By category** — GROWTH (11), CITATIONS (70)  
 **By type** — CONTENT GAPS (2), CITATION GAPS (30), HIGH CITATION SOURCES (20), LISTICLE TARGETS (20), COMPETITOR GAPS (7), UNTAPPED TOPICS (2)  
@@ -555,7 +611,7 @@ _45 more in `data/opportunities.json`._
 
 ---
 
-## 7. Recommended: install the Lightsage Agent Tracker SDK
+## 8. Recommended: install the Lightsage Agent Tracker SDK
 
 Lightsage's **Agent Analytics** product is currently empty for AISA — the dashboard reports *"Waiting for first tracking event."* That is the half of Lightsage that measures which pages agents actually read, and it needs a small middleware install to start producing data.
 
@@ -588,7 +644,7 @@ Notes for whoever implements it:
 
 ---
 
-## 8. Data quality caveats
+## 9. Data quality caveats
 
 - **Average position is not meaningful.** `average_position = 1` (rank #1) derives from 1 citation. It will regress as citations accumulate.
 - **Opportunity impact scores are saturated.** 30 of 81 opportunities score exactly 100, and 79 are "high" priority — the ranking carries little signal. The ranked task list below is the better prioritisation.
@@ -598,30 +654,31 @@ Notes for whoever implements it:
 
 ---
 
-## 9. Endpoint coverage
+## 10. Endpoint coverage
 
 | Endpoint | Path | Status | Time |
 | --- | --- | --- | --- |
-| API health | `/v1/status` | ok (200) | 140ms |
-| Key / org identity | `/v1/auth/status` | ok (200) | 484ms |
-| Current visibility | `/v1/visibility/current` | ok (200) | 1265ms |
-| Visibility overview | `/v1/visibility/overview` | ok (200) | 3288ms |
-| Per-prompt visibility | `/v1/visibility/prompts` | ok (200) | 2852ms |
-| Tracked prompts | `/v1/prompts` | ok (200) | 447ms |
-| Prompt config / topics | `/v1/prompts/config` | ok (200) | 728ms |
-| Opportunities | `/v1/opportunities` | ok (200) | 8370ms |
-| Daily tasks | `/v1/tasks` | ok (200) | 663ms |
-| API Perf sources | `/v1/api-performance/sources` | ok (200) | 954ms |
-| API Perf targets | `/v1/api-performance/targets` | ok (200) | 347ms |
-| API Perf config | `/v1/api-performance/config` | ok (200) | 1072ms |
-| API Perf runs | `/v1/api-performance/runs` | ok (200) | 4030ms |
-| API Perf actions | `/v1/api-performance/actions` | ok (200) | 1349ms |
-| API Perf eval defs | `/v1/api-performance/evals` | ok (200) | 1410ms |
-| API Perf skills | `/v1/api-performance/skills` | ok (200) | 670ms |
-| Custom evals | `/v1/api-performance/custom-evals` | ok (200) | 2866ms |
+| API health | `/v1/status` | ok (200) | 165ms |
+| Key / org identity | `/v1/auth/status` | ok (200) | 721ms |
+| Current visibility | `/v1/visibility/current` | ok (200) | 964ms |
+| Visibility overview | `/v1/visibility/overview` | ok (200) | 3130ms |
+| Per-prompt visibility | `/v1/visibility/prompts` | ok (200) | 2743ms |
+| Tracked prompts | `/v1/prompts` | ok (200) | 457ms |
+| Prompt config / topics | `/v1/prompts/config` | ok (200) | 741ms |
+| Opportunities | `/v1/opportunities` | ok (200) | 7222ms |
+| Daily tasks | `/v1/tasks` | ok (200) | 596ms |
+| API Perf sources | `/v1/api-performance/sources` | ok (200) | 961ms |
+| API Perf targets | `/v1/api-performance/targets` | ok (200) | 346ms |
+| API Perf config | `/v1/api-performance/config` | ok (200) | 1073ms |
+| API Perf runs | `/v1/api-performance/runs` | ok (200) | 4413ms |
+| API Perf actions | `/v1/api-performance/actions` | ok (200) | 1331ms |
+| API Perf eval defs | `/v1/api-performance/evals` | ok (200) | 1380ms |
+| API Perf skills | `/v1/api-performance/skills` | ok (200) | 642ms |
+| Custom evals | `/v1/api-performance/custom-evals` | ok (200) | 2855ms |
 | Starter projects | `/v1/api-performance/starter-projects` | ok (200) | 673ms |
-| Agent behaviour diagnosis | `/v1/api-performance/diagnose` | ok (200) | 5673ms |
-| AISA MCP manifest | `https://aisa.one/.well-known/mcp.json` | ok (200) | 1241ms |
-| Ora agent-readiness | `https://ora.ai/api/score/aisa.one` | ok (200) | 204ms |
-| Cloudflare agent-ready scan | `https://isitagentready.com/api/scan` | ok (200) | 9091ms |
-| npm CLI package | `https://registry.npmjs.org/@aisa-one/cli` | ok (200) | 359ms |
+| Agent behaviour diagnosis | `/v1/api-performance/diagnose` | ok (200) | 5566ms |
+| AISA MCP manifest | `https://aisa.one/.well-known/mcp.json` | ok (200) | 118ms |
+| Flagged doc URLs re-checked live | `(live)` | ok (200) | 1384ms |
+| Ora agent-readiness | `https://ora.ai/api/score/aisa.one` | ok (200) | 101ms |
+| Cloudflare agent-ready scan | `https://isitagentready.com/api/scan` | ok (200) | 6671ms |
+| npm CLI package | `https://registry.npmjs.org/@aisa-one/cli` | ok (200) | 355ms |

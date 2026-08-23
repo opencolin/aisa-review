@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { apiGet, BASE_URL, getApiKey, ROOT } from "./client.mjs";
 
@@ -131,6 +131,38 @@ process.stdout.write(`  ${"aisa_mcp_manifest".padEnd(22)} `);
   writeFileSync(join(dataDir, "aisa_mcp_manifest.json"), JSON.stringify(res, null, 2));
   manifest.push({ key: "aisa_mcp_manifest", label: "AISA MCP manifest", path: `https://${oraDomainForMcp}/.well-known/mcp.json`, optional: true, ok: res.ok, status: res.status, durationMs: res.durationMs });
   console.log(`${res.ok ? "ok " : "-- "} ${String(res.status).padStart(3)}  ${res.durationMs}ms`);
+}
+
+// Live re-check of every doc URL Lightsage flagged as broken or unreadable.
+// Keeps the engineering fix list honest: a URL fixed since the last audit
+// should stop appearing as broken.
+process.stdout.write(`  ${"url_check".padEnd(22)} `);
+{
+  const started = Date.now();
+  let flagged = [];
+  try {
+    const acts = JSON.parse(readFileSync(join(dataDir, "ap_actions.json"), "utf8"))?.body?.data ?? [];
+    flagged = acts
+      .filter((a) => a.action_type === "broken_url" || a.action_type === "page_not_llm_readable")
+      .map((a) => ({ url: a.primary_url, actionType: a.action_type, priority: a.priority }));
+  } catch { /* ap_actions may be unavailable */ }
+
+  const checked = [];
+  for (const f of flagged) {
+    let status = 0;
+    try {
+      const r = await fetch(f.url, { redirect: "follow", signal: AbortSignal.timeout(20_000) });
+      status = r.status;
+    } catch { status = 0; }
+    checked.push({ ...f, status, stillBroken: status === 404 || status === 0 });
+  }
+  const res = {
+    ok: true, status: 200, durationMs: Date.now() - started, path: "(live HEAD/GET of flagged doc URLs)",
+    body: { checkedAt: new Date().toISOString(), total: checked.length, stillBroken: checked.filter((c) => c.stillBroken).length, urls: checked },
+  };
+  writeFileSync(join(dataDir, "url_check.json"), JSON.stringify(res, null, 2));
+  manifest.push({ key: "url_check", label: "Flagged doc URLs re-checked live", path: "(live)", optional: true, ok: true, status: 200, durationMs: res.durationMs });
+  console.log(`ok  200  ${res.durationMs}ms  (${res.body.stillBroken}/${res.body.total} still broken)`);
 }
 
 // Ora agent-readiness (ora.ai) — public, unauthenticated, separate host.

@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 1072,
+  "durationMs": 1073,
   "path": "/v1/api-performance/config",
   "body": {
     "models": [

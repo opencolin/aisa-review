@@ -1,0 +1,146 @@
+{
+  "ok": true,
+  "status": 200,
+  "durationMs": 1384,
+  "path": "(live HEAD/GET of flagged doc URLs)",
+  "body": {
+    "checkedAt": "2026-08-23T14:10:42.581Z",
+    "total": 19,
+    "stillBroken": 16,
+    "urls": [
+      {
+        "url": "https://aisa.one/docs/authentication",
+        "actionType": "broken_url",
+        "priority": "high",
+        "status": 404,
+        "stillBroken": true
+      },
+      {
+        "url": "https://aisa.one/docs/api-reference/errors",
+        "actionType": "broken_url",
+        "priority": "medium",
+        "status": 200,
+        "stillBroken": false
+      },
+      {
+        "url": "https://aisa.one/docs/api-reference/prediction-market/get_polymarket-events",
+        "actionType": "page_not_llm_readable",
+        "priority": "medium",
+        "status": 200,
+        "stillBroken": false
+      },
+      {
+        "url": "https://aisa.one/docs/api-reference/images",
+        "actionType": "broken_url",
+        "priority": "medium",
+        "status": 404,
+        "stillBroken": true
+      },
+      {
+        "url": "https://aisa.one/docs/api-reference/exa/post_exa-agent-runs",
+        "actionType": "broken_url",
+        "priority": "medium",
+        "status": 404,
+        "stillBroken": true
+      },
+      {
+        "url": "https://aisa.one/docs/api-reference/image-generation/post_images-edits",
+        "actionType": "broken_url",
+        "priority": "medium",
+        "status": 404,
+        "stillBroken": true
+      },
+      {
+        "url": "https://aisa.one/docs/guides/images",
+        "actionType": "broken_url",
+        "priority": "medium",
+        "status": 404,
+        "stillBroken": true
+      },
+      {
+        "url": "https://aisa.one/docs/api-reference/images/post_images-edits",
+        "actionType": "broken_url",
+        "priority": "medium",
+        "status": 404,
+        "stillBroken": true
+      },
+      {
+        "url": "https://aisa.one/docs/api-reference/financial/get_financial-company-facts",
+        "actionType": "broken_url",
+        "priority": "medium",
+        "status": 404,
+        "stillBroken": true
+      },
+      {
+        "url": "https://aisa.one/docs/start/authentication",
+        "actionType": "broken_url",
+        "priority": "medium",
+        "status": 404,
+        "stillBroken": true
+      },
+      {
+        "url": "https://aisa.one/docs/guides/direct-api-access",
+        "actionType": "broken_url",
+        "priority": "medium",
+        "status": 404,
+        "stillBroken": true
+      },
+      {
+        "url": "https://aisa.one/docs/direct-api-access",
+        "actionType": "broken_url",
+        "priority": "medium",
+        "status": 404,
+        "stillBroken": true
+      },
+      {
+        "url": "https://aisa.one/docs/guides/errors",
+        "actionType": "broken_url",
+        "priority": "medium",
+        "status": 404,
+        "stillBroken": true
+      },
+      {
+        "url": "https://aisa.one/docs/api-reference/financial/get_prices_snapshot",
+        "actionType": "broken_url",
+        "priority": "medium",
+        "status": 404,
+        "stillBroken": true
+      },
+      {
+        "url": "https://aisa.one/docs/quickstart",
+        "actionType": "broken_url",
+        "priority": "medium",
+        "status": 404,
+        "stillBroken": true
+      },
+      {
+        "url": "https://aisa.one/docs/api-reference/financial/get_financial_metrics_snapshot",
+        "actionType": "broken_url",
+        "priority": "medium",
+        "status": 404,
+        "stillBroken": true
+      },
+      {
+        "url": "https://aisa.one/docs/api-reference/rerank/post_rerank",
+        "actionType": "broken_url",
+        "priority": "medium",
+        "status": 404,
+        "stillBroken": true
+      },
+      {
+        "url": "https://aisa.one/docs/api-reference/firecrawl/post_firecrawl-search",
+        "actionType": "broken_url",
+        "priority": "medium",
+        "status": 404,
+        "stillBroken": true
+      },
+      {
+        "url": "https://aisa.one/docs/api-reference/financial/get_financials",
+        "actionType": "page_not_llm_readable",
+        "priority": "medium",
+        "status": 200,
+        "stillBroken": false
+      }
+    ]
+  }
+}

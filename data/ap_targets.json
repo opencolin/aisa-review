@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 347,
+  "durationMs": 346,
   "path": "/v1/api-performance/targets",
   "body": {
     "text_models": [
