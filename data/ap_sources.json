@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 971,
+  "durationMs": 945,
   "path": "/v1/api-performance/sources",
   "body": {
     "data": [
@@ -76,15 +76,15 @@
             "model_id": "global.anthropic.claude-opus-5",
             "frequency": "daily",
             "enabled": true,
-            "next_run_at": "2026-08-15T09:00:00+00:00",
+            "next_run_at": "2026-08-24T09:00:00+00:00",
             "last_run_at": null,
             "last_skipped_at": null,
             "skip_reason": null,
             "created_at": "2026-08-14T06:58:49.249982+00:00",
-            "updated_at": "2026-08-14T07:05:48.987354+00:00"
+            "updated_at": "2026-08-23T01:22:29.086514+00:00"
           }
         ],
-        "operation_count": 71,
+        "operation_count": 124,
         "created_at": "2026-08-14T06:58:46.484178+00:00"
       }
     ],

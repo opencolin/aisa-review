@@ -115,6 +115,37 @@ process.stdout.write(`  ${"cloudflare".padEnd(22)} `);
   console.log(`${res.ok ? "ok " : "-- "} ${String(res.status).padStart(3)}  ${res.durationMs}ms`);
 }
 
+// npm registry — verify whether a published CLI/SDK exists, independent of
+// whether the scanners manage to discover it.
+process.stdout.write(`  ${"npm".padEnd(22)} `);
+{
+  const started = Date.now();
+  let res;
+  try {
+    const r = await fetch("https://registry.npmjs.org/@aisa-one%2Fcli", { headers: { Accept: "application/json" }, signal: AbortSignal.timeout(30_000) });
+    const j = await r.json();
+    const latest = j["dist-tags"]?.latest;
+    res = {
+      ok: r.ok && !j.error,
+      status: r.status,
+      durationMs: Date.now() - started,
+      path: "registry.npmjs.org/@aisa-one/cli",
+      body: j.error ? { error: j.error } : {
+        name: j.name, latest, versions: Object.keys(j.versions ?? {}).length,
+        created: j.time?.created, modified: j.time?.modified,
+        description: j.versions?.[latest]?.description,
+        bin: j.versions?.[latest]?.bin, repository: j.versions?.[latest]?.repository?.url,
+        homepage: j.versions?.[latest]?.homepage,
+      },
+    };
+  } catch (err) {
+    res = { ok: false, status: 0, durationMs: Date.now() - started, path: "registry.npmjs.org/@aisa-one/cli", body: { error: String(err) } };
+  }
+  writeFileSync(join(dataDir, "npm.json"), JSON.stringify(res, null, 2));
+  manifest.push({ key: "npm", label: "npm CLI package", path: "https://registry.npmjs.org/@aisa-one/cli", optional: true, ok: res.ok, status: res.status, durationMs: res.durationMs });
+  console.log(`${res.ok ? "ok " : "-- "} ${String(res.status).padStart(3)}  ${res.durationMs}ms`);
+}
+
 writeFileSync(
   join(dataDir, "_manifest.json"),
   JSON.stringify({ generatedAt: new Date().toISOString(), baseUrl: BASE_URL, window: { start, end, days }, endpoints: manifest }, null, 2),

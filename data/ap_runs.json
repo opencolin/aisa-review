@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 1966,
+  "durationMs": 2582,
   "path": "/v1/api-performance/runs?limit=50",
   "body": {
     "company": {
@@ -11,6 +11,1011 @@
       "relationship": "primary"
     },
     "data": [
+      {
+        "id": "30c61cbb-7bb8-4c01-a791-9b595d579269",
+        "endpoint": {
+          "id": "52add107-cc7f-4589-a772-0be67403a96f",
+          "method": "POST",
+          "path": "/apis/v1/firecrawl/search",
+          "description": "Search the web and return ranked results. Synchronous operation; accepts a query (up to 500 characters) and optional result limit (1–100). Costs ~2 Firecrawl credits per 10 results.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.6313,
+        "failure_reasons": [
+          "exit_code_zero",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:29:38.103418+00:00"
+      },
+      {
+        "id": "1f0d6f4b-475a-46c7-afd8-9ac495508e58",
+        "endpoint": {
+          "id": "085e2768-1671-4ec3-96f3-27277cea0d94",
+          "method": "GET",
+          "path": "/apis/v1/twitter/user/info",
+          "description": "Retrieve a single X (Twitter) user's public profile by @handle. Returns display name, bio, follower/following counts, verification status, account creation date, location, and profile images.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.5063,
+        "failure_reasons": [
+          "exit_code_zero",
+          "clean_execution",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:29:35.801875+00:00"
+      },
+      {
+        "id": "5063233b-81e5-454f-8d4a-e31d4f9ea617",
+        "endpoint": {
+          "id": "1e0eabd6-101e-4794-a26c-eb1ec321639c",
+          "method": "POST",
+          "path": "/v1/images/edits",
+          "description": "Edit existing images using AI models.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.5938,
+        "failure_reasons": [
+          "exit_code_zero",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:29:29.033135+00:00"
+      },
+      {
+        "id": "e071823b-10b0-45d6-855b-ff3ae6172298",
+        "endpoint": {
+          "id": "88ed48a3-c095-4c74-90dd-b9a4373be6bc",
+          "method": "POST",
+          "path": "/apis/v1/perplexity/sonar",
+          "description": "Lightweight search + answer endpoint. Cost-effective model for quick web searches with AI-generated answers containing inline citations. Priced at $0.012 per request.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.6313,
+        "failure_reasons": [
+          "exit_code_zero",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:29:28.962221+00:00"
+      },
+      {
+        "id": "fcdae348-920e-43f0-86e4-dacd6425bbca",
+        "endpoint": {
+          "id": "e66c45f5-81db-442b-9ff2-2f4f4e63a0e1",
+          "method": "GET",
+          "path": "/apis/v1/financial/insider-trades",
+          "description": "Retrieve Form 4 insider trading transactions for a stock ticker. Includes insider details, transaction date/type/shares/price, resulting position, and filing details.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.5063,
+        "failure_reasons": [
+          "exit_code_zero",
+          "clean_execution",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:29:27.892437+00:00"
+      },
+      {
+        "id": "5444e394-fc8d-4866-9caa-47e0b8a5d6f7",
+        "endpoint": {
+          "id": "f2fd0044-b768-4ada-9441-6d5b16e728bf",
+          "method": "POST",
+          "path": "/apis/v1/firecrawl/parse",
+          "description": "Accept an uploaded HTML file and convert it into parsed markdown format synchronously. Costs 1 Firecrawl credit per request. Uses multipart form data.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.6688,
+        "failure_reasons": [
+          "exit_code_zero",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:29:25.15258+00:00"
+      },
+      {
+        "id": "f13f0aa8-29b9-4f1a-bef9-34da8bef897a",
+        "endpoint": {
+          "id": "e410e0ca-03f9-47aa-a6fa-b23f4e3dfb67",
+          "method": "POST",
+          "path": "/apis/v1/firecrawl/crawl",
+          "description": "Submit an asynchronous job to crawl an entire site rooted at a given URL. Returns a job ID; callers poll until completion. Costs 1 Firecrawl credit per page, configurable up to 1000 pages.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.6313,
+        "failure_reasons": [
+          "exit_code_zero",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:29:23.084876+00:00"
+      },
+      {
+        "id": "cbffec50-c015-4d21-86b4-49de116743c1",
+        "endpoint": {
+          "id": "94a296c3-ace2-42d2-89a9-4e669267d493",
+          "method": "POST",
+          "path": "/apis/v1/firecrawl/scrape",
+          "description": "Fetch one URL and return its cleaned main content as markdown synchronously. Costs 1 Firecrawl credit per page.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.6313,
+        "failure_reasons": [
+          "exit_code_zero",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:29:22.434474+00:00"
+      },
+      {
+        "id": "34fe626f-7262-4688-a60c-354e6b8e92c5",
+        "endpoint": {
+          "id": "859c2888-e361-4626-89d5-44e4f9e60447",
+          "method": "POST",
+          "path": "/v1/embeddings",
+          "description": "Generate 1024-dimensional embedding vectors for one or more input strings using jina-embeddings-v3 or jina-embeddings-v5-text-small. OpenAI-compatible interface.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.6313,
+        "failure_reasons": [
+          "exit_code_zero",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:29:19.526579+00:00"
+      },
+      {
+        "id": "66321ff3-5c1c-4e2b-a7b1-dc167ec1c80d",
+        "endpoint": {
+          "id": "c6a3922c-e08d-4975-8757-81e2fc91f3fc",
+          "method": "POST",
+          "path": "/v1/rerank",
+          "description": "Rerank a list of documents against a query using jina-reranker-v3. Returns results sorted by relevance score with an option to limit to the top N most relevant items.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.4688,
+        "failure_reasons": [
+          "exit_code_zero",
+          "clean_execution",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:29:18.864462+00:00"
+      },
+      {
+        "id": "04a43b0e-aed8-435a-b904-e39242231760",
+        "endpoint": {
+          "id": "b05dc8ca-d75e-47f2-a62b-b958571ebcb5",
+          "method": "POST",
+          "path": "/apis/v1/exa/answer",
+          "description": "Get a direct cited answer from Exa. Retrieves relevant sources and generates a direct answer or detailed summary with source citations. Costs $0.08 per request.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.5063,
+        "failure_reasons": [
+          "exit_code_zero",
+          "clean_execution",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:29:13.881041+00:00"
+      },
+      {
+        "id": "9dfe566f-0e64-4f33-923b-a161c800eb4f",
+        "endpoint": {
+          "id": "630a7d84-acfa-4090-8aef-60cccd47e358",
+          "method": "POST",
+          "path": "/apis/v1/perplexity/sonar-reasoning-pro",
+          "description": "Chain-of-thought reasoning with search. Provides step-by-step analysis backed by web search results for analytical and complex reasoning tasks. Priced at $0.012 per request.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.5063,
+        "failure_reasons": [
+          "exit_code_zero",
+          "has_endpoint",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:29:13.496381+00:00"
+      },
+      {
+        "id": "d6761ae0-e55c-4756-8c6f-4a186a65ca0c",
+        "endpoint": {
+          "id": "23dcb3cc-66fa-408e-9e8d-87f7670ab62e",
+          "method": "GET",
+          "path": "/apis/v1/financial/financials/balance-sheets",
+          "description": "Retrieve balance sheet data (~36 fields per period) including total assets, current assets, cash equivalents, inventory, and equity lines. Requires period and ticker or CIK.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.6063,
+        "failure_reasons": [
+          "exit_code_zero",
+          "clean_execution",
+          "has_endpoint"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:29:10.694564+00:00"
+      },
+      {
+        "id": "faf4f13c-443a-426f-94f8-4128b8728357",
+        "endpoint": {
+          "id": "814f992a-38fb-418f-9b88-38d5f116e09e",
+          "method": "POST",
+          "path": "/apis/v1/tavily/search",
+          "description": "AI-optimized web search that returns ranked results with page content already extracted. Supports search depth, topic and date range filters, optional LLM-generated answers, and image search.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.8563,
+        "failure_reasons": [
+          "exit_code_zero"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:29:05.720787+00:00"
+      },
+      {
+        "id": "0d599037-c64c-41d8-84a5-3f9ac12e1813",
+        "endpoint": {
+          "id": "940e59b0-5efb-4021-94f4-d510f330ca35",
+          "method": "GET",
+          "path": "/apis/v1/financial/financial-metrics/snapshot",
+          "description": "Retrieve a current snapshot of about 41 financial metric fields for one company, including valuation multiples, profitability, efficiency, and liquidity metrics. Requires only a ticker or CIK.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.5063,
+        "failure_reasons": [
+          "exit_code_zero",
+          "has_endpoint",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:29:03.873359+00:00"
+      },
+      {
+        "id": "5d8bb39a-92fa-4a1a-8996-5aec8351dca5",
+        "endpoint": {
+          "id": "1cb7768f-692a-4574-af9d-6750e3be379e",
+          "method": "GET",
+          "path": "/apis/v1/financial/edinet/documents.json",
+          "description": "Query the EDINET filing list for a specified date. Returns metadata only (type=1) or metadata plus filing results (type=2). Required date parameter in YYYY-MM-DD format.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.5063,
+        "failure_reasons": [
+          "exit_code_zero",
+          "has_endpoint",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:29:02.013555+00:00"
+      },
+      {
+        "id": "853c49d3-3a38-46c3-9032-de1003d65c6f",
+        "endpoint": {
+          "id": "6a14d47a-c95c-4fab-af9b-9fac932955dd",
+          "method": "POST",
+          "path": "/v1beta/models/{model}:generateContent",
+          "description": "Generate content using a Gemini-compatible AIsa model. Accepts conversation content, tools, safety settings, and generation configuration.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.6313,
+        "failure_reasons": [
+          "exit_code_zero",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:28:59.051926+00:00"
+      },
+      {
+        "id": "e1b85a6f-a90f-4755-9e44-5d2600c38e22",
+        "endpoint": {
+          "id": "e645fe03-7145-4a13-89dc-b5aebeb04124",
+          "method": "POST",
+          "path": "/apis/v1/financial/financials/search/screener",
+          "description": "Find tickers that match numeric conditions on financial metrics. Discover investment candidates by applying filters without needing a ticker upfront. Returns up to 100 results.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.6313,
+        "failure_reasons": [
+          "exit_code_zero",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:28:58.016664+00:00"
+      },
+      {
+        "id": "50afef46-7490-45d7-bc8c-283639f4d6b5",
+        "endpoint": {
+          "id": "41f20bc7-800a-408e-bd7b-c751392568ae",
+          "method": "GET",
+          "path": "/apis/v1/financial/macro/interest-rates",
+          "description": "Retrieve historical policy rate data from a specified central bank. Returns bank code, name, date, and rate. Requires uppercase bank code (e.g., FED, ECB, BOJ) with optional date filters.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.5,
+        "failure_reasons": [
+          "exit_code_zero",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:28:57.837492+00:00"
+      },
+      {
+        "id": "05ba83bb-12fc-4d42-b872-efed9e75c7a5",
+        "endpoint": {
+          "id": "0cc5827a-3d25-4d48-8819-2299bf48b07f",
+          "method": "GET",
+          "path": "/apis/v1/financial/filings",
+          "description": "Retrieve a list of SEC filings (not their contents) for a company. Query by ticker or CIK, filter by filing type (10-K, 10-Q, 8-K, 20-F, 6-K), and set a result limit.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.5063,
+        "failure_reasons": [
+          "exit_code_zero",
+          "clean_execution",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:28:56.542196+00:00"
+      },
+      {
+        "id": "13323053-76d4-4bb4-a7cb-b109825cce0c",
+        "endpoint": {
+          "id": "74648544-2685-4ef1-9c0a-e58fb492f5a3",
+          "method": "GET",
+          "path": "/apis/v1/financial/company/facts",
+          "description": "Retrieve company identity and classification information including name, ticker, CIK, sector, industry, exchange, location, and SIC classification. Accepts ticker or CIK.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.6313,
+        "failure_reasons": [
+          "exit_code_zero",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:28:54.950692+00:00"
+      },
+      {
+        "id": "1d6ab643-a7c2-4c46-bdb1-3df6041b2683",
+        "endpoint": {
+          "id": "4fd5aeb7-d690-4d08-ad34-5080983d9328",
+          "method": "GET",
+          "path": "/apis/v1/financial/news",
+          "description": "Retrieve recent news headlines for a stock ticker. Returns up to 10 articles with title, source, publication date, and URL. Headlines only — article body is not included.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.6688,
+        "failure_reasons": [
+          "exit_code_zero",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:28:54.604722+00:00"
+      },
+      {
+        "id": "e7d59dae-15a9-49a2-82e9-7686ad77d2cb",
+        "endpoint": {
+          "id": "9e556d64-27b4-4772-b813-225b6a7ff4a2",
+          "method": "GET",
+          "path": "/apis/v1/financial/financials/income-statements",
+          "description": "Retrieve income statements (~32 fields per period) including revenue, cost of revenue, gross profit, operating income, net income, and EPS metrics. Requires period and ticker or CIK.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.625,
+        "failure_reasons": [
+          "exit_code_zero",
+          "clean_execution",
+          "has_endpoint"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:28:52.16479+00:00"
+      },
+      {
+        "id": "3029a5d7-5d4a-465f-a6bd-761143118060",
+        "endpoint": {
+          "id": "e63b46d5-27fc-4a37-b3c9-d344e35658c0",
+          "method": "POST",
+          "path": "/apis/v1/firecrawl/batch-scrape",
+          "description": "Submit an asynchronous batch scraping job for 1–1,000 unique HTTPS URLs. Returns a job ID to poll for results. Costs 1 Firecrawl credit per page scraped.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.5063,
+        "failure_reasons": [
+          "exit_code_zero",
+          "clean_execution",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:28:50.324989+00:00"
+      },
+      {
+        "id": "f8cf50c9-fa11-43c4-825f-389fd6ca94bd",
+        "endpoint": {
+          "id": "f9faf9fa-cb78-459a-a3b6-2375bd9c225e",
+          "method": "GET",
+          "path": "/apis/v1/financial/prices/snapshot",
+          "description": "Retrieve the current price of one stock: price, day_change, day_change_percent, time, and market cap. The fastest, most cost-effective option for real-time price queries.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.6313,
+        "failure_reasons": [
+          "exit_code_zero",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:28:50.088743+00:00"
+      },
+      {
+        "id": "dcadd635-7ca6-4393-ac43-02f4de01f67f",
+        "endpoint": {
+          "id": "84f0fbe3-0f27-4896-818c-99ce9ce2002e",
+          "method": "POST",
+          "path": "/apis/v1/tavily/extract",
+          "description": "Extract clean, parsed content from one or more URLs you already have. Supports markdown or text output, optional images and favicons, chunk limits, and query-based relevance prioritization.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.4875,
+        "failure_reasons": [
+          "exit_code_zero",
+          "clean_execution",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:28:45.37936+00:00"
+      },
+      {
+        "id": "024d553b-94be-45e9-978e-35a567c755b6",
+        "endpoint": {
+          "id": "5f64186b-1a9e-41d6-8b53-f3ad85478c43",
+          "method": "GET",
+          "path": "/apis/v1/financial/prices",
+          "description": "Retrieve historical OHLCV bars for one stock across a date range. Requires ticker, interval (day/week/month/year), start date, and end date.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.5063,
+        "failure_reasons": [
+          "exit_code_zero",
+          "clean_execution",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:28:45.0857+00:00"
+      },
+      {
+        "id": "7516d7a8-8157-44f9-b50a-afb730815707",
+        "endpoint": {
+          "id": "a7356539-a412-40b8-bf8e-ffcb42fd4969",
+          "method": "GET",
+          "path": "/apis/v1/financial/financials",
+          "description": "Retrieve all three financial statements (income statement, balance sheet, cash flow) for a single company in one call. Requires period (annual, quarterly, or ttm) and ticker or CIK.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.8563,
+        "failure_reasons": [
+          "exit_code_zero"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:28:41.665867+00:00"
+      },
+      {
+        "id": "7dfa6744-3518-4d6c-a31b-9b5685ee08cd",
+        "endpoint": {
+          "id": "ee6db2cb-dead-4e5d-9409-04a7afe9a983",
+          "method": "GET",
+          "path": "/apis/v1/financial/macro/interest-rates/snapshot",
+          "description": "Retrieve current policy rates for ten major central banks (FED, ECB, BOJ, BOE, BOC, RBA, PBOC, SNB, RBI, BOK). Optionally filter by a specific bank code.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.75,
+        "failure_reasons": [
+          "exit_code_zero",
+          "has_endpoint"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:28:18.47192+00:00"
+      },
+      {
+        "id": "bf471e31-0fc6-4d4c-884d-48dfbddbedab",
+        "endpoint": {
+          "id": "113b20be-7a26-45b4-adc7-ae9558d91916",
+          "method": "POST",
+          "path": "/apis/v1/financial/financials/search/line-items",
+          "description": "Pull named financial line items across one or more companies in a single call. Submit arrays of tickers and specific line items to compare, with optional period type and result limits.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.6313,
+        "failure_reasons": [
+          "exit_code_zero",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:28:15.757758+00:00"
+      },
+      {
+        "id": "d4ae28fe-6fc1-49e2-82fe-367f6a673638",
+        "endpoint": {
+          "id": "58a1e28a-6774-46f1-8b80-641b0d2f99a7",
+          "method": "POST",
+          "path": "/apis/v1/exa/contents",
+          "description": "Extract full page text, summaries, and metadata for a set of known URLs. Supports text, highlights, summaries, and optional linked subpages. Costs $0.08 per request.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.5063,
+        "failure_reasons": [
+          "exit_code_zero",
+          "clean_execution",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:28:14.362085+00:00"
+      },
+      {
+        "id": "b408534a-bd5d-432f-91d3-532d50881c1f",
+        "endpoint": {
+          "id": "f5b251a8-0202-42f7-82a2-7a0211e0682d",
+          "method": "POST",
+          "path": "/apis/v1/scholar/search/scholar",
+          "description": "Search academic papers using Google Scholar or similar sources. Returns titles, links, snippets, authors, and citation counts. Supports result limits and publication year range filters.",
+          "category": null
+        },
+        "source": {
+          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
+          "type": "rest_api",
+          "label": "REST API",
+          "metadata": {
+            "docs_url": "https://aisa.one/docs/guides",
+            "api_base_url": "https://api.aisa.one"
+          }
+        },
+        "eval_type": "integration",
+        "model": "global.anthropic.claude-opus-5",
+        "model_type": "agent",
+        "platform": "claude-code",
+        "passed": false,
+        "score": 0.5063,
+        "failure_reasons": [
+          "exit_code_zero",
+          "clean_execution",
+          "completed_task"
+        ],
+        "latency_ms": null,
+        "run_at": "2026-08-23T01:27:58.506152+00:00"
+      },
       {
         "id": "a86bde42-0286-46b8-b3bc-c56dd304acdc",
         "endpoint": {
@@ -534,401 +1539,11 @@
         "failure_reasons": null,
         "latency_ms": null,
         "run_at": "2026-08-14T07:39:16.43382+00:00"
-      },
-      {
-        "id": "d0ff7167-07f2-4d9a-bf49-ad9b493ce7ad",
-        "endpoint": {
-          "id": "c6a3922c-e08d-4975-8757-81e2fc91f3fc",
-          "method": "POST",
-          "path": "/v1/rerank",
-          "description": "Rerank a list of documents against a query using jina-reranker-v3. Returns results sorted by relevance score with an option to limit to the top N most relevant items.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": true,
-        "score": 0.875,
-        "failure_reasons": null,
-        "latency_ms": null,
-        "run_at": "2026-08-14T07:39:12.025823+00:00"
-      },
-      {
-        "id": "0007fb55-5c31-49fe-a4d4-677a600a7ad0",
-        "endpoint": {
-          "id": "859c2888-e361-4626-89d5-44e4f9e60447",
-          "method": "POST",
-          "path": "/v1/embeddings",
-          "description": "Generate 1024-dimensional embedding vectors for one or more input strings using jina-embeddings-v3 or jina-embeddings-v5-text-small. OpenAI-compatible interface.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": true,
-        "score": 1,
-        "failure_reasons": null,
-        "latency_ms": null,
-        "run_at": "2026-08-14T07:38:55.362219+00:00"
-      },
-      {
-        "id": "7203363f-1cc3-4993-a233-85f0d8990739",
-        "endpoint": {
-          "id": "859c2888-e361-4626-89d5-44e4f9e60447",
-          "method": "POST",
-          "path": "/v1/embeddings",
-          "description": "Generate 1024-dimensional embedding vectors for one or more input strings using jina-embeddings-v3 or jina-embeddings-v5-text-small. OpenAI-compatible interface.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": true,
-        "score": 1,
-        "failure_reasons": null,
-        "latency_ms": null,
-        "run_at": "2026-08-14T07:34:16.937183+00:00"
-      },
-      {
-        "id": "ef3812b5-13a6-4cbb-bdb7-585d1cd84718",
-        "endpoint": {
-          "id": "1e0eabd6-101e-4794-a26c-eb1ec321639c",
-          "method": "POST",
-          "path": "/v1/images/edits",
-          "description": "Edit existing images using AI models.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.8563,
-        "failure_reasons": [
-          "exit_code_zero"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-12T12:42:47.099094+00:00"
-      },
-      {
-        "id": "56301c35-6a71-44e2-9b6c-b89508b3e766",
-        "endpoint": {
-          "id": "6a14d47a-c95c-4fab-af9b-9fac932955dd",
-          "method": "POST",
-          "path": "/v1beta/models/{model}:generateContent",
-          "description": "Generate content using a Gemini-compatible AIsa model. Accepts conversation content, tools, safety settings, and generation configuration.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.845,
-        "failure_reasons": [
-          "exit_code_zero"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-12T12:42:30.892752+00:00"
-      },
-      {
-        "id": "14a97395-fa62-4bfa-a0b6-ca19f54711be",
-        "endpoint": {
-          "id": "c7fb4a00-49f0-4167-ad2b-299b35ed6530",
-          "method": "POST",
-          "path": "/apis/v1/exa/agent/runs",
-          "description": "Submit an asynchronous research task to the Exa Agent. Accepts a natural-language query and processes it in the background, returning a structured result. Costs $0.10 per run.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.875,
-        "failure_reasons": [
-          "exit_code_zero"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-12T12:42:29.809888+00:00"
-      },
-      {
-        "id": "f929fd98-5994-432c-b38e-d980e0b085de",
-        "endpoint": {
-          "id": "b05dc8ca-d75e-47f2-a62b-b958571ebcb5",
-          "method": "POST",
-          "path": "/apis/v1/exa/answer",
-          "description": "Get a direct cited answer from Exa. Retrieves relevant sources and generates a direct answer or detailed summary with source citations. Costs $0.08 per request.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.7313,
-        "failure_reasons": [
-          "exit_code_zero",
-          "clean_execution"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-12T12:41:52.114545+00:00"
-      },
-      {
-        "id": "46f6a67c-88f6-4170-bd5f-8fa9c25f95dc",
-        "endpoint": {
-          "id": "859c2888-e361-4626-89d5-44e4f9e60447",
-          "method": "POST",
-          "path": "/v1/embeddings",
-          "description": "Generate 1024-dimensional embedding vectors for one or more input strings using jina-embeddings-v3 or jina-embeddings-v5-text-small. OpenAI-compatible interface.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.5063,
-        "failure_reasons": [
-          "exit_code_zero",
-          "clean_execution",
-          "completed_task"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-12T12:41:48.361777+00:00"
-      },
-      {
-        "id": "2b539092-21b0-4e1c-bd78-3bf613a84644",
-        "endpoint": {
-          "id": "545c90c3-a8a0-4bfc-a25c-20c4c6ebb980",
-          "method": "POST",
-          "path": "/v1/chat/completions",
-          "description": "Generates chat responses supporting images, streaming, function calling, and logprobs. OpenAI-compatible interface. Also supports image generation via multimodal content arrays (e.g., seedream-4-5-251128 model).",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.6313,
-        "failure_reasons": [
-          "exit_code_zero",
-          "completed_task"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-12T12:41:46.540924+00:00"
-      },
-      {
-        "id": "9b02f789-ccc9-44fa-b9ba-c293131ed0e6",
-        "endpoint": {
-          "id": "554fbe8f-b52a-4ea1-ba00-88eabe2efdfe",
-          "method": "POST",
-          "path": "/v1/messages",
-          "description": "Send a structured conversation to a Claude model and receive a response. Anthropic-compatible interface supporting extended thinking, tool use, and prompt caching.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.6313,
-        "failure_reasons": [
-          "exit_code_zero",
-          "completed_task"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-12T12:41:38.176015+00:00"
-      },
-      {
-        "id": "af7e97f9-9483-4114-81c4-3617ccc533dd",
-        "endpoint": {
-          "id": "c6a3922c-e08d-4975-8757-81e2fc91f3fc",
-          "method": "POST",
-          "path": "/v1/rerank",
-          "description": "Rerank a list of documents against a query using jina-reranker-v3. Returns results sorted by relevance score with an option to limit to the top N most relevant items.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.845,
-        "failure_reasons": [
-          "exit_code_zero"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-12T12:41:33.02217+00:00"
-      },
-      {
-        "id": "bcaec88a-e881-470d-a7b0-f2234a2d2d8e",
-        "endpoint": {
-          "id": "cdc4edeb-eed5-4641-99be-22dcd72532ac",
-          "method": "GET",
-          "path": "/apis/v1/youtube/search",
-          "description": "Search YouTube and get back matching videos, channels, and playlists. Supports country code and language filters.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.7313,
-        "failure_reasons": [
-          "exit_code_zero",
-          "clean_execution"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-12T12:41:07.597774+00:00"
-      },
-      {
-        "id": "723548ea-ed87-44bf-8833-0cbe792feabe",
-        "endpoint": {
-          "id": "eb971cf2-349b-4854-9f1f-e02d2e54cd6a",
-          "method": "POST",
-          "path": "/v1/images/generations",
-          "description": "Generate images using various AI models including Seedream, Wan, and GPT-Image-2. Returns short-lived URLs to the generated images.",
-          "category": null
-        },
-        "source": {
-          "id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
-          "type": "rest_api",
-          "label": "REST API",
-          "metadata": {
-            "docs_url": "https://aisa.one/docs/guides",
-            "api_base_url": "https://api.aisa.one"
-          }
-        },
-        "eval_type": "integration",
-        "model": "global.anthropic.claude-opus-5",
-        "model_type": "agent",
-        "platform": "claude-code",
-        "passed": false,
-        "score": 0.8563,
-        "failure_reasons": [
-          "exit_code_zero"
-        ],
-        "latency_ms": null,
-        "run_at": "2026-08-12T12:40:44.123479+00:00"
       }
     ],
     "meta": {
       "limit": 50,
-      "count": 31
+      "count": 50
     }
   }
 }

@@ -44,6 +44,7 @@ const actionCounts = load("ap_actions")?.counts ?? {};
 const ora = load("ora");
 const oraChecks = (ora?.layers ?? []).flatMap((l) => l.checks ?? []);
 const oraById = new Map(oraChecks.map((c) => [c.id, c]));
+const npmPkg = load("npm");
 const cf = load("cloudflare");
 const cfChecks = Object.entries(cf?.checks ?? {}).flatMap(([cat, checks]) =>
   Object.entries(checks).map(([id, c]) => ({ ...c, id, category: cat })),
@@ -52,9 +53,27 @@ const cfById = new Map(cfChecks.map((c) => [c.id, c]));
 const cfScored = cfChecks.filter((c) => c.status !== "neutral");
 const cfPass = cfScored.filter((c) => c.status === "pass").length;
 
+// Devtool Arena entry — lightsage.com/leaderboard/* has no JSON API, so this is
+// a dated manual snapshot committed under reference/. Update it when re-run.
+let arena = null;
+try {
+  arena = JSON.parse(readFileSync(join(ROOT, "reference", "devtool-arena.json"), "utf8"));
+} catch { /* optional */ }
+
 const company = cur.company ?? ov.company ?? { name: "AIsa", domain: "aisa.one" };
 const snap = ov.snapshot ?? cur;
 const w = manifest.window;
+
+// Dashboards worth opening alongside this report. Three are domain-derived; the
+// Ora journey is a per-run UUID and has to be set by hand.
+const DOMAIN = company.domain ?? "aisa.one";
+const ORA_JOURNEY_URL = "https://journey.ora.ai/e1579b17-1b42-4e1f-8a3d-32339462c059";
+const LINKS = [
+  ["Lightsage — Devtool Arena (Claude Code / API)", arena?.sourceUrl ?? `https://lightsage.com/leaderboard/claudecode/api/${DOMAIN.split(".")[0]}`, "Coding-agent eval: grade, score breakdown, full agent transcript"],
+  ["Ora — agent-readiness score", `https://ora.ai/score/${DOMAIN}`, "124 checks across discovery, access, usability, payments"],
+  ["Ora — agent journey", ORA_JOURNEY_URL, "Step-by-step replay of an agent attempting the site"],
+  ["Cloudflare — Is it agent ready?", `https://isitagentready.com/${DOMAIN}`, "Protocol / well-known conformance"],
+];
 
 const competitors = ov.competitors ?? [];
 const self = competitors.find((c) => c.company?.domain === company.domain);
@@ -77,6 +96,11 @@ P(`# AI Visibility Report — ${company.name} (${company.domain})`, "");
 P(`**Source** · Lightsage public API (formerly Sapient) · \`${manifest.baseUrl}\`  `);
 P(`**Window** · ${w.start} → ${w.end} (${w.days} days) · latest run ${ov.date_range?.latest_run_date ?? cur.date ?? "—"}  `);
 P(`**Generated** · ${new Date(manifest.generatedAt).toUTCString()}`, "");
+P("");
+P("### Dashboards", "");
+P(`| Page | What's there |`, `| --- | --- |`);
+for (const [label, url, blurb] of LINKS) P(`| [${esc(label)}](${url}) | ${esc(blurb)} |`);
+P("");
 P("---", "");
 
 /* ---------- executive summary ---------- */
@@ -106,9 +130,10 @@ P(`**${company.name} is effectively invisible to AI answer engines in this windo
   `roughly ${Math.round((leader.visibility_score ?? 0) / (snap.visibility_score || 1))}× ${company.name}'s visibility.` : ""), "");
 
 P(`${ora && cf ? "Four" : "Three"} findings drive everything below:`, "");
-P(`1. **No coding agents are being tracked.** ${availablePlatforms.length} platforms are available; only ${trackedPlatforms.length} are configured (${trackedPlatforms.map((p) => p.name).join(", ")}) — ` +
-  `${trackedCodingAgents.length === 0 ? "**none of them coding agents**" : `${trackedCodingAgents.length} coding agents`}. ` +
-  `Claude Code, Codex, Cursor, Copilot and Gemini CLI are all available and unmeasured.`);
+P(`1. **Coding agents are measured for _usage_ but not for _recommendation_.** API Performance and Devtool Arena both run Claude Code against the API` +
+  `${arena ? ` (grade ${arena.grade}, ${arena.finalScore}%)` : ""} — but visibility tracking uses only ${trackedPlatforms.length} platforms ` +
+  `(${trackedPlatforms.map((p) => p.name).join(", ")}), ${trackedCodingAgents.length === 0 ? "**none of them coding agents**" : `${trackedCodingAgents.length} coding agents`}, ` +
+  `out of ${availablePlatforms.length} available. So we know how well Claude Code *uses* ${company.name} once it gets there, and nothing about whether Claude Code, Codex, Cursor or Copilot ever *recommend* it.`);
 P(`2. **The API works better than the docs do.** ${runs.length} API Performance evals passed at ${passRate === null ? "—" : pct(passRate)}, and every open site action is a docs problem — ` +
   `${actionCounts.total ?? actions.length} actions covering broken URLs and unreadable pages, not API defects.`);
 P(`3. **The "#1 average position" is a single-citation artifact.** It comes from one citation on one prompt, not from category strength — treat it as noise, not a win.`);
@@ -195,6 +220,27 @@ if (actions.length) {
   }
 }
 
+if (arena) {
+  P(`### Devtool Arena — ${esc(arena.agent)} (${esc(arena.arena)})`, "");
+  P(`**Grade ${arena.grade} · ${arena.finalScore}%** · ${esc(arena.verification)} · eval completed ${arena.completedAt}  `);
+  P(`\`${esc(arena.formula)}\` — eval ${arena.evalScore}%, checklist ${arena.checklistScore}%`, "");
+  P(`The run finished successfully: ${arena.run.toolCalls} tool calls, ${arena.run.durationSeconds}s, $${arena.run.costUsd}, ${arena.run.tokens.toLocaleString()} tokens — but ${arena.run.errors} tool outputs contained errors.`, "");
+
+  P(`| Phase | Share of run |`, `| --- | --- |`);
+  for (const [ph, v] of Object.entries(arena.phases)) P(`| ${esc(ph)} | ${v}% |`);
+  P("");
+
+  P(`| Eval criterion | Points | Detail |`, `| --- | --- | --- |`);
+  for (const b of arena.evalBreakdown) P(`| ${esc(b.criterion)} | ${b.points} | ${esc(b.detail)} |`);
+  P("");
+
+  const earned = arena.checklist.filter((c) => c.points > 0).map((c) => c.item);
+  const missing = arena.checklist.filter((c) => c.points === 0).map((c) => c.item);
+  P(`**Checklist** — earned: ${earned.map((x) => esc(x)).join(", ")}. Missing: **${missing.map((x) => esc(x)).join(", ")}**.`, "");
+  P(`> ${esc(arena.observedFriction)}`, "");
+  P(`_Snapshot captured ${arena.capturedAt} from [the Arena page](${arena.sourceUrl}); Lightsage exposes no JSON API for the leaderboard, so this section does not auto-refresh._`, "");
+}
+
 /* ---------- agent readiness ---------- */
 if (ora || cf) {
   P("---", "", "## 3. Agent readiness", "");
@@ -268,6 +314,32 @@ if (ora || cf) {
         P(`**${esc(r.topic)}**  `);
         P(`- Ora (${norm(r.o.status)}): ${esc(r.o.details)}  `);
         P(`- Cloudflare (${norm(r.c.status)}): ${esc(r.c.message)}`, "");
+      }
+
+      /* ---- the cheapest wins: surfaces that exist but aren't credited ---- */
+      const exists = [];
+      const oidc = oraById.get("oauth-support");
+      if (oidc?.status === "pass" && cfById.get("oauthDiscovery")?.status === "fail")
+        exists.push(["OIDC discovery", esc(oidc.details), "Serve or redirect `/.well-known/openid-configuration` from the apex domain."]);
+      const a2a = cfById.get("a2aAgentCard");
+      if (a2a?.status === "fail" && oraById.get("a2a-agent-card")?.status === "pass")
+        exists.push(["A2A Agent Card", "Served, but " + esc(a2a.message).replace(/^Invalid A2A Agent Card: /, "").replace(/^./, (m) => m.toLowerCase()), "Add the missing required field to the existing card."]);
+      const mcpCard = cfById.get("mcpServerCard");
+      if (mcpCard && /returned JSON but missing/i.test(mcpCard.message ?? ""))
+        exists.push(["MCP manifest", "`/.well-known/mcp.json` returns 200 JSON but lacks `serverInfo.name`", "Add the required field, or move it to `/.well-known/mcp/server-card.json`."]);
+      if (npmPkg?.name && !npmPkg.error)
+        exists.push([
+          "CLI package",
+          `\`${esc(npmPkg.name)}\` v${esc(npmPkg.latest)} is published (${npmPkg.versions} versions, last updated ${String(npmPkg.modified).slice(0, 10)}) but is not linked from the homepage`,
+          "Link it from the homepage and docs — three separate checks currently score it zero.",
+        ]);
+
+      if (exists.length) {
+        P(`### Cheapest wins: surfaces that already exist but score zero`, "");
+        P(`Each of these is built and live. They fail only because they sit at the wrong path, omit one required field, or are not linked anywhere a crawler will look.`, "");
+        P(`| Surface | Current state | Fix |`, `| --- | --- | --- |`);
+        for (const [n, state, fix] of exists) P(`| ${n} | ${state} | ${fix} |`);
+        P("");
       }
     }
   }

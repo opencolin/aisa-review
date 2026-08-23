@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 946,
+  "durationMs": 952,
   "path": "/v1/visibility/current?start_date=2026-07-24&end_date=2026-08-23",
   "body": {
     "company": {

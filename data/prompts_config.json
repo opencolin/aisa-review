@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 787,
+  "durationMs": 771,
   "path": "/v1/prompts/config",
   "body": {
     "topics": [

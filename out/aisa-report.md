@@ -2,7 +2,17 @@
 
 **Source** · Lightsage public API (formerly Sapient) · `https://api.lightsage.com`  
 **Window** · 2026-07-24 → 2026-08-23 (30 days) · latest run 2026-08-22  
-**Generated** · Sun, 23 Aug 2026 01:05:25 GMT
+**Generated** · Sun, 23 Aug 2026 01:29:59 GMT
+
+
+### Dashboards
+
+| Page | What's there |
+| --- | --- |
+| [Lightsage — Devtool Arena (Claude Code / API)](https://lightsage.com/leaderboard/claudecode/api/aisa) | Coding-agent eval: grade, score breakdown, full agent transcript |
+| [Ora — agent-readiness score](https://ora.ai/score/aisa.one) | 124 checks across discovery, access, usability, payments |
+| [Ora — agent journey](https://journey.ora.ai/e1579b17-1b42-4e1f-8a3d-32339462c059) | Step-by-step replay of an agent attempting the site |
+| [Cloudflare — Is it agent ready?](https://isitagentready.com/aisa.one) | Protocol / well-known conformance |
 
 ---
 
@@ -27,8 +37,8 @@
 
 Four findings drive everything below:
 
-1. **No coding agents are being tracked.** 19 platforms are available; only 3 are configured (Google AI Overviews, Perplexity, ChatGPT) — **none of them coding agents**. Claude Code, Codex, Cursor, Copilot and Gemini CLI are all available and unmeasured.
-2. **The API works better than the docs do.** 31 API Performance evals passed at 45.16%, and every open site action is a docs problem — 12 actions covering broken URLs and unreadable pages, not API defects.
+1. **Coding agents are measured for _usage_ but not for _recommendation_.** API Performance and Devtool Arena both run Claude Code against the API (grade C, 69%) — but visibility tracking uses only 3 platforms (Google AI Overviews, Perplexity, ChatGPT), **none of them coding agents**, out of 19 available. So we know how well Claude Code *uses* AIsa once it gets there, and nothing about whether Claude Code, Codex, Cursor or Copilot ever *recommend* it.
+2. **The API works better than the docs do.** 50 API Performance evals passed at 22.00%, and every open site action is a docs problem — 12 actions covering broken URLs and unreadable pages, not API defects.
 3. **The "#1 average position" is a single-citation artifact.** It comes from one citation on one prompt, not from category strength — treat it as noise, not a win.
 4. **Two surfaces exist but don't count.** OIDC discovery is live on `login.aisa.one` yet absent from the apex, and the A2A Agent Card is served but schema-invalid. Ora credits both; Cloudflare fails both. These are the cheapest wins on the board — a redirect and one required field.
 
@@ -106,31 +116,57 @@ Tracked: **Google AI Overviews, Perplexity, ChatGPT**
 
 ## 2. API Performance
 
-**14/31 evals passed (45.16%)**, all executed by `global.anthropic.claude-opus-5`.
+**11/50 evals passed (22.00%)**, all executed by `global.anthropic.claude-opus-5`.
 
 | Endpoint | Passed | Avg score |
 | --- | --- | --- |
-| `POST /apis/v1/exa/agent/runs` | 0/2 | 0.691 |
-| `GET /apis/v1/youtube/search` | 0/2 | 0.7 |
-| `POST /apis/v1/exa/answer` | 0/2 | 0.803 |
-| `POST /v1beta/models/{model}:generateContent` | 1/3 | 0.9 |
-| `POST /v1/images/edits` | 1/3 | 0.817 |
-| `POST /v1/chat/completions` | 1/3 | 0.829 |
-| `POST /v1/messages` | 1/3 | 0.713 |
-| `POST /v1/images/generations` | 2/3 | 0.952 |
-| `POST /v1/rerank` | 2/3 | 0.865 |
-| `POST /v1/embeddings` | 3/4 | 0.877 |
+| `POST /apis/v1/firecrawl/search` | 0/1 | 0.631 |
+| `POST /apis/v1/perplexity/sonar` | 0/1 | 0.631 |
+| `GET /apis/v1/financial/insider-trades` | 0/1 | 0.506 |
+| `POST /apis/v1/firecrawl/parse` | 0/1 | 0.669 |
+| `POST /apis/v1/firecrawl/crawl` | 0/1 | 0.631 |
+| `POST /apis/v1/firecrawl/scrape` | 0/1 | 0.631 |
+| `POST /apis/v1/exa/answer` | 0/2 | 0.691 |
+| `POST /apis/v1/perplexity/sonar-reasoning-pro` | 0/1 | 0.506 |
+| `GET /apis/v1/financial/financials/balance-sheets` | 0/1 | 0.606 |
+| `POST /apis/v1/tavily/search` | 0/1 | 0.856 |
+| `GET /apis/v1/financial/financial-metrics/snapshot` | 0/1 | 0.506 |
+| `GET /apis/v1/financial/edinet/documents.json` | 0/1 | 0.506 |
+| `POST /apis/v1/financial/financials/search/screener` | 0/1 | 0.631 |
+| `GET /apis/v1/financial/macro/interest-rates` | 0/1 | 0.5 |
+| `GET /apis/v1/financial/filings` | 0/1 | 0.506 |
+| `GET /apis/v1/financial/company/facts` | 0/1 | 0.631 |
+| `GET /apis/v1/financial/news` | 0/1 | 0.669 |
+| `GET /apis/v1/financial/financials/income-statements` | 0/1 | 0.625 |
+| `POST /apis/v1/firecrawl/batch-scrape` | 0/1 | 0.506 |
+| `GET /apis/v1/financial/prices/snapshot` | 0/1 | 0.631 |
+| `POST /apis/v1/tavily/extract` | 0/1 | 0.487 |
+| `GET /apis/v1/financial/prices` | 0/1 | 0.506 |
+| `GET /apis/v1/financial/financials` | 0/1 | 0.856 |
+| `GET /apis/v1/financial/macro/interest-rates/snapshot` | 0/1 | 0.75 |
+| `POST /apis/v1/financial/financials/search/line-items` | 0/1 | 0.631 |
+| `POST /apis/v1/exa/contents` | 0/1 | 0.506 |
+| `POST /apis/v1/exa/agent/runs` | 0/1 | 0.506 |
+| `GET /apis/v1/youtube/search` | 0/1 | 0.669 |
+| `POST /v1/images/edits` | 1/3 | 0.729 |
+| `POST /v1beta/models/{model}:generateContent` | 1/3 | 0.829 |
+| `GET /apis/v1/twitter/user/info` | 1/2 | 0.753 |
+| `POST /v1/embeddings` | 1/2 | 0.816 |
+| `POST /v1/rerank` | 1/2 | 0.672 |
+| `POST /apis/v1/scholar/search/scholar` | 1/2 | 0.753 |
+| `POST /v1/chat/completions` | 1/2 | 0.928 |
+| `POST /v1/messages` | 1/2 | 0.753 |
+| `POST /v1/images/generations` | 2/2 | 1 |
 | `GET /apis/v1/polymarket/events` | 1/1 | 1 |
-| `POST /apis/v1/scholar/search/scholar` | 1/1 | 1 |
-| `GET /apis/v1/twitter/user/info` | 1/1 | 1 |
 
-**Failed criteria** (across 17 failed runs). These are eval checks that did not pass — the names describe the expected condition, not an error:
+**Failed criteria** (across 39 failed runs). These are eval checks that did not pass — the names describe the expected condition, not an error:
 
 | Reason | Count |
 | --- | --- |
-| `exit_code_zero` | 17 |
-| `completed_task` | 7 |
-| `clean_execution` | 5 |
+| `exit_code_zero` | 39 |
+| `completed_task` | 31 |
+| `clean_execution` | 14 |
+| `has_endpoint` | 6 |
 
 ### Site actions
 
@@ -156,6 +192,36 @@ Tracked: **Google AI Overviews, Perplexity, ChatGPT**
 **page not llm readable** (1)
 
 - `https://aisa.one/docs/api-reference/prediction-market/get_polymarket-events`
+
+### Devtool Arena — Claude Code (Devtool Arena — API)
+
+**Grade C · 69%** · Passed (verified by team) · eval completed 2026-08-11  
+`Final = (Eval x 70%) + (Checklist x 30%)` — eval 69%, checklist 71%
+
+The run finished successfully: 24 tool calls, 169s, $0.3208, 410,439 tokens — but 8 tool outputs contained errors.
+
+| Phase | Share of run |
+| --- | --- |
+| Discovery | 34% |
+| Run | 23% |
+| Debug | 36% |
+
+| Eval criterion | Points | Detail |
+| --- | --- | --- |
+| full execution | 35 | Method: full_execution, exit 0 |
+| found docs | 10 | Touched docs at aisa.one (11 matching tool calls) |
+| created files | 10 | Generated 1 file (need >=1) |
+| time | 5 | 169s (2-3min, good) |
+| syntax valid | 5 | Code compiles/parses correctly |
+| cost | 3 | $0.32 ($0.20-0.40, good) |
+| efficiency | 1 | 24 tool calls (<=25, below average) |
+| zero errors | 0 | 8 tool outputs contained errors/tracebacks |
+
+**Checklist** — earned: Context7 Link, llms.txt Link, Typed SDK Link, OpenAPI Link, Agent Skills Link. Missing: **MCP Server, CLI**.
+
+> The agent completed the task but spent 36% of its run in Debug. The transcript shows it cycling through models after access failures - the premium model required a paid balance, then gpt-4o, gpt-4o-mini and DeepSeek were each rejected before qwen-flash finally worked. The friction was model access and billing, not API or SDK design.
+
+_Snapshot captured 2026-08-23 from [the Arena page](https://lightsage.com/leaderboard/claudecode/api/aisa); Lightsage exposes no JSON API for the leaderboard, so this section does not auto-refresh._
 
 ---
 
@@ -247,6 +313,17 @@ Both scan the same site on the same day, so divergence is signal — usually a s
 **Agent Skills index**  
 - Ora (n/a): No /.well-known/agent-skills/index.json - skip v0.2.0 conformance  
 - Cloudflare (fail): Agent Skills index not found
+
+### Cheapest wins: surfaces that already exist but score zero
+
+Each of these is built and live. They fail only because they sit at the wrong path, omit one required field, or are not linked anywhere a crawler will look.
+
+| Surface | Current state | Fix |
+| --- | --- | --- |
+| OIDC discovery | OpenID Connect discovery endpoint found at https://login.aisa.one | Serve or redirect `/.well-known/openid-configuration` from the apex domain. |
+| A2A Agent Card | Served, but missing or empty required field "supportedInterfaces" | Add the missing required field to the existing card. |
+| MCP manifest | `/.well-known/mcp.json` returns 200 JSON but lacks `serverInfo.name` | Add the required field, or move it to `/.well-known/mcp/server-card.json`. |
+| CLI package | `@aisa-one/cli` v0.3.0 is published (16 versions, last updated 2026-08-19) but is not linked from the homepage | Link it from the homepage and docs — three separate checks currently score it zero. |
 
 ---
 
@@ -365,7 +442,7 @@ _45 more in `data/opportunities.json`._
 
 - **Average position is not meaningful.** `average_position = 1` (rank #1) derives from 1 citation. It will regress as citations accumulate.
 - **Opportunity impact scores are saturated.** 29 of 81 opportunities score exactly 100, and 79 are "high" priority — the ranking carries little signal. The ranked task list in §4 is the better prioritisation.
-- **Latency is unpopulated.** All 31 eval runs report `latency_ms: null`, so no latency conclusions are available.
+- **Latency is unpopulated.** All 50 eval runs report `latency_ms: null`, so no latency conclusions are available.
 - **Answer engines only.** Visibility covers Google AI Overviews, Perplexity, ChatGPT. Coding-agent visibility — Lightsage's core differentiator — is unmeasured for AIsa.
 - **Window.** Metrics cover 2026-07-24 → 2026-08-23; the latest completed run is 2026-08-22.
 
@@ -375,23 +452,24 @@ _45 more in `data/opportunities.json`._
 
 | Endpoint | Path | Status | Time |
 | --- | --- | --- | --- |
-| API health | `/v1/status` | ok (200) | 122ms |
-| Key / org identity | `/v1/auth/status` | ok (200) | 529ms |
-| Current visibility | `/v1/visibility/current` | ok (200) | 946ms |
-| Visibility overview | `/v1/visibility/overview` | ok (200) | 3062ms |
-| Per-prompt visibility | `/v1/visibility/prompts` | ok (200) | 2775ms |
-| Tracked prompts | `/v1/prompts` | ok (200) | 480ms |
-| Prompt config / topics | `/v1/prompts/config` | ok (200) | 787ms |
-| Opportunities | `/v1/opportunities` | ok (200) | 7402ms |
-| Daily tasks | `/v1/tasks` | ok (200) | 643ms |
-| API Perf sources | `/v1/api-performance/sources` | ok (200) | 971ms |
-| API Perf targets | `/v1/api-performance/targets` | ok (200) | 354ms |
-| API Perf config | `/v1/api-performance/config` | ok (200) | 1066ms |
-| API Perf runs | `/v1/api-performance/runs` | ok (200) | 1966ms |
-| API Perf actions | `/v1/api-performance/actions` | ok (200) | 1272ms |
-| API Perf eval defs | `/v1/api-performance/evals` | ok (200) | 1186ms |
-| API Perf skills | `/v1/api-performance/skills` | ok (200) | 656ms |
-| Custom evals | `/v1/api-performance/custom-evals` | ok (200) | 2978ms |
-| Starter projects | `/v1/api-performance/starter-projects` | ok (200) | 688ms |
-| Ora agent-readiness | `https://ora.ai/api/score/aisa.one` | ok (200) | 96ms |
-| Cloudflare agent-ready scan | `https://isitagentready.com/api/scan` | ok (200) | 5919ms |
+| API health | `/v1/status` | ok (200) | 115ms |
+| Key / org identity | `/v1/auth/status` | ok (200) | 671ms |
+| Current visibility | `/v1/visibility/current` | ok (200) | 952ms |
+| Visibility overview | `/v1/visibility/overview` | ok (200) | 3196ms |
+| Per-prompt visibility | `/v1/visibility/prompts` | ok (200) | 2754ms |
+| Tracked prompts | `/v1/prompts` | ok (200) | 502ms |
+| Prompt config / topics | `/v1/prompts/config` | ok (200) | 771ms |
+| Opportunities | `/v1/opportunities` | ok (200) | 7543ms |
+| Daily tasks | `/v1/tasks` | ok (200) | 623ms |
+| API Perf sources | `/v1/api-performance/sources` | ok (200) | 945ms |
+| API Perf targets | `/v1/api-performance/targets` | ok (200) | 360ms |
+| API Perf config | `/v1/api-performance/config` | ok (200) | 1070ms |
+| API Perf runs | `/v1/api-performance/runs` | ok (200) | 2582ms |
+| API Perf actions | `/v1/api-performance/actions` | ok (200) | 1277ms |
+| API Perf eval defs | `/v1/api-performance/evals` | ok (200) | 1342ms |
+| API Perf skills | `/v1/api-performance/skills` | ok (200) | 685ms |
+| Custom evals | `/v1/api-performance/custom-evals` | ok (200) | 2915ms |
+| Starter projects | `/v1/api-performance/starter-projects` | ok (200) | 690ms |
+| Ora agent-readiness | `https://ora.ai/api/score/aisa.one` | ok (200) | 116ms |
+| Cloudflare agent-ready scan | `https://isitagentready.com/api/scan` | ok (200) | 7478ms |
+| npm CLI package | `https://registry.npmjs.org/@aisa-one/cli` | ok (200) | 130ms |

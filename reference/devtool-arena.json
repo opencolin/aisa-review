@@ -1,0 +1,42 @@
+{
+  "_note": "Manual capture — lightsage.com/leaderboard/* exposes no JSON API, so this is a point-in-time snapshot. Re-check the sourceUrl and update capturedAt when the eval is re-run.",
+  "capturedAt": "2026-08-23",
+  "sourceUrl": "https://lightsage.com/leaderboard/claudecode/api/aisa",
+  "arena": "Devtool Arena — API",
+  "agent": "Claude Code",
+  "verification": "Passed (verified by team)",
+  "completedAt": "2026-08-11",
+  "grade": "C",
+  "finalScore": 69,
+  "formula": "Final = (Eval x 70%) + (Checklist x 30%)",
+  "evalScore": 69,
+  "checklistScore": 71,
+  "run": {
+    "toolCalls": 24,
+    "durationSeconds": 169,
+    "costUsd": 0.3208,
+    "errors": 8,
+    "tokens": 410439
+  },
+  "phases": { "Discovery": 34, "Run": 23, "Debug": 36 },
+  "evalBreakdown": [
+    { "criterion": "full execution", "points": 35, "detail": "Method: full_execution, exit 0" },
+    { "criterion": "found docs", "points": 10, "detail": "Touched docs at aisa.one (11 matching tool calls)" },
+    { "criterion": "created files", "points": 10, "detail": "Generated 1 file (need >=1)" },
+    { "criterion": "time", "points": 5, "detail": "169s (2-3min, good)" },
+    { "criterion": "syntax valid", "points": 5, "detail": "Code compiles/parses correctly" },
+    { "criterion": "cost", "points": 3, "detail": "$0.32 ($0.20-0.40, good)" },
+    { "criterion": "efficiency", "points": 1, "detail": "24 tool calls (<=25, below average)" },
+    { "criterion": "zero errors", "points": 0, "detail": "8 tool outputs contained errors/tracebacks" }
+  ],
+  "checklist": [
+    { "item": "Context7 Link", "points": 14 },
+    { "item": "llms.txt Link", "points": 14 },
+    { "item": "Typed SDK Link", "points": 14 },
+    { "item": "OpenAPI Link", "points": 14 },
+    { "item": "Agent Skills Link", "points": 14 },
+    { "item": "MCP Server", "points": 0 },
+    { "item": "CLI", "points": 0 }
+  ],
+  "observedFriction": "The agent completed the task but spent 36% of its run in Debug. The transcript shows it cycling through models after access failures - the premium model required a paid balance, then gpt-4o, gpt-4o-mini and DeepSeek were each rejected before qwen-flash finally worked. The friction was model access and billing, not API or SDK design."
+}
