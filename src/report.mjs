@@ -142,7 +142,7 @@ P("");
   P("## Read this first", "");
   P(`This report is written for engineers. Almost nothing in it is "build something new" — ${company.name} has already shipped the agent-facing surfaces: MCP servers, an OpenAPI spec, llms.txt, an A2A card, OIDC, a published CLI. ` +
     `The recurring finding is that these exist but are **not discoverable or not conformant**, so agents, scanners and scorecards behave as though they do not exist. ` +
-    `The fix list in the next section is ordered by effort-to-impact and every item names a concrete path.`, "");
+    `**Section 1 is the full action list**, ordered by leverage and tagged by owner and effort; the sections after it are the evidence.`, "");
   P("");
   P(`The two highest-leverage items:`, "");
   P("");
@@ -208,6 +208,82 @@ if (credState === "balance") {
 P(`${findings.length} findings drive everything below:`, "");
 findings.forEach((f, i) => P(`${i + 1}. ${f}`));
 P("");
+
+/* ---------- consolidated action items ---------- */
+{
+  S("Action items");
+  P(`Every recommendation in this report, in one list, ordered by leverage. "Effort" is a rough engineering estimate: **XS** under an hour, **S** under a day, **M** a few days, **L** ongoing.`, "");
+  P("");
+
+  const brokenCount = (urlCheck?.urls ?? []).filter((u) => u.stillBroken).length;
+  const SUGGESTABLE = new Set([
+    "/docs/authentication", "/docs/start/authentication", "/docs/quickstart",
+    "/docs/direct-api-access", "/docs/guides/direct-api-access", "/docs/guides/errors",
+    "/docs/api-reference/financial/get_prices_snapshot",
+    "/docs/api-reference/financial/get_financial_metrics_snapshot",
+    "/docs/api-reference/financial/get_financial-company-facts",
+  ]);
+  const redirectable = (urlCheck?.urls ?? []).filter((u) => u.stillBroken && SUGGESTABLE.has(String(u.url).replace(/^https?:\/\/[^/]+/, ""))).length;
+  const missingPages = brokenCount - redirectable;
+  const cliHigh = (cliFindings?.defects ?? []).filter((d) => d.severity === "high");
+  const cliMed = (cliFindings?.defects ?? []).filter((d) => d.severity !== "high");
+  const patsNow = (diagRecent ?? diag)?.failure_analysis?.patterns ?? [];
+  const topPat = [...patsNow].sort((a, b) => (b.percentage ?? 0) - (a.percentage ?? 0))[0];
+  const guessed = patsNow.find((x) => /guessed without docs/i.test(x.label));
+
+  const ACTIONS = [
+    ["P0", "Publish a conforming MCP server card at `/.well-known/mcp/server-card.json`", "Platform", "S",
+      mcpMan?.counts?.live ? `${mcpMan.counts.live} live MCP servers exposing ${mcpMan.liveTools} tools score zero on every scanner because the existing manifest has no \`serverInfo.name\`. Biggest gap between what is built and what is credited.` : "Publish an MCP server card."],
+    ["P0", "Fix the Twitter community/social endpoint contract", "API", "M",
+      `Six commands return \`400: request does not match the endpoint contract\` for every documented invocation and every parameter spelling. An agent concluded it is a server-side bug.`],
+    ["P0", "Return a non-zero exit code when a CLI call fails", "CLI", "S",
+      `The CLI exits 0 after failed API calls, so scripts and agents cannot detect failure. Seen in 15 of 50 sampled failing runs.`],
+    ["P0", `Redirect ${redirectable} broken doc URLs to their existing equivalents`, "Docs", "S",
+      `Agents requested these mid-task and got a 404. Each has a live target page — this is a redirect map, not new content.`],
+    ["P1", `Write doc pages for shipped endpoints that have none (${missingPages} URLs)`, "Docs", "M",
+      `\`/v1/rerank\`, \`/v1/images/edits\` and \`/apis/v1/firecrawl/search\` are live and evaluated, but an agent following the OpenAPI spec to the matching doc URL finds nothing.`],
+    ["P1", "Serve OIDC discovery from the apex domain", "Platform", "S",
+      `\`/.well-known/openid-configuration\` exists only on \`login.${DOMAIN}\`. Scanners and agents probe the apex, so it reads as absent.`],
+    ["P1", "Add the missing `supportedInterfaces` field to the A2A agent card", "Platform", "XS",
+      `The card is already served; one required field makes it valid.`],
+    ["P1", `Link \`${npmPkg?.name ?? "@aisa-one/cli"}\` from the homepage and docs`, "Web", "XS",
+      `The CLI is published and maintained, but nothing links to it, so three separate checks score it zero.`],
+    ["P1", "Install `@lightsage/agent-tracker` middleware", "Web", "S",
+      `Agent Analytics has received no events, so there is no data on which pages agents actually read.`],
+    ["P1", "Add coding agents to Lightsage visibility tracking", "Growth", "XS",
+      `${trackedPlatforms.length} of ${availablePlatforms.length} platforms are tracked and none are coding agents. Claude Code, Codex, Cursor and Copilot recommendations are entirely unmeasured — a settings change, not engineering work.`],
+    ["P2", "Serve markdown to agents (`Accept: text/markdown` or `/index.md`)", "Platform", "M",
+      `Agents arriving from search get HTML only.${guessed ? ` \`${esc(guessed.label)}\` is now the dominant pattern at ${guessed.percentage}% of runs — agents skip the docs entirely, which cheap machine-readable entry points directly address.` : ""}`],
+    ["P2", "Advertise `llms.txt`, sitemap and service-doc via RFC 8288 `Link` headers", "Platform", "S",
+      `Lets agents find key resources without parsing HTML.`],
+    ["P2", "Return a markdown body on 404s listing where to go next", "Web", "S",
+      `A dead-end 404 gives an agent no way to recover, so it falls back to guessing.`],
+    ["P2", "Make the docs worth opening", "Docs", "M",
+      `${guessed ? `${guessed.percentage}% of runs are \`Guessed Without Docs\` — agents reach for the API without consulting documentation at all. ` : ""}That is survivable on REST, where the spec carries them, but it is why CLI runs fail: there is no spec to guess from.`],
+    ["P2", `Fix the remaining ${cliMed.length} medium CLI defects`, "CLI", "M",
+      cliMed.map((d) => d.title).join("; ") + "."],
+    ["P2", "Confirm `GET /v1/errors` is real and documented", "API", "S",
+      `Scored 0.43 — the agent could not confirm the endpoint exists, and \`/docs/api-reference/errors\` was separately flagged.`],
+    ["P2", "Publish `/.well-known/ai-catalog.json` (ARD) and Content Signals in robots.txt", "Platform", "M",
+      `Both are required-tier checks on Ora and Cloudflare that currently score zero.`],
+    ["P2", "Work the Lightsage GEO task list (Reddit, arXiv, comparison pages)", "Growth", "L",
+      `Seven ranked tasks aimed at citation share, detailed later in this report. Slower payback than the items above.`],
+  ];
+
+  let tier = "";
+  for (const [t, action, owner, effort, why] of ACTIONS) {
+    if (t !== tier) {
+      tier = t;
+      const heading = { P0: "P0 — do these first", P1: "P1 — high value, low friction", P2: "P2 — worth scheduling" }[t] ?? t;
+      P("", `#### ${heading}`, "");
+      P(`| # | Action | Owner | Effort | Why |`, `| --- | --- | --- | --- | --- |`);
+    }
+    const idx = ACTIONS.filter((a) => a[0] === t).indexOf(ACTIONS.find((a) => a[1] === action)) + 1;
+    P(`| ${idx} | ${action} | ${owner} | ${effort} | ${why} |`);
+  }
+  P("");
+  P(`**The through-line:** ${cliHigh.length ? `${cliHigh.length} genuine CLI defects and ` : ""}the rest is surfacing work. ${company.name} has built the MCP servers, the OpenAPI spec, the CLI, the A2A card and the OIDC endpoint — they are simply not where agents and scanners look for them.`, "");
+}
 
 /* ---------- engineering fix list ---------- */
 {

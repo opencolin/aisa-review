@@ -7,7 +7,7 @@
 
 ## Read this first
 
-This report is written for engineers. Almost nothing in it is "build something new" — AIsa has already shipped the agent-facing surfaces: MCP servers, an OpenAPI spec, llms.txt, an A2A card, OIDC, a published CLI. The recurring finding is that these exist but are **not discoverable or not conformant**, so agents, scanners and scorecards behave as though they do not exist. The fix list in the next section is ordered by effort-to-impact and every item names a concrete path.
+This report is written for engineers. Almost nothing in it is "build something new" — AIsa has already shipped the agent-facing surfaces: MCP servers, an OpenAPI spec, llms.txt, an A2A card, OIDC, a published CLI. The recurring finding is that these exist but are **not discoverable or not conformant**, so agents, scanners and scorecards behave as though they do not exist. **Section 1 is the full action list**, ordered by leverage and tagged by owner and effort; the sections after it are the evidence.
 
 
 The two highest-leverage items:
@@ -57,7 +57,50 @@ The two highest-leverage items:
 
 ---
 
-## 1. Engineering fix list
+## 1. Action items
+
+Every recommendation in this report, in one list, ordered by leverage. "Effort" is a rough engineering estimate: **XS** under an hour, **S** under a day, **M** a few days, **L** ongoing.
+
+
+
+#### P0 — do these first
+
+| # | Action | Owner | Effort | Why |
+| --- | --- | --- | --- | --- |
+| 1 | Publish a conforming MCP server card at `/.well-known/mcp/server-card.json` | Platform | S | 11 live MCP servers exposing 188 tools score zero on every scanner because the existing manifest has no `serverInfo.name`. Biggest gap between what is built and what is credited. |
+| 2 | Fix the Twitter community/social endpoint contract | API | M | Six commands return `400: request does not match the endpoint contract` for every documented invocation and every parameter spelling. An agent concluded it is a server-side bug. |
+| 3 | Return a non-zero exit code when a CLI call fails | CLI | S | The CLI exits 0 after failed API calls, so scripts and agents cannot detect failure. Seen in 15 of 50 sampled failing runs. |
+| 4 | Redirect 9 broken doc URLs to their existing equivalents | Docs | S | Agents requested these mid-task and got a 404. Each has a live target page — this is a redirect map, not new content. |
+
+#### P1 — high value, low friction
+
+| # | Action | Owner | Effort | Why |
+| --- | --- | --- | --- | --- |
+| 1 | Write doc pages for shipped endpoints that have none (10 URLs) | Docs | M | `/v1/rerank`, `/v1/images/edits` and `/apis/v1/firecrawl/search` are live and evaluated, but an agent following the OpenAPI spec to the matching doc URL finds nothing. |
+| 2 | Serve OIDC discovery from the apex domain | Platform | S | `/.well-known/openid-configuration` exists only on `login.aisa.one`. Scanners and agents probe the apex, so it reads as absent. |
+| 3 | Add the missing `supportedInterfaces` field to the A2A agent card | Platform | XS | The card is already served; one required field makes it valid. |
+| 4 | Link `@aisa-one/cli` from the homepage and docs | Web | XS | The CLI is published and maintained, but nothing links to it, so three separate checks score it zero. |
+| 5 | Install `@lightsage/agent-tracker` middleware | Web | S | Agent Analytics has received no events, so there is no data on which pages agents actually read. |
+| 6 | Add coding agents to Lightsage visibility tracking | Growth | XS | 3 of 19 platforms are tracked and none are coding agents. Claude Code, Codex, Cursor and Copilot recommendations are entirely unmeasured — a settings change, not engineering work. |
+
+#### P2 — worth scheduling
+
+| # | Action | Owner | Effort | Why |
+| --- | --- | --- | --- | --- |
+| 1 | Serve markdown to agents (`Accept: text/markdown` or `/index.md`) | Platform | M | Agents arriving from search get HTML only. `Guessed Without Docs` is now the dominant pattern at 65% of runs — agents skip the docs entirely, which cheap machine-readable entry points directly address. |
+| 2 | Advertise `llms.txt`, sitemap and service-doc via RFC 8288 `Link` headers | Platform | S | Lets agents find key resources without parsing HTML. |
+| 3 | Return a markdown body on 404s listing where to go next | Web | S | A dead-end 404 gives an agent no way to recover, so it falls back to guessing. |
+| 4 | Make the docs worth opening | Docs | M | 65% of runs are `Guessed Without Docs` — agents reach for the API without consulting documentation at all. That is survivable on REST, where the spec carries them, but it is why CLI runs fail: there is no spec to guess from. |
+| 5 | Fix the remaining 3 medium CLI defects | CLI | M | Documented options are not implemented; `aisa twitter space` returns 404; `aisa skills` subcommands fail or no-op. |
+| 6 | Confirm `GET /v1/errors` is real and documented | API | S | Scored 0.43 — the agent could not confirm the endpoint exists, and `/docs/api-reference/errors` was separately flagged. |
+| 7 | Publish `/.well-known/ai-catalog.json` (ARD) and Content Signals in robots.txt | Platform | M | Both are required-tier checks on Ora and Cloudflare that currently score zero. |
+| 8 | Work the Lightsage GEO task list (Reddit, arXiv, comparison pages) | Growth | L | Seven ranked tasks aimed at citation share, detailed later in this report. Slower payback than the items above. |
+
+**The through-line:** 2 genuine CLI defects and the rest is surfacing work. AIsa has built the MCP servers, the OpenAPI spec, the CLI, the A2A card and the OIDC endpoint — they are simply not where agents and scanners look for them.
+
+---
+
+## 2. Engineering fix list
 
 Ordered by effort-to-impact. Every item is verified against live data in this report.
 
@@ -131,7 +174,7 @@ Each of these is a field, a redirect, or a header — all on surfaces that alrea
 
 ---
 
-## 2. Visibility
+## 3. Visibility
 
 ### Competitive landscape
 
@@ -201,7 +244,7 @@ Tracked: **Google AI Overviews, ChatGPT, Perplexity**
 
 ---
 
-## 3. API Performance
+## 4. API Performance
 
 **119/200 evals passed (59.50%)**, all executed by `global.anthropic.claude-opus-5`.
 
@@ -486,7 +529,7 @@ _This eval ran 2026-08-11, **before** the eval credential was replaced — and i
 
 ---
 
-## 4. Agent experience
+## 5. Agent experience
 
 ### Current baseline (since 2026-08-23 14:20 UTC)
 
@@ -526,7 +569,7 @@ _Row-level export of 85 runs across 54 endpoints is committed at `reference/agen
 
 ---
 
-## 5. Agent readiness
+## 6. Agent readiness
 
 Lightsage measures whether agents **cite** AIsa. These two scanners measure whether agents **can use** it — discovery files, protocol conformance, auth, and machine-readable surfaces.
 
@@ -649,7 +692,7 @@ Each of these is built and live. They fail only because they sit at the wrong pa
 
 ---
 
-## 6. Recommended actions
+## 7. Recommended actions
 
 Lightsage's ranked task list for 2026-08-23 — 7 active.
 
@@ -711,7 +754,7 @@ Lightsage's ranked task list for 2026-08-23 — 7 active.
 
 ---
 
-## 7. Opportunities (81)
+## 8. Opportunities (81)
 
 **By category** — GROWTH (11), CITATIONS (70)  
 **By type** — CONTENT GAPS (2), CITATION GAPS (30), HIGH CITATION SOURCES (20), LISTICLE TARGETS (20), COMPETITOR GAPS (7), UNTAPPED TOPICS (2)  
@@ -760,7 +803,7 @@ _45 more in `data/opportunities.json`._
 
 ---
 
-## 8. Recommended: install the Lightsage Agent Tracker SDK
+## 9. Recommended: install the Lightsage Agent Tracker SDK
 
 Lightsage's **Agent Analytics** product is currently empty for AISA — the dashboard reports *"Waiting for first tracking event."* That is the half of Lightsage that measures which pages agents actually read, and it needs a small middleware install to start producing data.
 
@@ -793,7 +836,7 @@ Notes for whoever implements it:
 
 ---
 
-## 9. Data quality caveats
+## 10. Data quality caveats
 
 - **Average position is not meaningful.** `average_position = 1` (rank #1) derives from 1 citation. It will regress as citations accumulate.
 - **Opportunity impact scores are saturated.** 30 of 81 opportunities score exactly 100, and 79 are "high" priority — the ranking carries little signal. The ranked task list below is the better prioritisation.
@@ -803,7 +846,7 @@ Notes for whoever implements it:
 
 ---
 
-## 10. Endpoint coverage
+## 11. Endpoint coverage
 
 | Endpoint | Path | Status | Time |
 | --- | --- | --- | --- |
