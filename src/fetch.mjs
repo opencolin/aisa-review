@@ -55,6 +55,14 @@ const manifest = [];
 for (const ep of ENDPOINTS) {
   process.stdout.write(`  ${ep.key.padEnd(22)} `);
   const res = await apiGet(ep.path, ep.params ?? {});
+  // This repo is shared publicly. The auth endpoint echoes internal identifiers
+  // that grant nothing but need not be published — redact them at write time so
+  // re-runs stay safe to commit.
+  if (ep.key === "auth" && res.body && typeof res.body === "object") {
+    for (const field of ["org_id", "api_key_id"]) {
+      if (res.body[field]) res.body[field] = "<redacted>";
+    }
+  }
   writeFileSync(join(dataDir, `${ep.key}.json`), JSON.stringify(res, null, 2));
   manifest.push({
     key: ep.key,
