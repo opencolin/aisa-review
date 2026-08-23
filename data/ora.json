@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 344,
+  "durationMs": 204,
   "path": "ora.ai/api/score/aisa.one",
   "body": {
     "domain": "aisa.one",

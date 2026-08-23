@@ -1,12 +1,12 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 7753,
+  "durationMs": 9091,
   "path": "isitagentready.com/api/scan",
   "body": {
     "url": "https://aisa.one",
     "targetUrl": "https://aisa.one",
-    "scannedAt": "2026-08-23T03:09:01.056Z",
+    "scannedAt": "2026-08-23T13:51:25.988Z",
     "level": 1,
     "levelName": "Basic Web Presence",
     "checks": {
@@ -27,7 +27,7 @@
                 "statusText": "OK",
                 "headers": {
                   "content-type": "text/plain",
-                  "cf-ray": "a2f6ea53981ce8d8-SJC"
+                  "cf-ray": "a2fa975c68947b83-SJC"
                 },
                 "bodyPreview": "User-Agent: *\nAllow: /\nDisallow: /admin/\n\nHost: https://aisa.one\nSitemap: https://aisa.one/sitemap.xml\n"
               },
@@ -84,7 +84,7 @@
                 "statusText": "OK",
                 "headers": {
                   "content-type": "application/xml",
-                  "cf-ray": "a2f6ea5bfef9e8d8-SJC"
+                  "cf-ray": "a2fa97638f207b83-SJC"
                 }
               },
               "finding": {
@@ -101,7 +101,7 @@
               }
             }
           ],
-          "durationMs": 2198
+          "durationMs": 1085
         },
         "linkHeaders": {
           "status": "fail",
@@ -119,7 +119,7 @@
                 "statusText": "OK",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5f69b3e8d8-SJC"
+                  "cf-ray": "a2fa9766fa2f7b83-SJC"
                 }
               },
               "finding": {
@@ -136,7 +136,7 @@
               }
             }
           ],
-          "durationMs": 653
+          "durationMs": 671
         },
         "dnsAid": {
           "status": "fail",
@@ -340,7 +340,7 @@
               }
             }
           ],
-          "durationMs": 14
+          "durationMs": 13
         }
       },
       "contentAccessibility": {
@@ -371,7 +371,7 @@
                 "statusText": "OK",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5d0f9fced9-SJC"
+                  "cf-ray": "a2fa97686ef4cf2a-SJC"
                 }
               }
             },
@@ -384,7 +384,7 @@
               }
             }
           ],
-          "durationMs": 3669
+          "durationMs": 630
         }
       },
       "botAccessControl": {
@@ -423,7 +423,7 @@
                 "statusText": "OK",
                 "headers": {
                   "content-type": "text/plain",
-                  "cf-ray": "a2f6ea53981ce8d8-SJC"
+                  "cf-ray": "a2fa975c68947b83-SJC"
                 },
                 "bodyPreview": "User-Agent: *\nAllow: /\nDisallow: /admin/\n\nHost: https://aisa.one\nSitemap: https://aisa.one/sitemap.xml\n"
               },
@@ -467,7 +467,7 @@
                 "statusText": "OK",
                 "headers": {
                   "content-type": "text/plain",
-                  "cf-ray": "a2f6ea53981ce8d8-SJC"
+                  "cf-ray": "a2fa975c68947b83-SJC"
                 },
                 "bodyPreview": "User-Agent: *\nAllow: /\nDisallow: /admin/\n\nHost: https://aisa.one\nSitemap: https://aisa.one/sitemap.xml\n"
               },
@@ -511,7 +511,7 @@
                 "statusText": "Not Found",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5bfefce8d8-SJC"
+                  "cf-ray": "a2fa97638f1f7b83-SJC"
                 }
               },
               "finding": {
@@ -528,7 +528,7 @@
               }
             }
           ],
-          "durationMs": 155
+          "durationMs": 226
         }
       },
       "discovery": {
@@ -551,7 +551,7 @@
                 "statusText": "Not Found",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5e28bae8d8-SJC"
+                  "cf-ray": "a2fa976619647b83-SJC"
                 }
               },
               "finding": {
@@ -568,7 +568,7 @@
               }
             }
           ],
-          "durationMs": 500
+          "durationMs": 538
         },
         "oauthDiscovery": {
           "status": "fail",
@@ -586,7 +586,7 @@
                 "statusText": "Not Found",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5bfefae8d8-SJC"
+                  "cf-ray": "a2fa97638f227b83-SJC"
                 }
               },
               "finding": {
@@ -606,7 +606,7 @@
                 "statusText": "Not Found",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5bff01e8d8-SJC"
+                  "cf-ray": "a2fa97638f257b83-SJC"
                 }
               },
               "finding": {
@@ -623,7 +623,7 @@
               }
             }
           ],
-          "durationMs": 159
+          "durationMs": 227
         },
         "oauthProtectedResource": {
           "status": "fail",
@@ -641,7 +641,7 @@
                 "statusText": "Not Found",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5bff05e8d8-SJC"
+                  "cf-ray": "a2fa97638f277b83-SJC"
                 }
               },
               "finding": {
@@ -661,7 +661,7 @@
                 "statusText": "OK",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5cefa9e8d8-SJC"
+                  "cf-ray": "a2fa9764f85a7b83-SJC"
                 }
               },
               "finding": {
@@ -678,7 +678,7 @@
               }
             }
           ],
-          "durationMs": 356
+          "durationMs": 405
         },
         "authMd": {
           "status": "fail",
@@ -699,7 +699,7 @@
                 "statusText": "Not Found",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5cefaae8d8-SJC"
+                  "cf-ray": "a2fa9764f85b7b83-SJC"
                 }
               },
               "finding": {
@@ -716,7 +716,7 @@
               }
             }
           ],
-          "durationMs": 381
+          "durationMs": 473
         },
         "mcpServerCard": {
           "status": "fail",
@@ -734,7 +734,7 @@
                 "statusText": "Not Found",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5cefabe8d8-SJC"
+                  "cf-ray": "a2fa9764f85c7b83-SJC"
                 }
               },
               "finding": {
@@ -754,7 +754,7 @@
                 "statusText": "Not Found",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5ceface8d8-SJC"
+                  "cf-ray": "a2fa9764f85e7b83-SJC"
                 }
               },
               "finding": {
@@ -774,7 +774,7 @@
                 "statusText": "OK",
                 "headers": {
                   "content-type": "application/json; charset=utf-8",
-                  "cf-ray": "a2f6ea5cefb1e8d8-SJC"
+                  "cf-ray": "a2fa976508627b83-SJC"
                 }
               },
               "finding": {
@@ -791,7 +791,7 @@
               }
             }
           ],
-          "durationMs": 455
+          "durationMs": 476
         },
         "a2aAgentCard": {
           "status": "fail",
@@ -809,7 +809,7 @@
                 "statusText": "OK",
                 "headers": {
                   "content-type": "application/json; charset=utf-8",
-                  "cf-ray": "a2f6ea5d9844e8d8-SJC"
+                  "cf-ray": "a2fa976598e77b83-SJC"
                 },
                 "bodyPreview": "{\"name\":\"AIsa\",\"description\":\"Capability layer for the agentic economy. Models, skills, payments, and deployment — everything AI agents need to reason, act, and transact.\",\"url\":\"https://api.aisa.one\",\"provider\":{\"organization\":\"AIsa\",\"url\":\"https://aisa.one\"},\"version\":\"1.0.0\",\"documentationUrl\":\"https://aisa.one/docs\",\"capabilities\":{\"streaming\":true,\"pushNotifications\":false,\"stateTransitionHistory\":false},\"authentication\":{\"schemes\":[\"Bearer\",\"x402\"],\"credentials\":\"Get your API key at https:..."
               },
@@ -835,7 +835,7 @@
               }
             }
           ],
-          "durationMs": 335
+          "durationMs": 388
         },
         "agentSkills": {
           "status": "fail",
@@ -853,7 +853,7 @@
                 "statusText": "Not Found",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5da857e8d8-SJC"
+                  "cf-ray": "a2fa9765e92d7b83-SJC"
                 }
               },
               "finding": {
@@ -873,7 +873,7 @@
                 "statusText": "Not Found",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5fea29e8d8-SJC"
+                  "cf-ray": "a2fa9767baee7b83-SJC"
                 }
               },
               "finding": {
@@ -890,7 +890,7 @@
               }
             }
           ],
-          "durationMs": 699
+          "durationMs": 705
         },
         "webMcp": {
           "status": "fail",
@@ -933,7 +933,7 @@
               }
             }
           ],
-          "durationMs": 6147
+          "durationMs": 5888
         },
         "ard": {
           "status": "fail",
@@ -970,7 +970,7 @@
                 "statusText": "Not Found",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5bfefbe8d8-SJC"
+                  "cf-ray": "a2fa97638f217b83-SJC"
                 }
               },
               "finding": {
@@ -1037,7 +1037,7 @@
             "discoveryMechanisms": [],
             "searchEndpoints": []
           },
-          "durationMs": 154
+          "durationMs": 225
         }
       },
       "commerce": {
@@ -1057,7 +1057,7 @@
                 "statusText": "OK",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5e28c3e8d8-SJC"
+                  "cf-ray": "a2fa976629727b83-SJC"
                 }
               },
               "finding": {
@@ -1077,7 +1077,7 @@
                 "statusText": "OK",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5e48d6e8d8-SJC"
+                  "cf-ray": "a2fa976689c37b83-SJC"
                 }
               },
               "finding": {
@@ -1097,7 +1097,7 @@
                 "statusText": "OK",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5ef966e8d8-SJC"
+                  "cf-ray": "a2fa9766ea157b83-SJC"
                 }
               },
               "finding": {
@@ -1117,7 +1117,7 @@
                 "statusText": "OK",
                 "headers": {
                   "content-type": "application/json",
-                  "cf-ray": "a2f6ea5e28c1e8d8-SJC"
+                  "cf-ray": "a2fa9766296f7b83-SJC"
                 }
               }
             },
@@ -1142,7 +1142,7 @@
               }
             }
           ],
-          "durationMs": 1563
+          "durationMs": 1499
         },
         "mpp": {
           "status": "neutral",
@@ -1160,7 +1160,7 @@
                 "statusText": "Not Found",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5f096ae8d8-SJC"
+                  "cf-ray": "a2fa9766fa1d7b83-SJC"
                 }
               },
               "finding": {
@@ -1177,7 +1177,7 @@
               }
             }
           ],
-          "durationMs": 681
+          "durationMs": 690
         },
         "ucp": {
           "status": "neutral",
@@ -1195,7 +1195,7 @@
                 "statusText": "Not Found",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5e28bde8d8-SJC"
+                  "cf-ray": "a2fa9766296d7b83-SJC"
                 }
               },
               "finding": {
@@ -1212,7 +1212,7 @@
               }
             }
           ],
-          "durationMs": 506
+          "durationMs": 541
         },
         "acp": {
           "status": "neutral",
@@ -1230,7 +1230,7 @@
                 "statusText": "Not Found",
                 "headers": {
                   "content-type": "text/html; charset=utf-8",
-                  "cf-ray": "a2f6ea5f096fe8d8-SJC"
+                  "cf-ray": "a2fa9766fa217b83-SJC"
                 }
               },
               "finding": {
@@ -1247,7 +1247,7 @@
               }
             }
           ],
-          "durationMs": 658
+          "durationMs": 675
         },
         "ap2": {
           "status": "neutral",

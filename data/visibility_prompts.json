@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 2801,
+  "durationMs": 2852,
   "path": "/v1/visibility/prompts?start_date=2026-07-24&end_date=2026-08-23",
   "body": {
     "company": {
@@ -13,7 +13,7 @@
     "date_range": {
       "start_date": "2026-07-24",
       "end_date": "2026-08-23",
-      "latest_run_date": "2026-08-22",
+      "latest_run_date": "2026-08-23",
       "active_prompts_only": true
     },
     "has_data": true,
@@ -22,11 +22,11 @@
       "topic_count": 3,
       "metrics": {
         "visibility_score": 0.0012,
-        "visibility_score_rank": 7,
-        "share_of_voice": 0.0018,
+        "visibility_score_rank": 8,
+        "share_of_voice": 0.0017,
         "average_position": 1,
         "citation_count": 1,
-        "run_count": 567
+        "run_count": 594
       }
     },
     "topics": [
@@ -36,11 +36,11 @@
         "prompt_count": 3,
         "metrics": {
           "visibility_score": 0,
-          "visibility_score_rank": 9,
+          "visibility_score_rank": 8,
           "share_of_voice": 0,
           "average_position": 0,
           "citation_count": 0,
-          "run_count": 189
+          "run_count": 198
         },
         "prompts": [
           {
@@ -48,11 +48,11 @@
             "text": "I'm building an AI agent that needs to access multiple external APIs and real-world data sources through a single integration point — what tools or platforms should I use?",
             "metrics": {
               "visibility_score": 0,
-              "visibility_score_rank": 6,
+              "visibility_score_rank": 8,
               "share_of_voice": 0,
               "average_position": 0,
               "citation_count": 0,
-              "run_count": 63
+              "run_count": 66
             }
           },
           {
@@ -60,11 +60,11 @@
             "text": "What are the best API gateway solutions for AI agents that need unified access to third-party tools and capabilities?",
             "metrics": {
               "visibility_score": 0,
-              "visibility_score_rank": 6,
+              "visibility_score_rank": 7,
               "share_of_voice": 0,
               "average_position": 0,
               "citation_count": 0,
-              "run_count": 63
+              "run_count": 66
             }
           },
           {
@@ -72,11 +72,11 @@
             "text": "My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?",
             "metrics": {
               "visibility_score": 0,
-              "visibility_score_rank": 9,
+              "visibility_score_rank": 8,
               "share_of_voice": 0,
               "average_position": 0,
               "citation_count": 0,
-              "run_count": 63
+              "run_count": 66
             }
           }
         ]
@@ -86,12 +86,12 @@
         "name": "Agent Payment Infrastructure",
         "prompt_count": 3,
         "metrics": {
-          "visibility_score": 0.0037,
+          "visibility_score": 0.0035,
           "visibility_score_rank": 7,
-          "share_of_voice": 0.0053,
+          "share_of_voice": 0.0051,
           "average_position": 1,
           "citation_count": 1,
-          "run_count": 189
+          "run_count": 198
         },
         "prompts": [
           {
@@ -99,23 +99,23 @@
             "text": "I'm building an AI agent that needs to autonomously pay for APIs and data access — what payment infrastructure options should I consider?",
             "metrics": {
               "visibility_score": 0,
-              "visibility_score_rank": 6,
+              "visibility_score_rank": 7,
               "share_of_voice": 0,
               "average_position": 0,
               "citation_count": 0,
-              "run_count": 63
+              "run_count": 66
             }
           },
           {
             "id": "d6e5daaa-13a0-4361-931d-22303a2f3651",
             "text": "What are the best platforms for enabling AI agents to discover and pay for real-world APIs and capabilities?",
             "metrics": {
-              "visibility_score": 0.0111,
+              "visibility_score": 0.0106,
               "visibility_score_rank": 7,
-              "share_of_voice": 0.0159,
+              "share_of_voice": 0.0152,
               "average_position": 1,
               "citation_count": 1,
-              "run_count": 63
+              "run_count": 66
             }
           },
           {
@@ -123,11 +123,11 @@
             "text": "My team is evaluating solutions for agent-to-agent or agent-to-service payments in an AI system. What do you recommend?",
             "metrics": {
               "visibility_score": 0,
-              "visibility_score_rank": 5,
+              "visibility_score_rank": 7,
               "share_of_voice": 0,
               "average_position": 0,
               "citation_count": 0,
-              "run_count": 63
+              "run_count": 66
             }
           }
         ]
@@ -142,7 +142,7 @@
           "share_of_voice": 0,
           "average_position": 0,
           "citation_count": 0,
-          "run_count": 189
+          "run_count": 198
         },
         "prompts": [
           {
@@ -150,11 +150,11 @@
             "text": "I'm building an AI agent that needs to access real-world data and APIs — what marketplace or tool should I use to give it those capabilities?",
             "metrics": {
               "visibility_score": 0,
-              "visibility_score_rank": 9,
+              "visibility_score_rank": 8,
               "share_of_voice": 0,
               "average_position": 0,
               "citation_count": 0,
-              "run_count": 63
+              "run_count": 66
             }
           },
           {
@@ -166,7 +166,7 @@
               "share_of_voice": 0,
               "average_position": 0,
               "citation_count": 0,
-              "run_count": 63
+              "run_count": 66
             }
           },
           {
@@ -174,11 +174,11 @@
             "text": "My team is evaluating solutions that let AI agents access external data sources and third-party capabilities through a single integration. What do you recommend?",
             "metrics": {
               "visibility_score": 0,
-              "visibility_score_rank": 6,
+              "visibility_score_rank": 7,
               "share_of_voice": 0,
               "average_position": 0,
               "citation_count": 0,
-              "run_count": 63
+              "run_count": 66
             }
           }
         ]

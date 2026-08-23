@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 1103,
+  "durationMs": 1072,
   "path": "/v1/api-performance/config",
   "body": {
     "models": [
@@ -21,7 +21,7 @@
         "last_skipped_at": null,
         "skip_reason": null,
         "created_at": "2026-08-12T12:32:53.774435+00:00",
-        "updated_at": "2026-08-14T08:19:18.847177+00:00"
+        "updated_at": "2026-08-23T08:25:55.854972+00:00"
       },
       {
         "id": "bb1c7300-f564-4c60-b3f8-b8c14a0d261e",
@@ -36,7 +36,7 @@
         "last_skipped_at": null,
         "skip_reason": null,
         "created_at": "2026-08-14T06:58:49.249982+00:00",
-        "updated_at": "2026-08-23T01:22:29.086514+00:00"
+        "updated_at": "2026-08-23T08:26:10.641658+00:00"
       }
     ],
     "operation_ids": [

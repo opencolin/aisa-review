@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 3247,
+  "durationMs": 3288,
   "path": "/v1/visibility/overview?start_date=2026-07-24&end_date=2026-08-23",
   "body": {
     "company": {
@@ -14,15 +14,15 @@
       "start_date": "2026-07-24",
       "end_date": "2026-08-23",
       "granularity": "day",
-      "latest_run_date": "2026-08-22",
+      "latest_run_date": "2026-08-23",
       "active_prompts_only": true
     },
     "has_data": true,
     "snapshot": {
       "visibility_score": 0.0012,
-      "visibility_score_rank": 7,
-      "share_of_voice": 0.0018,
-      "share_of_voice_rank": 7,
+      "visibility_score_rank": 8,
+      "share_of_voice": 0.0017,
+      "share_of_voice_rank": 8,
       "average_position": 1,
       "average_position_rank": 1,
       "total_citations": 1
@@ -112,6 +112,10 @@
         {
           "date": "2026-08-22",
           "value": 0
+        },
+        {
+          "date": "2026-08-23",
+          "value": 0
         }
       ]
     },
@@ -123,13 +127,13 @@
           "icon_url": null
         },
         {
-          "platform_id": "63ec5e76-c454-427d-b110-162c501ddfde",
-          "name": "Perplexity",
+          "platform_id": "c0900b3f-a2b4-4668-8cd8-f734a80c7bb2",
+          "name": "ChatGPT",
           "icon_url": null
         },
         {
-          "platform_id": "c0900b3f-a2b4-4668-8cd8-f734a80c7bb2",
-          "name": "ChatGPT",
+          "platform_id": "63ec5e76-c454-427d-b110-162c501ddfde",
+          "name": "Perplexity",
           "icon_url": null
         }
       ],
@@ -218,91 +222,9 @@
           {
             "date": "2026-08-22",
             "value": 0
-          }
-        ],
-        "63ec5e76-c454-427d-b110-162c501ddfde": [
-          {
-            "date": "2026-07-26",
-            "value": 0
           },
           {
-            "date": "2026-07-27",
-            "value": 0
-          },
-          {
-            "date": "2026-07-28",
-            "value": 0
-          },
-          {
-            "date": "2026-07-29",
-            "value": 0
-          },
-          {
-            "date": "2026-07-30",
-            "value": 0
-          },
-          {
-            "date": "2026-07-31",
-            "value": 0
-          },
-          {
-            "date": "2026-08-01",
-            "value": 0
-          },
-          {
-            "date": "2026-08-02",
-            "value": 0
-          },
-          {
-            "date": "2026-08-03",
-            "value": 0
-          },
-          {
-            "date": "2026-08-04",
-            "value": 0
-          },
-          {
-            "date": "2026-08-12",
-            "value": 0
-          },
-          {
-            "date": "2026-08-13",
-            "value": 0
-          },
-          {
-            "date": "2026-08-14",
-            "value": 0
-          },
-          {
-            "date": "2026-08-15",
-            "value": 0
-          },
-          {
-            "date": "2026-08-16",
-            "value": 0
-          },
-          {
-            "date": "2026-08-17",
-            "value": 0
-          },
-          {
-            "date": "2026-08-18",
-            "value": 0
-          },
-          {
-            "date": "2026-08-19",
-            "value": 0
-          },
-          {
-            "date": "2026-08-20",
-            "value": 0
-          },
-          {
-            "date": "2026-08-21",
-            "value": 0
-          },
-          {
-            "date": "2026-08-22",
+            "date": "2026-08-23",
             "value": 0
           }
         ],
@@ -389,6 +311,100 @@
           },
           {
             "date": "2026-08-22",
+            "value": 0
+          },
+          {
+            "date": "2026-08-23",
+            "value": 0
+          }
+        ],
+        "63ec5e76-c454-427d-b110-162c501ddfde": [
+          {
+            "date": "2026-07-26",
+            "value": 0
+          },
+          {
+            "date": "2026-07-27",
+            "value": 0
+          },
+          {
+            "date": "2026-07-28",
+            "value": 0
+          },
+          {
+            "date": "2026-07-29",
+            "value": 0
+          },
+          {
+            "date": "2026-07-30",
+            "value": 0
+          },
+          {
+            "date": "2026-07-31",
+            "value": 0
+          },
+          {
+            "date": "2026-08-01",
+            "value": 0
+          },
+          {
+            "date": "2026-08-02",
+            "value": 0
+          },
+          {
+            "date": "2026-08-03",
+            "value": 0
+          },
+          {
+            "date": "2026-08-04",
+            "value": 0
+          },
+          {
+            "date": "2026-08-12",
+            "value": 0
+          },
+          {
+            "date": "2026-08-13",
+            "value": 0
+          },
+          {
+            "date": "2026-08-14",
+            "value": 0
+          },
+          {
+            "date": "2026-08-15",
+            "value": 0
+          },
+          {
+            "date": "2026-08-16",
+            "value": 0
+          },
+          {
+            "date": "2026-08-17",
+            "value": 0
+          },
+          {
+            "date": "2026-08-18",
+            "value": 0
+          },
+          {
+            "date": "2026-08-19",
+            "value": 0
+          },
+          {
+            "date": "2026-08-20",
+            "value": 0
+          },
+          {
+            "date": "2026-08-21",
+            "value": 0
+          },
+          {
+            "date": "2026-08-22",
+            "value": 0
+          },
+          {
+            "date": "2026-08-23",
             "value": 0
           }
         ]
@@ -478,91 +494,9 @@
           {
             "date": "2026-08-22",
             "value": 0
-          }
-        ],
-        "63ec5e76-c454-427d-b110-162c501ddfde": [
-          {
-            "date": "2026-07-26",
-            "value": 0
           },
           {
-            "date": "2026-07-27",
-            "value": 0
-          },
-          {
-            "date": "2026-07-28",
-            "value": 0
-          },
-          {
-            "date": "2026-07-29",
-            "value": 0
-          },
-          {
-            "date": "2026-07-30",
-            "value": 0
-          },
-          {
-            "date": "2026-07-31",
-            "value": 0
-          },
-          {
-            "date": "2026-08-01",
-            "value": 0
-          },
-          {
-            "date": "2026-08-02",
-            "value": 0
-          },
-          {
-            "date": "2026-08-03",
-            "value": 0
-          },
-          {
-            "date": "2026-08-04",
-            "value": 0
-          },
-          {
-            "date": "2026-08-12",
-            "value": 0
-          },
-          {
-            "date": "2026-08-13",
-            "value": 0
-          },
-          {
-            "date": "2026-08-14",
-            "value": 0
-          },
-          {
-            "date": "2026-08-15",
-            "value": 0
-          },
-          {
-            "date": "2026-08-16",
-            "value": 0
-          },
-          {
-            "date": "2026-08-17",
-            "value": 0
-          },
-          {
-            "date": "2026-08-18",
-            "value": 0
-          },
-          {
-            "date": "2026-08-19",
-            "value": 0
-          },
-          {
-            "date": "2026-08-20",
-            "value": 0
-          },
-          {
-            "date": "2026-08-21",
-            "value": 0
-          },
-          {
-            "date": "2026-08-22",
+            "date": "2026-08-23",
             "value": 0
           }
         ],
@@ -650,6 +584,100 @@
           {
             "date": "2026-08-22",
             "value": 0
+          },
+          {
+            "date": "2026-08-23",
+            "value": 0
+          }
+        ],
+        "63ec5e76-c454-427d-b110-162c501ddfde": [
+          {
+            "date": "2026-07-26",
+            "value": 0
+          },
+          {
+            "date": "2026-07-27",
+            "value": 0
+          },
+          {
+            "date": "2026-07-28",
+            "value": 0
+          },
+          {
+            "date": "2026-07-29",
+            "value": 0
+          },
+          {
+            "date": "2026-07-30",
+            "value": 0
+          },
+          {
+            "date": "2026-07-31",
+            "value": 0
+          },
+          {
+            "date": "2026-08-01",
+            "value": 0
+          },
+          {
+            "date": "2026-08-02",
+            "value": 0
+          },
+          {
+            "date": "2026-08-03",
+            "value": 0
+          },
+          {
+            "date": "2026-08-04",
+            "value": 0
+          },
+          {
+            "date": "2026-08-12",
+            "value": 0
+          },
+          {
+            "date": "2026-08-13",
+            "value": 0
+          },
+          {
+            "date": "2026-08-14",
+            "value": 0
+          },
+          {
+            "date": "2026-08-15",
+            "value": 0
+          },
+          {
+            "date": "2026-08-16",
+            "value": 0
+          },
+          {
+            "date": "2026-08-17",
+            "value": 0
+          },
+          {
+            "date": "2026-08-18",
+            "value": 0
+          },
+          {
+            "date": "2026-08-19",
+            "value": 0
+          },
+          {
+            "date": "2026-08-20",
+            "value": 0
+          },
+          {
+            "date": "2026-08-21",
+            "value": 0
+          },
+          {
+            "date": "2026-08-22",
+            "value": 0
+          },
+          {
+            "date": "2026-08-23",
+            "value": 0
           }
         ]
       }
@@ -662,9 +690,9 @@
           "logo_url": null,
           "relationship": "competitor"
         },
-        "visibility_score": 0.4157,
+        "visibility_score": 0.4167,
         "visibility_score_rank": 1,
-        "share_of_voice": 0.5785,
+        "share_of_voice": 0.5774,
         "share_of_voice_rank": 1,
         "average_position": 1.24,
         "average_position_rank": 2
@@ -676,11 +704,11 @@
           "logo_url": null,
           "relationship": "competitor"
         },
-        "visibility_score": 0.2814,
+        "visibility_score": 0.283,
         "visibility_score_rank": 2,
-        "share_of_voice": 0.3933,
+        "share_of_voice": 0.3939,
         "share_of_voice_rank": 2,
-        "average_position": 1.79,
+        "average_position": 1.81,
         "average_position_rank": 4
       },
       {
@@ -690,12 +718,12 @@
           "logo_url": null,
           "relationship": "competitor"
         },
-        "visibility_score": 0.1351,
+        "visibility_score": 0.1361,
         "visibility_score_rank": 3,
-        "share_of_voice": 0.1781,
+        "share_of_voice": 0.1801,
         "share_of_voice_rank": 3,
-        "average_position": 2.87,
-        "average_position_rank": 7
+        "average_position": 2.88,
+        "average_position_rank": 8
       },
       {
         "company": {
@@ -704,12 +732,12 @@
           "logo_url": null,
           "relationship": "competitor"
         },
-        "visibility_score": 0.0583,
+        "visibility_score": 0.0587,
         "visibility_score_rank": 4,
         "share_of_voice": 0.1111,
         "share_of_voice_rank": 4,
-        "average_position": 2.49,
-        "average_position_rank": 6
+        "average_position": 2.47,
+        "average_position_rank": 7
       },
       {
         "company": {
@@ -718,12 +746,12 @@
           "logo_url": null,
           "relationship": "competitor"
         },
-        "visibility_score": 0.0337,
+        "visibility_score": 0.0362,
         "visibility_score_rank": 5,
-        "share_of_voice": 0.0459,
+        "share_of_voice": 0.0488,
         "share_of_voice_rank": 5,
-        "average_position": 2.04,
-        "average_position_rank": 5
+        "average_position": 2.17,
+        "average_position_rank": 6
       },
       {
         "company": {
@@ -732,12 +760,26 @@
           "logo_url": null,
           "relationship": "competitor"
         },
-        "visibility_score": 0.0209,
+        "visibility_score": 0.0199,
         "visibility_score_rank": 6,
-        "share_of_voice": 0.0406,
+        "share_of_voice": 0.0387,
         "share_of_voice_rank": 6,
         "average_position": 1.65,
         "average_position_rank": 3
+      },
+      {
+        "company": {
+          "name": "Toolhouse",
+          "domain": "toolhouse.ai",
+          "logo_url": null,
+          "relationship": "competitor"
+        },
+        "visibility_score": 0.0013,
+        "visibility_score_rank": 7,
+        "share_of_voice": 0.0017,
+        "share_of_voice_rank": 7,
+        "average_position": 2,
+        "average_position_rank": 5
       },
       {
         "company": {
@@ -747,9 +789,9 @@
           "relationship": "primary"
         },
         "visibility_score": 0.0012,
-        "visibility_score_rank": 7,
-        "share_of_voice": 0.0018,
-        "share_of_voice_rank": 7,
+        "visibility_score_rank": 8,
+        "share_of_voice": 0.0017,
+        "share_of_voice_rank": 8,
         "average_position": 1,
         "average_position_rank": 1
       },
@@ -757,20 +799,6 @@
         "company": {
           "name": "Monid",
           "domain": "monid.ai",
-          "logo_url": null,
-          "relationship": "competitor"
-        },
-        "visibility_score": 0,
-        "visibility_score_rank": 8,
-        "share_of_voice": 0,
-        "share_of_voice_rank": 8,
-        "average_position": 0,
-        "average_position_rank": 8
-      },
-      {
-        "company": {
-          "name": "Toolhouse",
-          "domain": "toolhouse.ai",
           "logo_url": null,
           "relationship": "competitor"
         },
@@ -797,8 +825,8 @@
       },
       {
         "company": {
-          "name": "Orthogonal",
-          "domain": "orthogonal.com",
+          "name": "AgentOps",
+          "domain": "agentops.ai",
           "logo_url": null,
           "relationship": "competitor"
         },
@@ -811,8 +839,8 @@
       },
       {
         "company": {
-          "name": "AgentOps",
-          "domain": "agentops.ai",
+          "name": "Orthogonal",
+          "domain": "orthogonal.com",
           "logo_url": null,
           "relationship": "competitor"
         },

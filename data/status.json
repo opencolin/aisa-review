@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 193,
+  "durationMs": 140,
   "path": "/v1/status",
   "body": {
     "status": "ok"

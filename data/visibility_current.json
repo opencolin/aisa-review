@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 1073,
+  "durationMs": 1265,
   "path": "/v1/visibility/current?start_date=2026-07-24&end_date=2026-08-23",
   "body": {
     "company": {
@@ -11,12 +11,12 @@
       "relationship": "primary"
     },
     "visibility_score": 0.0012,
-    "visibility_score_rank": 7,
-    "share_of_voice": 0.0018,
-    "share_of_voice_rank": 7,
+    "visibility_score_rank": 8,
+    "share_of_voice": 0.0017,
+    "share_of_voice_rank": 8,
     "average_position": 1,
     "average_position_rank": 1,
-    "date": "2026-08-22",
+    "date": "2026-08-23",
     "start_date": "2026-07-24",
     "end_date": "2026-08-23",
     "active_prompts_only": true,

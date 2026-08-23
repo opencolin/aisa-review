@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 940,
+  "durationMs": 954,
   "path": "/v1/api-performance/sources",
   "body": {
     "data": [
@@ -44,7 +44,7 @@
             "last_skipped_at": null,
             "skip_reason": null,
             "created_at": "2026-08-12T12:32:53.774435+00:00",
-            "updated_at": "2026-08-14T08:19:18.847177+00:00"
+            "updated_at": "2026-08-23T08:25:55.854972+00:00"
           }
         ],
         "operation_count": 53,
@@ -57,11 +57,19 @@
         "metadata": {
           "api_base_url": null,
           "docs_url": "https://aisa.one/docs/agent-skills/quickstart",
-          "default_env_profile_id": null,
+          "default_env_profile_id": "default",
           "env_var_keys": [
             "AISA_API_KEY"
           ],
-          "env_profiles": [],
+          "env_profiles": [
+            {
+              "id": "default",
+              "name": "Default",
+              "env_var_keys": [
+                "AISA_API_KEY"
+              ]
+            }
+          ],
           "models": [
             "claude-code"
           ],
@@ -81,7 +89,7 @@
             "last_skipped_at": null,
             "skip_reason": null,
             "created_at": "2026-08-14T06:58:49.249982+00:00",
-            "updated_at": "2026-08-23T01:22:29.086514+00:00"
+            "updated_at": "2026-08-23T08:26:10.641658+00:00"
           }
         ],
         "operation_count": 124,

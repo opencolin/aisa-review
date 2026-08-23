@@ -48,6 +48,12 @@ const oraChecks = (ora?.layers ?? []).flatMap((l) => l.checks ?? []);
 const oraById = new Map(oraChecks.map((c) => [c.id, c]));
 const npmPkg = load("npm");
 const diag = load("ap_diagnose");
+const diagEx = diag?.examples ?? [];
+const dhay = (e) => [e.response_text, e.execution_stdout, e.execution_stderr].filter(Boolean).join("\n");
+const n401 = diagEx.filter((e) => /\b401\b|unauthorized|invalid api key/i.test(dhay(e))).length;
+const n402 = diagEx.filter((e) => /\b402\b|payment required|insufficient (?:wallet )?balance|paid balance/i.test(dhay(e))).length;
+// Which wall are agents hitting: a rejected credential, or a valid one with no funds?
+const credState = n402 > n401 ? "balance" : n401 > 0 ? "invalid" : null;
 const mcpMan = load("aisa_mcp_manifest");
 let csvExport = null;
 try { csvExport = JSON.parse(readFileSync(join(ROOT, "reference", "agent-experience-csv.json"), "utf8")); } catch { /* optional */ }
@@ -106,23 +112,22 @@ P("");
 
 /* ---- read-this-first: the two items that need action before anything else ---- */
 {
-  const ex = diag?.examples ?? [];
-  const hay = (e) => [e.response_text, e.execution_stdout, e.execution_stderr].filter(Boolean).join("\n");
-  const af = ex.filter((e) => /\b401\b|unauthorized|invalid api key/i.test(hay(e))).length;
-
   P("## Read this first", "");
   P(`Most of what follows is not "build something new." ${company.name} has already built the agent-facing surfaces — MCP servers, an OpenAPI spec, llms.txt, an A2A card, OIDC, a published CLI. ` +
     `The recurring finding is that these exist but are not **discoverable or conformant**, so scanners, agents and scorecards score them zero. ` +
     `That is a much cheaper problem to fix than the scores suggest.`, "");
   P(`Two items should be actioned before anyone reads the rest, because they distort everything downstream:`, "");
   P("");
-  if (af) {
-    P(`**1. The Lightsage eval credential is being rejected.** ${af} of ${ex.length} sampled API Performance runs returned \`401 / invalid api key\` against \`api.${DOMAIN}\`, and none passed. ` +
-      `Agents wrote working integration code and then could not authenticate — the top "failure reasons" are \`task_completed\` and \`zero_errors\`. ` +
-      `**Until this key is replaced and the evals re-run, the ${num(diag?.summary?.failure_rate)}% failure rate measures the credential, not the API.** Do not action the endpoint scores until then.`, "");
+  if (credState === "balance") {
+    P(`**1. The eval account has no wallet balance.** The rejected key was replaced and that worked — 401s fell from 41 of 50 sampled runs to ${n401}. ` +
+      `But ${n402} of ${diagEx.length} runs now return \`402 — The wallet balance is insufficient\`. Agents authenticate, write working code, and fail on the live call. ` +
+      `**The endpoint scores still measure billing, not API quality.** Top up the account behind the eval key and re-run before actioning them.`, "");
+  } else if (credState === "invalid") {
+    P(`**1. The Lightsage eval credential is being rejected.** ${n401} of ${diagEx.length} sampled runs returned \`401 / invalid api key\` against \`api.${DOMAIN}\`. ` +
+      `**Until this key is replaced and the evals re-run, the ${num(diag?.summary?.failure_rate)}% failure rate measures the credential, not the API.**`, "");
   }
   if (mcpMan?.counts?.live) {
-    P(`**${af ? "2" : "1"}. ${mcpMan.counts.live} live MCP servers are invisible to every scanner.** \`/.well-known/mcp.json\` serves ${mcpMan.counts.live} servers exposing ${mcpMan.liveTools} tools, all responding. ` +
+    P(`**${credState ? "2" : "1"}. ${mcpMan.counts.live} live MCP servers are invisible to every scanner.** \`/.well-known/mcp.json\` serves ${mcpMan.counts.live} servers exposing ${mcpMan.liveTools} tools, all responding. ` +
       `Ora reports "no MCP server detected", Cloudflare rejects the manifest for a missing \`serverInfo.name\`, and Lightsage's own Arena checklist scores MCP Server 0. ` +
       `The fix is a conforming card at \`/.well-known/mcp/server-card.json\` alongside the existing manifest — it moves three scorecards at once.`, "");
   }
@@ -167,11 +172,10 @@ const findings = [];
 if (mcpMan?.counts?.live) {
   findings.push(`**The biggest agent-facing asset AISA has is invisible.** \`/.well-known/mcp.json\` publishes **${mcpMan.counts.live} live MCP servers exposing ${mcpMan.liveTools} tools**, yet Ora reports "no MCP server detected", Cloudflare rejects the manifest for a missing \`serverInfo.name\`, and Lightsage's own Arena checklist scores MCP Server 0. The servers are real and responding; the discovery file just is not in a shape any scanner recognises.`);
 }
-if (diag) {
-  const ex = diag.examples ?? [];
-  const hay = (e) => [e.response_text, e.execution_stdout, e.execution_stderr].filter(Boolean).join("\n");
-  const af = ex.filter((e) => /\b401\b|unauthorized|invalid api key/i.test(hay(e))).length;
-  if (af) findings.push(`**The API Performance scores are measuring a broken credential.** ${af} of ${ex.length} sampled runs hit \`401 / invalid api key\` and none passed; agents wrote working code and then could not authenticate. Fix the eval key and re-run before treating the ${num(diag.summary?.failure_rate)}% failure rate as a signal about the API.`);
+if (credState === "balance") {
+  findings.push(`**The API scores now measure an empty wallet, not the API.** Replacing the rejected key worked — 401s fell from 41 of 50 sampled runs to ${n401} — but ${n402} of ${diagEx.length} now return \`402: insufficient wallet balance\`. Agents authenticate, write working code, then fail on the live call. Top up the eval account and re-run before actioning endpoint scores.`);
+} else if (credState === "invalid") {
+  findings.push(`**The API Performance scores are measuring a broken credential.** ${n401} of ${diagEx.length} sampled runs hit \`401 / invalid api key\` and none passed. Fix the eval key and re-run before treating the ${num(diag?.summary?.failure_rate)}% failure rate as a signal about the API.`);
 }
 findings.push(`**Coding agents are measured for _usage_ but not for _recommendation_.** API Performance and Devtool Arena both run Claude Code against the API${arena ? ` (grade ${arena.grade}, ${arena.finalScore}%)` : ""}, but visibility tracking uses only ${trackedPlatforms.length} platforms (${trackedPlatforms.map((p) => p.name).join(", ")}), ${trackedCodingAgents.length === 0 ? "**none of them coding agents**" : `${trackedCodingAgents.length} coding agents`}, out of ${availablePlatforms.length} available. We know how well Claude Code *uses* ${company.name} once it arrives, and nothing about whether it ever *recommends* it.`);
 findings.push(`**Agent Analytics is switched off.** Lightsage reports no tracking events received, so the inside-out view — which pages agents actually read — does not exist yet. A middleware install closes that gap.`);
@@ -292,21 +296,23 @@ if (diag) {
   P("");
 
   // The credential story — this dominates everything else.
-  const ex = diag.examples ?? [];
-  const hay = (e) => [e.response_text, e.execution_stdout, e.execution_stderr].filter(Boolean).join("\n");
-  const authFails = ex.filter((e) => /\b401\b|unauthorized|invalid api key/i.test(hay(e)));
-  if (authFails.length) {
-    P(`### The eval credential is being rejected`, "");
-    P(`**${authFails.length} of ${ex.length} sampled runs hit \`401 / invalid api key\`, and ${ex.filter((e) => e.passed).length} of them passed.**` +
-      `${csvExport ? ` The CSV export tells the same story — ${csvExport.authFailureRecords} of ${csvExport.records} exported runs mention the same failure.` : ""}`, "");
-    P(`Agents in these runs wrote working integration code and then could not authenticate. From the transcripts:`, "");
+  if (credState === "balance") {
+    P(`### Agents authenticate, then hit a payment wall`, "");
+    P(`**${n402} of ${diagEx.length} sampled runs return \`402 — The wallet balance is insufficient\`.** Only ${n401} still show a 401, down from 41 before the key was replaced.`, "");
+    P(`The credential fix worked. One agent confirmed it diagnostically:`, "");
     P("");
+    P("> \"My key returns 402 while an invalid key returns 401, a bad path 404, and validation errors 400.\"  ");
+    P("> \"Payment required — the AIsa account has insufficient balance.\"", "");
+    P(`So the eval key is now valid and the account behind it has no funds. Agents get through auth, write working code, and fail at the point of a live call. ` +
+      `**The endpoint scores still do not measure API quality — they measure an empty wallet.** Top up the account the eval key belongs to and re-run.`, "");
+    P(`Progress since the key swap: passing runs went from 43 to ${num(diag.summary?.passed_runs)}, and the failure rate from 79.3% to ${num(diag.summary?.failure_rate)}%.`, "");
+  } else if (credState === "invalid") {
+    P(`### The eval credential is being rejected`, "");
+    P(`**${n401} of ${diagEx.length} sampled runs hit \`401 / invalid api key\`, and ${diagEx.filter((e) => e.passed).length} of them passed.**` +
+      `${csvExport ? ` The CSV export tells the same story — ${csvExport.authFailureRecords} of ${csvExport.records} exported runs mention the same failure.` : ""}`, "");
     P("> \"The key is rejected on *every* endpoint, so this is a credential issue, not an integration bug.\"  ");
     P("> \"Exit code 0 is misleading — the API actually returned a 401.\"", "");
-    P(`This matters for how the rest of this section is read: **the current API Performance scores largely measure a broken credential, not API or documentation quality.** ` +
-      `The \`AISA_API_KEY\` in Lightsage's eval environment is either stale, revoked, or out of credit against \`api.aisa.one\`. ` +
-      `Re-point it at a working key and re-run before drawing conclusions about endpoint quality — and note the top "failure reasons" are \`task_completed\` and \`zero_errors\`, ` +
-      `which is what a correct integration blocked at the auth boundary looks like.`, "");
+    P(`**The current API Performance scores largely measure a broken credential, not API or documentation quality.**`, "");
   }
 
   const pats = diag.failure_analysis?.patterns ?? [];
