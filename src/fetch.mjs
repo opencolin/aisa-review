@@ -37,13 +37,41 @@ const ENDPOINTS = [
   { key: "ap_sources", path: "/v1/api-performance/sources", label: "API Perf sources", optional: true },
   { key: "ap_targets", path: "/v1/api-performance/targets", label: "API Perf targets", optional: true },
   { key: "ap_config", path: "/v1/api-performance/config", label: "API Perf config", optional: true },
-  { key: "ap_runs", path: "/v1/api-performance/runs", params: { limit: 50 }, label: "API Perf runs", optional: true },
+  { key: "ap_runs", path: "/v1/api-performance/runs", params: { limit: 200 }, label: "API Perf runs", optional: true },
   { key: "ap_actions", path: "/v1/api-performance/actions", params: { limit: 100 }, label: "API Perf actions", optional: true },
   { key: "ap_evals", path: "/v1/api-performance/evals", label: "API Perf eval defs", optional: true },
   { key: "ap_skills", path: "/v1/api-performance/skills", label: "API Perf skills", optional: true },
   { key: "ap_custom_evals", path: "/v1/api-performance/custom-evals", label: "Custom evals", optional: true },
   { key: "ap_starter_projects", path: "/v1/api-performance/starter-projects", label: "Starter projects", optional: true },
 ];
+
+/**
+ * Redact credentials that arrive inside third-party payloads. Agent transcripts
+ * quote real API responses verbatim, and those can contain presigned URLs whose
+ * query strings carry live access-key IDs and signatures. This repo is public,
+ * so sanitize on write rather than relying on review.
+ */
+const CREDENTIAL_PATTERNS = [
+  [/(OSSAccessKeyId=)[A-Za-z0-9]+/gi, "$1<redacted>"],
+  [/(AWSAccessKeyId=)[A-Za-z0-9]+/gi, "$1<redacted>"],
+  [/(X-Amz-Credential=)[^&"'\s\\]+/gi, "$1<redacted>"],
+  [/(X-Amz-Signature=)[A-Fa-f0-9]+/gi, "$1<redacted>"],
+  [/(Signature=)[A-Za-z0-9%+/=_-]{16,}/gi, "$1<redacted>"],
+  [/\bLTAI[A-Za-z0-9]{12,}\b/g, "<redacted-alibaba-key-id>"],
+  [/\bAKIA[A-Z0-9]{16}\b/g, "<redacted-aws-key-id>"],
+  [/\bsk-[A-Za-z0-9_-]{20,}\b/g, "<redacted-token>"],
+  [/\bghp_[A-Za-z0-9]{20,}\b/g, "<redacted-token>"],
+];
+
+function sanitize(text) {
+  let out = text;
+  for (const [re, rep] of CREDENTIAL_PATTERNS) out = out.replace(re, rep);
+  return out;
+}
+
+function writeJson(file, obj) {
+  writeFileSync(file, sanitize(JSON.stringify(obj, null, 2)));
+}
 
 const dataDir = join(ROOT, "data");
 mkdirSync(dataDir, { recursive: true });
@@ -63,7 +91,7 @@ for (const ep of ENDPOINTS) {
       if (res.body[field]) res.body[field] = "<redacted>";
     }
   }
-  writeFileSync(join(dataDir, `${ep.key}.json`), JSON.stringify(res, null, 2));
+  writeJson(join(dataDir, `${ep.key}.json`), res);
   manifest.push({
     key: ep.key,
     label: ep.label,
@@ -94,7 +122,7 @@ process.stdout.write(`  ${"ap_diagnose".padEnd(22)} `);
   } catch (err) {
     res = { ok: false, status: 0, durationMs: Date.now() - started, path: "/v1/api-performance/diagnose", body: { error: String(err) } };
   }
-  writeFileSync(join(dataDir, "ap_diagnose.json"), JSON.stringify(res, null, 2));
+  writeJson(join(dataDir, "ap_diagnose.json"), res);
   manifest.push({ key: "ap_diagnose", label: "Agent behaviour diagnosis", path: "/v1/api-performance/diagnose", optional: true, ok: res.ok, status: res.status, durationMs: res.durationMs });
   console.log(`${res.ok ? "ok " : "-- "} ${String(res.status).padStart(3)}  ${res.durationMs}ms`);
 }
@@ -124,7 +152,7 @@ process.stdout.write(`  ${"ap_diagnose_recent".padEnd(22)} `);
   } catch (err) {
     res = { ok: false, status: 0, durationMs: Date.now() - started, path: "/v1/api-performance/diagnose (recent)", body: { error: String(err) } };
   }
-  writeFileSync(join(dataDir, "ap_diagnose_recent.json"), JSON.stringify(res, null, 2));
+  writeJson(join(dataDir, "ap_diagnose_recent.json"), res);
   manifest.push({ key: "ap_diagnose_recent", label: `Agent behaviour diagnosis (${RECENT_WINDOW})`, path: "/v1/api-performance/diagnose", optional: true, ok: res.ok, status: res.status, durationMs: res.durationMs });
   console.log(`${res.ok ? "ok " : "-- "} ${String(res.status).padStart(3)}  ${res.durationMs}ms`);
 }
@@ -158,7 +186,7 @@ process.stdout.write(`  ${"aisa_mcp_manifest".padEnd(22)} `);
   } catch (err) {
     res = { ok: false, status: 0, durationMs: Date.now() - started, path: "/.well-known/mcp.json", body: { error: String(err) } };
   }
-  writeFileSync(join(dataDir, "aisa_mcp_manifest.json"), JSON.stringify(res, null, 2));
+  writeJson(join(dataDir, "aisa_mcp_manifest.json"), res);
   manifest.push({ key: "aisa_mcp_manifest", label: "AISA MCP manifest", path: `https://${oraDomainForMcp}/.well-known/mcp.json`, optional: true, ok: res.ok, status: res.status, durationMs: res.durationMs });
   console.log(`${res.ok ? "ok " : "-- "} ${String(res.status).padStart(3)}  ${res.durationMs}ms`);
 }
@@ -190,7 +218,7 @@ process.stdout.write(`  ${"url_check".padEnd(22)} `);
     ok: true, status: 200, durationMs: Date.now() - started, path: "(live HEAD/GET of flagged doc URLs)",
     body: { checkedAt: new Date().toISOString(), total: checked.length, stillBroken: checked.filter((c) => c.stillBroken).length, urls: checked },
   };
-  writeFileSync(join(dataDir, "url_check.json"), JSON.stringify(res, null, 2));
+  writeJson(join(dataDir, "url_check.json"), res);
   manifest.push({ key: "url_check", label: "Flagged doc URLs re-checked live", path: "(live)", optional: true, ok: true, status: 200, durationMs: res.durationMs });
   console.log(`ok  200  ${res.durationMs}ms  (${res.body.stillBroken}/${res.body.total} still broken)`);
 }
@@ -213,7 +241,7 @@ process.stdout.write(`  ${"ora".padEnd(22)} `);
   } catch (err) {
     res = { ok: false, status: 0, durationMs: Date.now() - started, path: `ora.ai/api/score/${oraDomain}`, body: { error: String(err) } };
   }
-  writeFileSync(join(dataDir, "ora.json"), JSON.stringify(res, null, 2));
+  writeJson(join(dataDir, "ora.json"), res);
   manifest.push({ key: "ora", label: "Ora agent-readiness", path: `https://ora.ai/api/score/${oraDomain}`, optional: true, ok: res.ok, status: res.status, durationMs: res.durationMs });
   console.log(`${res.ok ? "ok " : "-- "} ${String(res.status).padStart(3)}  ${res.durationMs}ms`);
 }
@@ -237,7 +265,7 @@ process.stdout.write(`  ${"cloudflare".padEnd(22)} `);
   } catch (err) {
     res = { ok: false, status: 0, durationMs: Date.now() - started, path: "isitagentready.com/api/scan", body: { error: String(err) } };
   }
-  writeFileSync(join(dataDir, "cloudflare.json"), JSON.stringify(res, null, 2));
+  writeJson(join(dataDir, "cloudflare.json"), res);
   manifest.push({ key: "cloudflare", label: "Cloudflare agent-ready scan", path: "https://isitagentready.com/api/scan", optional: true, ok: res.ok, status: res.status, durationMs: res.durationMs });
   console.log(`${res.ok ? "ok " : "-- "} ${String(res.status).padStart(3)}  ${res.durationMs}ms`);
 }
@@ -268,15 +296,12 @@ process.stdout.write(`  ${"npm".padEnd(22)} `);
   } catch (err) {
     res = { ok: false, status: 0, durationMs: Date.now() - started, path: "registry.npmjs.org/@aisa-one/cli", body: { error: String(err) } };
   }
-  writeFileSync(join(dataDir, "npm.json"), JSON.stringify(res, null, 2));
+  writeJson(join(dataDir, "npm.json"), res);
   manifest.push({ key: "npm", label: "npm CLI package", path: "https://registry.npmjs.org/@aisa-one/cli", optional: true, ok: res.ok, status: res.status, durationMs: res.durationMs });
   console.log(`${res.ok ? "ok " : "-- "} ${String(res.status).padStart(3)}  ${res.durationMs}ms`);
 }
 
-writeFileSync(
-  join(dataDir, "_manifest.json"),
-  JSON.stringify({ generatedAt: new Date().toISOString(), baseUrl: BASE_URL, window: { start, end, days }, endpoints: manifest }, null, 2),
-);
+writeJson(join(dataDir, "_manifest.json"), { generatedAt: new Date().toISOString(), baseUrl: BASE_URL, window: { start, end, days }, endpoints: manifest });
 
 const okCount = manifest.filter((m) => m.ok).length;
 console.log(`\n${okCount}/${manifest.length} endpoints returned data -> data/`);

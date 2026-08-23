@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 681,
+  "durationMs": 611,
   "path": "/v1/api-performance/skills",
   "body": {
     "data": [],

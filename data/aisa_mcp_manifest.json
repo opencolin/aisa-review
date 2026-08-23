@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 95,
+  "durationMs": 1151,
   "path": "aisa.one/.well-known/mcp.json",
   "body": {
     "manifestVersion": "1.0",

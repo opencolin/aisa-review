@@ -2,7 +2,7 @@
 
 **Source** · Lightsage public API (formerly Sapient) · `https://api.lightsage.com`  
 **Window** · 2026-07-24 → 2026-08-23 (30 days) · latest run 2026-08-23  
-**Generated** · Sun, 23 Aug 2026 15:21:38 GMT
+**Generated** · Sun, 23 Aug 2026 19:04:07 GMT
 
 
 ## Read this first
@@ -93,7 +93,23 @@ Ordered by effort-to-impact. Every item is verified against live data in this re
 
 The "no doc page" rows matter most: endpoints like `/v1/rerank`, `/v1/images/edits` and `/apis/v1/firecrawl/search` are live and evaluated, but an agent following the OpenAPI spec to the matching doc URL finds nothing.
 
-### 3. One-line conformance fixes
+### 3. Fix 5 CLI defects surfaced by the eval sweep
+
+**Why:** the CLI passes at 51.6% against REST's near-clean rate, with **zero perfect scores** across 124 evals. An agent ran `npm install -g @aisa-one/cli` (v0.3.0 installed), then `aisa whoami` and `aisa balance` — both succeeded, reporting $471.87 and unlimited. Auth and funding are working; none of the failures below are credential or balance related. **What:** 2 are high severity.
+
+| Severity | Defect | Action |
+| --- | --- | --- |
+| high | Twitter community/social endpoints reject every request with a contract error | Check the request contract for the community/* and social read endpoints against what the CLI sends. Every documented invocation currently fails. |
+| high | The CLI exits 0 when the API call failed | Return a non-zero exit code whenever the underlying HTTP call is not 2xx. |
+| medium | Documented options are not implemented | Reconcile the CLI's option parser with the documented flags. |
+| medium | `aisa twitter space` returns 404 | Confirm the endpoint exists and is routed, or remove the command. |
+| medium | `aisa skills` subcommands fail or no-op | Make skills subcommands report real state and fail loudly when they cannot act. |
+
+The most serious is `twitter-community-400`. An agent tried the documented form, a real community ID, --raw, the generic `aisa run twitter /community/tweets -q community_id=...` path, and every parameter spelling it could infer (ranking_mode, rankingMode, type, cursor). All returned `400: request does not match the endpoint contract`. Forcing POST returned `405 Method Not Allowed`. Its conclusion: "a server-side bug, not a usage error."
+
+Affected: `twitter community-tweets`, `twitter community-mods`, `twitter community-search`, `twitter community-members`, `twitter retweeters`, `twitter verified-followers`.
+
+### 4. One-line conformance fixes
 
 Each of these is a field, a redirect, or a header — all on surfaces that already exist.
 
@@ -105,11 +121,11 @@ Each of these is a field, a redirect, or a header — all on surfaces that alrea
 | No markdown for agents | Serve `text/markdown` on `Accept: text/markdown`, or publish `/index.md`. Agents landing from search currently get HTML only. |
 | No RFC 8288 `Link` headers | Advertise `llms.txt`, sitemap and `service-doc` via `Link:` response headers so agents find them without parsing HTML. |
 
-### 4. Make the docs findable from inside an agent session
+### 5. Make the docs findable from inside an agent session
 
-**Why:** `Guessed Without Docs` is the single largest failure pattern at 38% of runs — agents used tools without ever reading the docs, and `Hard to Discover` accounts for 56%, meaning agents needed 2+ web searches to find them. **What:** the fixes above (Link headers, markdown negotiation, working 404s with a markdown body listing next steps) all feed this. A dead-end 404 with no body is the worst case: the agent has no way to recover and falls back to guessing.
+**Why:** `Guessed Without Docs` is the single largest failure pattern at 65% of runs — agents used tools without ever reading the docs, and `Hard to Discover` accounts for 5%, meaning agents needed 2+ web searches to find them. **What:** the fixes above (Link headers, markdown negotiation, working 404s with a markdown body listing next steps) all feed this. A dead-end 404 with no body is the worst case: the agent has no way to recover and falls back to guessing.
 
-### 5. Install the Lightsage agent tracker
+### 6. Install the Lightsage agent tracker
 
 **Why:** Agent Analytics has received no events, so there is no data on which pages agents actually read — only what evals synthesise. **What:** `npm install @lightsage/agent-tracker` and add the Next.js middleware (details in the section below). Zero runtime dependencies.
 
@@ -187,15 +203,142 @@ Tracked: **Google AI Overviews, ChatGPT, Perplexity**
 
 ## 3. API Performance
 
-**48/50 evals passed (96.00%)**, all executed by `global.anthropic.claude-opus-5`.
+**119/200 evals passed (59.50%)**, all executed by `global.anthropic.claude-opus-5`.
 
-This section covers the **50 most recent runs** (the API caps the list at 50). Full-window figures — 438 runs over 30d — are in the Agent experience section.
+This section covers the **200 most recent runs** (the API caps the list at 50). Full-window figures — 562 runs over 30d — are in the Agent experience section.
+
+**Source split: cli 67/145, rest_api 52/55.** Note this batch is overwhelmingly cli evals, so the headline rate is not a REST API pass rate.
 
 
 | Source | Endpoint / command | Passed | Avg score |
 | --- | --- | --- | --- |
+| cli | `remove aisa skills remove [options] <slug>` | 0/2 | 0.345 |
+| cli | `install aisa skills install [options] <slug>` | 0/2 | 0.328 |
+| cli | `community-tweets aisa twitter community-tweets [options] <community-id>` | 0/2 | 0.275 |
+| cli | `community-mods aisa twitter community-mods [options] <community-id>` | 0/2 | 0.282 |
+| cli | `list aisa skills list [options]` | 0/2 | 0.343 |
+| cli | `community-search aisa twitter community-search [options] <query>` | 0/2 | 0.29 |
+| cli | `upload-media aisa twitter upload-media [options] <file-path>` | 0/2 | 0.33 |
+| cli | `search aisa skills search [options] <query>` | 0/2 | 0.348 |
+| cli | `space aisa twitter space [options] <space-id>` | 0/2 | 0.292 |
+| cli | `community-members aisa twitter community-members [options] <community-id>` | 0/2 | 0.3 |
+| cli | `run aisa run [options] <slug> <path>` | 0/1 | 0.32 |
+| cli | `retweeters aisa twitter retweeters [options] <tweet-id>` | 0/1 | 0.285 |
+| cli | `verified-followers aisa twitter verified-followers [options] <user-id>` | 0/1 | 0.285 |
+| cli | `list-followers aisa twitter list-followers [options] <list-id>` | 0/2 | 0.432 |
+| cli | `list-members aisa twitter list-members [options] <list-id>` | 0/2 | 0.45 |
+| cli | `quotes aisa twitter quotes [options] <tweet-id>` | 0/1 | 0.375 |
+| cli | `community-info aisa twitter community-info [options] <community-id>` | 0/1 | 0.515 |
+| cli | `detail aisa twitter detail [options] <ids>` | 0/1 | 0.4 |
+| cli | `trends aisa twitter trends [options]` | 0/2 | 0.405 |
+| cli | `replies aisa twitter replies [options] <tweet-id>` | 0/1 | 0.39 |
+| cli | `thread aisa twitter thread [options] <tweet-id>` | 0/1 | 0.385 |
+| cli | `search aisa twitter search [options] <query>` | 0/1 | 0.39 |
+| cli | `following aisa twitter following [options] <username>` | 0/1 | 0.53 |
+| cli | `community-search aisa twitter community-search [--raw] <query>` | 0/1 | 0.26 |
+| cli | `followers aisa twitter followers [options] <username>` | 0/1 | 0.365 |
+| cli | `user-search aisa twitter user-search [options] <query>` | 0/1 | 0.43 |
+| cli | `batch-users aisa twitter batch-users [options] <ids>` | 0/1 | 0.4 |
+| cli | `user-tweets aisa twitter user-tweets [options] <username>` | 0/1 | 0.4 |
+| cli | `mentions aisa twitter mentions [options] <username>` | 0/1 | 0.52 |
+| cli | `user-about aisa twitter user-about [options] <username>` | 0/1 | 0.53 |
+| cli | `create aisa video create [options] <prompt>` | 0/1 | 0.335 |
+| cli | `user aisa twitter user [options] <username>` | 0/1 | 0.44 |
+| cli | `community-members aisa twitter community-members [--raw] <community-id>` | 0/1 | 0.28 |
+| cli | `show aisa api show [options] <api> [path]` | 0/1 | 0.345 |
+| cli | `verified-followers aisa twitter verified-followers [--raw] <user-id>` | 0/1 | 0.26 |
+| cli | `search aisa api search [options] <query>` | 0/1 | 0.447 |
+| cli | `set aisa config set <key> <value>` | 0/2 | 0.313 |
+| cli | `community-mods aisa twitter community-mods [--raw] <community-id>` | 0/1 | 0.28 |
+| cli | `get aisa config get <key>` | 0/1 | 0.395 |
+| cli | `upload-media aisa twitter upload-media [--raw] <file-path>` | 0/1 | 0.34 |
+| cli | `community-tweets aisa twitter community-tweets [--raw] <community-id>` | 0/1 | 0.28 |
+| cli | `space aisa twitter space [--raw] <space-id>` | 0/1 | 0.34 |
+| cli | `tweet aisa tweet [--reply-to <id>] [--media-ids <ids>] [--raw] <text>` | 0/1 | 0.355 |
+| cli | `dm aisa twitter dm [--raw] <user-id> <text>` | 0/1 | 0.38 |
+| cli | `status aisa video status [options] <task-id>` | 0/1 | 0.415 |
+| cli | `unfollow aisa twitter unfollow [--raw] <user-id>` | 0/1 | 0.395 |
+| cli | `delete aisa twitter delete [--raw] <tweet-id>` | 0/1 | 0.355 |
+| cli | `follow aisa twitter follow [--raw] <user-id>` | 0/1 | 0.38 |
+| cli | `retweeters aisa twitter retweeters [--raw] <tweet-id>` | 0/1 | 0.275 |
+| cli | `show aisa skills show <slug>` | 0/1 | 0.415 |
+| cli | `retweet aisa twitter retweet [--raw] <tweet-id>` | 0/1 | 0.455 |
+| cli | `unlike aisa twitter unlike [--raw] <tweet-id>` | 0/1 | 0.495 |
+| cli | `like aisa twitter like [--raw] <tweet-id>` | 0/1 | 0.515 |
+| cli | `show aisa models show <model-id>` | 0/1 | 0.325 |
+| cli | `run aisa run [-q <key=value>...] [-d <json>] [--method <method>] [--raw] [--stream] [--show-cost] <slug> <path>` | 0/1 | 0.355 |
+| cli | `search aisa api search [--provider <id>] [--limit <n>] [--json] [--refresh] <query>` | 0/1 | 0.38 |
+| cli | `show aisa api show [--all] [--group] [--health] [--json] [--refresh] <api> [path]` | 0/1 | 0.345 |
+| cli | `code aisa api code [--lang <language>] [--method <method>] <slug> <path>` | 0/1 | 0.395 |
+| cli | `whoami aisa whoami` | 0/1 | 0.375 |
+| cli | `usage aisa usage [--limit <n>] [--days <n>]` | 0/1 | 0.345 |
 | rest_api | `POST /apis/v1/perplexity/sonar-deep-research` | 0/1 | 0.875 |
 | rest_api | `GET /v1/errors` | 0/1 | 0.431 |
+| cli | `article aisa twitter article [options] <tweet-id>` | 1/2 | 0.563 |
+| cli | `check-follow aisa twitter check-follow [options] <source> <target>` | 1/2 | 0.515 |
+| cli | `stock aisa stock [options] <symbol>` | 1/2 | 0.535 |
+| cli | `scholar aisa scholar [options] <query>` | 1/2 | 0.542 |
+| rest_api | `POST /apis/v1/firecrawl/batch-scrape` | 1/2 | 0.866 |
+| cli | `init aisa skills init [options] <name>` | 1/1 | 0.88 |
+| cli | `setup aisa mcp setup [options]` | 2/2 | 0.82 |
+| cli | `dm aisa twitter dm [options] <user-id> <text>` | 1/1 | 0.82 |
+| cli | `unfollow aisa twitter unfollow [options] <user-id>` | 2/2 | 0.86 |
+| cli | `like aisa twitter like [options] <tweet-id>` | 1/1 | 0.82 |
+| cli | `follow aisa twitter follow [options] <user-id>` | 1/1 | 0.86 |
+| cli | `unlike aisa twitter unlike [options] <tweet-id>` | 2/2 | 0.86 |
+| cli | `retweet aisa twitter retweet [options] <tweet-id>` | 1/1 | 0.86 |
+| cli | `delete aisa twitter delete [options] <tweet-id>` | 1/1 | 0.86 |
+| cli | `screener aisa screener [options]` | 1/1 | 0.855 |
+| cli | `crypto aisa crypto [options] <symbol>` | 1/1 | 0.88 |
+| cli | `chat aisa chat [options] [message]` | 1/1 | 0.78 |
+| cli | `list aisa models list [options]` | 1/1 | 0.78 |
+| cli | `web-search aisa web-search [options] <query>` | 1/1 | 0.88 |
+| cli | `tweet aisa tweet [options] <text>` | 1/1 | 0.86 |
+| cli | `path aisa cache path` | 1/1 | 0.755 |
+| cli | `code aisa api code [options] <slug> <path>` | 1/1 | 0.88 |
+| cli | `list aisa api list [options]` | 1/1 | 0.855 |
+| cli | `clear aisa cache clear` | 1/1 | 0.715 |
+| cli | `install aisa skills install [--agent <agent>] [--force] <slug>` | 1/1 | 0.815 |
+| cli | `reset aisa config reset` | 1/1 | 0.715 |
+| cli | `remove aisa skills remove [--agent <agent>] [--force] <slug>` | 1/1 | 0.755 |
+| cli | `list aisa config list` | 1/1 | 0.92 |
+| cli | `init aisa skills init [--template <template>] [--bare] <name>` | 1/1 | 0.755 |
+| cli | `status aisa mcp status` | 1/1 | 0.755 |
+| cli | `setup aisa mcp setup [--agent <agent>]` | 1/1 | 0.78 |
+| cli | `list aisa skills list [--category <cat>] [--limit <n>] [--refresh]` | 1/1 | 0.83 |
+| cli | `search aisa skills search [--limit <n>] [--refresh] <query>` | 1/1 | 0.88 |
+| cli | `community-info aisa twitter community-info [--raw] <community-id>` | 1/1 | 0.73 |
+| cli | `article aisa twitter article [--raw] <tweet-id>` | 1/1 | 0.69 |
+| cli | `quotes aisa twitter quotes [--raw] <tweet-id>` | 1/1 | 0.69 |
+| cli | `trends aisa twitter trends [--raw]` | 1/1 | 0.805 |
+| cli | `list-followers aisa twitter list-followers [--raw] <list-id>` | 1/1 | 0.83 |
+| cli | `list-members aisa twitter list-members [--raw] <list-id>` | 1/1 | 0.83 |
+| cli | `thread aisa twitter thread [--raw] <tweet-id>` | 1/1 | 0.83 |
+| cli | `search aisa twitter search [--type <type>] [--limit <n>] [--cursor <cursor>] [--raw] <query>` | 1/1 | 0.705 |
+| cli | `following aisa twitter following [--raw] <username>` | 1/1 | 0.705 |
+| cli | `detail aisa twitter detail [--raw] <ids>` | 1/1 | 0.73 |
+| cli | `replies aisa twitter replies [--raw] <tweet-id>` | 1/1 | 0.73 |
+| cli | `user-search aisa twitter user-search [--raw] <query>` | 1/1 | 0.73 |
+| cli | `check-follow aisa twitter check-follow [--raw] <source> <target>` | 1/1 | 0.755 |
+| cli | `crypto aisa crypto [--period <period>] [--id <coingecko-id>] [--source <source>] [--raw] <symbol>` | 1/1 | 0.69 |
+| cli | `mentions aisa twitter mentions [--raw] <username>` | 1/1 | 0.715 |
+| cli | `followers aisa twitter followers [--raw] <username>` | 1/1 | 0.855 |
+| cli | `user-tweets aisa twitter user-tweets [--raw] <username>` | 1/1 | 0.83 |
+| cli | `user aisa twitter user [--raw] <username>` | 1/1 | 0.73 |
+| cli | `user-about aisa twitter user-about [--raw] <username>` | 1/1 | 0.855 |
+| cli | `web-search aisa web-search [--type <type>] [--limit <n>] [--raw] <query>` | 1/1 | 0.705 |
+| cli | `batch-users aisa twitter batch-users [--raw] <ids>` | 1/1 | 0.78 |
+| cli | `stock aisa stock [--field <field>] [--raw] <symbol>` | 1/1 | 0.855 |
+| cli | `screener aisa screener [--sector <sector>] [--min-market-cap <n>] [--filter <f...>] [--limit <n>] [--raw]` | 1/1 | 0.855 |
+| cli | `logout aisa twitter logout` | 1/1 | 0.78 |
+| cli | `list aisa models list [--provider <provider>]` | 1/1 | 0.855 |
+| cli | `chat aisa chat [--model <model>] [--system <prompt>] [--no-stream] [--json] [--max-tokens <n>] [--temperature <t>] [message]` | 1/1 | 0.855 |
+| cli | `login aisa twitter login [options]` | 1/1 | 0.82 |
+| cli | `scholar aisa scholar [--limit <n>] [--raw] <query>` | 1/1 | 0.88 |
+| cli | `list aisa api list [--category <cat>] [--health] [--json] [--refresh]` | 1/1 | 0.855 |
+| cli | `login aisa login [--key <key>]` | 1/1 | 0.715 |
+| cli | `balance aisa balance [--json]` | 1/1 | 0.73 |
+| cli | `logout aisa logout` | 1/1 | 0.755 |
 | rest_api | `POST /apis/v1/perplexity/sonar-reasoning-pro` | 1/1 | 1 |
 | rest_api | `POST /apis/v1/tavily/crawl` | 1/1 | 1 |
 | rest_api | `POST /apis/v1/exa/search` | 1/1 | 0.875 |
@@ -223,7 +366,6 @@ This section covers the **50 most recent runs** (the API caps the list at 50). F
 | rest_api | `POST /apis/v1/perplexity/sonar` | 1/1 | 0.875 |
 | rest_api | `POST /apis/v1/firecrawl/crawl` | 1/1 | 1 |
 | rest_api | `GET /apis/v1/financial/financial-metrics/snapshot` | 1/1 | 0.75 |
-| rest_api | `POST /apis/v1/firecrawl/batch-scrape` | 1/1 | 0.875 |
 | rest_api | `GET /apis/v1/financial/financials/balance-sheets` | 1/1 | 0.875 |
 | rest_api | `GET /apis/v1/financial/financial-metrics` | 1/1 | 1 |
 | rest_api | `GET /apis/v1/financial/edinet/documents/{docID}` | 1/1 | 1 |
@@ -244,12 +386,21 @@ This section covers the **50 most recent runs** (the API caps the list at 50). F
 | rest_api | `POST /v1/chat/completions` | 1/1 | 1 |
 | rest_api | `GET /apis/v1/youtube/search` | 1/1 | 1 |
 | rest_api | `POST /v1/messages` | 1/1 | 1 |
+| rest_api | `POST /apis/v1/exa/answer` | 1/1 | 1 |
+| rest_api | `POST /v1/rerank` | 1/1 | 0.875 |
+| rest_api | `POST /v1/embeddings` | 2/2 | 0.938 |
 
-**Failed criteria** (across 2 failed runs). These are eval checks that did not pass — the names describe the expected condition, not an error:
+**Failed criteria** (across 81 failed runs). These are eval checks that did not pass — the names describe the expected condition, not an error:
 
 | Reason | Count |
 | --- | --- |
-| `exit_code_zero` | 2 |
+| `task_completed` | 78 |
+| `zero_errors` | 69 |
+| `partial_credit` | 39 |
+| `efficiency` | 15 |
+| `time` | 11 |
+| `cost` | 8 |
+| `exit_code_zero` | 3 |
 | `clean_execution` | 1 |
 | `completed_task` | 1 |
 
@@ -339,15 +490,22 @@ _This eval ran 2026-08-11, **before** the eval credential was replaced — and i
 
 ### Current baseline (since 2026-08-23 14:20 UTC)
 
-**52/54 runs passed — 96.3%.**
+**116/178 runs passed — 65.2%.**
 
 This is the first clean read on the API. Every earlier number in this report was taken while the eval credential was rejected or the account had no balance, so agents could not complete a live call regardless of endpoint quality. Both are now resolved.
 
 
+**REST and CLI now diverge sharply**, and it is no longer an environment problem — a CLI agent confirmed `aisa whoami` and `aisa balance` both succeed against a funded account.
+
+| Surface | Passed | Rate |
+| --- | --- | --- |
+| rest_api | 52/54 | 96.3% |
+| cli | 64/124 | 51.6% |
+
 | Window | Runs | Failure rate | What it reflects |
 | --- | --- | --- | --- |
-| since 2026-08-23 14:20 UTC | 54 | **3.7%** | Current state |
-| last 30d | 438 | 60.5% | Still averaging in pre-fix runs — expect it to fall as this ages out |
+| since 2026-08-23 14:20 UTC | 178 | **34.8%** | Current state |
+| last 30d | 562 | 57.8% | Still averaging in pre-fix runs — expect it to fall as this ages out |
 
 ### Behaviour patterns (since 2026-08-23 14:20 UTC)
 
@@ -355,13 +513,13 @@ These are counted across **all** runs, not just failures — an agent can comple
 
 | Severity | Pattern | Runs | Share | What it means |
 | --- | --- | --- | --- | --- |
-| critical | Hard to Discover | 56 | 56% | Agent made 2+ web requests to find your docs. Consider adding llms.txt or improving doc discoverability. |
-| critical | Auth Flow Unclear | 51 | 51% | Agent got auth error or searched for auth docs. Make your authentication flow clearer. |
-| warning | API Returned Error | 42 | 42% | Agent's API call returned an error (404, 401, 500, etc.). Check endpoint paths and auth requirements. |
-| info | Guessed Without Docs | 38 | 38% | Agent used tools without looking up your documentation. May indicate poor doc discoverability. |
-| warning | Wrong Endpoint Used | 10 | 10% | Agent called a different endpoint than expected. Endpoint naming may be ambiguous. |
+| info | Guessed Without Docs | 65 | 65% | Agent used tools without looking up your documentation. May indicate poor doc discoverability. |
+| critical | Hard to Discover | 5 | 5% | Agent made 2+ web requests to find your docs. Consider adding llms.txt or improving doc discoverability. |
+| critical | Auth Flow Unclear | 5 | 5% | Agent got auth error or searched for auth docs. Make your authentication flow clearer. |
+| warning | API Returned Error | 5 | 5% | Agent's API call returned an error (404, 401, 500, etc.). Check endpoint paths and auth requirements. |
+| warning | Wrong Endpoint Used | 1 | 1% | Agent called a different endpoint than expected. Endpoint naming may be ambiguous. |
 
-**Most-failed endpoints** — `POST /v1/images/edits` (4), `POST /apis/v1/exa/agent/runs` (4), `POST /apis/v1/perplexity/sonar-deep-research` (3), `POST /v1/chat/completions` (3), `GET /apis/v1/youtube/search` (3), `POST /v1/messages` (3), `POST /apis/v1/exa/answer` (3), `POST /v1beta/models/{model}:generateContent` (3), `GET /v1/errors` (2), `POST /apis/v1/firecrawl/batch-scrape` (2).
+**Most-failed endpoints** — `POST /v1/images/edits` (4), `POST /apis/v1/exa/agent/runs` (4), `remove aisa skills remove [options] <slug>` (3), `install aisa skills install [options] <slug>` (3), `community-tweets aisa twitter community-tweets [options] <community-id>` (3), `community-mods aisa twitter community-mods [options] <community-id>` (3), `list aisa skills list [options]` (3), `community-search aisa twitter community-search [options] <query>` (3), `upload-media aisa twitter upload-media [options] <file-path>` (3), `search aisa skills search [options] <query>` (3).
 
 _Row-level export of 85 runs across 54 endpoints is committed at `reference/agent-experience-csv.json`._
 
@@ -606,7 +764,7 @@ _45 more in `data/opportunities.json`._
 Lightsage's **Agent Analytics** product is currently empty for AISA — the dashboard reports *"Waiting for first tracking event."* That is the half of Lightsage that measures which pages agents actually read, and it needs a small middleware install to start producing data.
 
 
-Everything in this report so far is *outside-in*: Lightsage running prompts and evals against AISA, and two scanners probing from the public internet. Agent Analytics is the *inside-out* view — real agent traffic hitting real pages. Given that 60.5% of eval runs fail and the Site Audit already flags agent-visited 404s, knowing which docs agents actually request would close the loop.
+Everything in this report so far is *outside-in*: Lightsage running prompts and evals against AISA, and two scanners probing from the public internet. Agent Analytics is the *inside-out* view — real agent traffic hitting real pages. Given that 57.8% of eval runs fail and the Site Audit already flags agent-visited 404s, knowing which docs agents actually request would close the loop.
 
 
 ```bash
@@ -638,7 +796,7 @@ Notes for whoever implements it:
 
 - **Average position is not meaningful.** `average_position = 1` (rank #1) derives from 1 citation. It will regress as citations accumulate.
 - **Opportunity impact scores are saturated.** 30 of 81 opportunities score exactly 100, and 79 are "high" priority — the ranking carries little signal. The ranked task list below is the better prioritisation.
-- **Latency is unpopulated.** All 50 eval runs report `latency_ms: null`, so no latency conclusions are available.
+- **Latency is unpopulated.** All 200 eval runs report `latency_ms: null`, so no latency conclusions are available.
 - **Answer engines only.** Visibility covers Google AI Overviews, ChatGPT, Perplexity. Coding-agent visibility — Lightsage's core differentiator — is unmeasured for AIsa.
 - **Window.** Metrics cover 2026-07-24 → 2026-08-23; the latest completed run is 2026-08-23.
 
@@ -648,28 +806,28 @@ Notes for whoever implements it:
 
 | Endpoint | Path | Status | Time |
 | --- | --- | --- | --- |
-| API health | `/v1/status` | ok (200) | 128ms |
-| Key / org identity | `/v1/auth/status` | ok (200) | 638ms |
-| Current visibility | `/v1/visibility/current` | ok (200) | 1012ms |
-| Visibility overview | `/v1/visibility/overview` | ok (200) | 3277ms |
-| Per-prompt visibility | `/v1/visibility/prompts` | ok (200) | 2991ms |
-| Tracked prompts | `/v1/prompts` | ok (200) | 485ms |
-| Prompt config / topics | `/v1/prompts/config` | ok (200) | 739ms |
-| Opportunities | `/v1/opportunities` | ok (200) | 8036ms |
-| Daily tasks | `/v1/tasks` | ok (200) | 638ms |
-| API Perf sources | `/v1/api-performance/sources` | ok (200) | 1095ms |
-| API Perf targets | `/v1/api-performance/targets` | ok (200) | 383ms |
-| API Perf config | `/v1/api-performance/config` | ok (200) | 1137ms |
-| API Perf runs | `/v1/api-performance/runs` | ok (200) | 4388ms |
-| API Perf actions | `/v1/api-performance/actions` | ok (200) | 1404ms |
-| API Perf eval defs | `/v1/api-performance/evals` | ok (200) | 1390ms |
-| API Perf skills | `/v1/api-performance/skills` | ok (200) | 681ms |
-| Custom evals | `/v1/api-performance/custom-evals` | ok (200) | 3169ms |
-| Starter projects | `/v1/api-performance/starter-projects` | ok (200) | 740ms |
-| Agent behaviour diagnosis | `/v1/api-performance/diagnose` | ok (200) | 6035ms |
-| Agent behaviour diagnosis (2026-08-23T14:20:00Z) | `/v1/api-performance/diagnose` | ok (200) | 5832ms |
-| AISA MCP manifest | `https://aisa.one/.well-known/mcp.json` | ok (200) | 95ms |
-| Flagged doc URLs re-checked live | `(live)` | ok (200) | 1617ms |
-| Ora agent-readiness | `https://ora.ai/api/score/aisa.one` | ok (200) | 59ms |
-| Cloudflare agent-ready scan | `https://isitagentready.com/api/scan` | ok (200) | 7689ms |
-| npm CLI package | `https://registry.npmjs.org/@aisa-one/cli` | ok (200) | 199ms |
+| API health | `/v1/status` | ok (200) | 82ms |
+| Key / org identity | `/v1/auth/status` | ok (200) | 497ms |
+| Current visibility | `/v1/visibility/current` | ok (200) | 1000ms |
+| Visibility overview | `/v1/visibility/overview` | ok (200) | 3335ms |
+| Per-prompt visibility | `/v1/visibility/prompts` | ok (200) | 2831ms |
+| Tracked prompts | `/v1/prompts` | ok (200) | 486ms |
+| Prompt config / topics | `/v1/prompts/config` | ok (200) | 770ms |
+| Opportunities | `/v1/opportunities` | ok (200) | 8161ms |
+| Daily tasks | `/v1/tasks` | ok (200) | 599ms |
+| API Perf sources | `/v1/api-performance/sources` | ok (200) | 1038ms |
+| API Perf targets | `/v1/api-performance/targets` | ok (200) | 340ms |
+| API Perf config | `/v1/api-performance/config` | ok (200) | 1048ms |
+| API Perf runs | `/v1/api-performance/runs` | ok (200) | 7205ms |
+| API Perf actions | `/v1/api-performance/actions` | ok (200) | 1544ms |
+| API Perf eval defs | `/v1/api-performance/evals` | ok (200) | 1431ms |
+| API Perf skills | `/v1/api-performance/skills` | ok (200) | 726ms |
+| Custom evals | `/v1/api-performance/custom-evals` | ok (200) | 3077ms |
+| Starter projects | `/v1/api-performance/starter-projects` | ok (200) | 727ms |
+| Agent behaviour diagnosis | `/v1/api-performance/diagnose` | ok (200) | 6311ms |
+| Agent behaviour diagnosis (2026-08-23T14:20:00Z) | `/v1/api-performance/diagnose` | ok (200) | 6001ms |
+| AISA MCP manifest | `https://aisa.one/.well-known/mcp.json` | ok (200) | 182ms |
+| Flagged doc URLs re-checked live | `(live)` | ok (200) | 1742ms |
+| Ora agent-readiness | `https://ora.ai/api/score/aisa.one` | ok (200) | 80ms |
+| Cloudflare agent-ready scan | `https://isitagentready.com/api/scan` | ok (200) | 6829ms |
+| npm CLI package | `https://registry.npmjs.org/@aisa-one/cli` | ok (200) | 186ms |

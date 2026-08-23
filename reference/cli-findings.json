@@ -1,0 +1,48 @@
+{
+  "_note": "Qualitative findings from the CLI eval sweep of 2026-08-23, drawn from agent transcripts. Counts refresh from the API; these verbatim details do not.",
+  "capturedAt": "2026-08-23",
+  "sweep": { "evals": 124, "passed": 64, "passRate": 51.6, "avgScore": 0.591, "perfectScores": 0 },
+  "environmentConfirmedHealthy": "An agent ran `npm install -g @aisa-one/cli` (v0.3.0 installed), then `aisa whoami` and `aisa balance` — both succeeded, reporting $471.87 and unlimited. Auth and funding are working; none of the failures below are credential or balance related.",
+  "defects": [
+    {
+      "id": "twitter-community-400",
+      "title": "Twitter community/social endpoints reject every request with a contract error",
+      "severity": "high",
+      "affected": ["twitter community-tweets", "twitter community-mods", "twitter community-search", "twitter community-members", "twitter retweeters", "twitter verified-followers"],
+      "evidence": "An agent tried the documented form, a real community ID, --raw, the generic `aisa run twitter /community/tweets -q community_id=...` path, and every parameter spelling it could infer (ranking_mode, rankingMode, type, cursor). All returned `400: request does not match the endpoint contract`. Forcing POST returned `405 Method Not Allowed`. Its conclusion: \"a server-side bug, not a usage error.\"",
+      "action": "Check the request contract for the community/* and social read endpoints against what the CLI sends. Every documented invocation currently fails."
+    },
+    {
+      "id": "cli-exit-zero-on-failure",
+      "title": "The CLI exits 0 when the API call failed",
+      "severity": "high",
+      "affected": ["multiple twitter subcommands"],
+      "evidence": "15 of 50 sampled failing runs contain some form of \"Exit code 0, but the API returned a 400\". Graders penalise this, but the real cost is that scripts and agents cannot detect failure.",
+      "action": "Return a non-zero exit code whenever the underlying HTTP call is not 2xx."
+    },
+    {
+      "id": "cli-unknown-option",
+      "title": "Documented options are not implemented",
+      "severity": "medium",
+      "affected": ["twitter community-tweets --limit"],
+      "evidence": "`aisa twitter community-tweets <id> --limit 5` returns `error: unknown option '--limit'`, so the agent fell back to --raw and then hit the 400.",
+      "action": "Reconcile the CLI's option parser with the documented flags."
+    },
+    {
+      "id": "twitter-space-404",
+      "title": "`aisa twitter space` returns 404",
+      "severity": "medium",
+      "affected": ["twitter space"],
+      "evidence": "Both sampled runs returned 404 / api endpoint not found.",
+      "action": "Confirm the endpoint exists and is routed, or remove the command."
+    },
+    {
+      "id": "skills-commands",
+      "title": "`aisa skills` subcommands fail or no-op",
+      "severity": "medium",
+      "affected": ["skills remove", "skills install", "skills list", "skills search"],
+      "evidence": "`aisa skills remove lightsage-api-performance` prints `Skill not found in any agent directory.` and exits 0 — a no-op message rather than an error.",
+      "action": "Make skills subcommands report real state and fail loudly when they cannot act."
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 1404,
+  "durationMs": 1325,
   "path": "/v1/api-performance/actions?limit=100",
   "body": {
     "data": [

@@ -63,10 +63,14 @@ const r402 = recentEx.filter((e) => /\b402\b|payment required|insufficient (?:wa
 // returns only failures as examples, and an agent that diagnosed the problem
 // ("an invalid key returns 401") mentions the code without being blocked by it.
 const recentFailRate = diagRecent?.summary?.failure_rate;
+// A credential/balance wall only counts if a real share of recent failures
+// actually hit one. Zero of each means the wall is gone, regardless of what
+// the overall failure rate is — those failures have other causes.
+const blockers = Math.max(r401, r402);
 const credState =
-  typeof recentFailRate === "number"
-    ? (recentFailRate < 20 ? null : r402 >= r401 ? "balance" : "invalid")
-    : (n402 > n401 ? "balance" : n401 > 0 ? "invalid" : null);
+  recentEx.length && blockers >= Math.max(2, recentEx.length * 0.3)
+    ? (r402 >= r401 ? "balance" : "invalid")
+    : (recentEx.length ? null : (n402 > n401 ? "balance" : n401 > 0 ? "invalid" : null));
 
 // "2026-08-23T14:20:00Z" reads badly after the word "last".
 const windowLabel = (v) => {
@@ -76,6 +80,8 @@ const windowLabel = (v) => {
     : `last ${t}`;
 };
 const mcpMan = load("aisa_mcp_manifest");
+let cliFindings = null;
+try { cliFindings = JSON.parse(readFileSync(join(ROOT, "reference", "cli-findings.json"), "utf8")); } catch { /* optional */ }
 let csvExport = null;
 try { csvExport = JSON.parse(readFileSync(join(ROOT, "reference", "agent-experience-csv.json"), "utf8")); } catch { /* optional */ }
 const cf = load("cloudflare");
@@ -244,6 +250,22 @@ P("");
     P(`The "no doc page" rows matter most: endpoints like \`/v1/rerank\`, \`/v1/images/edits\` and \`/apis/v1/firecrawl/search\` are live and evaluated, but an agent following the OpenAPI spec to the matching doc URL finds nothing.`, "");
   }
 
+  if (cliFindings?.defects?.length) {
+    const high = cliFindings.defects.filter((d) => d.severity === "high");
+    item(`Fix ${cliFindings.defects.length} CLI defects surfaced by the eval sweep`,
+      `**Why:** the CLI passes at ${cliFindings.sweep.passRate}% against REST's near-clean rate, with **zero perfect scores** across ${cliFindings.sweep.evals} evals. ` +
+      `${esc(cliFindings.environmentConfirmedHealthy)} ` +
+      `**What:** ${high.length} are high severity.`);
+    P(`| Severity | Defect | Action |`, `| --- | --- | --- |`);
+    for (const d of cliFindings.defects) P(`| ${esc(d.severity)} | ${esc(d.title)} | ${esc(d.action)} |`);
+    P("");
+    const contract = cliFindings.defects.find((d) => d.id === "twitter-community-400");
+    if (contract) {
+      P(`The most serious is \`${esc(contract.id)}\`. ${esc(contract.evidence)}`, "");
+      P(`Affected: ${contract.affected.map((a) => `\`${esc(a)}\``).join(", ")}.`, "");
+    }
+  }
+
   const cheap = [];
   if (oraById.get("oauth-support")?.status === "pass" && cfById.get("oauthDiscovery")?.status === "fail")
     cheap.push(["OIDC discovery is on a subdomain", "Serve or 301 `/.well-known/openid-configuration` from the apex — it currently only exists on `login.aisa.one`, and scanners only probe the apex."]);
@@ -406,6 +428,21 @@ if (diag) {
     P(`**${num(rs.total_runs - rs.failed_runs)}/${num(rs.total_runs)} runs passed — ${num(100 - rs.failure_rate)}%.**`, "");
     P(`This is the first clean read on the API. Every earlier number in this report was taken while the eval credential was rejected or the account had no balance, so agents could not complete a live call regardless of endpoint quality. Both are now resolved.`, "");
     P("");
+    const postRuns = (load("ap_runs")?.data ?? []).filter((r) => String(r.run_at) >= "2026-08-23T14:20");
+    const srcAgg = new Map();
+    for (const r of postRuns) {
+      const k = r.source?.type ?? "?";
+      const v = srcAgg.get(k) ?? { pass: 0, total: 0 };
+      v.total++; if (r.passed) v.pass++; srcAgg.set(k, v);
+    }
+    if (srcAgg.size > 1) {
+      P(`**REST and CLI now diverge sharply**, and it is no longer an environment problem — a CLI agent confirmed \`aisa whoami\` and \`aisa balance\` both succeed against a funded account.`, "");
+      P(`| Surface | Passed | Rate |`, `| --- | --- | --- |`);
+      for (const [k, v] of [...srcAgg.entries()].sort((a, b) => b[1].pass / b[1].total - a[1].pass / a[1].total)) {
+        P(`| ${esc(k)} | ${v.pass}/${v.total} | ${(v.pass / v.total * 100).toFixed(1)}% |`);
+      }
+      P("");
+    }
     P(`| Window | Runs | Failure rate | What it reflects |`, `| --- | --- | --- | --- |`);
     P(`| ${esc(windowLabel(diagRecent.since))} | ${num(rs.total_runs)} | **${num(rs.failure_rate)}%** | Current state |`);
     P(`| ${esc(windowLabel(diag.since))} | ${num(sum.total_runs)} | ${num(sum.failure_rate)}% | Still averaging in pre-fix runs — expect it to fall as this ages out |`);
