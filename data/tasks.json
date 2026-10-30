@@ -1,248 +1,71 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 609,
+  "durationMs": 448,
   "path": "/v1/tasks",
   "body": {
-    "action_date": "2026-08-23",
+    "action_date": "2026-10-30",
     "status": "active",
     "batch_number": 1,
     "latest_batch_number": 1,
     "data": [
       {
-        "id": "cc4ede65-5ca1-49f3-85f6-aca1865ca4ab",
-        "action_date": "2026-08-10",
+        "id": "95d5623c-196d-4f5b-bf8e-03e9f21496ab",
+        "action_date": "2026-09-20",
         "batch_number": 1,
         "rank": 1,
-        "source_key": "opportunity:outreach:www.reddit.com",
-        "task_type": "Outreach",
-        "title": "Engage in Reddit threads about AI agent gateways/marketplaces",
-        "why": "Reddit is the top-scoring high-citation source (impact 100) — AI answer engines pull heavily from Reddit threads, and AIsa currently has no presence there to be cited.",
-        "next_action": "Identify active subreddits (r/LocalLLaMA, r/AI_Agents, r/artificial) discussing agent tool/API access and have an engineer post a genuine technical answer referencing AIsa's Unified Gateway and multi-source integration approach, linking to https://aisa.one/blog/getting-started-aisa-api where relevant.",
-        "description": "## Why this matters\n\nReddit is the top-scoring high-citation source (impact 100) — AI answer engines pull heavily from Reddit threads, and AIsa currently has no presence there to be cited.\n\n## Reasoning\n\nReddit threads are frequently surfaced verbatim by ChatGPT, Perplexity, and Google AI Overviews as citation sources; having zero presence there means AIsa is structurally excluded from a large share of answers regardless of on-site content quality. This is a distribution play, not a content play.\n\n## Recommended next action\n\nIdentify active subreddits (r/LocalLLaMA, r/AI_Agents, r/artificial) discussing agent tool/API access and have an engineer post a genuine technical answer referencing AIsa's Unified Gateway and multi-source integration approach, linking to https://aisa.one/blog/getting-started-aisa-api where relevant.",
-        "execution_prompt": "You are executing a Lightsage task for this organization.\nUse the context below to make the smallest concrete change that addresses the task.\nIf you cannot make the change directly, return the exact missing input and the next best implementation plan.\n\nTask:\n- ID: cc4ede65-5ca1-49f3-85f6-aca1865ca4ab\n- Title: Engage in Reddit threads about AI agent gateways/marketplaces\n- Type: Outreach\n- Source type: opportunity\n- Priority: high\n- Effort: Low\n\nGoal:\nIdentify active subreddits (r/LocalLLaMA, r/AI_Agents, r/artificial) discussing agent tool/API access and have an engineer post a genuine technical answer referencing AIsa's Unified Gateway and multi-source integration approach, linking to https://aisa.one/blog/getting-started-aisa-api where relevant.\n\nWhy this matters:\nReddit is the top-scoring high-citation source (impact 100) — AI answer engines pull heavily from Reddit threads, and AIsa currently has no presence there to be cited.\n\nTask description:\n## Why this matters\n\nReddit is the top-scoring high-citation source (impact 100) — AI answer engines pull heavily from Reddit threads, and AIsa currently has no presence there to be cited.\n\n## Reasoning\n\nReddit threads are frequently surfaced verbatim by ChatGPT, Perplexity, and Google AI Overviews as citation sources; having zero presence there means AIsa is structurally excluded from a large share of answers regardless of on-site content quality. This is a distribution play, not a content play.\n\n## Recommended next action\n\nIdentify active subreddits (r/LocalLLaMA, r/AI_Agents, r/artificial) discussing agent tool/API access and have an engineer post a genuine technical answer referencing AIsa's Unified Gateway and multi-source integration approach, linking to https://aisa.one/blog/getting-started-aisa-api where relevant.\n\nReasoning:\nReddit threads are frequently surfaced verbatim by ChatGPT, Perplexity, and Google AI Overviews as citation sources; having zero presence there means AIsa is structurally excluded from a large share of answers regardless of on-site content quality. This is a distribution play, not a content play.\n\nEvidence:\n{\n  \"expected_lift\": \"High: Reddit is a top citation source across all competitor-gap queries in this dataset.\",\n  \"projected_lift\": {\n    \"after\": 25.0,\n    \"after_label\": \"Projected\",\n    \"before\": 0.0,\n    \"before_label\": \"Today\",\n    \"metric_label\": \"Citation rate\",\n    \"rationale\": \"Establishing genuine presence on the single highest-impact citation source should create a new citation pathway that doesn't exist today.\",\n    \"unit\": \"percent\"\n  },\n  \"source_urls\": [\n    {\n      \"url\": \"www.reddit.com\",\n      \"why_valuable\": \"Top-ranked high-citation source AI engines pull from for agent-tooling questions\"\n    }\n  ]\n}\n\nSource references:\n{\n  \"group_key\": \"outreach:www.reddit.com\",\n  \"kind\": \"opportunity\",\n  \"rows\": [\n    {\n      \"action\": \"Participate in www.reddit.com discussions to build presence.\",\n      \"category\": \"citations\",\n      \"citation_count\": 8,\n      \"citation_rate\": 0.8888888888888888,\n      \"created_at\": \"2026-08-10T17:52:01.521968+00:00\",\n      \"description\": \"Cited in 8 queries (89% of prompts).\",\n      \"domain\": \"www.reddit.com\",\n      \"id\": \"04ba5e28af27c01c\",\n      \"impact_score\": 100,\n      \"is_competitor_source\": false,\n      \"priority\": \"high\",\n      \"title\": \"Outreach opportunity: www.reddit.com\",\n      \"top_prompts\": [\n        \"What are the best platforms for enabling AI agents to discover and pay for real-world APIs and capabilities?\",\n        \"My team is evaluating solutions for agent-to-agent or agent-to-service payments in an AI system. What do you recommend?\",\n        \"What are the best API gateway solutions for AI agents that need unified access to third-party tools and capabilities?\",\n        \"My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?\",\n        \"I'm building an AI agent that needs to access real-world data and APIs \\u2014 what marketplace or tool should I use to give it those capabilities?\"\n      ],\n      \"type\": \"high_citation_sources\"\n    }\n  ]\n}\n\nAdditional metadata:\n{\n  \"content_exists\": false,\n  \"disposition\": \"outreach\",\n  \"evidence_summary\": \"impact 100\",\n  \"external_target\": {\n    \"domain\": \"www.reddit.com\",\n    \"title\": \"Outreach opportunity: www.reddit.com\",\n    \"url\": null\n  },\n  \"gap_first\": true,\n  \"impact_score\": 100.0,\n  \"is_outreach\": true,\n  \"nav_item_id\": \"high_citation_sources\",\n  \"site_aware\": true,\n  \"source_end_date\": \"2026-08-10\",\n  \"source_key\": \"opportunity:outreach:www.reddit.com\",\n  \"source_start_date\": \"2026-08-03\",\n  \"target_url\": \"www.reddit.com\",\n  \"target_urls\": [\n    \"www.reddit.com\"\n  ]\n}\n\nPlease produce:\n1. A diagnosis of what should change and what evidence supports it.\n2. The exact content, documentation, routing, or product changes to make.\n3. A short verification plan for confirming the task is complete.\n4. A concise summary of what changed and any follow-up still required.",
-        "reasoning": "Reddit threads are frequently surfaced verbatim by ChatGPT, Perplexity, and Google AI Overviews as citation sources; having zero presence there means AIsa is structurally excluded from a large share of answers regardless of on-site content quality. This is a distribution play, not a content play.",
+        "source_key": "opportunity:my team is evaluating resource marketplaces or gateways that let ai agents call various apis with one key. what do you recommend?",
+        "task_type": "Refresh",
+        "title": "Update \"How One API Key Redefines AI Agent Connections\" with a named AIsa vs Nango vs Composio comparison",
+        "why": "AIsa is already almost winning this query — https://aisa.one/blog/api-key-redefines-ai-agent-connections is the top-matching page — but it never names Nango or Composio and its stats (e.g. \"40-60% faster deployment\") are unsourced, so AI engines default to citing Nango by name instead.",
+        "next_action": "Add a top-of-page direct-answer paragraph plus a named comparison table (AIsa vs Nango vs Composio: connectors count, pricing, setup time, auth model) with sourced numbers to https://aisa.one/blog/api-key-redefines-ai-agent-connections, and cross-link https://aisa.one/blog/hermes-agent-desktop-aisa-integration-guide and https://aisa.one/blog/best-llm-gateways-2026-compared.",
+        "description": "## Why this matters\n\nAIsa is already almost winning this query — https://aisa.one/blog/api-key-redefines-ai-agent-connections is the top-matching page — but it never names Nango or Composio and its stats (e.g. \"40-60% faster deployment\") are unsourced, so AI engines default to citing Nango by name instead.\n\n## Reasoning\n\nWebFetch confirmed this page is already AIsa's flagship 'one key' pitch and the single closest match to the losing query, but it mentions 'Composio' only once as a data-source example, never mentions Nango, and relies on vague unattributed metrics — exactly the gap that keeps AI assistants recommending Nango instead. Since this is an 'almost_winning' intent, a targeted named-comparison refresh (rather than a net-new page) is the fastest path to flipping the recommendation, and the same fix strengthens AIsa's position for the closely related Composio-focused query about accessing external data/third-party capabilities through a single integration.\n\n## Recommended next action\n\nAdd a top-of-page direct-answer paragraph plus a named comparison table (AIsa vs Nango vs Composio: connectors count, pricing, setup time, auth model) with sourced numbers to https://aisa.one/blog/api-key-redefines-ai-agent-connections, and cross-link https://aisa.one/blog/hermes-agent-desktop-aisa-integration-guide and https://aisa.one/blog/best-llm-gateways-2026-compared.",
+        "execution_prompt": "You are executing a Lightsage task for this organization.\nUse the context below to make the smallest concrete change that addresses the task.\nIf you cannot make the change directly, return the exact missing input and the next best implementation plan.\n\nTask:\n- ID: 95d5623c-196d-4f5b-bf8e-03e9f21496ab\n- Title: Update \"How One API Key Redefines AI Agent Connections\" with a named AIsa vs Nango vs Composio comparison\n- Type: Refresh\n- Source type: opportunity\n- Priority: urgent\n- Effort: Medium\n\nGoal:\nAdd a top-of-page direct-answer paragraph plus a named comparison table (AIsa vs Nango vs Composio: connectors count, pricing, setup time, auth model) with sourced numbers to https://aisa.one/blog/api-key-redefines-ai-agent-connections, and cross-link https://aisa.one/blog/hermes-agent-desktop-aisa-integration-guide and https://aisa.one/blog/best-llm-gateways-2026-compared.\n\nWhy this matters:\nAIsa is already almost winning this query — https://aisa.one/blog/api-key-redefines-ai-agent-connections is the top-matching page — but it never names Nango or Composio and its stats (e.g. \"40-60% faster deployment\") are unsourced, so AI engines default to citing Nango by name instead.\n\nTask description:\n## Why this matters\n\nAIsa is already almost winning this query — https://aisa.one/blog/api-key-redefines-ai-agent-connections is the top-matching page — but it never names Nango or Composio and its stats (e.g. \"40-60% faster deployment\") are unsourced, so AI engines default to citing Nango by name instead.\n\n## Reasoning\n\nWebFetch confirmed this page is already AIsa's flagship 'one key' pitch and the single closest match to the losing query, but it mentions 'Composio' only once as a data-source example, never mentions Nango, and relies on vague unattributed metrics — exactly the gap that keeps AI assistants recommending Nango instead. Since this is an 'almost_winning' intent, a targeted named-comparison refresh (rather than a net-new page) is the fastest path to flipping the recommendation, and the same fix strengthens AIsa's position for the closely related Composio-focused query about accessing external data/third-party capabilities through a single integration.\n\n## Recommended next action\n\nAdd a top-of-page direct-answer paragraph plus a named comparison table (AIsa vs Nango vs Composio: connectors count, pricing, setup time, auth model) with sourced numbers to https://aisa.one/blog/api-key-redefines-ai-agent-connections, and cross-link https://aisa.one/blog/hermes-agent-desktop-aisa-integration-guide and https://aisa.one/blog/best-llm-gateways-2026-compared.\n\nReasoning:\nWebFetch confirmed this page is already AIsa's flagship 'one key' pitch and the single closest match to the losing query, but it mentions 'Composio' only once as a data-source example, never mentions Nango, and relies on vague unattributed metrics — exactly the gap that keeps AI assistants recommending Nango instead. Since this is an 'almost_winning' intent, a targeted named-comparison refresh (rather than a net-new page) is the fastest path to flipping the recommendation, and the same fix strengthens AIsa's position for the closely related Composio-focused query about accessing external data/third-party capabilities through a single integration.\n\nEvidence:\n{\n  \"expected_lift\": \"Adding a named Nango/Composio comparison table with sourced numbers on an already near-top-matching page should tip AI assistants from citing Nango to citing AIsa by name for this query cluster.\",\n  \"projected_lift\": {\n    \"after\": 68.0,\n    \"after_label\": \"Projected\",\n    \"before\": 38.0,\n    \"before_label\": \"Today\",\n    \"metric_label\": \"Answer visibility\",\n    \"prompt_examples\": [\n      \"My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?\",\n      \"My team is evaluating solutions that let AI agents access external data sources and third-party capabilities through a single integration. What do you recommend?\"\n    ],\n    \"rationale\": \"The page already scores highest match (4.25) among AIsa's content for this query, so the remaining gap is named-comparison credibility rather than topical relevance \\u2014 a fix with a fast, high-confidence payoff.\",\n    \"unit\": \"percent\"\n  },\n  \"source_prompts\": [\n    {\n      \"competitor\": \"Nango\",\n      \"platform\": \"ChatGPT\",\n      \"prompt_text\": \"My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?\"\n    }\n  ],\n  \"source_urls\": [\n    {\n      \"url\": \"https://aisa.one/blog/api-key-redefines-ai-agent-connections\",\n      \"why_valuable\": \"Highest-matching existing page (4.25) for the one-key gateway/marketplace query; already carries the core value proposition but lacks named-competitor comparison and sourced numbers\"\n    },\n    {\n      \"url\": \"https://aisa.one/blog/best-llm-gateways-2026-compared\",\n      \"why_valuable\": \"Secondary match (3.75) with an existing comparison-table format that can be cross-linked once the target page has its own named comparison\"\n    },\n    {\n      \"url\": \"https://aisa.one/blog/hermes-agent-desktop-aisa-integration-guide\",\n      \"why_valuable\": \"Also a top match (4.25) showing real integration mechanics that can be linked as proof of ease-of-setup\"\n    }\n  ]\n}\n\nSource references:\n{\n  \"group_key\": \"my team is evaluating resource marketplaces or gateways that let ai agents call various apis with one key. what do you recommend?\",\n  \"kind\": \"opportunity\",\n  \"rows\": [\n    {\n      \"action\": \"Strengthen your content to become the top recommendation for this query.\",\n      \"category\": \"quick_wins\",\n      \"citation_urls\": [\n        \"https://agentkey.app\",\n        \"https://nango.dev/blog/best-enterprise-grade-agent-api-integration-providers/\",\n        \"https://mastra.ai/blog/best-ai-agent-integration-platforms\",\n        \"https://composio.dev/content/apis-ai-agents-integration-patterns\",\n        \"https://atlan.com/know/when-to-use-mcp-vs-api/\",\n        \"https://zuplo.com/learning-center/best-ai-gateway-buyers-guide\",\n        \"https://nango.dev\",\n        \"https://www.youtube.com\",\n        \"https://aisa.one/\",\n        \"https://agentkey.app/blog/agentkey-unified-api-key-for-ai-agents/\",\n        \"https://nango.dev/blog/best-secure-api-integration-platforms-ai-agents\",\n        \"https://vercel.com/docs/ai-gateway\",\n        \"https://www.reddit.com/r/AI_Agents/comments/1ucbe0w/we_built_a_unified_api_gateway_for_ai_agents/\",\n        \"https://aisa.one/blog/introducing-aisa-unified-gateway\",\n        \"https://nango.dev/blog/best-unified-api-platform-for-ai-agents-and-rag/\",\n        \"https://www.arcade.dev/blog/best-ai-agent-authentication-platforms/\",\n        \"https://www.merge.dev/blog/api-for-ai-agents\",\n        \"https://www.cequence.ai\",\n        \"https://www.youtube.com/watch?v=U8tYcS5Pt4w&t=2\",\n        \"https://agent-gateway-kappa.vercel.app/\",\n        \"https://www.merge.dev\",\n        \"https://www.gravitee.io/blog/ai-agent-management-platform-architects-guide\",\n        \"https://zuplo.com\",\n        \"https://composio.dev\",\n        \"https://www.reddit.com/r/AI_Agents/comments/1sc39dc/how_do_you_manage_api_keys_when_you_have_multiple/\"\n      ],\n      \"created_at\": \"2026-09-20T16:26:00.737605+00:00\",\n      \"description\": \"You're mentioned with 95% recommendation strength, but Composio wins with 95%.\",\n      \"gap\": 0.06999999999999999,\n      \"id\": \"b22acea7f57e294e\",\n      \"impact_score\": 100,\n      \"model_count\": 1,\n      \"platform_id\": \"7d5177d2-039d-441b-ac4b-aacad2e80eb8\",\n      \"platform_name\": \"Google AI Overviews\",\n      \"platforms\": [\n        \"Google AI Overviews\"\n      ],\n      \"priority\": \"high\",\n      \"prompt_id\": \"142f7ed5-e7e1-4f6b-b62e-1d285d81874e\",\n      \"prompt_text\": \"My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?\",\n      \"run_id\": \"eee140d2-da2b-4dd8-b69a-66b73d91aae8\",\n      \"title\": \"Almost winning: My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?\",\n      \"topic_id\": \"990d226e-b2e6-4ddf-a86b-fda83b106d27\",\n      \"topic_name\": \"AI Agent API Gateway\",\n      \"type\": \"almost_winning\",\n      \"winner_brand_id\": \"776e4c28-ab93-4eca-87ac-ad9b57aad734\",\n      \"winner_brand_name\": \"Nango\",\n      \"winner_recommendation_strength\": 0.93,\n      \"your_position\": 2,\n      \"your_recommendation_strength\": 0.86\n    }\n  ]\n}\n\nAdditional metadata:\n{\n  \"content_brief\": {\n    \"primary_keyword\": \"AI agent API gateway one key\",\n    \"secondary_keywords\": [\n      \"AIsa vs Nango\",\n      \"AIsa vs Composio\",\n      \"unified API key for AI agents\",\n      \"AI agent tool marketplace\"\n    ],\n    \"summary\": \"Rewrite the one-API-key pitch on https://aisa.one/blog/api-key-redefines-ai-agent-connections so it opens with a direct answer to \\\"which gateway/marketplace lets my agent call many APIs with one key\\\" and adds a named, sourced comparison table against Nango and Composio instead of a generic 'traditional stack' strawman.\",\n    \"target_audience\": \"Engineering leads and AI agent developers evaluating unified API gateways/marketplaces for their team\"\n  },\n  \"content_exists\": true,\n  \"disposition\": \"refresh\",\n  \"evidence_summary\": \"impact 100\",\n  \"external_target\": null,\n  \"gap_first\": true,\n  \"impact_score\": 100.0,\n  \"is_outreach\": false,\n  \"nav_item_id\": \"almost_winning\",\n  \"site_aware\": true,\n  \"source_end_date\": \"2026-09-20\",\n  \"source_key\": \"opportunity:my team is evaluating resource marketplaces or gateways that let ai agents call various apis with one key. what do you recommend?\",\n  \"source_start_date\": \"2026-09-13\",\n  \"style_reference\": {\n    \"content_hash\": \"7b32fcad264049111fa0966e83bc1cb8f24cd5875daea1cdb6334108f37f9cc9\",\n    \"content_page_id\": \"3dfb1891-3935-4cd2-ae38-0f718f4b971a\",\n    \"content_snapshot_id\": \"221c7379-3526-4daf-bdc9-bffda36d264d\",\n    \"selected_by\": \"foundry\",\n    \"selection_reason\": \"A well-developed buyer-oriented roundup with clear selection criteria, ranked options, practical use cases, and a comparison-table structure that suits a named AIsa-versus-competitors refresh.\",\n    \"title\": \"Best Email Verification Apis For Ai Developers\",\n    \"url\": \"https://aisa.one/articles/best-email-verification-apis-for-ai-developers\"\n  },\n  \"target_url\": \"https://aisa.one/blog/api-key-redefines-ai-agent-connections\",\n  \"target_urls\": [\n    \"https://aisa.one/blog/api-key-redefines-ai-agent-connections\"\n  ]\n}\n\nPlease produce:\n1. A diagnosis of what should change and what evidence supports it.\n2. The exact content, documentation, routing, or product changes to make.\n3. A short verification plan for confirming the task is complete.\n4. A concise summary of what changed and any follow-up still required.",
+        "content": null,
+        "target_url": null,
+        "content_status": "none",
+        "content_written_at": null,
+        "reasoning": "WebFetch confirmed this page is already AIsa's flagship 'one key' pitch and the single closest match to the losing query, but it mentions 'Composio' only once as a data-source example, never mentions Nango, and relies on vague unattributed metrics — exactly the gap that keeps AI assistants recommending Nango instead. Since this is an 'almost_winning' intent, a targeted named-comparison refresh (rather than a net-new page) is the fastest path to flipping the recommendation, and the same fix strengthens AIsa's position for the closely related Composio-focused query about accessing external data/third-party capabilities through a single integration.",
         "evidence": {
           "source_urls": [
             {
-              "url": "www.reddit.com",
-              "why_valuable": "Top-ranked high-citation source AI engines pull from for agent-tooling questions"
-            }
-          ],
-          "expected_lift": "High: Reddit is a top citation source across all competitor-gap queries in this dataset.",
-          "projected_lift": {
-            "unit": "percent",
-            "after": 25,
-            "before": 0,
-            "rationale": "Establishing genuine presence on the single highest-impact citation source should create a new citation pathway that doesn't exist today.",
-            "after_label": "Projected",
-            "before_label": "Today",
-            "metric_label": "Citation rate"
-          }
-        },
-        "score": 100,
-        "effort": "Low",
-        "priority": "high",
-        "status": "new",
-        "assignee_user_id": null,
-        "function_area": null,
-        "action_type": "agent_discovery",
-        "source": null,
-        "source_type": "opportunity",
-        "source_refs": {
-          "kind": "opportunity",
-          "rows": [
-            {
-              "id": "04ba5e28af27c01c",
-              "type": "high_citation_sources",
-              "title": "Outreach opportunity: www.reddit.com",
-              "action": "Participate in www.reddit.com discussions to build presence.",
-              "domain": "www.reddit.com",
-              "category": "citations",
-              "priority": "high",
-              "created_at": "2026-08-10T17:52:01.521968+00:00",
-              "description": "Cited in 8 queries (89% of prompts).",
-              "top_prompts": [
-                "What are the best platforms for enabling AI agents to discover and pay for real-world APIs and capabilities?",
-                "My team is evaluating solutions for agent-to-agent or agent-to-service payments in an AI system. What do you recommend?",
-                "What are the best API gateway solutions for AI agents that need unified access to third-party tools and capabilities?",
-                "My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?",
-                "I'm building an AI agent that needs to access real-world data and APIs — what marketplace or tool should I use to give it those capabilities?"
-              ],
-              "impact_score": 100,
-              "citation_rate": 0.8888888888888888,
-              "citation_count": 8,
-              "is_competitor_source": false
-            }
-          ],
-          "group_key": "outreach:www.reddit.com"
-        },
-        "metadata": {
-          "gap_first": true,
-          "site_aware": true,
-          "source_key": "opportunity:outreach:www.reddit.com",
-          "target_url": "www.reddit.com",
-          "disposition": "outreach",
-          "is_outreach": true,
-          "nav_item_id": "high_citation_sources",
-          "target_urls": [
-            "www.reddit.com"
-          ],
-          "impact_score": 100,
-          "content_exists": false,
-          "external_target": {
-            "url": null,
-            "title": "Outreach opportunity: www.reddit.com",
-            "domain": "www.reddit.com"
-          },
-          "source_end_date": "2026-08-10",
-          "evidence_summary": "impact 100",
-          "source_start_date": "2026-08-03"
-        },
-        "created_at": "2026-08-10T17:52:06.433121+00:00",
-        "updated_at": "2026-08-10T17:52:06.433121+00:00"
-      },
-      {
-        "id": "bb212e03-5048-4f73-9900-7433daed9543",
-        "action_date": "2026-08-10",
-        "batch_number": 1,
-        "rank": 2,
-        "source_key": "opportunity:outreach:arxiv.org",
-        "task_type": "Outreach",
-        "title": "Publish a technical write-up on arXiv about AIsa's agent-payment/resource-network architecture",
-        "why": "arXiv is a top-ranked citation source (impact 100) for AI Overviews and research-oriented assistants; a short technical paper on machine-to-machine payments (HTTP 402, Circle Nanopayments) would give AI engines an academically-credible source to cite alongside product pages.",
-        "next_action": "Draft and submit a short technical report/preprint on AIsa's agentic payment and resource-discovery architecture (drawing on the machine-payments and x402 material already used in https://aisa.one/news/aisa-raises-6-5m-ai-agent-resource-network), positioned as engineering documentation rather than marketing.",
-        "description": "## Why this matters\n\narXiv is a top-ranked citation source (impact 100) for AI Overviews and research-oriented assistants; a short technical paper on machine-to-machine payments (HTTP 402, Circle Nanopayments) would give AI engines an academically-credible source to cite alongside product pages.\n\n## Reasoning\n\narXiv citations carry outsized weight in AI Overviews and research-adjacent answers; AIsa has real technical substance (stablecoin settlement, x402 leaderboard ranking) that's currently only described in a funding post, not documented as citable research.\n\n## Recommended next action\n\nDraft and submit a short technical report/preprint on AIsa's agentic payment and resource-discovery architecture (drawing on the machine-payments and x402 material already used in https://aisa.one/news/aisa-raises-6-5m-ai-agent-resource-network), positioned as engineering documentation rather than marketing.",
-        "execution_prompt": "You are executing a Lightsage task for this organization.\nUse the context below to make the smallest concrete change that addresses the task.\nIf you cannot make the change directly, return the exact missing input and the next best implementation plan.\n\nTask:\n- ID: bb212e03-5048-4f73-9900-7433daed9543\n- Title: Publish a technical write-up on arXiv about AIsa's agent-payment/resource-network architecture\n- Type: Outreach\n- Source type: opportunity\n- Priority: medium\n- Effort: Medium\n\nGoal:\nDraft and submit a short technical report/preprint on AIsa's agentic payment and resource-discovery architecture (drawing on the machine-payments and x402 material already used in https://aisa.one/news/aisa-raises-6-5m-ai-agent-resource-network), positioned as engineering documentation rather than marketing.\n\nWhy this matters:\narXiv is a top-ranked citation source (impact 100) for AI Overviews and research-oriented assistants; a short technical paper on machine-to-machine payments (HTTP 402, Circle Nanopayments) would give AI engines an academically-credible source to cite alongside product pages.\n\nTask description:\n## Why this matters\n\narXiv is a top-ranked citation source (impact 100) for AI Overviews and research-oriented assistants; a short technical paper on machine-to-machine payments (HTTP 402, Circle Nanopayments) would give AI engines an academically-credible source to cite alongside product pages.\n\n## Reasoning\n\narXiv citations carry outsized weight in AI Overviews and research-adjacent answers; AIsa has real technical substance (stablecoin settlement, x402 leaderboard ranking) that's currently only described in a funding post, not documented as citable research.\n\n## Recommended next action\n\nDraft and submit a short technical report/preprint on AIsa's agentic payment and resource-discovery architecture (drawing on the machine-payments and x402 material already used in https://aisa.one/news/aisa-raises-6-5m-ai-agent-resource-network), positioned as engineering documentation rather than marketing.\n\nReasoning:\narXiv citations carry outsized weight in AI Overviews and research-adjacent answers; AIsa has real technical substance (stablecoin settlement, x402 leaderboard ranking) that's currently only described in a funding post, not documented as citable research.\n\nEvidence:\n{\n  \"expected_lift\": \"Moderate-to-high given arXiv's outsized weight in AI Overviews citations.\",\n  \"projected_lift\": {\n    \"after\": 20.0,\n    \"after_label\": \"Projected\",\n    \"before\": 0.0,\n    \"before_label\": \"Today\",\n    \"metric_label\": \"Citation rate\",\n    \"rationale\": \"A credible technical preprint gives AI engines a citable, non-promotional source for AIsa's payment/resource-network architecture that doesn't exist today.\",\n    \"unit\": \"percent\"\n  },\n  \"source_urls\": [\n    {\n      \"url\": \"arxiv.org\",\n      \"why_valuable\": \"Top-ranked high-citation source for technical/research-style AI answers\"\n    }\n  ]\n}\n\nSource references:\n{\n  \"group_key\": \"outreach:arxiv.org\",\n  \"kind\": \"opportunity\",\n  \"rows\": [\n    {\n      \"action\": \"Create content or seek coverage on arxiv.org.\",\n      \"category\": \"citations\",\n      \"citation_count\": 7,\n      \"citation_rate\": 0.7777777777777778,\n      \"created_at\": \"2026-08-10T17:52:01.522010+00:00\",\n      \"description\": \"Cited in 7 queries (78% of prompts).\",\n      \"domain\": \"arxiv.org\",\n      \"id\": \"deb56999dc1970bd\",\n      \"impact_score\": 100,\n      \"is_competitor_source\": false,\n      \"priority\": \"high\",\n      \"title\": \"Outreach opportunity: arxiv.org\",\n      \"top_prompts\": [\n        \"What are the best platforms for enabling AI agents to discover and pay for real-world APIs and capabilities?\",\n        \"My team is evaluating solutions for agent-to-agent or agent-to-service payments in an AI system. What do you recommend?\",\n        \"My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?\",\n        \"I'm building an AI agent that needs to access real-world data and APIs \\u2014 what marketplace or tool should I use to give it those capabilities?\",\n        \"What are the best API gateway solutions for AI agents that need unified access to third-party tools and capabilities?\"\n      ],\n      \"type\": \"high_citation_sources\"\n    }\n  ]\n}\n\nAdditional metadata:\n{\n  \"content_exists\": false,\n  \"disposition\": \"outreach\",\n  \"evidence_summary\": \"impact 100\",\n  \"external_target\": {\n    \"domain\": \"arxiv.org\",\n    \"title\": \"Outreach opportunity: arxiv.org\",\n    \"url\": null\n  },\n  \"gap_first\": true,\n  \"impact_score\": 100.0,\n  \"is_outreach\": true,\n  \"nav_item_id\": \"high_citation_sources\",\n  \"site_aware\": true,\n  \"source_end_date\": \"2026-08-10\",\n  \"source_key\": \"opportunity:outreach:arxiv.org\",\n  \"source_start_date\": \"2026-08-03\",\n  \"target_url\": \"arxiv.org\",\n  \"target_urls\": [\n    \"arxiv.org\"\n  ]\n}\n\nPlease produce:\n1. A diagnosis of what should change and what evidence supports it.\n2. The exact content, documentation, routing, or product changes to make.\n3. A short verification plan for confirming the task is complete.\n4. A concise summary of what changed and any follow-up still required.",
-        "reasoning": "arXiv citations carry outsized weight in AI Overviews and research-adjacent answers; AIsa has real technical substance (stablecoin settlement, x402 leaderboard ranking) that's currently only described in a funding post, not documented as citable research.",
-        "evidence": {
-          "source_urls": [
-            {
-              "url": "arxiv.org",
-              "why_valuable": "Top-ranked high-citation source for technical/research-style AI answers"
-            }
-          ],
-          "expected_lift": "Moderate-to-high given arXiv's outsized weight in AI Overviews citations.",
-          "projected_lift": {
-            "unit": "percent",
-            "after": 20,
-            "before": 0,
-            "rationale": "A credible technical preprint gives AI engines a citable, non-promotional source for AIsa's payment/resource-network architecture that doesn't exist today.",
-            "after_label": "Projected",
-            "before_label": "Today",
-            "metric_label": "Citation rate"
-          }
-        },
-        "score": 100,
-        "effort": "Medium",
-        "priority": "medium",
-        "status": "new",
-        "assignee_user_id": null,
-        "function_area": null,
-        "action_type": "agent_discovery",
-        "source": null,
-        "source_type": "opportunity",
-        "source_refs": {
-          "kind": "opportunity",
-          "rows": [
-            {
-              "id": "deb56999dc1970bd",
-              "type": "high_citation_sources",
-              "title": "Outreach opportunity: arxiv.org",
-              "action": "Create content or seek coverage on arxiv.org.",
-              "domain": "arxiv.org",
-              "category": "citations",
-              "priority": "high",
-              "created_at": "2026-08-10T17:52:01.522010+00:00",
-              "description": "Cited in 7 queries (78% of prompts).",
-              "top_prompts": [
-                "What are the best platforms for enabling AI agents to discover and pay for real-world APIs and capabilities?",
-                "My team is evaluating solutions for agent-to-agent or agent-to-service payments in an AI system. What do you recommend?",
-                "My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?",
-                "I'm building an AI agent that needs to access real-world data and APIs — what marketplace or tool should I use to give it those capabilities?",
-                "What are the best API gateway solutions for AI agents that need unified access to third-party tools and capabilities?"
-              ],
-              "impact_score": 100,
-              "citation_rate": 0.7777777777777778,
-              "citation_count": 7,
-              "is_competitor_source": false
-            }
-          ],
-          "group_key": "outreach:arxiv.org"
-        },
-        "metadata": {
-          "gap_first": true,
-          "site_aware": true,
-          "source_key": "opportunity:outreach:arxiv.org",
-          "target_url": "arxiv.org",
-          "disposition": "outreach",
-          "is_outreach": true,
-          "nav_item_id": "high_citation_sources",
-          "target_urls": [
-            "arxiv.org"
-          ],
-          "impact_score": 100,
-          "content_exists": false,
-          "external_target": {
-            "url": null,
-            "title": "Outreach opportunity: arxiv.org",
-            "domain": "arxiv.org"
-          },
-          "source_end_date": "2026-08-10",
-          "evidence_summary": "impact 100",
-          "source_start_date": "2026-08-03"
-        },
-        "created_at": "2026-08-10T17:52:06.433121+00:00",
-        "updated_at": "2026-08-10T17:52:06.433121+00:00"
-      },
-      {
-        "id": "2628ad30-fbeb-418f-85b2-8e59604cb321",
-        "action_date": "2026-08-10",
-        "batch_number": 1,
-        "rank": 3,
-        "source_key": "opportunity:ai agent api gateway",
-        "task_type": "Create",
-        "title": "Publish a dedicated 'AI Agent API Gateway' comparison page",
-        "why": "The best matched page, https://aisa.one/blog/getting-started-aisa-api, is confirmed shallow (skeleton code, no marketplace/discovery coverage) and the gateway launch post, https://aisa.one/blog/introducing-aisa-unified-gateway, covers only LLM routing — neither answers 'what is an AI agent API gateway' or positions AIsa against Composio on tools/data access.",
-        "next_action": "Create a new guide at aisa.one/blog covering: what an AI agent API gateway is, why agents need one, and how AIsa's Unified Gateway differs from tool-routing platforms like Composio (one key for models + APIs + data + payments vs. tool-call routing only). Use the standard tutorial structure: goal statement up front, numbered steps for wiring it into an agent, and a comparison subsection with a short table.",
-        "description": "## Why this matters\n\nThe best matched page, https://aisa.one/blog/getting-started-aisa-api, is confirmed shallow (skeleton code, no marketplace/discovery coverage) and the gateway launch post, https://aisa.one/blog/introducing-aisa-unified-gateway, covers only LLM routing — neither answers 'what is an AI agent API gateway' or positions AIsa against Composio on tools/data access.\n\n## Reasoning\n\nWebFetch showed getting-started-aisa-api is a thin quickstart with no marketplace/discovery angle, and introducing-aisa-unified-gateway explicitly 'does not address tools, APIs, or data integration — only model routing.' Neither page can legitimately be cited for the query 'AI Agent API Gateway' as it's used against Composio, which sells exactly this integration/discovery angle. A new page purpose-built to answer this query and directly contrast with Composio is the only way to win this citation.\n\n## Recommended next action\n\nCreate a new guide at aisa.one/blog covering: what an AI agent API gateway is, why agents need one, and how AIsa's Unified Gateway differs from tool-routing platforms like Composio (one key for models + APIs + data + payments vs. tool-call routing only). Use the standard tutorial structure: goal statement up front, numbered steps for wiring it into an agent, and a comparison subsection with a short table.",
-        "execution_prompt": "You are executing a Lightsage task for this organization.\nUse the context below to make the smallest concrete change that addresses the task.\nIf you cannot make the change directly, return the exact missing input and the next best implementation plan.\n\nTask:\n- ID: 2628ad30-fbeb-418f-85b2-8e59604cb321\n- Title: Publish a dedicated 'AI Agent API Gateway' comparison page\n- Type: Create\n- Source type: opportunity\n- Priority: high\n- Effort: Medium\n\nGoal:\nCreate a new guide at aisa.one/blog covering: what an AI agent API gateway is, why agents need one, and how AIsa's Unified Gateway differs from tool-routing platforms like Composio (one key for models + APIs + data + payments vs. tool-call routing only). Use the standard tutorial structure: goal statement up front, numbered steps for wiring it into an agent, and a comparison subsection with a short table.\n\nWhy this matters:\nThe best matched page, https://aisa.one/blog/getting-started-aisa-api, is confirmed shallow (skeleton code, no marketplace/discovery coverage) and the gateway launch post, https://aisa.one/blog/introducing-aisa-unified-gateway, covers only LLM routing — neither answers 'what is an AI agent API gateway' or positions AIsa against Composio on tools/data access.\n\nTask description:\n## Why this matters\n\nThe best matched page, https://aisa.one/blog/getting-started-aisa-api, is confirmed shallow (skeleton code, no marketplace/discovery coverage) and the gateway launch post, https://aisa.one/blog/introducing-aisa-unified-gateway, covers only LLM routing — neither answers 'what is an AI agent API gateway' or positions AIsa against Composio on tools/data access.\n\n## Reasoning\n\nWebFetch showed getting-started-aisa-api is a thin quickstart with no marketplace/discovery angle, and introducing-aisa-unified-gateway explicitly 'does not address tools, APIs, or data integration — only model routing.' Neither page can legitimately be cited for the query 'AI Agent API Gateway' as it's used against Composio, which sells exactly this integration/discovery angle. A new page purpose-built to answer this query and directly contrast with Composio is the only way to win this citation.\n\n## Recommended next action\n\nCreate a new guide at aisa.one/blog covering: what an AI agent API gateway is, why agents need one, and how AIsa's Unified Gateway differs from tool-routing platforms like Composio (one key for models + APIs + data + payments vs. tool-call routing only). Use the standard tutorial structure: goal statement up front, numbered steps for wiring it into an agent, and a comparison subsection with a short table.\n\nReasoning:\nWebFetch showed getting-started-aisa-api is a thin quickstart with no marketplace/discovery angle, and introducing-aisa-unified-gateway explicitly 'does not address tools, APIs, or data integration — only model routing.' Neither page can legitimately be cited for the query 'AI Agent API Gateway' as it's used against Composio, which sells exactly this integration/discovery angle. A new page purpose-built to answer this query and directly contrast with Composio is the only way to win this citation.\n\nEvidence:\n{\n  \"expected_lift\": \"High: fills a genuine content gap on a top-impact query (impact_score 97.1) currently owned by Composio.\",\n  \"projected_lift\": {\n    \"after\": 50.0,\n    \"after_label\": \"Projected\",\n    \"before\": 5.0,\n    \"before_label\": \"Today\",\n    \"metric_label\": \"Answer visibility\",\n    \"prompt_examples\": [\n      \"AI Agent API Gateway\"\n    ],\n    \"rationale\": \"No adequate page currently answers this query directly; a purpose-built comparison guide targeting the exact phrase should capture a large share of the citation currently going to Composio.\",\n    \"unit\": \"percent\"\n  },\n  \"source_prompts\": [\n    {\n      \"competitor\": \"Composio\",\n      \"platform\": null,\n      \"prompt_text\": \"AI Agent API Gateway\"\n    }\n  ],\n  \"source_urls\": [\n    {\n      \"url\": \"https://aisa.one/blog/getting-started-aisa-api\",\n      \"why_valuable\": \"Closest existing match but confirmed shallow \\u2014 no marketplace/discovery coverage, skeleton code only\"\n    },\n    {\n      \"url\": \"https://aisa.one/api/exa-agent-runs\",\n      \"why_valuable\": \"Existing API reference page that the new guide should link to as a concrete integration example\"\n    }\n  ]\n}\n\nSource references:\n{\n  \"group_key\": \"ai agent api gateway\",\n  \"kind\": \"opportunity\",\n  \"rows\": [\n    {\n      \"action\": \"Create content for \\\"AI Agent API Gateway\\\" to capture this unaddressed market.\",\n      \"category\": \"growth\",\n      \"competitor_visibility\": 0.6111111111111112,\n      \"created_at\": \"2026-08-10T17:51:59.064867+00:00\",\n      \"description\": \"You have 0% visibility while competitors win 61% of queries in this topic.\",\n      \"id\": \"12d0a43a8fe42988\",\n      \"impact_score\": 97.11111111111111,\n      \"priority\": \"high\",\n      \"prompt_count\": 18,\n      \"title\": \"Content gap: AI Agent API Gateway\",\n      \"top_competitor_brand_id\": \"776e4c28-ab93-4eca-87ac-ad9b57aad734\",\n      \"top_competitor_brand_name\": \"Composio\",\n      \"topic_id\": \"990d226e-b2e6-4ddf-a86b-fda83b106d27\",\n      \"topic_name\": \"AI Agent API Gateway\",\n      \"type\": \"content_gaps\",\n      \"your_visibility\": 0.0\n    }\n  ]\n}\n\nAdditional metadata:\n{\n  \"content_exists\": false,\n  \"disposition\": \"create\",\n  \"evidence_summary\": \"impact 97\",\n  \"external_target\": null,\n  \"gap_first\": true,\n  \"impact_score\": 97.11111111111111,\n  \"is_outreach\": false,\n  \"nav_item_id\": \"content_gaps\",\n  \"site_aware\": true,\n  \"source_end_date\": \"2026-08-10\",\n  \"source_key\": \"opportunity:ai agent api gateway\",\n  \"source_start_date\": \"2026-08-03\",\n  \"target_url\": null,\n  \"target_urls\": []\n}\n\nPlease produce:\n1. A diagnosis of what should change and what evidence supports it.\n2. The exact content, documentation, routing, or product changes to make.\n3. A short verification plan for confirming the task is complete.\n4. A concise summary of what changed and any follow-up still required.",
-        "reasoning": "WebFetch showed getting-started-aisa-api is a thin quickstart with no marketplace/discovery angle, and introducing-aisa-unified-gateway explicitly 'does not address tools, APIs, or data integration — only model routing.' Neither page can legitimately be cited for the query 'AI Agent API Gateway' as it's used against Composio, which sells exactly this integration/discovery angle. A new page purpose-built to answer this query and directly contrast with Composio is the only way to win this citation.",
-        "evidence": {
-          "source_urls": [
-            {
-              "url": "https://aisa.one/blog/getting-started-aisa-api",
-              "why_valuable": "Closest existing match but confirmed shallow — no marketplace/discovery coverage, skeleton code only"
+              "url": "https://aisa.one/blog/api-key-redefines-ai-agent-connections",
+              "why_valuable": "Highest-matching existing page (4.25) for the one-key gateway/marketplace query; already carries the core value proposition but lacks named-competitor comparison and sourced numbers"
             },
             {
-              "url": "https://aisa.one/api/exa-agent-runs",
-              "why_valuable": "Existing API reference page that the new guide should link to as a concrete integration example"
+              "url": "https://aisa.one/blog/best-llm-gateways-2026-compared",
+              "why_valuable": "Secondary match (3.75) with an existing comparison-table format that can be cross-linked once the target page has its own named comparison"
+            },
+            {
+              "url": "https://aisa.one/blog/hermes-agent-desktop-aisa-integration-guide",
+              "why_valuable": "Also a top match (4.25) showing real integration mechanics that can be linked as proof of ease-of-setup"
             }
           ],
-          "expected_lift": "High: fills a genuine content gap on a top-impact query (impact_score 97.1) currently owned by Composio.",
+          "expected_lift": "Adding a named Nango/Composio comparison table with sourced numbers on an already near-top-matching page should tip AI assistants from citing Nango to citing AIsa by name for this query cluster.",
           "projected_lift": {
             "unit": "percent",
-            "after": 50,
-            "before": 5,
-            "rationale": "No adequate page currently answers this query directly; a purpose-built comparison guide targeting the exact phrase should capture a large share of the citation currently going to Composio.",
+            "after": 68,
+            "before": 38,
+            "rationale": "The page already scores highest match (4.25) among AIsa's content for this query, so the remaining gap is named-comparison credibility rather than topical relevance — a fix with a fast, high-confidence payoff.",
             "after_label": "Projected",
             "before_label": "Today",
             "metric_label": "Answer visibility",
             "prompt_examples": [
-              "AI Agent API Gateway"
+              "My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?",
+              "My team is evaluating solutions that let AI agents access external data sources and third-party capabilities through a single integration. What do you recommend?"
             ]
           },
           "source_prompts": [
             {
-              "platform": null,
-              "competitor": "Composio",
-              "prompt_text": "AI Agent API Gateway"
+              "platform": "ChatGPT",
+              "competitor": "Nango",
+              "prompt_text": "My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?"
             }
           ]
         },
-        "score": 97.111,
+        "score": 100,
         "effort": "Medium",
-        "priority": "high",
+        "priority": "urgent",
         "status": "new",
         "assignee_user_id": null,
         "function_area": null,
@@ -253,179 +76,160 @@
           "kind": "opportunity",
           "rows": [
             {
-              "id": "12d0a43a8fe42988",
-              "type": "content_gaps",
-              "title": "Content gap: AI Agent API Gateway",
-              "action": "Create content for \"AI Agent API Gateway\" to capture this unaddressed market.",
-              "category": "growth",
+              "id": "b22acea7f57e294e",
+              "gap": 0.06999999999999999,
+              "type": "almost_winning",
+              "title": "Almost winning: My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?",
+              "action": "Strengthen your content to become the top recommendation for this query.",
+              "run_id": "eee140d2-da2b-4dd8-b69a-66b73d91aae8",
+              "category": "quick_wins",
               "priority": "high",
               "topic_id": "990d226e-b2e6-4ddf-a86b-fda83b106d27",
-              "created_at": "2026-08-10T17:51:59.064867+00:00",
-              "topic_name": "AI Agent API Gateway",
-              "description": "You have 0% visibility while competitors win 61% of queries in this topic.",
-              "impact_score": 97.11111111111111,
-              "prompt_count": 18,
-              "your_visibility": 0,
-              "competitor_visibility": 0.6111111111111112,
-              "top_competitor_brand_id": "776e4c28-ab93-4eca-87ac-ad9b57aad734",
-              "top_competitor_brand_name": "Composio"
-            }
-          ],
-          "group_key": "ai agent api gateway"
-        },
-        "metadata": {
-          "gap_first": true,
-          "site_aware": true,
-          "source_key": "opportunity:ai agent api gateway",
-          "target_url": null,
-          "disposition": "create",
-          "is_outreach": false,
-          "nav_item_id": "content_gaps",
-          "target_urls": [],
-          "impact_score": 97.11111111111111,
-          "content_exists": false,
-          "external_target": null,
-          "source_end_date": "2026-08-10",
-          "evidence_summary": "impact 97",
-          "source_start_date": "2026-08-03"
-        },
-        "created_at": "2026-08-10T17:52:06.433121+00:00",
-        "updated_at": "2026-08-10T17:52:06.433121+00:00"
-      },
-      {
-        "id": "677ec8ea-a050-4510-a975-727992540851",
-        "action_date": "2026-08-10",
-        "batch_number": 1,
-        "rank": 4,
-        "source_key": "opportunity:outreach:www.theverge.com",
-        "task_type": "Outreach",
-        "title": "Pitch The Verge on the AIsa funding/agent-payments story",
-        "why": "The Verge is a high-citation press source (impact 96.7); AIsa's $6.5M raise co-led by Alibaba and Tribe Capital plus the machine-payments angle is a genuine news hook that hasn't been pitched to mainstream tech press.",
-        "next_action": "Pitch a Verge reporter covering AI infrastructure/agents with the funding announcement and growth metrics from https://aisa.one/news/aisa-raises-6-5m-ai-agent-resource-network (150x agent growth, 200x API/transaction growth), framed around the 'agents paying for their own resources' angle.",
-        "description": "## Why this matters\n\nThe Verge is a high-citation press source (impact 96.7); AIsa's $6.5M raise co-led by Alibaba and Tribe Capital plus the machine-payments angle is a genuine news hook that hasn't been pitched to mainstream tech press.\n\n## Reasoning\n\nThe Verge frequently gets cited by AI Overviews and ChatGPT for 'what is X company' and industry-landscape queries; AIsa already has a real, credible news hook (funding, growth metrics, notable co-leads) that's currently confined to its own news page and hasn't been placed in outside press.\n\n## Recommended next action\n\nPitch a Verge reporter covering AI infrastructure/agents with the funding announcement and growth metrics from https://aisa.one/news/aisa-raises-6-5m-ai-agent-resource-network (150x agent growth, 200x API/transaction growth), framed around the 'agents paying for their own resources' angle.",
-        "execution_prompt": "You are executing a Lightsage task for this organization.\nUse the context below to make the smallest concrete change that addresses the task.\nIf you cannot make the change directly, return the exact missing input and the next best implementation plan.\n\nTask:\n- ID: 677ec8ea-a050-4510-a975-727992540851\n- Title: Pitch The Verge on the AIsa funding/agent-payments story\n- Type: Outreach\n- Source type: opportunity\n- Priority: medium\n- Effort: Medium\n\nGoal:\nPitch a Verge reporter covering AI infrastructure/agents with the funding announcement and growth metrics from https://aisa.one/news/aisa-raises-6-5m-ai-agent-resource-network (150x agent growth, 200x API/transaction growth), framed around the 'agents paying for their own resources' angle.\n\nWhy this matters:\nThe Verge is a high-citation press source (impact 96.7); AIsa's $6.5M raise co-led by Alibaba and Tribe Capital plus the machine-payments angle is a genuine news hook that hasn't been pitched to mainstream tech press.\n\nTask description:\n## Why this matters\n\nThe Verge is a high-citation press source (impact 96.7); AIsa's $6.5M raise co-led by Alibaba and Tribe Capital plus the machine-payments angle is a genuine news hook that hasn't been pitched to mainstream tech press.\n\n## Reasoning\n\nThe Verge frequently gets cited by AI Overviews and ChatGPT for 'what is X company' and industry-landscape queries; AIsa already has a real, credible news hook (funding, growth metrics, notable co-leads) that's currently confined to its own news page and hasn't been placed in outside press.\n\n## Recommended next action\n\nPitch a Verge reporter covering AI infrastructure/agents with the funding announcement and growth metrics from https://aisa.one/news/aisa-raises-6-5m-ai-agent-resource-network (150x agent growth, 200x API/transaction growth), framed around the 'agents paying for their own resources' angle.\n\nReasoning:\nThe Verge frequently gets cited by AI Overviews and ChatGPT for 'what is X company' and industry-landscape queries; AIsa already has a real, credible news hook (funding, growth metrics, notable co-leads) that's currently confined to its own news page and hasn't been placed in outside press.\n\nEvidence:\n{\n  \"expected_lift\": \"Moderate: press coverage adds a trusted third-party citation source beyond owned content.\",\n  \"projected_lift\": {\n    \"after\": 18.0,\n    \"after_label\": \"Projected\",\n    \"before\": 0.0,\n    \"before_label\": \"Today\",\n    \"metric_label\": \"Citation rate\",\n    \"rationale\": \"A real funding/growth story pitched to a high-citation outlet should create a new independent citation source AI engines trust more than owned pages.\",\n    \"unit\": \"percent\"\n  },\n  \"source_urls\": [\n    {\n      \"url\": \"www.theverge.com\",\n      \"why_valuable\": \"High-citation mainstream tech press source\"\n    },\n    {\n      \"url\": \"https://aisa.one/news/aisa-raises-6-5m-ai-agent-resource-network\",\n      \"why_valuable\": \"Existing funding/growth story with concrete metrics to pitch\"\n    }\n  ]\n}\n\nSource references:\n{\n  \"group_key\": \"outreach:www.theverge.com\",\n  \"kind\": \"opportunity\",\n  \"rows\": [\n    {\n      \"action\": \"Create content or seek coverage on www.theverge.com.\",\n      \"category\": \"citations\",\n      \"citation_count\": 3,\n      \"citation_rate\": 0.3333333333333333,\n      \"created_at\": \"2026-08-10T17:52:01.522001+00:00\",\n      \"description\": \"Cited in 3 queries (33% of prompts).\",\n      \"domain\": \"www.theverge.com\",\n      \"id\": \"8a6eaf5c1c330cf9\",\n      \"impact_score\": 96.66666666666666,\n      \"is_competitor_source\": false,\n      \"priority\": \"high\",\n      \"title\": \"Outreach opportunity: www.theverge.com\",\n      \"top_prompts\": [\n        \"I'm building an AI agent that needs to access real-world data and APIs \\u2014 what marketplace or tool should I use to give it those capabilities?\",\n        \"What are the best platforms for enabling AI agents to discover and pay for real-world APIs and capabilities?\",\n        \"My team is evaluating solutions that let AI agents access external data sources and third-party capabilities through a single integration. What do you recommend?\"\n      ],\n      \"type\": \"high_citation_sources\"\n    }\n  ]\n}\n\nAdditional metadata:\n{\n  \"content_exists\": false,\n  \"disposition\": \"outreach\",\n  \"evidence_summary\": \"impact 97\",\n  \"external_target\": {\n    \"domain\": \"www.theverge.com\",\n    \"title\": \"Outreach opportunity: www.theverge.com\",\n    \"url\": null\n  },\n  \"gap_first\": true,\n  \"impact_score\": 96.66666666666666,\n  \"is_outreach\": true,\n  \"nav_item_id\": \"high_citation_sources\",\n  \"site_aware\": true,\n  \"source_end_date\": \"2026-08-10\",\n  \"source_key\": \"opportunity:outreach:www.theverge.com\",\n  \"source_start_date\": \"2026-08-03\",\n  \"target_url\": \"www.theverge.com\",\n  \"target_urls\": [\n    \"www.theverge.com\"\n  ]\n}\n\nPlease produce:\n1. A diagnosis of what should change and what evidence supports it.\n2. The exact content, documentation, routing, or product changes to make.\n3. A short verification plan for confirming the task is complete.\n4. A concise summary of what changed and any follow-up still required.",
-        "reasoning": "The Verge frequently gets cited by AI Overviews and ChatGPT for 'what is X company' and industry-landscape queries; AIsa already has a real, credible news hook (funding, growth metrics, notable co-leads) that's currently confined to its own news page and hasn't been placed in outside press.",
-        "evidence": {
-          "source_urls": [
-            {
-              "url": "www.theverge.com",
-              "why_valuable": "High-citation mainstream tech press source"
-            },
-            {
-              "url": "https://aisa.one/news/aisa-raises-6-5m-ai-agent-resource-network",
-              "why_valuable": "Existing funding/growth story with concrete metrics to pitch"
-            }
-          ],
-          "expected_lift": "Moderate: press coverage adds a trusted third-party citation source beyond owned content.",
-          "projected_lift": {
-            "unit": "percent",
-            "after": 18,
-            "before": 0,
-            "rationale": "A real funding/growth story pitched to a high-citation outlet should create a new independent citation source AI engines trust more than owned pages.",
-            "after_label": "Projected",
-            "before_label": "Today",
-            "metric_label": "Citation rate"
-          }
-        },
-        "score": 96.667,
-        "effort": "Medium",
-        "priority": "medium",
-        "status": "new",
-        "assignee_user_id": null,
-        "function_area": null,
-        "action_type": "agent_discovery",
-        "source": null,
-        "source_type": "opportunity",
-        "source_refs": {
-          "kind": "opportunity",
-          "rows": [
-            {
-              "id": "8a6eaf5c1c330cf9",
-              "type": "high_citation_sources",
-              "title": "Outreach opportunity: www.theverge.com",
-              "action": "Create content or seek coverage on www.theverge.com.",
-              "domain": "www.theverge.com",
-              "category": "citations",
-              "priority": "high",
-              "created_at": "2026-08-10T17:52:01.522001+00:00",
-              "description": "Cited in 3 queries (33% of prompts).",
-              "top_prompts": [
-                "I'm building an AI agent that needs to access real-world data and APIs — what marketplace or tool should I use to give it those capabilities?",
-                "What are the best platforms for enabling AI agents to discover and pay for real-world APIs and capabilities?",
-                "My team is evaluating solutions that let AI agents access external data sources and third-party capabilities through a single integration. What do you recommend?"
+              "platforms": [
+                "Google AI Overviews"
               ],
-              "impact_score": 96.66666666666666,
-              "citation_rate": 0.3333333333333333,
-              "citation_count": 3,
-              "is_competitor_source": false
+              "prompt_id": "142f7ed5-e7e1-4f6b-b62e-1d285d81874e",
+              "created_at": "2026-09-20T16:26:00.737605+00:00",
+              "topic_name": "AI Agent API Gateway",
+              "description": "You're mentioned with 95% recommendation strength, but Composio wins with 95%.",
+              "model_count": 1,
+              "platform_id": "7d5177d2-039d-441b-ac4b-aacad2e80eb8",
+              "prompt_text": "My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?",
+              "impact_score": 100,
+              "citation_urls": [
+                "https://agentkey.app",
+                "https://nango.dev/blog/best-enterprise-grade-agent-api-integration-providers/",
+                "https://mastra.ai/blog/best-ai-agent-integration-platforms",
+                "https://composio.dev/content/apis-ai-agents-integration-patterns",
+                "https://atlan.com/know/when-to-use-mcp-vs-api/",
+                "https://zuplo.com/learning-center/best-ai-gateway-buyers-guide",
+                "https://nango.dev",
+                "https://www.youtube.com",
+                "https://aisa.one/",
+                "https://agentkey.app/blog/agentkey-unified-api-key-for-ai-agents/",
+                "https://nango.dev/blog/best-secure-api-integration-platforms-ai-agents",
+                "https://vercel.com/docs/ai-gateway",
+                "https://www.reddit.com/r/AI_Agents/comments/1ucbe0w/we_built_a_unified_api_gateway_for_ai_agents/",
+                "https://aisa.one/blog/introducing-aisa-unified-gateway",
+                "https://nango.dev/blog/best-unified-api-platform-for-ai-agents-and-rag/",
+                "https://www.arcade.dev/blog/best-ai-agent-authentication-platforms/",
+                "https://www.merge.dev/blog/api-for-ai-agents",
+                "https://www.cequence.ai",
+                "https://www.youtube.com/watch?v=U8tYcS5Pt4w&t=2",
+                "https://agent-gateway-kappa.vercel.app/",
+                "https://www.merge.dev",
+                "https://www.gravitee.io/blog/ai-agent-management-platform-architects-guide",
+                "https://zuplo.com",
+                "https://composio.dev",
+                "https://www.reddit.com/r/AI_Agents/comments/1sc39dc/how_do_you_manage_api_keys_when_you_have_multiple/"
+              ],
+              "platform_name": "Google AI Overviews",
+              "your_position": 2,
+              "winner_brand_id": "776e4c28-ab93-4eca-87ac-ad9b57aad734",
+              "winner_brand_name": "Nango",
+              "your_recommendation_strength": 0.86,
+              "winner_recommendation_strength": 0.93
             }
           ],
-          "group_key": "outreach:www.theverge.com"
+          "group_key": "my team is evaluating resource marketplaces or gateways that let ai agents call various apis with one key. what do you recommend?"
         },
         "metadata": {
           "gap_first": true,
           "site_aware": true,
-          "source_key": "opportunity:outreach:www.theverge.com",
-          "target_url": "www.theverge.com",
-          "disposition": "outreach",
-          "is_outreach": true,
-          "nav_item_id": "high_citation_sources",
+          "source_key": "opportunity:my team is evaluating resource marketplaces or gateways that let ai agents call various apis with one key. what do you recommend?",
+          "target_url": "https://aisa.one/blog/api-key-redefines-ai-agent-connections",
+          "disposition": "refresh",
+          "is_outreach": false,
+          "nav_item_id": "almost_winning",
           "target_urls": [
-            "www.theverge.com"
+            "https://aisa.one/blog/api-key-redefines-ai-agent-connections"
           ],
-          "impact_score": 96.66666666666666,
-          "content_exists": false,
-          "external_target": {
-            "url": null,
-            "title": "Outreach opportunity: www.theverge.com",
-            "domain": "www.theverge.com"
+          "impact_score": 100,
+          "content_brief": {
+            "summary": "Rewrite the one-API-key pitch on https://aisa.one/blog/api-key-redefines-ai-agent-connections so it opens with a direct answer to \"which gateway/marketplace lets my agent call many APIs with one key\" and adds a named, sourced comparison table against Nango and Composio instead of a generic 'traditional stack' strawman.",
+            "primary_keyword": "AI agent API gateway one key",
+            "target_audience": "Engineering leads and AI agent developers evaluating unified API gateways/marketplaces for their team",
+            "secondary_keywords": [
+              "AIsa vs Nango",
+              "AIsa vs Composio",
+              "unified API key for AI agents",
+              "AI agent tool marketplace"
+            ]
           },
-          "source_end_date": "2026-08-10",
-          "evidence_summary": "impact 97",
-          "source_start_date": "2026-08-03"
+          "content_exists": true,
+          "external_target": null,
+          "source_end_date": "2026-09-20",
+          "style_reference": {
+            "url": "https://aisa.one/articles/best-email-verification-apis-for-ai-developers",
+            "title": "Best Email Verification Apis For Ai Developers",
+            "selected_by": "foundry",
+            "content_hash": "7b32fcad264049111fa0966e83bc1cb8f24cd5875daea1cdb6334108f37f9cc9",
+            "content_page_id": "3dfb1891-3935-4cd2-ae38-0f718f4b971a",
+            "selection_reason": "A well-developed buyer-oriented roundup with clear selection criteria, ranked options, practical use cases, and a comparison-table structure that suits a named AIsa-versus-competitors refresh.",
+            "content_snapshot_id": "221c7379-3526-4daf-bdc9-bffda36d264d"
+          },
+          "evidence_summary": "impact 100",
+          "source_start_date": "2026-09-13"
         },
-        "created_at": "2026-08-10T17:52:06.433121+00:00",
-        "updated_at": "2026-08-10T17:52:06.433121+00:00"
+        "created_at": "2026-09-20T16:28:39.964846+00:00",
+        "updated_at": "2026-09-20T16:28:39.964846+00:00",
+        "review_status": "accepted",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "content_format": "best_products",
+        "creation_mode": "generated",
+        "brand_id": null,
+        "optimization_id": null,
+        "priority_source": "system",
+        "last_raised_at": "2026-09-20T16:28:39.964846+00:00",
+        "done_at": null,
+        "previous_task_id": null
       },
       {
-        "id": "ceda3aaa-3be2-4e08-bb28-1f63c1bea44d",
-        "action_date": "2026-08-10",
+        "id": "3f1e149b-1e90-4280-87b2-2f35ac71130b",
+        "action_date": "2026-09-20",
         "batch_number": 1,
-        "rank": 5,
+        "rank": 2,
         "source_key": "opportunity:ai agent marketplace tools",
         "task_type": "Create",
-        "title": "Create an 'AI Agent Marketplace & Tools' catalog/landing page",
-        "why": "Matched pages are the homepage (general positioning) and scattered tutorials/news, but nothing catalogs AIsa's marketplace of tools/skills the way Composio's tool-marketplace pages do — https://aisa.one/models only catalogs LLMs, confirmed by WebFetch, not APIs/tools/skills.",
-        "next_action": "Create a new page (e.g. aisa.one/tools or aisa.one/marketplace) that catalogs the 40+ API integrations and Skills (financial data, social, search, etc.) referenced on the homepage, filterable by category, with short one-line value props per tool — mirroring the structure of https://aisa.one/models but for tools/APIs instead of LLMs. Link to it from https://aisa.one/ and https://aisa.one/blog/add-multi-source-search-to-dify.",
-        "description": "## Why this matters\n\nMatched pages are the homepage (general positioning) and scattered tutorials/news, but nothing catalogs AIsa's marketplace of tools/skills the way Composio's tool-marketplace pages do — https://aisa.one/models only catalogs LLMs, confirmed by WebFetch, not APIs/tools/skills.\n\n## Reasoning\n\nWebFetch confirmed https://aisa.one/models is model-only (100+ LLMs), not a tools/APIs marketplace catalog, and the homepage only summarizes the marketplace in prose rather than presenting a browsable list. Competitor Composio wins this query because it has a dedicated tools/marketplace page; AIsa needs the same artifact to be citable for 'marketplace tools' queries.\n\n## Recommended next action\n\nCreate a new page (e.g. aisa.one/tools or aisa.one/marketplace) that catalogs the 40+ API integrations and Skills (financial data, social, search, etc.) referenced on the homepage, filterable by category, with short one-line value props per tool — mirroring the structure of https://aisa.one/models but for tools/APIs instead of LLMs. Link to it from https://aisa.one/ and https://aisa.one/blog/add-multi-source-search-to-dify.",
-        "execution_prompt": "You are executing a Lightsage task for this organization.\nUse the context below to make the smallest concrete change that addresses the task.\nIf you cannot make the change directly, return the exact missing input and the next best implementation plan.\n\nTask:\n- ID: ceda3aaa-3be2-4e08-bb28-1f63c1bea44d\n- Title: Create an 'AI Agent Marketplace & Tools' catalog/landing page\n- Type: Create\n- Source type: opportunity\n- Priority: high\n- Effort: Medium\n\nGoal:\nCreate a new page (e.g. aisa.one/tools or aisa.one/marketplace) that catalogs the 40+ API integrations and Skills (financial data, social, search, etc.) referenced on the homepage, filterable by category, with short one-line value props per tool — mirroring the structure of https://aisa.one/models but for tools/APIs instead of LLMs. Link to it from https://aisa.one/ and https://aisa.one/blog/add-multi-source-search-to-dify.\n\nWhy this matters:\nMatched pages are the homepage (general positioning) and scattered tutorials/news, but nothing catalogs AIsa's marketplace of tools/skills the way Composio's tool-marketplace pages do — https://aisa.one/models only catalogs LLMs, confirmed by WebFetch, not APIs/tools/skills.\n\nTask description:\n## Why this matters\n\nMatched pages are the homepage (general positioning) and scattered tutorials/news, but nothing catalogs AIsa's marketplace of tools/skills the way Composio's tool-marketplace pages do — https://aisa.one/models only catalogs LLMs, confirmed by WebFetch, not APIs/tools/skills.\n\n## Reasoning\n\nWebFetch confirmed https://aisa.one/models is model-only (100+ LLMs), not a tools/APIs marketplace catalog, and the homepage only summarizes the marketplace in prose rather than presenting a browsable list. Competitor Composio wins this query because it has a dedicated tools/marketplace page; AIsa needs the same artifact to be citable for 'marketplace tools' queries.\n\n## Recommended next action\n\nCreate a new page (e.g. aisa.one/tools or aisa.one/marketplace) that catalogs the 40+ API integrations and Skills (financial data, social, search, etc.) referenced on the homepage, filterable by category, with short one-line value props per tool — mirroring the structure of https://aisa.one/models but for tools/APIs instead of LLMs. Link to it from https://aisa.one/ and https://aisa.one/blog/add-multi-source-search-to-dify.\n\nReasoning:\nWebFetch confirmed https://aisa.one/models is model-only (100+ LLMs), not a tools/APIs marketplace catalog, and the homepage only summarizes the marketplace in prose rather than presenting a browsable list. Competitor Composio wins this query because it has a dedicated tools/marketplace page; AIsa needs the same artifact to be citable for 'marketplace tools' queries.\n\nEvidence:\n{\n  \"expected_lift\": \"High: creates the missing browsable artifact competitors have for this exact query type.\",\n  \"projected_lift\": {\n    \"after\": 42.0,\n    \"after_label\": \"Projected\",\n    \"before\": 8.0,\n    \"before_label\": \"Today\",\n    \"metric_label\": \"Answer visibility\",\n    \"prompt_examples\": [\n      \"AI Agent Marketplace Tools\"\n    ],\n    \"rationale\": \"The homepage mentions the marketplace but has no dedicated, browsable tools catalog; publishing one gives AI engines a concrete page to cite instead of defaulting to Composio's marketplace page.\",\n    \"unit\": \"percent\"\n  },\n  \"source_prompts\": [\n    {\n      \"competitor\": \"Composio\",\n      \"platform\": null,\n      \"prompt_text\": \"AI Agent Marketplace Tools\"\n    }\n  ],\n  \"source_urls\": [\n    {\n      \"url\": \"https://aisa.one/\",\n      \"why_valuable\": \"States the marketplace claim ('1,000+ integrated capabilities... 40+ operational API integrations') but only in prose, not a browsable catalog\"\n    },\n    {\n      \"url\": \"https://aisa.one/blog/add-multi-source-search-to-dify\",\n      \"why_valuable\": \"Demonstrates a real multi-source tool integration (search, extract, X, YouTube, Scholar) that the new catalog page can showcase\"\n    },\n    {\n      \"url\": \"https://aisa.one/api/exa-agent-runs\",\n      \"why_valuable\": \"Concrete API endpoint to feature in the catalog\"\n    }\n  ]\n}\n\nSource references:\n{\n  \"group_key\": \"ai agent marketplace tools\",\n  \"kind\": \"opportunity\",\n  \"rows\": [\n    {\n      \"action\": \"Create content for \\\"AI Agent Marketplace Tools\\\" to capture this unaddressed market.\",\n      \"category\": \"growth\",\n      \"competitor_visibility\": 0.5555555555555556,\n      \"created_at\": \"2026-08-10T17:51:59.064826+00:00\",\n      \"description\": \"You have 0% visibility while competitors win 56% of queries in this topic.\",\n      \"id\": \"6b9cb5ffefb03cba\",\n      \"impact_score\": 91.55555555555556,\n      \"priority\": \"high\",\n      \"prompt_count\": 18,\n      \"title\": \"Content gap: AI Agent Marketplace Tools\",\n      \"top_competitor_brand_id\": \"776e4c28-ab93-4eca-87ac-ad9b57aad734\",\n      \"top_competitor_brand_name\": \"Composio\",\n      \"topic_id\": \"3894007e-bf0e-42d2-9921-8718fde2fc83\",\n      \"topic_name\": \"AI Agent Marketplace Tools\",\n      \"type\": \"content_gaps\",\n      \"your_visibility\": 0.0\n    }\n  ]\n}\n\nAdditional metadata:\n{\n  \"content_exists\": false,\n  \"disposition\": \"create\",\n  \"evidence_summary\": \"impact 92\",\n  \"external_target\": null,\n  \"gap_first\": true,\n  \"impact_score\": 91.55555555555556,\n  \"is_outreach\": false,\n  \"nav_item_id\": \"content_gaps\",\n  \"site_aware\": true,\n  \"source_end_date\": \"2026-08-10\",\n  \"source_key\": \"opportunity:ai agent marketplace tools\",\n  \"source_start_date\": \"2026-08-03\",\n  \"target_url\": null,\n  \"target_urls\": []\n}\n\nPlease produce:\n1. A diagnosis of what should change and what evidence supports it.\n2. The exact content, documentation, routing, or product changes to make.\n3. A short verification plan for confirming the task is complete.\n4. A concise summary of what changed and any follow-up still required.",
-        "reasoning": "WebFetch confirmed https://aisa.one/models is model-only (100+ LLMs), not a tools/APIs marketplace catalog, and the homepage only summarizes the marketplace in prose rather than presenting a browsable list. Competitor Composio wins this query because it has a dedicated tools/marketplace page; AIsa needs the same artifact to be citable for 'marketplace tools' queries.",
+        "title": "Best AI Agent API & Tool Marketplaces in 2026: AIsa vs Composio vs Nango vs Zapier",
+        "why": "None of AIsa's existing pages directly answer 'what are the best AI agent marketplace tools' — the closest match is https://aisa.one/blog/api-key-redefines-ai-agent-connections at only 2.25 — so AI assistants have nothing AIsa-owned to cite and default to Composio.",
+        "next_action": "Publish a new comparison post at aisa.one/blog covering AIsa, Composio, Nango, and Zapier across connector count, pricing, auth model, and agent-native features (Agent Skills, unified billing), following the table + verdict format used in https://aisa.one/blog/best-llm-gateways-2026-compared, and internally link https://aisa.one/blog/api-key-redefines-ai-agent-connections and https://aisa.one/blog/mcp-vs-api-difference-which-do-you-need.",
+        "description": "## Why this matters\n\nNone of AIsa's existing pages directly answer 'what are the best AI agent marketplace tools' — the closest match is https://aisa.one/blog/api-key-redefines-ai-agent-connections at only 2.25 — so AI assistants have nothing AIsa-owned to cite and default to Composio.\n\n## Reasoning\n\nThis query cluster (marketplace tools, API discovery platforms, and 'what tool should I use to give my agent real-world data access' variants) all score low match (≤2.25-3.75) against every existing AIsa page and none of the top matches name Composio at all, per direct inspection of https://aisa.one/blog/api-key-redefines-ai-agent-connections and https://aisa.one/blog/best-llm-gateways-2026-compared. That page's comparison set (Braintrust, Inworld, LinkedIn API) is not even the right competitor category for a marketplace/discovery query. A dedicated, correctly-scoped best-of page is the only way to close this gap rather than stretching an unrelated page's framing.\n\n## Recommended next action\n\nPublish a new comparison post at aisa.one/blog covering AIsa, Composio, Nango, and Zapier across connector count, pricing, auth model, and agent-native features (Agent Skills, unified billing), following the table + verdict format used in https://aisa.one/blog/best-llm-gateways-2026-compared, and internally link https://aisa.one/blog/api-key-redefines-ai-agent-connections and https://aisa.one/blog/mcp-vs-api-difference-which-do-you-need.",
+        "execution_prompt": "You are executing a Lightsage task for this organization.\nUse the context below to make the smallest concrete change that addresses the task.\nIf you cannot make the change directly, return the exact missing input and the next best implementation plan.\n\nTask:\n- ID: 3f1e149b-1e90-4280-87b2-2f35ac71130b\n- Title: Best AI Agent API & Tool Marketplaces in 2026: AIsa vs Composio vs Nango vs Zapier\n- Type: Create\n- Source type: opportunity\n- Priority: high\n- Effort: High\n\nGoal:\nPublish a new comparison post at aisa.one/blog covering AIsa, Composio, Nango, and Zapier across connector count, pricing, auth model, and agent-native features (Agent Skills, unified billing), following the table + verdict format used in https://aisa.one/blog/best-llm-gateways-2026-compared, and internally link https://aisa.one/blog/api-key-redefines-ai-agent-connections and https://aisa.one/blog/mcp-vs-api-difference-which-do-you-need.\n\nWhy this matters:\nNone of AIsa's existing pages directly answer 'what are the best AI agent marketplace tools' — the closest match is https://aisa.one/blog/api-key-redefines-ai-agent-connections at only 2.25 — so AI assistants have nothing AIsa-owned to cite and default to Composio.\n\nTask description:\n## Why this matters\n\nNone of AIsa's existing pages directly answer 'what are the best AI agent marketplace tools' — the closest match is https://aisa.one/blog/api-key-redefines-ai-agent-connections at only 2.25 — so AI assistants have nothing AIsa-owned to cite and default to Composio.\n\n## Reasoning\n\nThis query cluster (marketplace tools, API discovery platforms, and 'what tool should I use to give my agent real-world data access' variants) all score low match (≤2.25-3.75) against every existing AIsa page and none of the top matches name Composio at all, per direct inspection of https://aisa.one/blog/api-key-redefines-ai-agent-connections and https://aisa.one/blog/best-llm-gateways-2026-compared. That page's comparison set (Braintrust, Inworld, LinkedIn API) is not even the right competitor category for a marketplace/discovery query. A dedicated, correctly-scoped best-of page is the only way to close this gap rather than stretching an unrelated page's framing.\n\n## Recommended next action\n\nPublish a new comparison post at aisa.one/blog covering AIsa, Composio, Nango, and Zapier across connector count, pricing, auth model, and agent-native features (Agent Skills, unified billing), following the table + verdict format used in https://aisa.one/blog/best-llm-gateways-2026-compared, and internally link https://aisa.one/blog/api-key-redefines-ai-agent-connections and https://aisa.one/blog/mcp-vs-api-difference-which-do-you-need.\n\nReasoning:\nThis query cluster (marketplace tools, API discovery platforms, and 'what tool should I use to give my agent real-world data access' variants) all score low match (≤2.25-3.75) against every existing AIsa page and none of the top matches name Composio at all, per direct inspection of https://aisa.one/blog/api-key-redefines-ai-agent-connections and https://aisa.one/blog/best-llm-gateways-2026-compared. That page's comparison set (Braintrust, Inworld, LinkedIn API) is not even the right competitor category for a marketplace/discovery query. A dedicated, correctly-scoped best-of page is the only way to close this gap rather than stretching an unrelated page's framing.\n\nEvidence:\n{\n  \"expected_lift\": \"A correctly-scoped, named-competitor best-of page should let AIsa surface in this entire query cluster instead of ceding it to Composio, since currently no AIsa page is even topically matched above a 3.75 score.\",\n  \"projected_lift\": {\n    \"after\": 42.0,\n    \"after_label\": \"Projected\",\n    \"before\": 6.0,\n    \"before_label\": \"Today\",\n    \"metric_label\": \"Answer visibility\",\n    \"prompt_examples\": [\n      \"AI Agent Marketplace Tools\",\n      \"I'm building an AI agent that needs to access real-world data and APIs \\u2014 what marketplace or tool should I use to give it those capabilities?\",\n      \"I'm building an AI agent that needs to access multiple external APIs and real-world data sources through a single integration point \\u2014 what tools or platforms should I use?\"\n    ],\n    \"rationale\": \"Four related high-impact (90-100) queries currently have no adequately-matched AIsa page; a single authoritative, correctly-categorized comparison should meaningfully lift citation odds across all four at once.\",\n    \"unit\": \"percent\"\n  },\n  \"source_prompts\": [\n    {\n      \"competitor\": \"Composio\",\n      \"platform\": null,\n      \"prompt_text\": \"AI Agent Marketplace Tools\"\n    }\n  ],\n  \"source_urls\": [\n    {\n      \"url\": \"https://aisa.one/blog/api-key-redefines-ai-agent-connections\",\n      \"why_valuable\": \"Best existing match (2.25) but not scoped to a marketplace/discovery comparison \\u2014 good internal-link target\"\n    },\n    {\n      \"url\": \"https://aisa.one/blog/mcp-vs-api-difference-which-do-you-need\",\n      \"why_valuable\": \"Adjacent integration-pattern content (1.75 match) useful as a cross-link for readers choosing between MCP and direct API marketplaces\"\n    },\n    {\n      \"url\": \"https://aisa.one/blog/insights\",\n      \"why_valuable\": \"Category index page (1.75 match) where the new comparison should be surfaced/linked for discovery\"\n    }\n  ]\n}\n\nSource references:\n{\n  \"group_key\": \"ai agent marketplace tools\",\n  \"kind\": \"opportunity\",\n  \"rows\": [\n    {\n      \"action\": \"Create content for \\\"AI Agent Marketplace Tools\\\" to capture this unaddressed market.\",\n      \"category\": \"growth\",\n      \"competitor_visibility\": 0.6727272727272727,\n      \"created_at\": \"2026-09-20T16:26:02.066705+00:00\",\n      \"description\": \"You have 0% visibility while competitors win 67% of queries in this topic.\",\n      \"id\": \"6b9cb5ffefb03cba\",\n      \"impact_score\": 100,\n      \"priority\": \"high\",\n      \"prompt_count\": 55,\n      \"title\": \"Content gap: AI Agent Marketplace Tools\",\n      \"top_competitor_brand_id\": \"776e4c28-ab93-4eca-87ac-ad9b57aad734\",\n      \"top_competitor_brand_name\": \"Composio\",\n      \"topic_id\": \"3894007e-bf0e-42d2-9921-8718fde2fc83\",\n      \"topic_name\": \"AI Agent Marketplace Tools\",\n      \"type\": \"content_gaps\",\n      \"your_visibility\": 0.0\n    }\n  ]\n}\n\nAdditional metadata:\n{\n  \"content_brief\": {\n    \"primary_keyword\": \"best AI agent marketplace tools\",\n    \"secondary_keywords\": [\n      \"AI agent tool discovery platform\",\n      \"Composio alternative\",\n      \"API marketplace for AI agents\",\n      \"AI agent integration platform 2026\"\n    ],\n    \"summary\": \"A new best-of comparison ranking AI agent marketplace/tool-discovery platforms (AIsa, Composio, Nango, Zapier) with a feature, pricing, and connector-count table so AI engines have one authoritative, structured page to cite for 'AI agent marketplace tools' queries.\",\n    \"target_audience\": \"Developers building autonomous agents who need to discover and connect third-party APIs and tools\"\n  },\n  \"content_exists\": false,\n  \"disposition\": \"create\",\n  \"evidence_summary\": \"impact 100\",\n  \"external_target\": null,\n  \"gap_first\": true,\n  \"impact_score\": 100.0,\n  \"is_outreach\": false,\n  \"nav_item_id\": \"content_gaps\",\n  \"site_aware\": true,\n  \"source_end_date\": \"2026-09-20\",\n  \"source_key\": \"opportunity:ai agent marketplace tools\",\n  \"source_start_date\": \"2026-09-13\",\n  \"style_reference\": {\n    \"content_hash\": \"7b32fcad264049111fa0966e83bc1cb8f24cd5875daea1cdb6334108f37f9cc9\",\n    \"content_page_id\": \"3dfb1891-3935-4cd2-ae38-0f718f4b971a\",\n    \"content_snapshot_id\": \"221c7379-3526-4daf-bdc9-bffda36d264d\",\n    \"selected_by\": \"foundry\",\n    \"selection_reason\": \"Its comprehensive listicle format, direct developer tone, category framing, and concise comparative presentation are the closest fit for a 2026 AI-agent marketplace tools guide.\",\n    \"title\": \"Best Email Verification Apis For Ai Developers\",\n    \"url\": \"https://aisa.one/articles/best-email-verification-apis-for-ai-developers\"\n  },\n  \"target_url\": null,\n  \"target_urls\": []\n}\n\nPlease produce:\n1. A diagnosis of what should change and what evidence supports it.\n2. The exact content, documentation, routing, or product changes to make.\n3. A short verification plan for confirming the task is complete.\n4. A concise summary of what changed and any follow-up still required.",
+        "content": null,
+        "target_url": null,
+        "content_status": "none",
+        "content_written_at": null,
+        "reasoning": "This query cluster (marketplace tools, API discovery platforms, and 'what tool should I use to give my agent real-world data access' variants) all score low match (≤2.25-3.75) against every existing AIsa page and none of the top matches name Composio at all, per direct inspection of https://aisa.one/blog/api-key-redefines-ai-agent-connections and https://aisa.one/blog/best-llm-gateways-2026-compared. That page's comparison set (Braintrust, Inworld, LinkedIn API) is not even the right competitor category for a marketplace/discovery query. A dedicated, correctly-scoped best-of page is the only way to close this gap rather than stretching an unrelated page's framing.",
         "evidence": {
           "source_urls": [
             {
-              "url": "https://aisa.one/",
-              "why_valuable": "States the marketplace claim ('1,000+ integrated capabilities... 40+ operational API integrations') but only in prose, not a browsable catalog"
+              "url": "https://aisa.one/blog/api-key-redefines-ai-agent-connections",
+              "why_valuable": "Best existing match (2.25) but not scoped to a marketplace/discovery comparison — good internal-link target"
             },
             {
-              "url": "https://aisa.one/blog/add-multi-source-search-to-dify",
-              "why_valuable": "Demonstrates a real multi-source tool integration (search, extract, X, YouTube, Scholar) that the new catalog page can showcase"
+              "url": "https://aisa.one/blog/mcp-vs-api-difference-which-do-you-need",
+              "why_valuable": "Adjacent integration-pattern content (1.75 match) useful as a cross-link for readers choosing between MCP and direct API marketplaces"
             },
             {
-              "url": "https://aisa.one/api/exa-agent-runs",
-              "why_valuable": "Concrete API endpoint to feature in the catalog"
+              "url": "https://aisa.one/blog/insights",
+              "why_valuable": "Category index page (1.75 match) where the new comparison should be surfaced/linked for discovery"
             }
           ],
-          "expected_lift": "High: creates the missing browsable artifact competitors have for this exact query type.",
+          "expected_lift": "A correctly-scoped, named-competitor best-of page should let AIsa surface in this entire query cluster instead of ceding it to Composio, since currently no AIsa page is even topically matched above a 3.75 score.",
           "projected_lift": {
             "unit": "percent",
             "after": 42,
-            "before": 8,
-            "rationale": "The homepage mentions the marketplace but has no dedicated, browsable tools catalog; publishing one gives AI engines a concrete page to cite instead of defaulting to Composio's marketplace page.",
+            "before": 6,
+            "rationale": "Four related high-impact (90-100) queries currently have no adequately-matched AIsa page; a single authoritative, correctly-categorized comparison should meaningfully lift citation odds across all four at once.",
             "after_label": "Projected",
             "before_label": "Today",
             "metric_label": "Answer visibility",
             "prompt_examples": [
-              "AI Agent Marketplace Tools"
+              "AI Agent Marketplace Tools",
+              "I'm building an AI agent that needs to access real-world data and APIs — what marketplace or tool should I use to give it those capabilities?",
+              "I'm building an AI agent that needs to access multiple external APIs and real-world data sources through a single integration point — what tools or platforms should I use?"
             ]
           },
           "source_prompts": [
@@ -436,8 +240,8 @@
             }
           ]
         },
-        "score": 91.556,
-        "effort": "Medium",
+        "score": 100,
+        "effort": "High",
         "priority": "high",
         "status": "new",
         "assignee_user_id": null,
@@ -456,13 +260,13 @@
               "category": "growth",
               "priority": "high",
               "topic_id": "3894007e-bf0e-42d2-9921-8718fde2fc83",
-              "created_at": "2026-08-10T17:51:59.064826+00:00",
+              "created_at": "2026-09-20T16:26:02.066705+00:00",
               "topic_name": "AI Agent Marketplace Tools",
-              "description": "You have 0% visibility while competitors win 56% of queries in this topic.",
-              "impact_score": 91.55555555555556,
-              "prompt_count": 18,
+              "description": "You have 0% visibility while competitors win 67% of queries in this topic.",
+              "impact_score": 100,
+              "prompt_count": 55,
               "your_visibility": 0,
-              "competitor_visibility": 0.5555555555555556,
+              "competitor_visibility": 0.6727272727272727,
               "top_competitor_brand_id": "776e4c28-ab93-4eca-87ac-ad9b57aad734",
               "top_competitor_brand_name": "Composio"
             }
@@ -478,228 +282,84 @@
           "is_outreach": false,
           "nav_item_id": "content_gaps",
           "target_urls": [],
-          "impact_score": 91.55555555555556,
+          "impact_score": 100,
+          "content_brief": {
+            "summary": "A new best-of comparison ranking AI agent marketplace/tool-discovery platforms (AIsa, Composio, Nango, Zapier) with a feature, pricing, and connector-count table so AI engines have one authoritative, structured page to cite for 'AI agent marketplace tools' queries.",
+            "primary_keyword": "best AI agent marketplace tools",
+            "target_audience": "Developers building autonomous agents who need to discover and connect third-party APIs and tools",
+            "secondary_keywords": [
+              "AI agent tool discovery platform",
+              "Composio alternative",
+              "API marketplace for AI agents",
+              "AI agent integration platform 2026"
+            ]
+          },
           "content_exists": false,
           "external_target": null,
-          "source_end_date": "2026-08-10",
-          "evidence_summary": "impact 92",
-          "source_start_date": "2026-08-03"
+          "source_end_date": "2026-09-20",
+          "style_reference": {
+            "url": "https://aisa.one/articles/best-email-verification-apis-for-ai-developers",
+            "title": "Best Email Verification Apis For Ai Developers",
+            "selected_by": "foundry",
+            "content_hash": "7b32fcad264049111fa0966e83bc1cb8f24cd5875daea1cdb6334108f37f9cc9",
+            "content_page_id": "3dfb1891-3935-4cd2-ae38-0f718f4b971a",
+            "selection_reason": "Its comprehensive listicle format, direct developer tone, category framing, and concise comparative presentation are the closest fit for a 2026 AI-agent marketplace tools guide.",
+            "content_snapshot_id": "221c7379-3526-4daf-bdc9-bffda36d264d"
+          },
+          "evidence_summary": "impact 100",
+          "source_start_date": "2026-09-13"
         },
-        "created_at": "2026-08-10T17:52:06.433121+00:00",
-        "updated_at": "2026-08-10T17:52:06.433121+00:00"
+        "created_at": "2026-09-20T16:28:39.964846+00:00",
+        "updated_at": "2026-09-20T16:28:39.964846+00:00",
+        "review_status": "accepted",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "content_format": "best_products",
+        "creation_mode": "generated",
+        "brand_id": null,
+        "optimization_id": null,
+        "priority_source": "system",
+        "last_raised_at": "2026-09-20T16:28:39.964846+00:00",
+        "done_at": null,
+        "previous_task_id": null
       },
       {
-        "id": "819a2ee4-1a8d-47d9-9862-39896da390aa",
-        "action_date": "2026-08-10",
+        "id": "538d09b8-32a2-4c0f-ab04-b061e48adac5",
+        "action_date": "2026-09-20",
         "batch_number": 1,
-        "rank": 6,
-        "source_key": "opportunity:my team is evaluating resource marketplaces or gateways that let ai agents call various apis with one key. what do you recommend?",
-        "task_type": "Refresh",
-        "title": "Push the homepage as the canonical answer for 'one-key AI agent gateway' queries",
-        "why": "The homepage already states the exact claim these prompts are looking for — one API key for models, data, tools, and payments — but Composio is winning the citation anyway, which points to a distribution/structure gap, not a content gap.",
-        "next_action": "On https://aisa.one/, add a short FAQ-style block near the top ('What is AIsa?' / 'One API key for agent resources') with a crisp, quotable 2-3 sentence definition AI engines can lift verbatim, and add schema.org Organization/FAQPage markup. Cross-link https://aisa.one/news/aisa-raises-6-5m-ai-agent-resource-network from the homepage hero as third-party validation (funding, 50,000+ agents onboarded).",
-        "description": "## Why this matters\n\nThe homepage already states the exact claim these prompts are looking for — one API key for models, data, tools, and payments — but Composio is winning the citation anyway, which points to a distribution/structure gap, not a content gap.\n\n## Reasoning\n\nWebFetch confirmed the homepage already carries the core claim ('Connect agents to AI models, APIs, real-time data, SaaS tools and paid services through one API key') and lists 1,000+ integrated capabilities — this is adequate content, just not structured for easy AI extraction/citation. Adding an explicit, quotable definition plus schema markup and a credibility link to the funding news is a low-cost way to convert an already-correct page into one AI answer engines pick over Composio.\n\n## Recommended next action\n\nOn https://aisa.one/, add a short FAQ-style block near the top ('What is AIsa?' / 'One API key for agent resources') with a crisp, quotable 2-3 sentence definition AI engines can lift verbatim, and add schema.org Organization/FAQPage markup. Cross-link https://aisa.one/news/aisa-raises-6-5m-ai-agent-resource-network from the homepage hero as third-party validation (funding, 50,000+ agents onboarded).",
-        "execution_prompt": "You are executing a Lightsage task for this organization.\nUse the context below to make the smallest concrete change that addresses the task.\nIf you cannot make the change directly, return the exact missing input and the next best implementation plan.\n\nTask:\n- ID: 819a2ee4-1a8d-47d9-9862-39896da390aa\n- Title: Push the homepage as the canonical answer for 'one-key AI agent gateway' queries\n- Type: Refresh\n- Source type: opportunity\n- Priority: urgent\n- Effort: Medium\n\nGoal:\nOn https://aisa.one/, add a short FAQ-style block near the top ('What is AIsa?' / 'One API key for agent resources') with a crisp, quotable 2-3 sentence definition AI engines can lift verbatim, and add schema.org Organization/FAQPage markup. Cross-link https://aisa.one/news/aisa-raises-6-5m-ai-agent-resource-network from the homepage hero as third-party validation (funding, 50,000+ agents onboarded).\n\nWhy this matters:\nThe homepage already states the exact claim these prompts are looking for — one API key for models, data, tools, and payments — but Composio is winning the citation anyway, which points to a distribution/structure gap, not a content gap.\n\nTask description:\n## Why this matters\n\nThe homepage already states the exact claim these prompts are looking for — one API key for models, data, tools, and payments — but Composio is winning the citation anyway, which points to a distribution/structure gap, not a content gap.\n\n## Reasoning\n\nWebFetch confirmed the homepage already carries the core claim ('Connect agents to AI models, APIs, real-time data, SaaS tools and paid services through one API key') and lists 1,000+ integrated capabilities — this is adequate content, just not structured for easy AI extraction/citation. Adding an explicit, quotable definition plus schema markup and a credibility link to the funding news is a low-cost way to convert an already-correct page into one AI answer engines pick over Composio.\n\n## Recommended next action\n\nOn https://aisa.one/, add a short FAQ-style block near the top ('What is AIsa?' / 'One API key for agent resources') with a crisp, quotable 2-3 sentence definition AI engines can lift verbatim, and add schema.org Organization/FAQPage markup. Cross-link https://aisa.one/news/aisa-raises-6-5m-ai-agent-resource-network from the homepage hero as third-party validation (funding, 50,000+ agents onboarded).\n\nReasoning:\nWebFetch confirmed the homepage already carries the core claim ('Connect agents to AI models, APIs, real-time data, SaaS tools and paid services through one API key') and lists 1,000+ integrated capabilities — this is adequate content, just not structured for easy AI extraction/citation. Adding an explicit, quotable definition plus schema markup and a credibility link to the funding news is a low-cost way to convert an already-correct page into one AI answer engines pick over Composio.\n\nEvidence:\n{\n  \"expected_lift\": \"Moderate-to-high: closes a pure distribution gap on a query where the company already has the right claim but isn't being surfaced.\",\n  \"projected_lift\": {\n    \"after\": 40.0,\n    \"after_label\": \"Projected\",\n    \"before\": 10.0,\n    \"before_label\": \"Today\",\n    \"metric_label\": \"Recommendation share\",\n    \"prompt_examples\": [\n      \"My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?\"\n    ],\n    \"rationale\": \"The homepage already contains the correct claim; making it explicit, quotable, and schema-tagged should meaningfully raise extraction/citation odds without needing new content.\",\n    \"unit\": \"percent\"\n  },\n  \"source_prompts\": [\n    {\n      \"competitor\": \"Composio\",\n      \"platform\": \"ChatGPT\",\n      \"prompt_text\": \"My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?\"\n    }\n  ],\n  \"source_urls\": [\n    {\n      \"url\": \"https://aisa.one/\",\n      \"why_valuable\": \"Homepage already states the one-API-key, multi-resource claim that matches the query intent verbatim\"\n    },\n    {\n      \"url\": \"https://aisa.one/news/aisa-raises-6-5m-ai-agent-resource-network\",\n      \"why_valuable\": \"Funding news gives third-party-style credibility signal (Alibaba, Tribe Capital co-lead) and growth metrics AI engines like to cite\"\n    }\n  ]\n}\n\nSource references:\n{\n  \"group_key\": \"my team is evaluating resource marketplaces or gateways that let ai agents call various apis with one key. what do you recommend?\",\n  \"kind\": \"opportunity\",\n  \"rows\": [\n    {\n      \"action\": \"Create or optimize content to compete for this query.\",\n      \"category\": \"growth\",\n      \"citation_urls\": [\n        \"https://composio.dev?utm_source=chatgpt.com\",\n        \"https://rapidapi.com?utm_source=chatgpt.com\",\n        \"https://apilayer.com?utm_source=chatgpt.com\",\n        \"https://openrouter.ai?utm_source=chatgpt.com\",\n        \"https://portkey.ai?utm_source=chatgpt.com\",\n        \"https://www.litellm.ai?utm_source=chatgpt.com\",\n        \"https://bzrcdn.openai.com/04dae842843080d9.jpg\",\n        \"https://docs.composio.dev/reference?utm_source=chatgpt.com\",\n        \"https://docs.composio.dev/api-reference/api-reference/v1/connections/get-connection?utm_source=chatgpt.com\",\n        \"https://openrouter.ai/?utm_source=chatgpt.com\",\n        \"https://openrouter.ai/blog/tutorials/any-coding-agent/?utm_source=chatgpt.com\",\n        \"https://developers.cloudflare.com/ai-gateway/usage/providers/openrouter/?utm_source=chatgpt.com\",\n        \"https://composio.dev/toolkits/openrouter?utm_source=chatgpt.com\",\n        \"https://docs.composio.dev/reference/v3?utm_source=chatgpt.com\",\n        \"https://docs.composio.dev/toolkits/openrouter?utm_source=chatgpt.com\",\n        \"https://nango.dev/blog/best-unified-api-platform-for-ai-agents-and-rag/\",\n        \"https://nango.dev/blog/best-ai-agent-integration-platforms/\",\n        \"https://www.gravitee.io/blog/ai-agent-management-platform-architects-guide\",\n        \"https://zuplo.com/learning-center/best-ai-gateway-buyers-guide\",\n        \"https://aws.amazon.com/blogs/machine-learning/streamline-ai-agent-tool-interactions-connect-api-gateway-to-agentcore-gateway-with-mcp/\",\n        \"https://github.com/higress-group/higress\",\n        \"https://dev.to/aws-heroes/amazon-bedrock-agentcore-gateway-part-1-introduction-1pjl\",\n        \"https://medium.com/elevate-tech/building-connected-ai-agents-with-amazon-bedrock-agentcore-gateway-5e8f1fbdaafb\",\n        \"https://www.youtube.com/watch?v=igsklrIO3fo&t=255\",\n        \"https://composio.dev/content/apis-ai-agents-integration-patterns\",\n        \"https://www.merge.dev/blog/ai-agent-integration-platforms\",\n        \"https://www.arcade.dev/blog/best-ai-agent-authentication-platforms/\",\n        \"https://composio.dev/content/best-unified-api-platforms\",\n        \"https://obot.ai/blog/the-13-best-mcp-gateways-for-enterprise-teams/\",\n        \"https://fast.io/resources/best-api-gateways-ai-agents/\",\n        \"https://apyhub.com/blog/beyond-rapidapi-7-api-marketplaces-for-ai-agents-2026\",\n        \"https://dev.to/hadil/top-api-gateways-for-ai-applications-and-agentic-workflows-2026-developer-guide-1e82\",\n        \"https://www.youtube.com/watch?v=_Hg3GHx5Mgc&t=218\",\n        \"https://www.solo.io/blog/why-do-we-need-a-new-gateway-for-ai-agents\",\n        \"https://www.youtube.com/watch?v=SomP92JWPmE&t=7\",\n        \"https://dev.to/lovestaco/mcp-gateways-vs-agent-gateways-vs-ai-gateways-whats-the-difference-and-which-do-you-need-2gn6\",\n        \"https://github.com/ComposioHQ/composio/issues/3556\",\n        \"https://composio.dev/content/the-guide-to-mcp-i-never-had?utm_source=chatgpt.com\",\n        \"https://composio.dev/mcp-gateway?utm_source=chatgpt.com\",\n        \"https://www.wsj.com/articles/openrouter-a-marketplace-for-ai-models-raises-40-million-168073de?utm_source=chatgpt.com\",\n        \"https://arxiv.org/abs/2607.15593?utm_source=chatgpt.com\",\n        \"https://arxiv.org/abs/2507.16044?utm_source=chatgpt.com\",\n        \"https://www.reddit.com/r/SideProject/comments/1sijlgf/the_hidden_problem_with_giving_ai_agents_200_api/?utm_source=chatgpt.com\"\n      ],\n      \"competitor_brand_id\": \"776e4c28-ab93-4eca-87ac-ad9b57aad734\",\n      \"competitor_brand_name\": \"Composio\",\n      \"competitor_prominence\": \"primary_recommendation\",\n      \"competitor_recommendation_strength\": 0.9400000000000001,\n      \"created_at\": \"2026-08-10T17:51:57.589017+00:00\",\n      \"description\": \"Composio is the top recommendation with 95% strength. You are not mentioned.\",\n      \"id\": \"ca4f1d4939e17968\",\n      \"impact_score\": 90.25,\n      \"model_count\": 3,\n      \"platform_id\": \"c0900b3f-a2b4-4668-8cd8-f734a80c7bb2\",\n      \"platform_name\": \"ChatGPT\",\n      \"platforms\": [\n        \"ChatGPT\",\n        \"Google AI Overviews\",\n        \"Perplexity\"\n      ],\n      \"priority\": \"high\",\n      \"prompt_id\": \"142f7ed5-e7e1-4f6b-b62e-1d285d81874e\",\n      \"prompt_text\": \"My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?\",\n      \"run_id\": \"5675efb5-0389-4266-8536-aa4b37a55e19\",\n      \"title\": \"Competitor dominates: My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?\",\n      \"topic_id\": \"990d226e-b2e6-4ddf-a86b-fda83b106d27\",\n      \"topic_name\": \"AI Agent API Gateway\",\n      \"type\": \"competitor_gaps\",\n      \"your_mentioned\": false,\n      \"your_prominence\": null\n    }\n  ]\n}\n\nAdditional metadata:\n{\n  \"content_exists\": true,\n  \"disposition\": \"promote\",\n  \"evidence_summary\": \"impact 90\",\n  \"external_target\": null,\n  \"gap_first\": true,\n  \"impact_score\": 90.25,\n  \"is_outreach\": false,\n  \"nav_item_id\": \"competitor_gaps\",\n  \"site_aware\": true,\n  \"source_end_date\": \"2026-08-10\",\n  \"source_key\": \"opportunity:my team is evaluating resource marketplaces or gateways that let ai agents call various apis with one key. what do you recommend?\",\n  \"source_start_date\": \"2026-08-03\",\n  \"target_url\": \"https://aisa.one/\",\n  \"target_urls\": [\n    \"https://aisa.one/\",\n    \"https://aisa.one/news/aisa-raises-6-5m-ai-agent-resource-network\"\n  ]\n}\n\nPlease produce:\n1. A diagnosis of what should change and what evidence supports it.\n2. The exact content, documentation, routing, or product changes to make.\n3. A short verification plan for confirming the task is complete.\n4. A concise summary of what changed and any follow-up still required.",
-        "reasoning": "WebFetch confirmed the homepage already carries the core claim ('Connect agents to AI models, APIs, real-time data, SaaS tools and paid services through one API key') and lists 1,000+ integrated capabilities — this is adequate content, just not structured for easy AI extraction/citation. Adding an explicit, quotable definition plus schema markup and a credibility link to the funding news is a low-cost way to convert an already-correct page into one AI answer engines pick over Composio.",
+        "rank": 3,
+        "source_key": "opportunity:outreach:mastra.ai",
+        "task_type": "Outreach",
+        "title": "Get AIsa added to Mastra's \"11 Best AI Agent Integration Platforms (July 2026)\" listicle",
+        "why": "This listicle is actively cited by AI assistants answering integration-platform queries and currently omits AIsa entirely, handing that visibility to the 11 competitors already listed.",
+        "next_action": "Email/DM the Mastra.ai content team with a concise AIsa entry (one-line positioning, key connectors, pricing, a link to https://aisa.one/blog/api-key-redefines-ai-agent-connections) formatted to match their existing listicle entries, and offer a quote or comparison data point they can cite.",
+        "description": "## Why this matters\n\nThis listicle is actively cited by AI assistants answering integration-platform queries and currently omits AIsa entirely, handing that visibility to the 11 competitors already listed.\n\n## Reasoning\n\nGetting included in an existing, already-ranking third-party listicle is far cheaper than trying to outrank it, and because it's cited across ChatGPT/Perplexity/Google AI Overviews for this exact category, one successful pitch yields visibility across every platform that surfaces this list.\n\n## Recommended next action\n\nEmail/DM the Mastra.ai content team with a concise AIsa entry (one-line positioning, key connectors, pricing, a link to https://aisa.one/blog/api-key-redefines-ai-agent-connections) formatted to match their existing listicle entries, and offer a quote or comparison data point they can cite.",
+        "execution_prompt": "You are executing a Lightsage task for this organization.\nUse the context below to make the smallest concrete change that addresses the task.\nIf you cannot make the change directly, return the exact missing input and the next best implementation plan.\n\nTask:\n- ID: 538d09b8-32a2-4c0f-ab04-b061e48adac5\n- Title: Get AIsa added to Mastra's \"11 Best AI Agent Integration Platforms (July 2026)\" listicle\n- Type: Outreach\n- Source type: opportunity\n- Priority: high\n- Effort: Low\n\nGoal:\nEmail/DM the Mastra.ai content team with a concise AIsa entry (one-line positioning, key connectors, pricing, a link to https://aisa.one/blog/api-key-redefines-ai-agent-connections) formatted to match their existing listicle entries, and offer a quote or comparison data point they can cite.\n\nWhy this matters:\nThis listicle is actively cited by AI assistants answering integration-platform queries and currently omits AIsa entirely, handing that visibility to the 11 competitors already listed.\n\nTask description:\n## Why this matters\n\nThis listicle is actively cited by AI assistants answering integration-platform queries and currently omits AIsa entirely, handing that visibility to the 11 competitors already listed.\n\n## Reasoning\n\nGetting included in an existing, already-ranking third-party listicle is far cheaper than trying to outrank it, and because it's cited across ChatGPT/Perplexity/Google AI Overviews for this exact category, one successful pitch yields visibility across every platform that surfaces this list.\n\n## Recommended next action\n\nEmail/DM the Mastra.ai content team with a concise AIsa entry (one-line positioning, key connectors, pricing, a link to https://aisa.one/blog/api-key-redefines-ai-agent-connections) formatted to match their existing listicle entries, and offer a quote or comparison data point they can cite.\n\nReasoning:\nGetting included in an existing, already-ranking third-party listicle is far cheaper than trying to outrank it, and because it's cited across ChatGPT/Perplexity/Google AI Overviews for this exact category, one successful pitch yields visibility across every platform that surfaces this list.\n\nEvidence:\n{\n  \"expected_lift\": \"Securing a listing in an already-cited third-party roundup should give AIsa a direct citation path for every query that surfaces this listicle.\",\n  \"projected_lift\": {\n    \"after\": 20.0,\n    \"after_label\": \"Projected\",\n    \"before\": 0.0,\n    \"before_label\": \"Today\",\n    \"metric_label\": \"Citation rate\",\n    \"rationale\": \"AIsa currently has zero presence in this specific listicle; inclusion as one of ~12 entries realistically earns a share of its citation traffic, not full visibility.\",\n    \"unit\": \"percent\"\n  },\n  \"source_urls\": [\n    {\n      \"url\": \"https://mastra.ai/blog/best-ai-agent-integration-platforms\",\n      \"why_valuable\": \"Existing listicle explicitly ranking AI agent integration platforms that AI assistants cite, but AIsa is not currently one of the 11 entries\"\n    }\n  ]\n}\n\nSource references:\n{\n  \"group_key\": \"outreach:mastra.ai\",\n  \"kind\": \"opportunity\",\n  \"rows\": [\n    {\n      \"action\": \"Reach out to get listed in this \\\"best of\\\" roundup.\",\n      \"category\": \"citations\",\n      \"citation_count\": 5,\n      \"competitors_mentioned\": [\n        \"Composio\",\n        \"Nango\"\n      ],\n      \"created_at\": \"2026-09-20T16:26:04.239237+00:00\",\n      \"description\": \"Listicle cited in 5 queries. Competitors featured: Composio, Nango.\",\n      \"domain\": \"mastra.ai\",\n      \"id\": \"df1c2b00828f80eb\",\n      \"impact_score\": 100,\n      \"listicle_type\": \"best_of\",\n      \"priority\": \"high\",\n      \"title\": \"The 11 Best AI Agent Integration Platforms (July 2026): Features, Tradeoffs, and Use Cases\",\n      \"type\": \"listicle_targets\",\n      \"url\": \"https://mastra.ai/blog/best-ai-agent-integration-platforms\"\n    }\n  ]\n}\n\nAdditional metadata:\n{\n  \"content_brief\": {\n    \"primary_keyword\": \"\",\n    \"secondary_keywords\": [],\n    \"summary\": \"Pitch the Mastra.ai editorial team to add AIsa as a 12th entry (or replace a weaker entry) in their existing integration-platforms listicle, supplying a short factual blurb, pricing, and connector-count data they can drop straight in.\",\n    \"target_audience\": \"Mastra.ai editorial/content team and readers of the listicle comparing AI agent integration platforms\"\n  },\n  \"content_exists\": false,\n  \"disposition\": \"outreach\",\n  \"evidence_summary\": \"impact 100\",\n  \"external_target\": {\n    \"domain\": \"mastra.ai\",\n    \"title\": \"The 11 Best AI Agent Integration Platforms (July 2026): Features, Tradeoffs, and Use Cases\",\n    \"url\": \"https://mastra.ai/blog/best-ai-agent-integration-platforms\"\n  },\n  \"gap_first\": true,\n  \"impact_score\": 100.0,\n  \"is_outreach\": true,\n  \"nav_item_id\": \"listicle_targets\",\n  \"site_aware\": true,\n  \"source_end_date\": \"2026-09-20\",\n  \"source_key\": \"opportunity:outreach:mastra.ai\",\n  \"source_start_date\": \"2026-09-13\",\n  \"style_reference\": null,\n  \"target_url\": \"https://mastra.ai/blog/best-ai-agent-integration-platforms\",\n  \"target_urls\": [\n    \"https://mastra.ai/blog/best-ai-agent-integration-platforms\"\n  ]\n}\n\nPlease produce:\n1. A diagnosis of what should change and what evidence supports it.\n2. The exact content, documentation, routing, or product changes to make.\n3. A short verification plan for confirming the task is complete.\n4. A concise summary of what changed and any follow-up still required.",
+        "content": null,
+        "target_url": null,
+        "content_status": "none",
+        "content_written_at": null,
+        "reasoning": "Getting included in an existing, already-ranking third-party listicle is far cheaper than trying to outrank it, and because it's cited across ChatGPT/Perplexity/Google AI Overviews for this exact category, one successful pitch yields visibility across every platform that surfaces this list.",
         "evidence": {
           "source_urls": [
             {
-              "url": "https://aisa.one/",
-              "why_valuable": "Homepage already states the one-API-key, multi-resource claim that matches the query intent verbatim"
-            },
-            {
-              "url": "https://aisa.one/news/aisa-raises-6-5m-ai-agent-resource-network",
-              "why_valuable": "Funding news gives third-party-style credibility signal (Alibaba, Tribe Capital co-lead) and growth metrics AI engines like to cite"
+              "url": "https://mastra.ai/blog/best-ai-agent-integration-platforms",
+              "why_valuable": "Existing listicle explicitly ranking AI agent integration platforms that AI assistants cite, but AIsa is not currently one of the 11 entries"
             }
           ],
-          "expected_lift": "Moderate-to-high: closes a pure distribution gap on a query where the company already has the right claim but isn't being surfaced.",
+          "expected_lift": "Securing a listing in an already-cited third-party roundup should give AIsa a direct citation path for every query that surfaces this listicle.",
           "projected_lift": {
             "unit": "percent",
-            "after": 40,
-            "before": 10,
-            "rationale": "The homepage already contains the correct claim; making it explicit, quotable, and schema-tagged should meaningfully raise extraction/citation odds without needing new content.",
+            "after": 20,
+            "before": 0,
+            "rationale": "AIsa currently has zero presence in this specific listicle; inclusion as one of ~12 entries realistically earns a share of its citation traffic, not full visibility.",
             "after_label": "Projected",
             "before_label": "Today",
-            "metric_label": "Recommendation share",
-            "prompt_examples": [
-              "My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?"
-            ]
-          },
-          "source_prompts": [
-            {
-              "platform": "ChatGPT",
-              "competitor": "Composio",
-              "prompt_text": "My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?"
-            }
-          ]
+            "metric_label": "Citation rate"
+          }
         },
-        "score": 90.25,
-        "effort": "Medium",
-        "priority": "urgent",
-        "status": "new",
-        "assignee_user_id": null,
-        "function_area": null,
-        "action_type": "agent_discovery",
-        "source": null,
-        "source_type": "opportunity",
-        "source_refs": {
-          "kind": "opportunity",
-          "rows": [
-            {
-              "id": "ca4f1d4939e17968",
-              "type": "competitor_gaps",
-              "title": "Competitor dominates: My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?",
-              "action": "Create or optimize content to compete for this query.",
-              "run_id": "5675efb5-0389-4266-8536-aa4b37a55e19",
-              "category": "growth",
-              "priority": "high",
-              "topic_id": "990d226e-b2e6-4ddf-a86b-fda83b106d27",
-              "platforms": [
-                "ChatGPT",
-                "Google AI Overviews",
-                "Perplexity"
-              ],
-              "prompt_id": "142f7ed5-e7e1-4f6b-b62e-1d285d81874e",
-              "created_at": "2026-08-10T17:51:57.589017+00:00",
-              "topic_name": "AI Agent API Gateway",
-              "description": "Composio is the top recommendation with 95% strength. You are not mentioned.",
-              "model_count": 3,
-              "platform_id": "c0900b3f-a2b4-4668-8cd8-f734a80c7bb2",
-              "prompt_text": "My team is evaluating resource marketplaces or gateways that let AI agents call various APIs with one key. What do you recommend?",
-              "impact_score": 90.25,
-              "citation_urls": [
-                "https://composio.dev?utm_source=chatgpt.com",
-                "https://rapidapi.com?utm_source=chatgpt.com",
-                "https://apilayer.com?utm_source=chatgpt.com",
-                "https://openrouter.ai?utm_source=chatgpt.com",
-                "https://portkey.ai?utm_source=chatgpt.com",
-                "https://www.litellm.ai?utm_source=chatgpt.com",
-                "https://bzrcdn.openai.com/04dae842843080d9.jpg",
-                "https://docs.composio.dev/reference?utm_source=chatgpt.com",
-                "https://docs.composio.dev/api-reference/api-reference/v1/connections/get-connection?utm_source=chatgpt.com",
-                "https://openrouter.ai/?utm_source=chatgpt.com",
-                "https://openrouter.ai/blog/tutorials/any-coding-agent/?utm_source=chatgpt.com",
-                "https://developers.cloudflare.com/ai-gateway/usage/providers/openrouter/?utm_source=chatgpt.com",
-                "https://composio.dev/toolkits/openrouter?utm_source=chatgpt.com",
-                "https://docs.composio.dev/reference/v3?utm_source=chatgpt.com",
-                "https://docs.composio.dev/toolkits/openrouter?utm_source=chatgpt.com",
-                "https://nango.dev/blog/best-unified-api-platform-for-ai-agents-and-rag/",
-                "https://nango.dev/blog/best-ai-agent-integration-platforms/",
-                "https://www.gravitee.io/blog/ai-agent-management-platform-architects-guide",
-                "https://zuplo.com/learning-center/best-ai-gateway-buyers-guide",
-                "https://aws.amazon.com/blogs/machine-learning/streamline-ai-agent-tool-interactions-connect-api-gateway-to-agentcore-gateway-with-mcp/",
-                "https://github.com/higress-group/higress",
-                "https://dev.to/aws-heroes/amazon-bedrock-agentcore-gateway-part-1-introduction-1pjl",
-                "https://medium.com/elevate-tech/building-connected-ai-agents-with-amazon-bedrock-agentcore-gateway-5e8f1fbdaafb",
-                "https://www.youtube.com/watch?v=igsklrIO3fo&t=255",
-                "https://composio.dev/content/apis-ai-agents-integration-patterns",
-                "https://www.merge.dev/blog/ai-agent-integration-platforms",
-                "https://www.arcade.dev/blog/best-ai-agent-authentication-platforms/",
-                "https://composio.dev/content/best-unified-api-platforms",
-                "https://obot.ai/blog/the-13-best-mcp-gateways-for-enterprise-teams/",
-                "https://fast.io/resources/best-api-gateways-ai-agents/",
-                "https://apyhub.com/blog/beyond-rapidapi-7-api-marketplaces-for-ai-agents-2026",
-                "https://dev.to/hadil/top-api-gateways-for-ai-applications-and-agentic-workflows-2026-developer-guide-1e82",
-                "https://www.youtube.com/watch?v=_Hg3GHx5Mgc&t=218",
-                "https://www.solo.io/blog/why-do-we-need-a-new-gateway-for-ai-agents",
-                "https://www.youtube.com/watch?v=SomP92JWPmE&t=7",
-                "https://dev.to/lovestaco/mcp-gateways-vs-agent-gateways-vs-ai-gateways-whats-the-difference-and-which-do-you-need-2gn6",
-                "https://github.com/ComposioHQ/composio/issues/3556",
-                "https://composio.dev/content/the-guide-to-mcp-i-never-had?utm_source=chatgpt.com",
-                "https://composio.dev/mcp-gateway?utm_source=chatgpt.com",
-                "https://www.wsj.com/articles/openrouter-a-marketplace-for-ai-models-raises-40-million-168073de?utm_source=chatgpt.com",
-                "https://arxiv.org/abs/2607.15593?utm_source=chatgpt.com",
-                "https://arxiv.org/abs/2507.16044?utm_source=chatgpt.com",
-                "https://www.reddit.com/r/SideProject/comments/1sijlgf/the_hidden_problem_with_giving_ai_agents_200_api/?utm_source=chatgpt.com"
-              ],
-              "platform_name": "ChatGPT",
-              "your_mentioned": false,
-              "your_prominence": null,
-              "competitor_brand_id": "776e4c28-ab93-4eca-87ac-ad9b57aad734",
-              "competitor_brand_name": "Composio",
-              "competitor_prominence": "primary_recommendation",
-              "competitor_recommendation_strength": 0.9400000000000001
-            }
-          ],
-          "group_key": "my team is evaluating resource marketplaces or gateways that let ai agents call various apis with one key. what do you recommend?"
-        },
-        "metadata": {
-          "gap_first": true,
-          "site_aware": true,
-          "source_key": "opportunity:my team is evaluating resource marketplaces or gateways that let ai agents call various apis with one key. what do you recommend?",
-          "target_url": "https://aisa.one/",
-          "disposition": "promote",
-          "is_outreach": false,
-          "nav_item_id": "competitor_gaps",
-          "target_urls": [
-            "https://aisa.one/",
-            "https://aisa.one/news/aisa-raises-6-5m-ai-agent-resource-network"
-          ],
-          "impact_score": 90.25,
-          "content_exists": true,
-          "external_target": null,
-          "source_end_date": "2026-08-10",
-          "evidence_summary": "impact 90",
-          "source_start_date": "2026-08-03"
-        },
-        "created_at": "2026-08-10T17:52:06.433121+00:00",
-        "updated_at": "2026-08-10T17:52:06.433121+00:00"
-      },
-      {
-        "id": "8ef6b073-77c4-4289-999c-d031dbb9b319",
-        "action_date": "2026-08-10",
-        "batch_number": 1,
-        "rank": 7,
-        "source_key": "opportunity:what are the best platforms for discovering and integrating apis and tools into autonomous ai agents?",
-        "task_type": "Refresh",
-        "title": "Consolidate discovery/integration tutorials into one authoritative 'discovering & integrating tools' guide",
-        "why": "Multiple relevant but narrow tutorials exist (Dify multi-source search, research-to-presentation, agent-readable web) — none individually answers the broad 'best platforms for discovering and integrating APIs/tools' question, so AI engines default to Composio's single dedicated page.",
-        "next_action": "Publish a new hub-style guide that answers 'best platforms for discovering and integrating APIs and tools into autonomous agents' directly, pulling together the concrete integration patterns already proven in https://aisa.one/blog/add-multi-source-search-to-dify and https://aisa.one/blog/build-ai-agent-research-into-presentation, and link out to both from the hub plus from https://aisa.one/blog/tutorials.",
-        "description": "## Why this matters\n\nMultiple relevant but narrow tutorials exist (Dify multi-source search, research-to-presentation, agent-readable web) — none individually answers the broad 'best platforms for discovering and integrating APIs/tools' question, so AI engines default to Composio's single dedicated page.\n\n## Reasoning\n\nWebFetch confirmed https://aisa.one/blog/add-multi-source-search-to-dify is 'quite strong and comprehensive' for its narrow multi-source-search use case, but it doesn't frame itself as a general answer to 'discovering and integrating APIs/tools.' Rather than creating yet another thin page, consolidating the existing proof points into one authoritative hub gives AI engines a single strong page to cite instead of three scattered, narrower ones.\n\n## Recommended next action\n\nPublish a new hub-style guide that answers 'best platforms for discovering and integrating APIs and tools into autonomous agents' directly, pulling together the concrete integration patterns already proven in https://aisa.one/blog/add-multi-source-search-to-dify and https://aisa.one/blog/build-ai-agent-research-into-presentation, and link out to both from the hub plus from https://aisa.one/blog/tutorials.",
-        "execution_prompt": "You are executing a Lightsage task for this organization.\nUse the context below to make the smallest concrete change that addresses the task.\nIf you cannot make the change directly, return the exact missing input and the next best implementation plan.\n\nTask:\n- ID: 8ef6b073-77c4-4289-999c-d031dbb9b319\n- Title: Consolidate discovery/integration tutorials into one authoritative 'discovering & integrating tools' guide\n- Type: Refresh\n- Source type: opportunity\n- Priority: high\n- Effort: Medium\n\nGoal:\nPublish a new hub-style guide that answers 'best platforms for discovering and integrating APIs and tools into autonomous agents' directly, pulling together the concrete integration patterns already proven in https://aisa.one/blog/add-multi-source-search-to-dify and https://aisa.one/blog/build-ai-agent-research-into-presentation, and link out to both from the hub plus from https://aisa.one/blog/tutorials.\n\nWhy this matters:\nMultiple relevant but narrow tutorials exist (Dify multi-source search, research-to-presentation, agent-readable web) — none individually answers the broad 'best platforms for discovering and integrating APIs/tools' question, so AI engines default to Composio's single dedicated page.\n\nTask description:\n## Why this matters\n\nMultiple relevant but narrow tutorials exist (Dify multi-source search, research-to-presentation, agent-readable web) — none individually answers the broad 'best platforms for discovering and integrating APIs/tools' question, so AI engines default to Composio's single dedicated page.\n\n## Reasoning\n\nWebFetch confirmed https://aisa.one/blog/add-multi-source-search-to-dify is 'quite strong and comprehensive' for its narrow multi-source-search use case, but it doesn't frame itself as a general answer to 'discovering and integrating APIs/tools.' Rather than creating yet another thin page, consolidating the existing proof points into one authoritative hub gives AI engines a single strong page to cite instead of three scattered, narrower ones.\n\n## Recommended next action\n\nPublish a new hub-style guide that answers 'best platforms for discovering and integrating APIs and tools into autonomous agents' directly, pulling together the concrete integration patterns already proven in https://aisa.one/blog/add-multi-source-search-to-dify and https://aisa.one/blog/build-ai-agent-research-into-presentation, and link out to both from the hub plus from https://aisa.one/blog/tutorials.\n\nReasoning:\nWebFetch confirmed https://aisa.one/blog/add-multi-source-search-to-dify is 'quite strong and comprehensive' for its narrow multi-source-search use case, but it doesn't frame itself as a general answer to 'discovering and integrating APIs/tools.' Rather than creating yet another thin page, consolidating the existing proof points into one authoritative hub gives AI engines a single strong page to cite instead of three scattered, narrower ones.\n\nEvidence:\n{\n  \"expected_lift\": \"High: turns three fragmented, narrow-scope pages into one page matched to the exact query framing.\",\n  \"projected_lift\": {\n    \"after\": 45.0,\n    \"after_label\": \"Projected\",\n    \"before\": 12.0,\n    \"before_label\": \"Today\",\n    \"metric_label\": \"Answer visibility\",\n    \"prompt_examples\": [\n      \"What are the best platforms for discovering and integrating APIs and tools into autonomous AI agents?\"\n    ],\n    \"rationale\": \"Consolidating proven, detailed tutorials into one page framed around the exact query gives AI Overviews and ChatGPT a single strong citation target instead of splitting relevance across narrower posts.\",\n    \"unit\": \"percent\"\n  },\n  \"source_prompts\": [\n    {\n      \"competitor\": \"Composio\",\n      \"platform\": \"Google AI Overviews\",\n      \"prompt_text\": \"What are the best platforms for discovering and integrating APIs and tools into autonomous AI agents?\"\n    }\n  ],\n  \"source_urls\": [\n    {\n      \"url\": \"https://aisa.one/blog/add-multi-source-search-to-dify\",\n      \"why_valuable\": \"Confirmed strong, detailed tutorial on multi-source integration via a single AIsa integration point\"\n    },\n    {\n      \"url\": \"https://aisa.one/blog/build-ai-agent-research-into-presentation\",\n      \"why_valuable\": \"Shows a second concrete end-to-end agent workflow built on AIsa APIs\"\n    },\n    {\n      \"url\": \"https://aisa.one/blog/the-agent-readable-web\",\n      \"why_valuable\": \"Thought-leadership angle on agents discovering/consuming web resources, relevant supporting context\"\n    },\n    {\n      \"url\": \"https://aisa.one/blog/tutorials\",\n      \"why_valuable\": \"Existing tutorial index that should link to the new consolidated hub\"\n    }\n  ]\n}\n\nSource references:\n{\n  \"group_key\": \"what are the best platforms for discovering and integrating apis and tools into autonomous ai agents?\",\n  \"kind\": \"opportunity\",\n  \"rows\": [\n    {\n      \"action\": \"Create or optimize content to compete for this query.\",\n      \"category\": \"growth\",\n      \"citation_urls\": [\n        \"https://composio.dev/content/apis-ai-agents-integration-patterns\",\n        \"https://tryxlr8.ai/blogs/best-ai-agent-integration-tool-use-platforms\",\n        \"https://www.dremio.com/blog/ai-integration-platforms/\",\n        \"https://nango.dev/blog/best-open-source-api-integration-platforms-for-ai-agents/\",\n        \"https://www.activepieces.com/blog/top-6-ai-agent-platforms\",\n        \"https://pickaxe.co/post/top-ai-integrations\",\n        \"https://www.truefoundry.com/blog/best-ai-agent-platforms\",\n        \"https://www.youtube.com/watch?v=Ho5o8bByBso\",\n        \"https://www.landbase.com/blog/fastest-growing-open-source-dev-tools\",\n        \"https://composio.dev?utm_source=chatgpt.com\",\n        \"https://pipedream.com?utm_source=chatgpt.com\",\n        \"https://zapier.com?utm_source=chatgpt.com\",\n        \"https://n8n.io?utm_source=chatgpt.com\",\n        \"https://smithery.ai?utm_source=chatgpt.com\",\n        \"https://www.postman.com/explore?utm_source=chatgpt.com\",\n        \"https://rapidapi.com?utm_source=chatgpt.com\",\n        \"https://bzrcdn.openai.com/8c058808fd7723b3.jpg\",\n        \"https://docs.composio.dev/reference?utm_source=chatgpt.com\",\n        \"https://docs.composio.dev/docs/composio-connect?utm_source=chatgpt.com\",\n        \"https://pipedream.com/docs/connect/mcp?utm_source=chatgpt.com\",\n        \"https://pipedream.com/docs/connect/mcp/developers?utm_source=chatgpt.com\",\n        \"https://prowl.world/blog/top-agent-discovery-platforms-2026?utm_source=chatgpt.com\",\n        \"https://arxiv.org/abs/2507.16044?utm_source=chatgpt.com\",\n        \"https://arxiv.org/abs/2605.14312?utm_source=chatgpt.com\",\n        \"https://nango.dev/blog/best-mcp-servers-for-agent-api-integrations/?utm_source=chatgpt.com\",\n        \"https://composio.dev/content/the-guide-to-mcp-i-never-had?utm_source=chatgpt.com\",\n        \"https://pipedream.com/docs/connect?utm_source=chatgpt.com\",\n        \"https://aimultiple.com/open-source-ai-agents\",\n        \"https://www.domo.com/learn/article/ai-agent-platforms\",\n        \"https://www.withampersand.com/blog/best-real-time-native-integration-platforms-for-ai-agents\",\n        \"https://nango.dev/blog/best-ai-integration-platforms/\",\n        \"https://www.make.com?utm_source=chatgpt.com\",\n        \"https://konghq.com?utm_source=chatgpt.com\",\n        \"https://www.gravitee.io?utm_source=chatgpt.com\",\n        \"https://cloud.google.com/apigee?utm_source=chatgpt.com\",\n        \"https://aws.amazon.com/api-gateway?utm_source=chatgpt.com\",\n        \"https://bzrcdn.openai.com/6fe810e14aa5a92f.jpg\",\n        \"https://docs.composio.dev/changelog/2025/9/26?utm_source=chatgpt.com\",\n        \"https://pipedream.com/connect?utm_source=chatgpt.com\",\n        \"https://docs.rapidapi.com/docs/what-is-rapidapi?utm_source=chatgpt.com\",\n        \"https://docs.rapidapi.com/docs/consume-apis-using-ai?utm_source=chatgpt.com\",\n        \"https://www.reddit.com/r/SaasDevelopers/comments/1tnske4/best_api_management_tools_for_saas_teams_running/?utm_source=chatgpt.com\",\n        \"https://www.reddit.com/r/aiagents/comments/1qxmfyg/how_do_you_handle_agenttoagent_discovery/?utm_source=chatgpt.com\"\n      ],\n      \"competitor_brand_id\": \"776e4c28-ab93-4eca-87ac-ad9b57aad734\",\n      \"competitor_brand_name\": \"Composio\",\n      \"competitor_prominence\": \"primary_recommendation\",\n      \"competitor_recommendation_strength\": 0.95,\n      \"created_at\": \"2026-08-10T17:51:57.588909+00:00\",\n      \"description\": \"Composio is the top recommendation with 95% strength. You are not mentioned.\",\n      \"id\": \"45d8ee40e09f5b30\",\n      \"impact_score\": 90.25,\n      \"model_count\": 2,\n      \"platform_id\": \"7d5177d2-039d-441b-ac4b-aacad2e80eb8\",\n      \"platform_name\": \"Google AI Overviews\",\n      \"platforms\": [\n        \"Google AI Overviews\",\n        \"ChatGPT\"\n      ],\n      \"priority\": \"high\",\n      \"prompt_id\": \"3fe6f459-6363-4b44-a1ad-e1ec99e1d24b\",\n      \"prompt_text\": \"What are the best platforms for discovering and integrating APIs and tools into autonomous AI agents?\",\n      \"run_id\": \"49b8be10-608e-4834-bb12-6bdcbf30b4a3\",\n      \"title\": \"Competitor dominates: What are the best platforms for discovering and integrating APIs and tools into autonomous AI agents?\",\n      \"topic_id\": \"3894007e-bf0e-42d2-9921-8718fde2fc83\",\n      \"topic_name\": \"AI Agent Marketplace Tools\",\n      \"type\": \"competitor_gaps\",\n      \"your_mentioned\": false,\n      \"your_prominence\": null\n    }\n  ]\n}\n\nAdditional metadata:\n{\n  \"content_exists\": true,\n  \"disposition\": \"consolidate\",\n  \"evidence_summary\": \"impact 90\",\n  \"external_target\": null,\n  \"gap_first\": true,\n  \"impact_score\": 90.25,\n  \"is_outreach\": false,\n  \"nav_item_id\": \"competitor_gaps\",\n  \"site_aware\": true,\n  \"source_end_date\": \"2026-08-10\",\n  \"source_key\": \"opportunity:what are the best platforms for discovering and integrating apis and tools into autonomous ai agents?\",\n  \"source_start_date\": \"2026-08-03\",\n  \"target_url\": \"https://aisa.one/blog/add-multi-source-search-to-dify\",\n  \"target_urls\": [\n    \"https://aisa.one/blog/add-multi-source-search-to-dify\",\n    \"https://aisa.one/blog/build-ai-agent-research-into-presentation\",\n    \"https://aisa.one/blog/the-agent-readable-web\",\n    \"https://aisa.one/blog/tutorials\"\n  ]\n}\n\nPlease produce:\n1. A diagnosis of what should change and what evidence supports it.\n2. The exact content, documentation, routing, or product changes to make.\n3. A short verification plan for confirming the task is complete.\n4. A concise summary of what changed and any follow-up still required.",
-        "reasoning": "WebFetch confirmed https://aisa.one/blog/add-multi-source-search-to-dify is 'quite strong and comprehensive' for its narrow multi-source-search use case, but it doesn't frame itself as a general answer to 'discovering and integrating APIs/tools.' Rather than creating yet another thin page, consolidating the existing proof points into one authoritative hub gives AI engines a single strong page to cite instead of three scattered, narrower ones.",
-        "evidence": {
-          "source_urls": [
-            {
-              "url": "https://aisa.one/blog/add-multi-source-search-to-dify",
-              "why_valuable": "Confirmed strong, detailed tutorial on multi-source integration via a single AIsa integration point"
-            },
-            {
-              "url": "https://aisa.one/blog/build-ai-agent-research-into-presentation",
-              "why_valuable": "Shows a second concrete end-to-end agent workflow built on AIsa APIs"
-            },
-            {
-              "url": "https://aisa.one/blog/the-agent-readable-web",
-              "why_valuable": "Thought-leadership angle on agents discovering/consuming web resources, relevant supporting context"
-            },
-            {
-              "url": "https://aisa.one/blog/tutorials",
-              "why_valuable": "Existing tutorial index that should link to the new consolidated hub"
-            }
-          ],
-          "expected_lift": "High: turns three fragmented, narrow-scope pages into one page matched to the exact query framing.",
-          "projected_lift": {
-            "unit": "percent",
-            "after": 45,
-            "before": 12,
-            "rationale": "Consolidating proven, detailed tutorials into one page framed around the exact query gives AI Overviews and ChatGPT a single strong citation target instead of splitting relevance across narrower posts.",
-            "after_label": "Projected",
-            "before_label": "Today",
-            "metric_label": "Answer visibility",
-            "prompt_examples": [
-              "What are the best platforms for discovering and integrating APIs and tools into autonomous AI agents?"
-            ]
-          },
-          "source_prompts": [
-            {
-              "platform": "Google AI Overviews",
-              "competitor": "Composio",
-              "prompt_text": "What are the best platforms for discovering and integrating APIs and tools into autonomous AI agents?"
-            }
-          ]
-        },
-        "score": 90.25,
-        "effort": "Medium",
+        "score": 100,
+        "effort": "Low",
         "priority": "high",
         "status": "new",
         "assignee_user_id": null,
@@ -711,116 +371,80 @@
           "kind": "opportunity",
           "rows": [
             {
-              "id": "45d8ee40e09f5b30",
-              "type": "competitor_gaps",
-              "title": "Competitor dominates: What are the best platforms for discovering and integrating APIs and tools into autonomous AI agents?",
-              "action": "Create or optimize content to compete for this query.",
-              "run_id": "49b8be10-608e-4834-bb12-6bdcbf30b4a3",
-              "category": "growth",
+              "id": "df1c2b00828f80eb",
+              "url": "https://mastra.ai/blog/best-ai-agent-integration-platforms",
+              "type": "listicle_targets",
+              "title": "The 11 Best AI Agent Integration Platforms (July 2026): Features, Tradeoffs, and Use Cases",
+              "action": "Reach out to get listed in this \"best of\" roundup.",
+              "domain": "mastra.ai",
+              "category": "citations",
               "priority": "high",
-              "topic_id": "3894007e-bf0e-42d2-9921-8718fde2fc83",
-              "platforms": [
-                "Google AI Overviews",
-                "ChatGPT"
-              ],
-              "prompt_id": "3fe6f459-6363-4b44-a1ad-e1ec99e1d24b",
-              "created_at": "2026-08-10T17:51:57.588909+00:00",
-              "topic_name": "AI Agent Marketplace Tools",
-              "description": "Composio is the top recommendation with 95% strength. You are not mentioned.",
-              "model_count": 2,
-              "platform_id": "7d5177d2-039d-441b-ac4b-aacad2e80eb8",
-              "prompt_text": "What are the best platforms for discovering and integrating APIs and tools into autonomous AI agents?",
-              "impact_score": 90.25,
-              "citation_urls": [
-                "https://composio.dev/content/apis-ai-agents-integration-patterns",
-                "https://tryxlr8.ai/blogs/best-ai-agent-integration-tool-use-platforms",
-                "https://www.dremio.com/blog/ai-integration-platforms/",
-                "https://nango.dev/blog/best-open-source-api-integration-platforms-for-ai-agents/",
-                "https://www.activepieces.com/blog/top-6-ai-agent-platforms",
-                "https://pickaxe.co/post/top-ai-integrations",
-                "https://www.truefoundry.com/blog/best-ai-agent-platforms",
-                "https://www.youtube.com/watch?v=Ho5o8bByBso",
-                "https://www.landbase.com/blog/fastest-growing-open-source-dev-tools",
-                "https://composio.dev?utm_source=chatgpt.com",
-                "https://pipedream.com?utm_source=chatgpt.com",
-                "https://zapier.com?utm_source=chatgpt.com",
-                "https://n8n.io?utm_source=chatgpt.com",
-                "https://smithery.ai?utm_source=chatgpt.com",
-                "https://www.postman.com/explore?utm_source=chatgpt.com",
-                "https://rapidapi.com?utm_source=chatgpt.com",
-                "https://bzrcdn.openai.com/8c058808fd7723b3.jpg",
-                "https://docs.composio.dev/reference?utm_source=chatgpt.com",
-                "https://docs.composio.dev/docs/composio-connect?utm_source=chatgpt.com",
-                "https://pipedream.com/docs/connect/mcp?utm_source=chatgpt.com",
-                "https://pipedream.com/docs/connect/mcp/developers?utm_source=chatgpt.com",
-                "https://prowl.world/blog/top-agent-discovery-platforms-2026?utm_source=chatgpt.com",
-                "https://arxiv.org/abs/2507.16044?utm_source=chatgpt.com",
-                "https://arxiv.org/abs/2605.14312?utm_source=chatgpt.com",
-                "https://nango.dev/blog/best-mcp-servers-for-agent-api-integrations/?utm_source=chatgpt.com",
-                "https://composio.dev/content/the-guide-to-mcp-i-never-had?utm_source=chatgpt.com",
-                "https://pipedream.com/docs/connect?utm_source=chatgpt.com",
-                "https://aimultiple.com/open-source-ai-agents",
-                "https://www.domo.com/learn/article/ai-agent-platforms",
-                "https://www.withampersand.com/blog/best-real-time-native-integration-platforms-for-ai-agents",
-                "https://nango.dev/blog/best-ai-integration-platforms/",
-                "https://www.make.com?utm_source=chatgpt.com",
-                "https://konghq.com?utm_source=chatgpt.com",
-                "https://www.gravitee.io?utm_source=chatgpt.com",
-                "https://cloud.google.com/apigee?utm_source=chatgpt.com",
-                "https://aws.amazon.com/api-gateway?utm_source=chatgpt.com",
-                "https://bzrcdn.openai.com/6fe810e14aa5a92f.jpg",
-                "https://docs.composio.dev/changelog/2025/9/26?utm_source=chatgpt.com",
-                "https://pipedream.com/connect?utm_source=chatgpt.com",
-                "https://docs.rapidapi.com/docs/what-is-rapidapi?utm_source=chatgpt.com",
-                "https://docs.rapidapi.com/docs/consume-apis-using-ai?utm_source=chatgpt.com",
-                "https://www.reddit.com/r/SaasDevelopers/comments/1tnske4/best_api_management_tools_for_saas_teams_running/?utm_source=chatgpt.com",
-                "https://www.reddit.com/r/aiagents/comments/1qxmfyg/how_do_you_handle_agenttoagent_discovery/?utm_source=chatgpt.com"
-              ],
-              "platform_name": "Google AI Overviews",
-              "your_mentioned": false,
-              "your_prominence": null,
-              "competitor_brand_id": "776e4c28-ab93-4eca-87ac-ad9b57aad734",
-              "competitor_brand_name": "Composio",
-              "competitor_prominence": "primary_recommendation",
-              "competitor_recommendation_strength": 0.95
+              "created_at": "2026-09-20T16:26:04.239237+00:00",
+              "description": "Listicle cited in 5 queries. Competitors featured: Composio, Nango.",
+              "impact_score": 100,
+              "listicle_type": "best_of",
+              "citation_count": 5,
+              "competitors_mentioned": [
+                "Composio",
+                "Nango"
+              ]
             }
           ],
-          "group_key": "what are the best platforms for discovering and integrating apis and tools into autonomous ai agents?"
+          "group_key": "outreach:mastra.ai"
         },
         "metadata": {
           "gap_first": true,
           "site_aware": true,
-          "source_key": "opportunity:what are the best platforms for discovering and integrating apis and tools into autonomous ai agents?",
-          "target_url": "https://aisa.one/blog/add-multi-source-search-to-dify",
-          "disposition": "consolidate",
-          "is_outreach": false,
-          "nav_item_id": "competitor_gaps",
+          "source_key": "opportunity:outreach:mastra.ai",
+          "target_url": "https://mastra.ai/blog/best-ai-agent-integration-platforms",
+          "disposition": "outreach",
+          "is_outreach": true,
+          "nav_item_id": "listicle_targets",
           "target_urls": [
-            "https://aisa.one/blog/add-multi-source-search-to-dify",
-            "https://aisa.one/blog/build-ai-agent-research-into-presentation",
-            "https://aisa.one/blog/the-agent-readable-web",
-            "https://aisa.one/blog/tutorials"
+            "https://mastra.ai/blog/best-ai-agent-integration-platforms"
           ],
-          "impact_score": 90.25,
-          "content_exists": true,
-          "external_target": null,
-          "source_end_date": "2026-08-10",
-          "evidence_summary": "impact 90",
-          "source_start_date": "2026-08-03"
+          "impact_score": 100,
+          "content_brief": {
+            "summary": "Pitch the Mastra.ai editorial team to add AIsa as a 12th entry (or replace a weaker entry) in their existing integration-platforms listicle, supplying a short factual blurb, pricing, and connector-count data they can drop straight in.",
+            "primary_keyword": "",
+            "target_audience": "Mastra.ai editorial/content team and readers of the listicle comparing AI agent integration platforms",
+            "secondary_keywords": []
+          },
+          "content_exists": false,
+          "external_target": {
+            "url": "https://mastra.ai/blog/best-ai-agent-integration-platforms",
+            "title": "The 11 Best AI Agent Integration Platforms (July 2026): Features, Tradeoffs, and Use Cases",
+            "domain": "mastra.ai"
+          },
+          "source_end_date": "2026-09-20",
+          "style_reference": null,
+          "evidence_summary": "impact 100",
+          "source_start_date": "2026-09-13"
         },
-        "created_at": "2026-08-10T17:52:06.433121+00:00",
-        "updated_at": "2026-08-10T17:52:06.433121+00:00"
+        "created_at": "2026-09-20T16:28:39.964846+00:00",
+        "updated_at": "2026-09-20T16:28:39.964846+00:00",
+        "review_status": "accepted",
+        "reviewed_at": null,
+        "reviewed_by": null,
+        "content_format": null,
+        "creation_mode": "generated",
+        "brand_id": null,
+        "optimization_id": null,
+        "priority_source": "system",
+        "last_raised_at": "2026-09-20T16:28:39.964846+00:00",
+        "done_at": null,
+        "previous_task_id": null
       }
     ],
-    "count": 7,
-    "active_count": 7,
+    "count": 3,
+    "active_count": 3,
     "in_progress_count": 0,
-    "completed_count": 0,
+    "completed_count": 38,
     "done_count": 0,
     "dismissed_count": 0,
-    "history_count": 7,
+    "history_count": 41,
     "has_history": true,
     "can_fetch_next_batch": false,
-    "generated_at": "2026-08-10T17:52:06.433121+00:00"
+    "generated_at": "2026-09-20T16:28:39.964846+00:00"
   }
 }

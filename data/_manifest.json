@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-08-23T19:06:19.551Z",
+  "generatedAt": "2026-10-30T02:16:01.403Z",
   "baseUrl": "https://api.lightsage.com",
   "window": {
-    "start": "2026-07-24",
-    "end": "2026-08-23",
+    "start": "2026-09-30",
+    "end": "2026-10-30",
     "days": 30
   },
   "endpoints": [
@@ -14,7 +14,7 @@
       "optional": false,
       "ok": true,
       "status": 200,
-      "durationMs": 133
+      "durationMs": 494
     },
     {
       "key": "auth",
@@ -23,7 +23,7 @@
       "optional": false,
       "ok": true,
       "status": 200,
-      "durationMs": 535
+      "durationMs": 481
     },
     {
       "key": "visibility_current",
@@ -32,7 +32,7 @@
       "optional": false,
       "ok": true,
       "status": 200,
-      "durationMs": 901
+      "durationMs": 510
     },
     {
       "key": "visibility_overview",
@@ -41,7 +41,7 @@
       "optional": false,
       "ok": true,
       "status": 200,
-      "durationMs": 3038
+      "durationMs": 756
     },
     {
       "key": "visibility_prompts",
@@ -50,7 +50,7 @@
       "optional": false,
       "ok": true,
       "status": 200,
-      "durationMs": 2669
+      "durationMs": 540
     },
     {
       "key": "prompts",
@@ -59,7 +59,7 @@
       "optional": false,
       "ok": true,
       "status": 200,
-      "durationMs": 457
+      "durationMs": 290
     },
     {
       "key": "prompts_config",
@@ -68,7 +68,7 @@
       "optional": false,
       "ok": true,
       "status": 200,
-      "durationMs": 722
+      "durationMs": 320
     },
     {
       "key": "opportunities",
@@ -77,7 +77,7 @@
       "optional": false,
       "ok": true,
       "status": 200,
-      "durationMs": 7266
+      "durationMs": 3875
     },
     {
       "key": "tasks",
@@ -86,7 +86,7 @@
       "optional": false,
       "ok": true,
       "status": 200,
-      "durationMs": 609
+      "durationMs": 448
     },
     {
       "key": "ap_sources",
@@ -95,7 +95,7 @@
       "optional": true,
       "ok": true,
       "status": 200,
-      "durationMs": 896
+      "durationMs": 493
     },
     {
       "key": "ap_targets",
@@ -104,7 +104,7 @@
       "optional": true,
       "ok": true,
       "status": 200,
-      "durationMs": 337
+      "durationMs": 176
     },
     {
       "key": "ap_config",
@@ -113,7 +113,7 @@
       "optional": true,
       "ok": true,
       "status": 200,
-      "durationMs": 1005
+      "durationMs": 462
     },
     {
       "key": "ap_runs",
@@ -122,7 +122,7 @@
       "optional": true,
       "ok": true,
       "status": 200,
-      "durationMs": 4412
+      "durationMs": 1853
     },
     {
       "key": "ap_actions",
@@ -131,7 +131,7 @@
       "optional": true,
       "ok": true,
       "status": 200,
-      "durationMs": 1325
+      "durationMs": 642
     },
     {
       "key": "ap_evals",
@@ -140,7 +140,7 @@
       "optional": true,
       "ok": true,
       "status": 200,
-      "durationMs": 1292
+      "durationMs": 474
     },
     {
       "key": "ap_skills",
@@ -149,7 +149,7 @@
       "optional": true,
       "ok": true,
       "status": 200,
-      "durationMs": 611
+      "durationMs": 345
     },
     {
       "key": "ap_custom_evals",
@@ -158,7 +158,7 @@
       "optional": true,
       "ok": true,
       "status": 200,
-      "durationMs": 2792
+      "durationMs": 1383
     },
     {
       "key": "ap_starter_projects",
@@ -167,7 +167,7 @@
       "optional": true,
       "ok": true,
       "status": 200,
-      "durationMs": 616
+      "durationMs": 258
     },
     {
       "key": "ap_diagnose",
@@ -176,7 +176,7 @@
       "optional": true,
       "ok": true,
       "status": 200,
-      "durationMs": 7243
+      "durationMs": 3414
     },
     {
       "key": "ap_diagnose_recent",
@@ -185,7 +185,7 @@
       "optional": true,
       "ok": true,
       "status": 200,
-      "durationMs": 6550
+      "durationMs": 3290
     },
     {
       "key": "aisa_mcp_manifest",
@@ -194,7 +194,7 @@
       "optional": true,
       "ok": true,
       "status": 200,
-      "durationMs": 1151
+      "durationMs": 1829
     },
     {
       "key": "url_check",
@@ -203,7 +203,7 @@
       "optional": true,
       "ok": true,
       "status": 200,
-      "durationMs": 2127
+      "durationMs": 14361
     },
     {
       "key": "ora",
@@ -212,7 +212,7 @@
       "optional": true,
       "ok": true,
       "status": 200,
-      "durationMs": 318
+      "durationMs": 773
     },
     {
       "key": "cloudflare",
@@ -221,7 +221,7 @@
       "optional": true,
       "ok": true,
       "status": 200,
-      "durationMs": 8818
+      "durationMs": 1770
     },
     {
       "key": "npm",
@@ -230,7 +230,7 @@
       "optional": true,
       "ok": true,
       "status": 200,
-      "durationMs": 193
+      "durationMs": 384
     }
   ]
 }

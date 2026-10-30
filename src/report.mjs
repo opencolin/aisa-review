@@ -130,6 +130,28 @@ const promptsWithCitations = allPrompts.filter((p) => (p.metrics?.citation_count
 const passed = runs.filter((r) => r.passed).length;
 const passRate = runs.length ? passed / runs.length : null;
 
+// Frozen snapshot of the data behind the previous report, so this one can say
+// what moved rather than restating August's findings as if nothing shipped.
+let baseline = null;
+try { baseline = JSON.parse(readFileSync(join(ROOT, "reference", "baseline-2026-08-23.json"), "utf8")); } catch { /* optional */ }
+
+const oraStatus = (id) => oraById.get(id)?.status;
+const cfStatus = (id) => cfById.get(id)?.status;
+const mcpCardLive = cfStatus("mcpServerCard") === "pass";
+
+// API Performance evals only run when someone triggers them in Lightsage. If
+// the newest run predates the window, every eval figure is a carry-over.
+const lastRunAt = runs.map((r) => String(r.run_at ?? "")).filter(Boolean).sort().at(-1) ?? null;
+const lastRunDate = lastRunAt?.slice(0, 10) ?? null;
+const evalsStale = Boolean(lastRunDate && lastRunDate < w.start);
+const staleNote = evalsStale
+  ? `> **Not re-measured.** Lightsage has run no API Performance evals since **${lastRunDate}**, so the figures in this section are carried over from then. Nothing that shipped since has been tested against agents yet.`
+  : null;
+// Structured copy of the headline sections, written to out/summary.json for the
+// dashboard (leads.aisa.builders/aeo/readiness), which renders it natively.
+const summary = { changes: [], shipped: [], regressed: [], top: [], findings: [] };
+const brokenUrls = (urlCheck?.urls ?? []).filter((u) => u.stillBroken).sort((a, b) => String(a.url).localeCompare(String(b.url)));
+
 /* ---------- header ---------- */
 P(`# Agent Readiness & Visibility Report — ${company.name} (${company.domain})`, "");
 P(`**Source** · Lightsage public API (formerly Sapient) · \`${manifest.baseUrl}\`  `);
@@ -141,20 +163,64 @@ P("");
 {
   P("## Read this first", "");
   P(`This report is written for engineers. Almost nothing in it is "build something new" — ${company.name} has already shipped the agent-facing surfaces: MCP servers, an OpenAPI spec, llms.txt, an A2A card, OIDC, a published CLI. ` +
-    `The recurring finding is that these exist but are **not discoverable or not conformant**, so agents, scanners and scorecards behave as though they do not exist. ` +
-    `**Section 1 is the full action list**, ordered by leverage and tagged by owner and effort; the sections after it are the evidence.`, "");
+    (mcpCardLive
+      ? `The previous report's recurring finding was that these existed but were **not discoverable or not conformant**. Most of that has since been fixed; what is left is mainly documentation 404s, a few conformance fields, and re-running the evals to confirm it all against real agents. `
+      : `The recurring finding is that these exist but are **not discoverable or not conformant**, so agents, scanners and scorecards behave as though they do not exist. `) +
+    `**Section 1 is the full action list**, ordered by leverage and tagged by owner, effort and current status; the sections after it are the evidence.`, "");
   P("");
-  P(`The two highest-leverage items:`, "");
+
+  if (baseline) {
+    const b = baseline;
+    const vis = (v) => pct(v);
+    P(`### What changed since ${b.capturedAt}`, "");
+    P(`| Metric | ${b.capturedAt} | Now | |`, `| --- | --- | --- | --- |`);
+    const row = (label, then, now, better) => {
+      summary.changes.push({ label, then, now: now.replace(/\*\*/g, ""), direction: better == null ? null : better ? "better" : "worse" });
+      P(`| ${label} | ${then} | ${now} | ${better == null ? "" : better ? "better" : "worse"} |`);
+    };
+    if (ora) row("Ora agent-readiness", `${b.ora.score}/100 (${b.ora.grade})`, `${ora.score}/100 (${ora.grade})`, ora.score === b.ora.score ? null : ora.score > b.ora.score);
+    if (cf) row("Cloudflare checks passing", `${b.cloudflare.pass}/${b.cloudflare.scored}`, `${cfPass}/${cfScored.length}`, cfPass === b.cloudflare.pass ? null : cfPass > b.cloudflare.pass);
+    if (mcpMan?.counts?.live) row("MCP servers scanners can find", `0 of ${b.mcp.live}`, mcpCardLive ? `found via server card (${mcpMan.counts.live} live)` : `0 of ${mcpMan.counts.live}`, mcpCardLive || null);
+    row("Doc URLs agents hit that 404", String(b.brokenDocUrls.length), String(brokenUrls.length), brokenUrls.length === b.brokenDocUrls.length ? null : brokenUrls.length < b.brokenDocUrls.length);
+    row("Citations", `${b.visibility.citations} over ${b.visibility.runs} runs`, `${num(snap.total_citations ?? vp.summary?.metrics?.citation_count)} over ${num(vp.summary?.metrics?.run_count)} runs`, (snap.total_citations ?? 0) === b.visibility.citations ? null : (snap.total_citations ?? 0) > b.visibility.citations);
+    row("Visibility score", `${vis(b.visibility.visibility_score)} (#${b.visibility.rank})`, `${vis(snap.visibility_score)} (#${snap.visibility_score_rank ?? "—"})`, snap.visibility_score === b.visibility.visibility_score ? null : snap.visibility_score > b.visibility.visibility_score);
+    row("API Performance evals", `run ${b.capturedAt}`, evalsStale ? `**none since ${lastRunDate}**` : `latest ${lastRunDate}`, evalsStale ? false : null);
+    P("");
+
+    // Ora checks that moved from not-passing to passing are the clearest record
+    // of what shipped, since Ora re-scans independently of this repo.
+    const shipped = oraChecks.filter((c) => c.status === "pass" && b.ora.checks[c.id] && b.ora.checks[c.id].status !== "pass");
+    const regressed = oraChecks.filter((c) => c.status !== "pass" && c.status !== "na" && b.ora.checks[c.id]?.status === "pass");
+    summary.shipped = shipped.map((c) => c.name);
+    summary.regressed = regressed.map((c) => ({ name: c.name, score: c.score, maxScore: c.maxScore, details: c.details ?? "" }));
+    if (shipped.length) {
+      P(`**${shipped.length} Ora checks moved to passing**, among them: ${shipped.slice(0, 14).map((c) => esc(c.name)).join(", ")}${shipped.length > 14 ? ", …" : ""}. Most of the surfacing work from the last report has landed.`, "");
+    }
+    if (regressed.length) {
+      const falseNeg = (c) => c.id === "openapi-spec" && /spec found/i.test(oraById.get("api-schema-analysis")?.details ?? "");
+      P(`**${regressed.length} moved the other way:** ${regressed.map((c) => `${esc(c.name)} (${c.score}/${c.maxScore} — ${trunc(c.details, 90)}${falseNeg(c) ? "; likely a scanner false negative, see caveats" : ""})`).join("; ")}.`, "");
+    }
+    P("");
+  }
+
+  P(`The highest-leverage items now:`, "");
   P("");
-  if (mcpMan?.counts?.live) {
-    P(`**1. ${mcpMan.counts.live} live MCP servers are invisible.** \`/.well-known/mcp.json\` serves ${mcpMan.counts.live} servers exposing ${mcpMan.liveTools} tools, all responding. ` +
+  const top = [];
+  if (mcpMan?.counts?.live && !mcpCardLive) {
+    top.push(`**${mcpMan.counts.live} live MCP servers are invisible.** \`/.well-known/mcp.json\` serves ${mcpMan.counts.live} servers exposing ${mcpMan.liveTools} tools, all responding. ` +
       `Ora reports "no MCP server detected", Cloudflare rejects the manifest for a missing \`serverInfo.name\`, and Lightsage's Arena checklist scores MCP Server 0. ` +
-      `A conforming card at \`/.well-known/mcp/server-card.json\` alongside the existing manifest moves three scorecards at once.`, "");
+      `A conforming card at \`/.well-known/mcp/server-card.json\` alongside the existing manifest moves three scorecards at once.`);
   }
-  if (urlCheck?.stillBroken) {
-    P(`**2. ${urlCheck.stillBroken} documentation URLs that agents actually requested return 404 right now** (re-verified live for this report, not taken from the audit). ` +
-      `Agents reach a real endpoint in the OpenAPI spec, construct the matching doc URL, and hit nothing. Several have obvious redirect targets; a few are shipped endpoints with no doc page at all.`, "");
+  if (brokenUrls.length) {
+    const unchanged = baseline && brokenUrls.length === baseline.brokenDocUrls.length && brokenUrls.every((u) => baseline.brokenDocUrls.includes(u.url));
+    top.push(`**${brokenUrls.length} documentation URLs that agents actually requested return 404 right now** (re-verified live for this report, not taken from the audit)${unchanged ? ` — **the same ${brokenUrls.length} as on ${baseline.capturedAt}; none have been fixed**` : ""}. ` +
+      `Agents reach a real endpoint in the OpenAPI spec, construct the matching doc URL, and hit nothing. Several have obvious redirect targets; a few are shipped endpoints with no doc page at all.`);
   }
+  if (evalsStale) {
+    top.push(`**Re-run the API Performance evals.** None have run since ${lastRunDate}, so the CLI defects, the REST/CLI pass rates and every agent-behaviour pattern in this report are carried over from then. Most of the work that shipped since is unmeasured against real agents — a re-run is what turns "shipped" into "verified".`);
+  }
+  summary.top = top;
+  top.forEach((t, i) => P(`**${i + 1}.** ${t}`, ""));
   P("");
   if (credState === "balance") {
     P(`_One caveat while reading the endpoint scores: the Lightsage eval account currently returns \`402 — insufficient wallet balance\` on most live calls, so pass rates are depressed for billing reasons rather than code reasons. This is being handled separately and is not an engineering task._`, "");
@@ -188,23 +254,34 @@ if (ora || cf) {
 
 const citationCount = snap.total_citations ?? vp.summary?.metrics?.citation_count ?? 0;
 const runCount = vp.summary?.metrics?.run_count ?? 0;
-P(`**${company.name} is effectively invisible to AI answer engines in this window.** ` +
+P(`**${company.name} is ${baseline && citationCount > baseline.visibility.citations ? "still close to" : "effectively"} invisible to AI answer engines in this window.** ` +
   `${runCount} prompt runs produced **${citationCount} citation${citationCount === 1 ? "" : "s"}** — ` +
   `${allPrompts.length - promptsWithCitations.length} of ${allPrompts.length} tracked prompts returned zero visibility. ` +
   (leader ? `The category leader, **${leader.company?.name}**, holds ${pct(leader.visibility_score)} visibility and ${pct(leader.share_of_voice)} share of voice — ` +
   `roughly ${Math.round((leader.visibility_score ?? 0) / (snap.visibility_score || 1))}× ${company.name}'s visibility.` : ""), "");
 
 const findings = [];
-if (mcpMan?.counts?.live) {
+if (mcpMan?.counts?.live && mcpCardLive) {
+  const card = oraById.get("mcp-server-card");
+  const reg = oraById.get("mcp-registry-listed");
+  findings.push(`**The MCP servers are now discoverable.** A server card at \`/.well-known/mcp/server-card.json\` passes Cloudflare, and Ora detects the server at \`mcp.${DOMAIN}\` (${oraById.get("mcp-server")?.score ?? "?"}/${oraById.get("mcp-server")?.maxScore ?? "?"}). ` +
+    `What remains is polish: ${[card?.status !== "pass" && card ? `the card itself is incomplete (${esc(card.details).replace(/^MCP server card found at \S+ but /, "")})` : null, reg?.status === "fail" ? "no verified MCP registry listing" : null].filter(Boolean).join(", and ") || "nothing flagged"}.`);
+} else if (mcpMan?.counts?.live) {
   findings.push(`**The biggest agent-facing asset AISA has is invisible.** \`/.well-known/mcp.json\` publishes **${mcpMan.counts.live} live MCP servers exposing ${mcpMan.liveTools} tools**, yet Ora reports "no MCP server detected", Cloudflare rejects the manifest for a missing \`serverInfo.name\`, and Lightsage's own Arena checklist scores MCP Server 0. The servers are real and responding; the discovery file just is not in a shape any scanner recognises.`);
 }
 findings.push(`**Coding agents are measured for _usage_ but not for _recommendation_.** API Performance and Devtool Arena both run Claude Code against the API${arena ? ` (grade ${arena.grade}, ${arena.finalScore}%)` : ""}, but visibility tracking uses only ${trackedPlatforms.length} platforms (${trackedPlatforms.map((p) => p.name).join(", ")}), ${trackedCodingAgents.length === 0 ? "**none of them coding agents**" : `${trackedCodingAgents.length} coding agents`}, out of ${availablePlatforms.length} available. We know how well Claude Code *uses* ${company.name} once it arrives, and nothing about whether it ever *recommends* it.`);
-findings.push(`**Agent Analytics is switched off.** Lightsage reports no tracking events received, so the inside-out view — which pages agents actually read — does not exist yet. A middleware install closes that gap.`);
-findings.push(`**The "#1 average position" is a single-citation artifact.** It comes from one citation on one prompt, not category strength — noise, not a win.`);
+if (evalsStale) {
+  findings.push(`**Nothing shipped since ${lastRunDate} has been tested against agents.** Lightsage's API Performance evals have not run since then, so the pass rates, CLI defects and behaviour patterns below are carried over unchanged. Re-running them is the cheapest way to confirm the fixes and re-rank what is left.`);
+}
+findings.push(`**Agent Analytics was switched off as of ${baseline?.capturedAt ?? "the last check"}.** Lightsage reported no tracking events received, so the inside-out view — which pages agents actually read — did not exist. The public API does not expose this, so confirm in the Lightsage dashboard whether the middleware has since been installed.`);
+if (citationCount <= 10 && snap.average_position != null) {
+  findings.push(`**Average position (${num(snap.average_position)}, #${snap.average_position_rank ?? "—"}) rests on ${citationCount} citation${citationCount === 1 ? "" : "s"}.** Too few to read as category strength — it will move sharply as citations accumulate.`);
+}
 if (credState === "balance") {
   findings.push(`**Caveat, not a task: endpoint pass rates are currently depressed by billing.** The eval account returns \`402 — insufficient wallet balance\` on most live calls, so agents authenticate, write working code, and fail at the call. Being handled separately — do not read the endpoint scores as a verdict on the API.`);
 }
 
+summary.findings = findings;
 P(`${findings.length} findings drive everything below:`, "");
 findings.forEach((f, i) => P(`${i + 1}. ${f}`));
 P("");
@@ -215,7 +292,7 @@ P("");
   P(`Every recommendation in this report, in one list, ordered by leverage. "Effort" is a rough engineering estimate: **XS** under an hour, **S** under a day, **M** a few days, **L** ongoing.`, "");
   P("");
 
-  const brokenCount = (urlCheck?.urls ?? []).filter((u) => u.stillBroken).length;
+  const brokenCount = brokenUrls.length;
   const SUGGESTABLE = new Set([
     "/docs/authentication", "/docs/start/authentication", "/docs/quickstart",
     "/docs/direct-api-access", "/docs/guides/direct-api-access", "/docs/guides/errors",
@@ -223,7 +300,7 @@ P("");
     "/docs/api-reference/financial/get_financial_metrics_snapshot",
     "/docs/api-reference/financial/get_financial-company-facts",
   ]);
-  const redirectable = (urlCheck?.urls ?? []).filter((u) => u.stillBroken && SUGGESTABLE.has(String(u.url).replace(/^https?:\/\/[^/]+/, ""))).length;
+  const redirectable = brokenUrls.filter((u) => SUGGESTABLE.has(String(u.url).replace(/^https?:\/\/[^/]+/, ""))).length;
   const missingPages = brokenCount - redirectable;
   const cliHigh = (cliFindings?.defects ?? []).filter((d) => d.severity === "high");
   const cliMed = (cliFindings?.defects ?? []).filter((d) => d.severity !== "high");
@@ -231,9 +308,39 @@ P("");
   const topPat = [...patsNow].sort((a, b) => (b.percentage ?? 0) - (a.percentage ?? 0))[0];
   const guessed = patsNow.find((x) => /guessed without docs/i.test(x.label));
 
+  // Status is read from live scanner data where a check covers the item. Items
+  // only an eval can confirm are "not re-tested" while the evals are stale.
+  const DONE = "Done", PARTIAL = "Partial", OPEN = "Open", UNTESTED = "Not re-tested", UNKNOWN = "Not re-checked";
+  const byCheck = (pass, partial = false) => (pass ? DONE : partial ? PARTIAL : OPEN);
+  const viaEval = evalsStale ? UNTESTED : OPEN;
+  const cardCheck = oraById.get("mcp-server-card");
+  const llmsLinks = oraById.get("llms-txt-links-resolve");
+  const STATUS = [
+    mcpCardLive ? (cardCheck && cardCheck.status !== "pass" ? PARTIAL : DONE) : OPEN,
+    viaEval, viaEval,
+    redirectable ? OPEN : DONE,
+    missingPages ? OPEN : DONE,
+    byCheck(cfStatus("oauthDiscovery") === "pass"),
+    byCheck(cfStatus("a2aAgentCard") === "pass"),
+    byCheck(oraStatus("cli-tool") === "pass" && oraStatus("mcp-well-known-discovery") === "pass"),
+    UNKNOWN,
+    UNKNOWN,
+    "Ongoing",
+    byCheck(trackedCodingAgents.length > 0),
+    byCheck(cfStatus("markdownNegotiation") === "pass"),
+    byCheck(cfStatus("linkHeaders") === "pass"),
+    byCheck(oraStatus("agent-friendly-404") === "pass"),
+    viaEval, viaEval, viaEval,
+    byCheck(oraStatus("json-ld") === "pass"),
+    byCheck(cfStatus("ard") === "pass" && cfStatus("contentSignals") === "pass", cfStatus("ard") === "pass" || cfStatus("contentSignals") === "pass"),
+    "Ongoing",
+  ];
+
   const ACTIONS = [
     ["P0", "Publish a conforming MCP server card at `/.well-known/mcp/server-card.json`", "Platform", "S",
-      mcpMan?.counts?.live ? `${mcpMan.counts.live} live MCP servers exposing ${mcpMan.liveTools} tools score zero on every scanner because the existing manifest has no \`serverInfo.name\`. Biggest gap between what is built and what is credited.` : "Publish an MCP server card."],
+      mcpCardLive
+        ? `Shipped — Cloudflare finds the card and Ora detects the server.${cardCheck && cardCheck.status !== "pass" ? ` Remaining: ${esc(cardCheck.details)}.` : ""}`
+        : mcpMan?.counts?.live ? `${mcpMan.counts.live} live MCP servers exposing ${mcpMan.liveTools} tools score zero on every scanner because the existing manifest has no \`serverInfo.name\`. Biggest gap between what is built and what is credited.` : "Publish an MCP server card."],
     ["P0", "Fix the Twitter community/social endpoint contract", "API", "M",
       `Six commands return \`400: request does not match the endpoint contract\` for every documented invocation and every parameter spelling. An agent concluded it is a server-side bug.`],
     ["P0", "Return a non-zero exit code when a CLI call fails", "CLI", "S",
@@ -271,10 +378,28 @@ P("");
     ["P2", "Complete the JSON-LD Organization schema", "Web", "S",
       `Ora scores JSON-LD 2/4 — the Organization type is present but missing \`name\` and \`description\`, and Organization completeness is 1/2 for missing \`contactPoint\` and \`address\`. Note FAQPage is already present; the gap is the Organization block, plus \`Service\` or \`AggregateRating\` for breadth.`],
     ["P2", "Publish `/.well-known/ai-catalog.json` (ARD) and Content Signals in robots.txt", "Platform", "M",
-      `Both are required-tier checks on Ora and Cloudflare that currently score zero.`],
+      cfStatus("ard") === "pass" && cfStatus("contentSignals") !== "pass"
+        ? `The ARD catalog now passes on both scanners. Content Signals in robots.txt still fails on Cloudflare: ${esc(cfById.get("contentSignals")?.message)}.`
+        : `Both are required-tier checks on Ora and Cloudflare that currently score zero.`],
     ["P2", "Work the Lightsage GEO task list (Reddit, arXiv, comparison pages)", "Growth", "L",
       `Seven ranked tasks aimed at citation share, detailed later in this report. Slower payback than the items above.`],
-  ];
+  ].map((a, i) => [...a, STATUS[i]])
+    // A done item's original rationale describes the old problem; keep it as history.
+    .map((a) => (a[5] === DONE ? [...a.slice(0, 4), `_Was:_ ${a[4]}`, a[5]] : a));
+
+  // Items surfaced by data newer than the original list. Appended rather than
+  // interleaved so existing numbering (and the GitHub issues filed from it) holds.
+  if (evalsStale)
+    ACTIONS.push(["P0", "Re-run the Lightsage API Performance evals", "Platform", "XS",
+      `No evals since ${lastRunDate}. Every pass rate, CLI defect and behaviour pattern in this report predates the fixes that shipped since, so none of them are verified against real agents.`, OPEN]);
+  if (llmsLinks && llmsLinks.status !== "pass")
+    ACTIONS.push(["P2", "Fix links in `llms.txt` that do not resolve", "Docs", "XS",
+      `${esc(llmsLinks.details)}. ${/docs\/mcp/.test(llmsLinks.details ?? "") ? "A plain GET to `/docs/mcp` returns **405**, so any agent following `llms.txt` dead-ends there." : ""}`, OPEN]);
+  if (oraStatus("mcp-registry-listed") === "fail")
+    ACTIONS.push(["P2", "List the MCP server in a verified MCP registry", "Growth", "S",
+      `Ora finds no bi-directionally verified registry entry. Publish from a package whose homepage or repository names ${DOMAIN}, or link the registry entry from the docs.`, OPEN]);
+  const tierOrder = { P0: 0, P1: 1, P2: 2 };
+  ACTIONS.sort((a, b) => tierOrder[a[0]] - tierOrder[b[0]]);
 
   // Emit the action list as data so other tooling (issue creation, tracking)
   // works from the same source the report renders from.
@@ -285,8 +410,8 @@ P("");
         generatedAt: manifest.generatedAt,
         domain: DOMAIN,
         reportUrl: "https://github.com/opencolin/aisa-review/blob/main/out/agent-readiness-and-visibility-report.md",
-        actions: ACTIONS.map(([priority, title, owner, effort, why], i) => ({
-          n: i + 1, priority, title, owner, effort, why,
+        actions: ACTIONS.map(([priority, title, owner, effort, why, status], i) => ({
+          n: i + 1, priority, title, owner, effort, why, status,
         })),
       },
       null,
@@ -294,26 +419,32 @@ P("");
     ),
   );
 
+  const tally = new Map();
+  for (const a of ACTIONS) tally.set(a[5], (tally.get(a[5]) ?? 0) + 1);
+  P(`**Status, ${ACTIONS.length} items:** ${[DONE, PARTIAL, OPEN, UNTESTED, UNKNOWN, "Ongoing"].filter((s) => tally.get(s)).map((s) => `${s} ${tally.get(s)}`).join(" · ")}.`, "");
+  P(`_Done_ and _Partial_ are read from live Ora and Cloudflare scans for this report. _Not re-tested_ items can only be confirmed by an API Performance eval run${evalsStale ? `, and none has run since ${lastRunDate}` : ""}. _Not re-checked_ items are not exposed by any API this report reads.`, "");
+
   let tier = "";
-  for (const [t, action, owner, effort, why] of ACTIONS) {
+  for (const [t, action, owner, effort, why, status] of ACTIONS) {
     if (t !== tier) {
       tier = t;
       const heading = { P0: "P0 — do these first", P1: "P1 — high value, low friction", P2: "P2 — worth scheduling" }[t] ?? t;
       P("", `#### ${heading}`, "");
-      P(`| # | Action | Owner | Effort | Why |`, `| --- | --- | --- | --- | --- |`);
+      P(`| # | Action | Owner | Effort | Status | Why |`, `| --- | --- | --- | --- | --- | --- |`);
     }
-    const idx = ACTIONS.filter((a) => a[0] === t).indexOf(ACTIONS.find((a) => a[1] === action)) + 1;
-    P(`| ${idx} | ${action} | ${owner} | ${effort} | ${why} |`);
+    const idx = ACTIONS.filter((a) => a[0] === t).findIndex((a) => a[1] === action) + 1;
+    const shown = status === DONE ? `~~${action}~~` : action;
+    P(`| ${idx} | ${shown} | ${owner} | ${effort} | ${status === DONE ? "**Done**" : status} | ${why} |`);
   }
   P("");
   P(`#### Define the retest baseline`, "");
   P(`Fixes should be measured against a fixed set of numbers, re-read after each batch lands. Current values:`, "");
   P(`| Metric | Now | Source |`, `| --- | --- | --- |`);
-  P(`| MCP servers discoverable by scanners | 0 of ${mcpMan?.counts?.live ?? "?"} live | Ora \`mcp-server\`, Cloudflare \`mcpServerCard\` |`);
-  P(`| Documentation URLs returning 404 | ${(urlCheck?.urls ?? []).filter((u) => u.stillBroken).length} | re-checked live by \`npm run fetch\` |`);
-  P(`| Agent-analytics events received | 0 | Lightsage Agent Analytics |`);
-  P(`| REST eval pass rate | ${(() => { const r = (load("ap_runs")?.data ?? []).filter((x) => String(x.run_at) >= "2026-08-23T14:20" && x.source?.type === "rest_api"); return r.length ? `${r.filter((x) => x.passed).length}/${r.length}` : "—"; })()} | Lightsage API Performance |`);
-  P(`| CLI eval pass rate | ${(() => { const r = (load("ap_runs")?.data ?? []).filter((x) => String(x.run_at) >= "2026-08-23T14:20" && x.source?.type === "cli"); return r.length ? `${r.filter((x) => x.passed).length}/${r.length}` : "—"; })()} | Lightsage API Performance |`);
+  P(`| MCP servers discoverable by scanners | ${mcpCardLive ? `discoverable via server card (${mcpMan?.counts?.live ?? "?"} live)` : `0 of ${mcpMan?.counts?.live ?? "?"} live`} | Ora \`mcp-server\`, Cloudflare \`mcpServerCard\` |`);
+  P(`| Documentation URLs returning 404 | ${brokenUrls.length} | re-checked live by \`npm run fetch\` |`);
+  P(`| Agent-analytics events received | 0 as of ${baseline?.capturedAt ?? "last check"} — not exposed by the API | Lightsage Agent Analytics dashboard |`);
+  P(`| REST eval pass rate | ${(() => { const r = (load("ap_runs")?.data ?? []).filter((x) => String(x.run_at) >= "2026-08-23T14:20" && x.source?.type === "rest_api"); return r.length ? `${r.filter((x) => x.passed).length}/${r.length}${evalsStale ? ` (as of ${lastRunDate})` : ""}` : "—"; })()} | Lightsage API Performance |`);
+  P(`| CLI eval pass rate | ${(() => { const r = (load("ap_runs")?.data ?? []).filter((x) => String(x.run_at) >= "2026-08-23T14:20" && x.source?.type === "cli"); return r.length ? `${r.filter((x) => x.passed).length}/${r.length}${evalsStale ? ` (as of ${lastRunDate})` : ""}` : "—"; })()} | Lightsage API Performance |`);
   P(`| Citations across the tracked prompt set | ${num(vp.summary?.metrics?.citation_count)} over ${num(vp.summary?.metrics?.run_count)} runs | Lightsage Visibility |`);
   P(`| Ora agent-readiness score | ${ora ? `${ora.score}/${ora.maxScore ?? 100} (${ora.grade})` : "—"} | ora.ai |`);
   P(`| Cloudflare level | ${cf ? `${cf.level} — ${esc(cf.levelName)}` : "—"} | isitagentready.com |`);
@@ -329,6 +460,7 @@ P("");
     const cliHighN = cliDefects.filter((d) => d.severity === "high").length;
 
     P(`#### Cross-check against the team's proposed order`, "");
+    if (baseline) P(`_Written against the ${baseline.capturedAt} draft; items that have since shipped are marked._`, "");
     P(`The AISA team proposed a five-step order after reading an earlier draft: unblock discovery, unblock execution, make the funnel measurable, improve recommendation visibility, retest against a baseline. That sequencing is right and matches this list. Their plan prompted four additions above — the capped eval wallet, scanner re-verification, the JSON-LD Organization fix, and the retest baseline table.`, "");
     P("");
     P(`Five things their order does not yet cover:`, "");
@@ -339,31 +471,35 @@ P("");
     P(`${cliDefects.length ? 2 : 1}. **Coding-agent visibility is unmeasured.** Their step 4 targets positioning and structured data, which addresses answer engines. But ${trackedPlatforms.length} of ${availablePlatforms.length} platforms are tracked and none are coding agents, so Claude Code, Codex, Cursor and Copilot recommendations are invisible. For a developer API that is the audience that matters, and it is a settings change, not a project.`);
     P(`${cliDefects.length ? 3 : 2}. **The broken-URL count is ${brokenNow}, not 16 — and "fix or 301-redirect" is two different jobs.** Only about nine have an existing page to redirect to. The rest are shipped endpoints (\`/v1/rerank\`, \`/v1/images/edits\`, \`/apis/v1/firecrawl/search\`) with no documentation page at all; those need writing, which is a materially larger task than a redirect map.`);
     P(`${cliDefects.length ? 4 : 3}. **OIDC discovery is absent from the apex.** It exists only on \`login.${DOMAIN}\`, so scanners and agents that probe the apex conclude there is no OAuth support. A redirect fixes it and it is not in their step 1.`);
-    P(`${cliDefects.length ? 5 : 4}. **Machine-readable entry points.** Markdown negotiation, RFC 8288 \`Link\` headers and markdown-bodied 404s all target the ${(() => { const g = ((diagRecent ?? diag)?.failure_analysis?.patterns ?? []).find((x) => /guessed without docs/i.test(x.label)); return g ? `${g.percentage}% "Guessed Without Docs"` : "dominant"; })()} pattern directly — agents that never open the docs. Their plan improves the docs' *content* but not their *reachability by machine*.`);
+    if (cfStatus("markdownNegotiation") === "pass" && cfStatus("linkHeaders") === "pass")
+      P(`${cliDefects.length ? 5 : 4}. ~~**Machine-readable entry points.**~~ **Shipped since** — markdown negotiation and RFC 8288 \`Link\` headers both pass on Cloudflare and Ora now.`);
+    else P(`${cliDefects.length ? 5 : 4}. **Machine-readable entry points.** Markdown negotiation, RFC 8288 \`Link\` headers and markdown-bodied 404s all target the ${(() => { const g = ((diagRecent ?? diag)?.failure_analysis?.patterns ?? []).find((x) => /guessed without docs/i.test(x.label)); return g ? `${g.percentage}% "Guessed Without Docs"` : "dominant"; })()} pattern directly — agents that never open the docs. Their plan improves the docs' *content* but not their *reachability by machine*.`);
     P("");
     P(`One correction to their step 4: **FAQPage structured data is already present** on the site. Ora credits it. The actual schema gap is the Organization block — missing \`name\`, \`description\`, \`contactPoint\` and \`address\` — plus \`Service\` or \`AggregateRating\` for breadth.`, "");
     P("");
   }
 
-  P(`**The through-line:** ${cliHigh.length ? `${cliHigh.length} genuine CLI defects and ` : ""}the rest is surfacing work. ${company.name} has built the MCP servers, the OpenAPI spec, the CLI, the A2A card and the OIDC endpoint — they are simply not where agents and scanners look for them.`, "");
+  P(mcpCardLive
+    ? `**The through-line:** the discovery work has largely landed — MCP, markdown, \`Link\` headers, the API catalog and the ARD catalog all pass now. What is left is the documentation 404s, ${cliHigh.length ? `${cliHigh.length} high-severity CLI defects that nobody has re-tested, ` : ""}a few conformance fields (OIDC on the apex, the A2A card), and an eval re-run to confirm all of it against real agents.`
+    : `**The through-line:** ${cliHigh.length ? `${cliHigh.length} genuine CLI defects and ` : ""}the rest is surfacing work. ${company.name} has built the MCP servers, the OpenAPI spec, the CLI, the A2A card and the OIDC endpoint — they are simply not where agents and scanners look for them.`, "");
 }
 
 /* ---------- engineering fix list ---------- */
 {
   S("Engineering fix list");
-  P(`Ordered by effort-to-impact. Every item is verified against live data in this report.`, "");
+  P(`Ordered by effort-to-impact. Scanner and doc-URL items are verified against live data in this report${evalsStale ? `; eval-derived items (the CLI defects, the agent-behaviour patterns) are from ${lastRunDate} and have not been re-tested` : ""}.`, "");
 
   let n = 0;
   const item = (title, body) => { n++; P(`### ${n}. ${title}`, ""); P(body, ""); };
 
-  if (mcpMan?.counts?.live) {
+  if (mcpMan?.counts?.live && !mcpCardLive) {
     item("Publish a conforming MCP server card", 
       `**Why:** ${mcpMan.counts.live} live servers / ${mcpMan.liveTools} tools are deployed and answering, and every scanner reports zero. ` +
       `**What:** serve \`/.well-known/mcp/server-card.json\` (SEP-2127) with \`serverInfo.name\` and \`serverInfo.version\`, keeping the existing \`/.well-known/mcp.json\` in place for current consumers. ` +
       `**Effect:** clears the Cloudflare \`mcpServerCard\` check, Ora's \`mcp-server\` (0/6) and \`mcp-server-card\` (0/2), and the Arena checklist's MCP row.`);
   }
 
-  const broken = (urlCheck?.urls ?? []).filter((u) => u.stillBroken);
+  const broken = brokenUrls;
   if (broken.length) {
     item(`Fix ${broken.length} documentation 404s that agents hit`,
       `**Why:** these are URLs agents actually requested during evals. A 404 mid-task costs a step, and often the run. ` +
@@ -380,7 +516,7 @@ P("");
       "/docs/api-reference/financial/get_financial_metrics_snapshot": "301 → `/docs/api-reference/financial/get_prices`",
       "/docs/api-reference/financial/get_financial-company-facts": "301 → `/docs/api-reference/financial/get_prices`",
     };
-    for (const u of broken.sort((a, b) => (a.priority === "high" ? -1 : 1))) {
+    for (const u of [...broken].sort((a, b) => (b.priority === "high") - (a.priority === "high") || String(a.url).localeCompare(String(b.url)))) {
       const path = String(u.url).replace(/^https?:\/\/[^/]+/, "");
       const suggestion = SUGGEST[path] ?? "**No doc page for a shipped endpoint** — write it";
       P(`| ${u.status || "err"}${u.priority === "high" ? " · **high**" : ""} | \`${esc(path)}\` | ${suggestion} |`);
@@ -394,7 +530,7 @@ P("");
     item(`Fix ${cliFindings.defects.length} CLI defects surfaced by the eval sweep`,
       `**Why:** the CLI passes at ${cliFindings.sweep.passRate}% against REST's near-clean rate, with **zero perfect scores** across ${cliFindings.sweep.evals} evals. ` +
       `${esc(cliFindings.environmentConfirmedHealthy)} ` +
-      `**What:** ${high.length} are high severity.`);
+      `**What:** ${high.length} are high severity.${evalsStale ? ` _Found in the ${lastRunDate} sweep and not re-tested since — some may already be fixed (the CLI has moved from v0.3.0 to v${esc(npmPkg?.latest ?? "?")})._` : ""}`);
     P(`| Severity | Defect | Action |`, `| --- | --- | --- |`);
     for (const d of cliFindings.defects) P(`| ${esc(d.severity)} | ${esc(d.title)} | ${esc(d.action)} |`);
     P("");
@@ -410,7 +546,7 @@ P("");
     cheap.push(["OIDC discovery is on a subdomain", "Serve or 301 `/.well-known/openid-configuration` from the apex — it currently only exists on `login.aisa.one`, and scanners only probe the apex."]);
   const a2a = cfById.get("a2aAgentCard");
   if (a2a?.status === "fail") cheap.push(["A2A Agent Card is schema-invalid", "Add the missing `supportedInterfaces` field to the card already being served at `/.well-known/agent-card.json`."]);
-  if (npmPkg?.name && !npmPkg.error)
+  if (npmPkg?.name && !npmPkg.error && oraStatus("cli-tool") !== "pass")
     cheap.push([`\`${esc(npmPkg.name)}\` is published but unlinked`, `v${esc(npmPkg.latest)} is live on npm and updated ${String(npmPkg.modified).slice(0, 10)}, but nothing on the homepage links to it, so three separate checks score it zero.`]);
   if (cfById.get("markdownNegotiation")?.status === "fail")
     cheap.push(["No markdown for agents", "Serve `text/markdown` on `Accept: text/markdown`, or publish `/index.md`. Agents landing from search currently get HTML only."]);
@@ -430,12 +566,14 @@ P("");
     item("Make the docs findable from inside an agent session",
       `**Why:** ${guess ? `\`${guess.label}\` is the single largest failure pattern at ${guess.percentage}% of runs — agents used tools without ever reading the docs` : ""}` +
       `${guess && hard ? ", and " : ""}${hard ? `\`${hard.label}\` accounts for ${hard.percentage}%, meaning agents needed 2+ web searches to find them` : ""}. ` +
-      `**What:** the fixes above (Link headers, markdown negotiation, working 404s with a markdown body listing next steps) all feed this. ` +
-      `A dead-end 404 with no body is the worst case: the agent has no way to recover and falls back to guessing.`);
+      (cfStatus("linkHeaders") === "pass" && cfStatus("markdownNegotiation") === "pass"
+        ? `**What:** \`Link\` headers, markdown negotiation and markdown-bodied 404s have shipped since these patterns were measured${evalsStale ? ` on ${lastRunDate}` : ""}, so expect them to shift on the next eval run. Fixing the doc 404s above is the remaining piece.`
+        : `**What:** the fixes above (Link headers, markdown negotiation, working 404s with a markdown body listing next steps) all feed this. ` +
+          `A dead-end 404 with no body is the worst case: the agent has no way to recover and falls back to guessing.`));
   }
 
   item("Install the Lightsage agent tracker",
-    `**Why:** Agent Analytics has received no events, so there is no data on which pages agents actually read — only what evals synthesise. ` +
+    `**Why:** as of ${baseline?.capturedAt ?? "the last check"}, Agent Analytics had received no events, so there is no data on which pages agents actually read — only what evals synthesise. ` +
     `**What:** \`npm install @lightsage/agent-tracker\` and add the Next.js middleware (details in the section below). Zero runtime dependencies.`);
 }
 
@@ -488,13 +626,14 @@ if (runs.length) {
   }
   const srcLine = [...bySource.entries()].map(([k, v]) => `${k} ${v.pass}/${v.total}`).join(", ");
 
-  P(`**${passed}/${runs.length} evals passed (${pct(passRate)})**, all executed by \`${[...new Set(runs.map((r) => r.model))].join(", ")}\`.`, "");
+  P(`**${passed}/${runs.length} evals passed (${pct(passRate)})**, all executed by \`${[...new Set(runs.map((r) => r.model_id ?? r.model))].join(", ")}\`${lastRunDate ? `, latest run ${lastRunDate}` : ""}.`, "");
+  if (staleNote) P(staleNote, "");
   if (credState === "balance" || credState === "invalid") {
     P(`> **Read these scores with the caveat above.** ${credState === "balance"
       ? "Most runs fail on `402 — insufficient wallet balance`, not on anything about the endpoint. Until the eval account is funded, this table ranks which endpoints an agent reached before the payment wall, not which ones work."
       : "Most runs fail on a rejected credential, not on anything about the endpoint."}`, "");
   }
-  P(`This section covers the **${runs.length} most recent runs** (the API caps the list at 50). Full-window figures — ${num(diag?.summary?.total_runs)} runs over ${esc(diag?.since)} — are in the Agent experience section.`, "");
+  P(`This section covers the **${runs.length} most recent runs** (the API caps the list at 50).${diag?.summary?.total_runs ? ` Full-window figures — ${num(diag.summary.total_runs)} runs over ${esc(diag.since)} — are in the Agent experience section.` : ""}`, "");
   if (bySource.size > 1) {
     P(`**Source split: ${srcLine}.** Note this batch is overwhelmingly ${[...bySource.entries()].sort((a, b) => b[1].total - a[1].total)[0][0]} evals, so the headline rate is not a REST API pass rate.`, "");
   }
@@ -530,7 +669,7 @@ if (actions.length) {
   for (const a of actions) byType.set(a.action_type, [...(byType.get(a.action_type) ?? []), a]);
   for (const [type, list] of byType) {
     P(`**${clean(type)}** (${list.length})`, "");
-    for (const a of list) P(`- ${a.priority === "high" ? "**[high]** " : ""}\`${esc(a.primary_url)}\``);
+    for (const a of [...list].sort((x, y) => (y.priority === "high") - (x.priority === "high") || String(x.primary_url).localeCompare(String(y.primary_url)))) P(`- ${a.priority === "high" ? "**[high]** " : ""}\`${esc(a.primary_url)}\``);
     P("");
   }
 }
@@ -553,6 +692,7 @@ if (arena) {
   const missing = arena.checklist.filter((c) => c.points === 0).map((c) => c.item);
   P(`**Checklist** — earned: ${earned.map((x) => esc(x)).join(", ")}. Missing: **${missing.map((x) => esc(x)).join(", ")}**.`, "");
   P(`> ${esc(arena.observedFriction)}`, "");
+  if (baseline && String(arena.capturedAt) <= baseline.capturedAt) P(`> **Snapshot from ${arena.capturedAt}, before the MCP card, markdown negotiation and the other discovery fixes shipped.** The checklist below (including "MCP Server: 0") reflects that date — re-capture it from the Arena page before quoting it.`, "");
   P(`_Snapshot captured ${arena.capturedAt} from [the Arena page](${arena.sourceUrl}); Lightsage exposes no JSON API for the leaderboard, so this section does not auto-refresh._  `);
   P(`_This eval ran ${arena.completedAt}, **before** the eval credential was replaced — and its transcript shows the agent downgrading models until it found a free one. Expect the grade to move once the account is funded and the Arena eval is re-run._`, "");
 }
@@ -576,7 +716,8 @@ if (diag) {
     const LABEL = { rest_api: "REST", cli: "CLI" };
     const nameOf = (k) => LABEL[k] ?? k;
 
-    P(`### Current baseline (${esc(windowLabel(diagRecent.since))})`, "");
+    P(`### ${evalsStale ? "Last measured baseline" : "Current baseline"} (${esc(windowLabel(diagRecent.since))})`, "");
+    if (staleNote) P(staleNote, "");
     if (ranked.length > 1) {
       P(`**${ranked.map(([k, v]) => `${nameOf(k)} ${v.pass}/${v.total} (${(v.pass / v.total * 100).toFixed(1)}%)`).join(" · ")}**`, "");
       P(`These are the first clean numbers in this report — every earlier figure was taken while the eval credential was rejected or the account had no balance, so agents could not complete a live call regardless of quality. Both are now resolved, and the two surfaces have separated by ${Math.round((ranked[0][1].pass / ranked[0][1].total - ranked[ranked.length - 1][1].pass / ranked[ranked.length - 1][1].total) * 100)} points. Read them separately; a blended figure describes neither.`, "");
@@ -593,7 +734,8 @@ if (diag) {
     }
     P(`| Window | Runs | Failure rate | What it reflects |`, `| --- | --- | --- | --- |`);
     P(`| ${esc(windowLabel(diagRecent.since))} | ${num(rs.total_runs)} | **${num(rs.failure_rate)}%** | Current state |`);
-    P(`| ${esc(windowLabel(diag.since))} | ${num(sum.total_runs)} | ${num(sum.failure_rate)}% | Still averaging in pre-fix runs — expect it to fall as this ages out |`);
+    if (sum.total_runs) P(`| ${esc(windowLabel(diag.since))} | ${num(sum.total_runs)} | ${num(sum.failure_rate)}% | Still averaging in pre-fix runs — expect it to fall as this ages out |`);
+    else P(`| ${esc(windowLabel(diag.since))} | 0 | — | No eval runs in the window |`);
     P("");
   } else {
     P(`Lightsage's diagnosis of how coding agents actually behave against the API, ${esc(windowLabel(diag.since))}.`, "");
@@ -719,7 +861,7 @@ if (ora || cf) {
       if (a2a?.status === "fail" && oraById.get("a2a-agent-card")?.status === "pass")
         exists.push(["A2A Agent Card", "Served, but " + esc(a2a.message).replace(/^Invalid A2A Agent Card: /, "").replace(/^./, (m) => m.toLowerCase()), "Add the missing required field to the existing card."]);
       const mcpCard = cfById.get("mcpServerCard");
-      if (mcpMan?.counts?.live) {
+      if (mcpMan?.counts?.live && !mcpCardLive) {
         exists.unshift([
           "**MCP servers**",
           `**${mcpMan.counts.live} live servers exposing ${mcpMan.liveTools} tools** are published at \`/.well-known/mcp.json\` (plus ${mcpMan.counts.planned} planned) — but the manifest is AISA's own format, with no \`serverInfo.name\`, so every scanner reports "no MCP server"`,
@@ -728,14 +870,14 @@ if (ora || cf) {
       } else if (mcpCard && /returned JSON but missing/i.test(mcpCard.message ?? "")) {
         exists.push(["MCP manifest", "`/.well-known/mcp.json` returns 200 JSON but lacks `serverInfo.name`", "Add the required field, or move it to `/.well-known/mcp/server-card.json`."]);
       }
-      if (npmPkg?.name && !npmPkg.error)
+      if (npmPkg?.name && !npmPkg.error && oraStatus("cli-tool") !== "pass")
         exists.push([
           "CLI package",
           `\`${esc(npmPkg.name)}\` v${esc(npmPkg.latest)} is published (${npmPkg.versions} versions, last updated ${String(npmPkg.modified).slice(0, 10)}) but is not linked from the homepage`,
           "Link it from the homepage and docs — three separate checks currently score it zero.",
         ]);
 
-      if (mcpMan?.counts?.live) {
+      if (mcpMan?.counts?.live && !mcpCardLive) {
         P(`### The MCP gap`, "");
         P(`Every scanner in this report says AISA has no MCP server. Fetching \`https://${DOMAIN}/.well-known/mcp.json\` directly returns **${mcpMan.counts.live} live servers exposing ${mcpMan.liveTools} tools**, plus ${mcpMan.counts.planned} planned entries.`, "");
         P(`| Server | Category | Tools | Endpoint |`, `| --- | --- | --- | --- |`);
@@ -807,11 +949,11 @@ if (oppList.length) {
 /* ---------- caveats ---------- */
 if (true) {
   S("Recommended: install the Lightsage Agent Tracker SDK");
-  P(`Lightsage's **Agent Analytics** product is currently empty for AISA — the dashboard reports *"Waiting for first tracking event."* ` +
+  P(`Lightsage's **Agent Analytics** product was empty for AISA as of ${baseline?.capturedAt ?? "the last check"} — the dashboard reported *"Waiting for first tracking event."* Confirm in the dashboard whether that is still true. ` +
     `That is the half of Lightsage that measures which pages agents actually read, and it needs a small middleware install to start producing data.`, "");
   P("");
   P(`Everything in this report so far is *outside-in*: Lightsage running prompts and evals against AISA, and two scanners probing from the public internet. ` +
-    `Agent Analytics is the *inside-out* view — real agent traffic hitting real pages. Given that ${diag ? `${num(diag.summary?.failure_rate)}% of eval runs fail` : "evals are failing"} ` +
+    `Agent Analytics is the *inside-out* view — real agent traffic hitting real pages. Given that ${(diagRecent ?? diag)?.summary?.failure_rate != null ? `${num((diagRecent ?? diag).summary.failure_rate)}% of eval runs failed when last measured` : "evals are failing"} ` +
     `and the Site Audit already flags agent-visited 404s, knowing which docs agents actually request would close the loop.`, "");
   P("");
   P("```bash", "npm install @lightsage/agent-tracker", "```", "");
@@ -827,7 +969,13 @@ if (true) {
 }
 
 S("Data quality caveats");
-P(`- **Average position is not meaningful.** \`average_position = ${num(snap.average_position)}\` (rank #${snap.average_position_rank}) derives from ${citationCount} citation. It will regress as citations accumulate.`);
+P(`- **Average position is not meaningful yet.** \`average_position = ${num(snap.average_position)}\` (rank #${snap.average_position_rank}) derives from ${citationCount} citation${citationCount === 1 ? "" : "s"}. It will move sharply as citations accumulate.`);
+if (evalsStale) P(`- **Eval data is carried over.** The newest API Performance run is from ${lastRunDate}; the trailing ${esc(diag?.since ?? "30d")} diagnose window is empty. Every eval-derived number is from that date.`);
+{
+  const spec = oraById.get("openapi-spec"), schema = oraById.get("api-schema-analysis");
+  if (spec?.status === "fail" && /spec found/i.test(schema?.details ?? ""))
+    P(`- **Ora's \`openapi-spec\` result (${spec.score}/${spec.maxScore}) looks like a scanner false negative.** It reports "${esc(spec.details)}", but Ora's own \`api-schema-analysis\` says "${esc(schema.details)}", and \`https://${DOMAIN}/openapi.json\` returns 200 JSON. Worth reporting to Ora rather than treating as a regression.`);
+}
 if (oppList.length) {
   const saturated = oppList.filter((o) => o.impact_score === 100).length;
   P(`- **Opportunity impact scores are saturated.** ${saturated} of ${oppList.length} opportunities score exactly 100, and ${opps.summary?.["by_priority"]?.["OpportunityPriority.HIGH"] ?? "most"} are "high" priority — the ranking carries little signal. The ranked task list below is the better prioritisation.`);
@@ -843,6 +991,30 @@ for (const e of manifest.endpoints) {
   P(`| ${esc(e.label)} | \`${esc(e.path)}\` | ${e.ok ? "ok" : e.optional ? "n/a" : "**failed**"} (${e.status}) | ${e.durationMs}ms |`);
 }
 P("");
+
+writeFileSync(
+  join(outDir, "summary.json"),
+  JSON.stringify(
+    {
+      generatedAt: manifest.generatedAt,
+      domain: DOMAIN,
+      window: w,
+      baselineDate: baseline?.capturedAt ?? null,
+      lastEvalRun: lastRunDate,
+      evalsStale,
+      reportUrl: "https://github.com/opencolin/aisa-review/blob/main/out/agent-readiness-and-visibility-report.md",
+      scores: {
+        ora: ora ? { score: ora.score, max: ora.maxScore ?? 100, grade: ora.grade, scannedAt: ora.scannedAt } : null,
+        cloudflare: cf ? { pass: cfPass, scored: cfScored.length, level: cf.level, levelName: cf.levelName, scannedAt: cf.scannedAt } : null,
+        visibility: { score: snap.visibility_score ?? null, rank: snap.visibility_score_rank ?? null, of: competitors.length, citations: citationCount, runs: runCount, leader: leader ? { name: leader.company?.name, score: leader.visibility_score } : null },
+      },
+      brokenDocUrls: brokenUrls.map((u) => String(u.url)),
+      ...summary,
+    },
+    null,
+    2,
+  ),
+);
 
 const outPath = join(outDir, "agent-readiness-and-visibility-report.md");
 writeFileSync(outPath, md.join("\n"));

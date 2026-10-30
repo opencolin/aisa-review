@@ -1,8 +1,8 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 901,
-  "path": "/v1/visibility/current?start_date=2026-07-24&end_date=2026-08-23",
+  "durationMs": 510,
+  "path": "/v1/visibility/current?start_date=2026-09-30&end_date=2026-10-30",
   "body": {
     "company": {
       "name": "AIsa",
@@ -10,16 +10,518 @@
       "logo_url": null,
       "relationship": "primary"
     },
-    "visibility_score": 0.0012,
+    "recommendation_score": null,
+    "recommendation_score_rank": null,
+    "visibility_score": 0.009,
     "visibility_score_rank": 8,
-    "share_of_voice": 0.0017,
+    "share_of_voice": 0.0068,
     "share_of_voice_rank": 8,
-    "average_position": 1,
-    "average_position_rank": 1,
-    "date": "2026-08-23",
-    "start_date": "2026-07-24",
-    "end_date": "2026-08-23",
+    "average_position": 1.33,
+    "average_position_rank": 5,
+    "date": "2026-10-29",
+    "start_date": "2026-09-30",
+    "end_date": "2026-10-30",
     "active_prompts_only": true,
-    "has_data": true
+    "has_data": true,
+    "period": {
+      "name": null,
+      "start_date": "2026-09-30",
+      "end_date": "2026-10-30",
+      "days": 31,
+      "previous_start_date": "2026-08-30",
+      "previous_end_date": "2026-09-29",
+      "previous_days": 31,
+      "partial": true,
+      "timezone": "UTC"
+    },
+    "previous": {
+      "recommendation_score": null,
+      "visibility_score": 0.0128,
+      "share_of_voice": 0.01,
+      "average_position": 2.11,
+      "has_data": true
+    },
+    "coverage": {
+      "comparable": true,
+      "notes": [],
+      "current": {
+        "start_date": "2026-09-30",
+        "end_date": "2026-10-30",
+        "runs": 666,
+        "expected_runs": 718,
+        "complete_days": 30,
+        "runs_per_day": 22.2,
+        "missing_days": [],
+        "short_days": []
+      },
+      "previous": {
+        "start_date": "2026-08-30",
+        "end_date": "2026-09-29",
+        "runs": 701,
+        "expected_runs": 691,
+        "complete_days": 31,
+        "runs_per_day": 22.61,
+        "missing_days": [],
+        "short_days": []
+      },
+      "days": [
+        {
+          "date": "2026-08-30",
+          "period": "previous",
+          "runs": 22,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-08-31",
+          "period": "previous",
+          "runs": 26,
+          "expected_runs": 25,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-01",
+          "period": "previous",
+          "runs": 19,
+          "expected_runs": 25,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-02",
+          "period": "previous",
+          "runs": 24,
+          "expected_runs": 22,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-03",
+          "period": "previous",
+          "runs": 26,
+          "expected_runs": 22,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-04",
+          "period": "previous",
+          "runs": 27,
+          "expected_runs": 22,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-05",
+          "period": "previous",
+          "runs": 21,
+          "expected_runs": 24,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-06",
+          "period": "previous",
+          "runs": 23,
+          "expected_runs": 24,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-07",
+          "period": "previous",
+          "runs": 24,
+          "expected_runs": 24,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-08",
+          "period": "previous",
+          "runs": 22,
+          "expected_runs": 24,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-09",
+          "period": "previous",
+          "runs": 25,
+          "expected_runs": 24,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-10",
+          "period": "previous",
+          "runs": 25,
+          "expected_runs": 24,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-11",
+          "period": "previous",
+          "runs": 18,
+          "expected_runs": 24,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-12",
+          "period": "previous",
+          "runs": 19,
+          "expected_runs": 23,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-13",
+          "period": "previous",
+          "runs": 21,
+          "expected_runs": 23,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-14",
+          "period": "previous",
+          "runs": 26,
+          "expected_runs": 22,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-15",
+          "period": "previous",
+          "runs": 20,
+          "expected_runs": 22,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-16",
+          "period": "previous",
+          "runs": 20,
+          "expected_runs": 21,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-17",
+          "period": "previous",
+          "runs": 20,
+          "expected_runs": 20,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-18",
+          "period": "previous",
+          "runs": 19,
+          "expected_runs": 20,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-19",
+          "period": "previous",
+          "runs": 19,
+          "expected_runs": 20,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-20",
+          "period": "previous",
+          "runs": 20,
+          "expected_runs": 20,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-21",
+          "period": "previous",
+          "runs": 23,
+          "expected_runs": 20,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-22",
+          "period": "previous",
+          "runs": 19,
+          "expected_runs": 20,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-23",
+          "period": "previous",
+          "runs": 19,
+          "expected_runs": 20,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-24",
+          "period": "previous",
+          "runs": 25,
+          "expected_runs": 19,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-25",
+          "period": "previous",
+          "runs": 23,
+          "expected_runs": 19,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-26",
+          "period": "previous",
+          "runs": 25,
+          "expected_runs": 20,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-27",
+          "period": "previous",
+          "runs": 27,
+          "expected_runs": 23,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-28",
+          "period": "previous",
+          "runs": 27,
+          "expected_runs": 23,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-29",
+          "period": "previous",
+          "runs": 27,
+          "expected_runs": 25,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-30",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 25,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-01",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-02",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-03",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-04",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-05",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-06",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-07",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-08",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-09",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-10",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-11",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-12",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-13",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-14",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-15",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-16",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-17",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-18",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-19",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-20",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-21",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-22",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-23",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-24",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-25",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-26",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-27",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-28",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-29",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-30",
+          "period": "current",
+          "runs": 0,
+          "expected_runs": 18,
+          "status": "in_progress"
+        }
+      ]
+    },
+    "rates": {
+      "headline_metric": "owned_citations",
+      "current": {
+        "runs": 666,
+        "owned_citations": 5,
+        "owned_citations_per_run": 0.0075,
+        "brand_mention_runs": 6,
+        "mention_rate": 0.009
+      },
+      "previous": {
+        "runs": 701,
+        "owned_citations": 5,
+        "owned_citations_per_run": 0.0071,
+        "brand_mention_runs": 9,
+        "mention_rate": 0.0128
+      },
+      "change": {
+        "owned_citations": 0,
+        "owned_citations_per_run": 0.0563,
+        "mention_rate": -0.2969
+      }
+    }
   }
 }

@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 2792,
+  "durationMs": 1383,
   "path": "/v1/api-performance/custom-evals",
   "body": {
     "data": [
@@ -10,7 +10,8 @@
         "prompt": "basic nextjs app with aisa api",
         "prompt_template": "basic nextjs app with aisa api",
         "description": null,
-        "tag": null,
+        "tag": "Quickstart",
+        "persona": null,
         "competitor": null,
         "prompt_competitor": null,
         "prompt_competitor_group": null,
@@ -27,7 +28,20 @@
           "eval_type": "integration",
           "prompt": "basic nextjs app with aisa api",
           "custom_prompt": null,
-          "expected_behavior": "Complete the use case successfully.",
+          "expected_behavior": "The response and any generated artifacts should satisfy the requested use case.",
+          "graders": [
+            {
+              "name": "completed_task",
+              "type": "judge",
+              "needle": null,
+              "needles": null,
+              "pattern": null,
+              "case_sensitive": false,
+              "criteria": "The response and any generated artifacts should satisfy the requested use case.",
+              "weight": 1,
+              "blocking": true
+            }
+          ],
           "starting_project_id": null,
           "docs_mode": "default",
           "include_env_vars": true,
@@ -38,6 +52,8 @@
           "skills_enabled": false,
           "skill_ids": [],
           "mcp_enabled": false,
+          "search_grounding": "default",
+          "grounding_enabled": true,
           "run_context": {
             "starting_project": {
               "id": "9aa783e1-f966-5488-89a0-59655be68f45",
@@ -55,14 +71,15 @@
           "enabled": true
         },
         "created_at": "2026-08-12T12:33:29.861075+00:00",
-        "updated_at": "2026-08-12T12:33:29.861075+00:00"
+        "updated_at": "2026-09-07T23:24:14.036301+00:00"
       },
       {
         "id": "333b6fb1-5b2f-4514-88ab-b63999880649",
         "prompt": "basic vite app with aisa api",
         "prompt_template": "basic vite app with aisa api",
         "description": null,
-        "tag": null,
+        "tag": "Quickstart",
+        "persona": null,
         "competitor": null,
         "prompt_competitor": null,
         "prompt_competitor_group": null,
@@ -79,7 +96,20 @@
           "eval_type": "integration",
           "prompt": "basic vite app with aisa api",
           "custom_prompt": null,
-          "expected_behavior": "Complete the use case successfully.",
+          "expected_behavior": "The response and any generated artifacts should satisfy the requested use case.",
+          "graders": [
+            {
+              "name": "completed_task",
+              "type": "judge",
+              "needle": null,
+              "needles": null,
+              "pattern": null,
+              "case_sensitive": false,
+              "criteria": "The response and any generated artifacts should satisfy the requested use case.",
+              "weight": 1,
+              "blocking": true
+            }
+          ],
           "starting_project_id": null,
           "docs_mode": "default",
           "include_env_vars": true,
@@ -90,6 +120,8 @@
           "skills_enabled": false,
           "skill_ids": [],
           "mcp_enabled": false,
+          "search_grounding": "default",
+          "grounding_enabled": true,
           "run_context": {
             "starting_project": {
               "id": "cd14c02d-2957-596e-bc3a-7e9647ada194",
@@ -107,14 +139,15 @@
           "enabled": true
         },
         "created_at": "2026-08-12T12:33:49.721663+00:00",
-        "updated_at": "2026-08-12T12:33:49.721663+00:00"
+        "updated_at": "2026-09-07T23:24:14.036301+00:00"
       },
       {
         "id": "bfb81bf9-6313-4b5b-bf14-2f4801477e5b",
         "prompt": "Integrate AIsa into a Next.js app",
         "prompt_template": "Integrate {{company_name}} into a Next.js app",
         "description": null,
-        "tag": null,
+        "tag": "Competitor",
+        "persona": null,
         "competitor": null,
         "prompt_competitor": null,
         "prompt_competitor_group": null,
@@ -131,7 +164,20 @@
           "eval_type": "integration",
           "prompt": "Integrate AIsa into a Next.js app",
           "custom_prompt": null,
-          "expected_behavior": "Complete the use case successfully.",
+          "expected_behavior": "The response and any generated artifacts should satisfy the requested use case.",
+          "graders": [
+            {
+              "name": "completed_task",
+              "type": "judge",
+              "needle": null,
+              "needles": null,
+              "pattern": null,
+              "case_sensitive": false,
+              "criteria": "The response and any generated artifacts should satisfy the requested use case.",
+              "weight": 1,
+              "blocking": true
+            }
+          ],
           "starting_project_id": null,
           "docs_mode": "default",
           "include_env_vars": true,
@@ -142,6 +188,8 @@
           "skills_enabled": false,
           "skill_ids": [],
           "mcp_enabled": false,
+          "search_grounding": "default",
+          "grounding_enabled": true,
           "run_context": {
             "starting_project": {
               "id": "9aa783e1-f966-5488-89a0-59655be68f45",
@@ -159,14 +207,15 @@
           "enabled": true
         },
         "created_at": "2026-08-12T12:34:13.094942+00:00",
-        "updated_at": "2026-08-12T12:34:13.094942+00:00"
+        "updated_at": "2026-09-07T23:24:14.036301+00:00"
       },
       {
         "id": "0d425ca9-2b9e-465b-8060-6a0469dcbf22",
         "prompt": "Integrate Composio into a Next.js app",
         "prompt_template": "Integrate {{company_name}} into a Next.js app",
         "description": null,
-        "tag": null,
+        "tag": "Competitor",
+        "persona": null,
         "competitor": "776e4c28-ab93-4eca-87ac-ad9b57aad734",
         "prompt_competitor": "Composio",
         "prompt_competitor_group": "bfb81bf9-6313-4b5b-bf14-2f4801477e5b",
@@ -183,7 +232,20 @@
           "eval_type": "integration",
           "prompt": "Integrate Composio into a Next.js app",
           "custom_prompt": null,
-          "expected_behavior": "Complete the use case successfully.",
+          "expected_behavior": "The response and any generated artifacts should satisfy the requested use case.",
+          "graders": [
+            {
+              "name": "completed_task",
+              "type": "judge",
+              "needle": null,
+              "needles": null,
+              "pattern": null,
+              "case_sensitive": false,
+              "criteria": "The response and any generated artifacts should satisfy the requested use case.",
+              "weight": 1,
+              "blocking": true
+            }
+          ],
           "starting_project_id": null,
           "docs_mode": "default",
           "include_env_vars": true,
@@ -194,6 +256,8 @@
           "skills_enabled": false,
           "skill_ids": [],
           "mcp_enabled": false,
+          "search_grounding": "default",
+          "grounding_enabled": true,
           "run_context": {
             "starting_project": {
               "id": "9aa783e1-f966-5488-89a0-59655be68f45",
@@ -211,14 +275,15 @@
           "enabled": true
         },
         "created_at": "2026-08-12T12:34:13.65459+00:00",
-        "updated_at": "2026-08-12T12:34:13.65459+00:00"
+        "updated_at": "2026-09-07T23:24:14.036301+00:00"
       },
       {
         "id": "3bec47f1-614b-43c2-a632-915ad6565c3d",
         "prompt": "Integrate RapidAPI into a Next.js app",
         "prompt_template": "Integrate {{company_name}} into a Next.js app",
         "description": null,
-        "tag": null,
+        "tag": "Competitor",
+        "persona": null,
         "competitor": "340082ce-db95-46ac-a281-f5cb63ba4a3b",
         "prompt_competitor": "RapidAPI",
         "prompt_competitor_group": "bfb81bf9-6313-4b5b-bf14-2f4801477e5b",
@@ -235,7 +300,20 @@
           "eval_type": "integration",
           "prompt": "Integrate RapidAPI into a Next.js app",
           "custom_prompt": null,
-          "expected_behavior": "Complete the use case successfully.",
+          "expected_behavior": "The response and any generated artifacts should satisfy the requested use case.",
+          "graders": [
+            {
+              "name": "completed_task",
+              "type": "judge",
+              "needle": null,
+              "needles": null,
+              "pattern": null,
+              "case_sensitive": false,
+              "criteria": "The response and any generated artifacts should satisfy the requested use case.",
+              "weight": 1,
+              "blocking": true
+            }
+          ],
           "starting_project_id": null,
           "docs_mode": "default",
           "include_env_vars": true,
@@ -246,6 +324,8 @@
           "skills_enabled": false,
           "skill_ids": [],
           "mcp_enabled": false,
+          "search_grounding": "default",
+          "grounding_enabled": true,
           "run_context": {
             "starting_project": {
               "id": "9aa783e1-f966-5488-89a0-59655be68f45",
@@ -263,14 +343,15 @@
           "enabled": true
         },
         "created_at": "2026-08-12T12:34:14.416327+00:00",
-        "updated_at": "2026-08-12T12:34:14.416327+00:00"
+        "updated_at": "2026-09-07T23:24:14.036301+00:00"
       },
       {
         "id": "668672e4-c7f4-46be-b765-b86d9d3a5208",
         "prompt": "Integrate Toolhouse into a Next.js app",
         "prompt_template": "Integrate {{company_name}} into a Next.js app",
         "description": null,
-        "tag": null,
+        "tag": "Competitor",
+        "persona": null,
         "competitor": "eba219f2-a9e9-4f74-b4ea-099d8e9aa252",
         "prompt_competitor": "Toolhouse",
         "prompt_competitor_group": "bfb81bf9-6313-4b5b-bf14-2f4801477e5b",
@@ -287,7 +368,20 @@
           "eval_type": "integration",
           "prompt": "Integrate Toolhouse into a Next.js app",
           "custom_prompt": null,
-          "expected_behavior": "Complete the use case successfully.",
+          "expected_behavior": "The response and any generated artifacts should satisfy the requested use case.",
+          "graders": [
+            {
+              "name": "completed_task",
+              "type": "judge",
+              "needle": null,
+              "needles": null,
+              "pattern": null,
+              "case_sensitive": false,
+              "criteria": "The response and any generated artifacts should satisfy the requested use case.",
+              "weight": 1,
+              "blocking": true
+            }
+          ],
           "starting_project_id": null,
           "docs_mode": "default",
           "include_env_vars": true,
@@ -298,6 +392,8 @@
           "skills_enabled": false,
           "skill_ids": [],
           "mcp_enabled": false,
+          "search_grounding": "default",
+          "grounding_enabled": true,
           "run_context": {
             "starting_project": {
               "id": "9aa783e1-f966-5488-89a0-59655be68f45",
@@ -315,14 +411,15 @@
           "enabled": true
         },
         "created_at": "2026-08-12T12:34:15.227764+00:00",
-        "updated_at": "2026-08-12T12:34:15.227764+00:00"
+        "updated_at": "2026-09-07T23:24:14.036301+00:00"
       },
       {
         "id": "0ec2691e-095b-44ba-8401-e90c02d23d0d",
         "prompt": "Integrate Arcade into a Next.js app",
         "prompt_template": "Integrate {{company_name}} into a Next.js app",
         "description": null,
-        "tag": null,
+        "tag": "Competitor",
+        "persona": null,
         "competitor": "1ab55740-16d1-4318-9436-c3c8a3fee95d",
         "prompt_competitor": "Arcade",
         "prompt_competitor_group": "bfb81bf9-6313-4b5b-bf14-2f4801477e5b",
@@ -339,7 +436,20 @@
           "eval_type": "integration",
           "prompt": "Integrate Arcade into a Next.js app",
           "custom_prompt": null,
-          "expected_behavior": "Complete the use case successfully.",
+          "expected_behavior": "The response and any generated artifacts should satisfy the requested use case.",
+          "graders": [
+            {
+              "name": "completed_task",
+              "type": "judge",
+              "needle": null,
+              "needles": null,
+              "pattern": null,
+              "case_sensitive": false,
+              "criteria": "The response and any generated artifacts should satisfy the requested use case.",
+              "weight": 1,
+              "blocking": true
+            }
+          ],
           "starting_project_id": null,
           "docs_mode": "default",
           "include_env_vars": true,
@@ -350,6 +460,8 @@
           "skills_enabled": false,
           "skill_ids": [],
           "mcp_enabled": false,
+          "search_grounding": "default",
+          "grounding_enabled": true,
           "run_context": {
             "starting_project": {
               "id": "9aa783e1-f966-5488-89a0-59655be68f45",
@@ -367,14 +479,15 @@
           "enabled": true
         },
         "created_at": "2026-08-12T12:34:15.980748+00:00",
-        "updated_at": "2026-08-12T12:34:15.980748+00:00"
+        "updated_at": "2026-09-07T23:24:14.036301+00:00"
       },
       {
         "id": "288e0555-6afa-4add-bb4b-14603ea2fbcd",
         "prompt": "Integrate Apify into a Next.js app",
         "prompt_template": "Integrate {{company_name}} into a Next.js app",
         "description": null,
-        "tag": null,
+        "tag": "Competitor",
+        "persona": null,
         "competitor": "d43519b1-ee68-410b-9732-c57b2f24606d",
         "prompt_competitor": "Apify",
         "prompt_competitor_group": "bfb81bf9-6313-4b5b-bf14-2f4801477e5b",
@@ -391,7 +504,20 @@
           "eval_type": "integration",
           "prompt": "Integrate Apify into a Next.js app",
           "custom_prompt": null,
-          "expected_behavior": "Complete the use case successfully.",
+          "expected_behavior": "The response and any generated artifacts should satisfy the requested use case.",
+          "graders": [
+            {
+              "name": "completed_task",
+              "type": "judge",
+              "needle": null,
+              "needles": null,
+              "pattern": null,
+              "case_sensitive": false,
+              "criteria": "The response and any generated artifacts should satisfy the requested use case.",
+              "weight": 1,
+              "blocking": true
+            }
+          ],
           "starting_project_id": null,
           "docs_mode": "default",
           "include_env_vars": true,
@@ -402,6 +528,8 @@
           "skills_enabled": false,
           "skill_ids": [],
           "mcp_enabled": false,
+          "search_grounding": "default",
+          "grounding_enabled": true,
           "run_context": {
             "starting_project": {
               "id": "9aa783e1-f966-5488-89a0-59655be68f45",
@@ -419,14 +547,15 @@
           "enabled": true
         },
         "created_at": "2026-08-12T12:34:16.743619+00:00",
-        "updated_at": "2026-08-12T12:34:16.743619+00:00"
+        "updated_at": "2026-09-07T23:24:14.036301+00:00"
       },
       {
         "id": "60e5179c-027d-4796-9d72-6b1843974a1b",
         "prompt": "Integrate AgentOps into a Next.js app",
         "prompt_template": "Integrate {{company_name}} into a Next.js app",
         "description": null,
-        "tag": null,
+        "tag": "Competitor",
+        "persona": null,
         "competitor": "65b1cef9-89dc-4cb6-8670-38e5abed9d2f",
         "prompt_competitor": "AgentOps",
         "prompt_competitor_group": "bfb81bf9-6313-4b5b-bf14-2f4801477e5b",
@@ -443,7 +572,20 @@
           "eval_type": "integration",
           "prompt": "Integrate AgentOps into a Next.js app",
           "custom_prompt": null,
-          "expected_behavior": "Complete the use case successfully.",
+          "expected_behavior": "The response and any generated artifacts should satisfy the requested use case.",
+          "graders": [
+            {
+              "name": "completed_task",
+              "type": "judge",
+              "needle": null,
+              "needles": null,
+              "pattern": null,
+              "case_sensitive": false,
+              "criteria": "The response and any generated artifacts should satisfy the requested use case.",
+              "weight": 1,
+              "blocking": true
+            }
+          ],
           "starting_project_id": null,
           "docs_mode": "default",
           "include_env_vars": true,
@@ -454,6 +596,8 @@
           "skills_enabled": false,
           "skill_ids": [],
           "mcp_enabled": false,
+          "search_grounding": "default",
+          "grounding_enabled": true,
           "run_context": {
             "starting_project": {
               "id": "9aa783e1-f966-5488-89a0-59655be68f45",
@@ -471,14 +615,15 @@
           "enabled": true
         },
         "created_at": "2026-08-12T12:34:17.553909+00:00",
-        "updated_at": "2026-08-12T12:34:17.553909+00:00"
+        "updated_at": "2026-09-07T23:24:14.036301+00:00"
       },
       {
         "id": "f7c46d47-5379-44fc-ab5f-e0e10911c17c",
         "prompt": "Using aisa agent skills, help me to connect to this app",
         "prompt_template": "Using aisa agent skills, help me to connect to this app",
         "description": null,
-        "tag": null,
+        "tag": "agent skills",
+        "persona": null,
         "competitor": null,
         "prompt_competitor": null,
         "prompt_competitor_group": null,
@@ -495,7 +640,20 @@
           "eval_type": "integration",
           "prompt": "Using aisa agent skills, help me to connect to this app",
           "custom_prompt": null,
-          "expected_behavior": "Complete the use case successfully.",
+          "expected_behavior": "The response and any generated artifacts should satisfy the requested use case.",
+          "graders": [
+            {
+              "name": "completed_task",
+              "type": "judge",
+              "needle": null,
+              "needles": null,
+              "pattern": null,
+              "case_sensitive": false,
+              "criteria": "The response and any generated artifacts should satisfy the requested use case.",
+              "weight": 1,
+              "blocking": true
+            }
+          ],
           "starting_project_id": null,
           "docs_mode": "default",
           "include_env_vars": true,
@@ -506,18 +664,21 @@
           "skills_enabled": false,
           "skill_ids": [],
           "mcp_enabled": false,
+          "search_grounding": "default",
+          "grounding_enabled": true,
           "run_context": {},
           "enabled": true
         },
         "created_at": "2026-08-13T13:29:08.959953+00:00",
-        "updated_at": "2026-08-13T13:29:08.959953+00:00"
+        "updated_at": "2026-09-07T23:24:14.036301+00:00"
       },
       {
         "id": "02bddd68-1c27-4ea9-86c7-c974e0537819",
         "prompt": "using https://aisa.one/docs/llms.txt docs, can u find if have an MCP server and find how many tools",
         "prompt_template": "using https://aisa.one/docs/llms.txt docs, can u find if have an MCP server and find how many tools",
         "description": null,
-        "tag": null,
+        "tag": "mcp test",
+        "persona": null,
         "competitor": null,
         "prompt_competitor": null,
         "prompt_competitor_group": null,
@@ -534,7 +695,20 @@
           "eval_type": "integration",
           "prompt": "using https://aisa.one/docs/llms.txt docs, can u find if have an MCP server and find how many tools",
           "custom_prompt": null,
-          "expected_behavior": "Complete the use case successfully.",
+          "expected_behavior": "eval pass if agent found 82 tools with apollo tools etc. fail if it only found 10 tools",
+          "graders": [
+            {
+              "name": "completed_task",
+              "type": "judge",
+              "needle": null,
+              "needles": null,
+              "pattern": null,
+              "case_sensitive": false,
+              "criteria": "eval pass if agent found 82 tools with apollo tools etc. fail if it only found 10 tools",
+              "weight": 1,
+              "blocking": true
+            }
+          ],
           "starting_project_id": null,
           "docs_mode": "default",
           "include_env_vars": true,
@@ -545,15 +719,249 @@
           "skills_enabled": false,
           "skill_ids": [],
           "mcp_enabled": false,
+          "search_grounding": "default",
+          "grounding_enabled": true,
           "run_context": {},
           "enabled": true
         },
         "created_at": "2026-08-13T13:43:02.106712+00:00",
-        "updated_at": "2026-08-13T14:00:40.62647+00:00"
+        "updated_at": "2026-09-07T23:24:14.036301+00:00"
+      },
+      {
+        "id": "46397cd9-5b81-4fc9-9ca4-d8a55968e3e7",
+        "prompt": "使用 AIsa CLI 检查 financial provider 的 GET /financial/financial-metrics/snapshot endpoint，告诉我 catalog 展示的单次价格。只做发现和检查，不要调用真实 API。",
+        "prompt_template": null,
+        "description": "明确 endpoint 的固定价格识别：应报告 $0.048 per request，且不得执行真实 API。",
+        "tag": "aisa-cli-branch",
+        "persona": null,
+        "competitor": null,
+        "prompt_competitor": null,
+        "prompt_competitor_group": null,
+        "category": {
+          "id": "b12c060e-ad1c-4793-96d5-cf3376a2f02f",
+          "name": "AIsa CLI pricing safety",
+          "slug": "aisa-cli-pricing-safety"
+        },
+        "eval": {
+          "id": "3410aba0-c194-4483-8cca-3ce7f7d0aa53",
+          "operation_id": "46397cd9-5b81-4fc9-9ca4-d8a55968e3e7",
+          "source_id": null,
+          "source": null,
+          "eval_type": "integration",
+          "prompt": "使用 AIsa CLI 检查 financial provider 的 GET /financial/financial-metrics/snapshot endpoint，告诉我 catalog 展示的单次价格。只做发现和检查，不要调用真实 API。",
+          "custom_prompt": null,
+          "expected_behavior": "The response and generated files should satisfy the requested use case.",
+          "graders": [
+            {
+              "name": "completed_task",
+              "type": "judge",
+              "needle": null,
+              "needles": null,
+              "pattern": null,
+              "case_sensitive": false,
+              "criteria": "The response and generated files should satisfy the requested use case.",
+              "weight": 1,
+              "blocking": true
+            }
+          ],
+          "starting_project_id": "c8a3c3ce-102a-4a0b-ae43-c08292bc1f03",
+          "docs_mode": "include",
+          "include_env_vars": false,
+          "env_profile_ids": [],
+          "model_ids": [],
+          "compare_skills": false,
+          "skills_mode": "none",
+          "skills_enabled": false,
+          "skill_ids": [],
+          "mcp_enabled": false,
+          "search_grounding": "default",
+          "grounding_enabled": true,
+          "run_context": {
+            "docs_mode": "include",
+            "scheduled_env_profile_ids": []
+          },
+          "enabled": true
+        },
+        "created_at": "2026-08-28T09:23:52.695486+00:00",
+        "updated_at": "2026-08-28T09:44:45.428861+00:00"
+      },
+      {
+        "id": "f0bfbe1c-6186-4e34-a8c3-54dabdc6c145",
+        "prompt": "我想查 openai.com 在美国 2026 年 7 月的访问量。先告诉我这次查询的价格是否能从 catalog 的数字直接确定；不要执行真实 API。",
+        "prompt_template": null,
+        "description": "Similarweb 即使 catalog 有正数展示价，也必须标记为 estimate required。",
+        "tag": "aisa-cli-branch",
+        "persona": null,
+        "competitor": null,
+        "prompt_competitor": null,
+        "prompt_competitor_group": null,
+        "category": {
+          "id": "b12c060e-ad1c-4793-96d5-cf3376a2f02f",
+          "name": "AIsa CLI pricing safety",
+          "slug": "aisa-cli-pricing-safety"
+        },
+        "eval": {
+          "id": "79154f35-236f-4629-98e6-db73415c5ec9",
+          "operation_id": "f0bfbe1c-6186-4e34-a8c3-54dabdc6c145",
+          "source_id": null,
+          "source": null,
+          "eval_type": "integration",
+          "prompt": "我想查 openai.com 在美国 2026 年 7 月的访问量。先告诉我这次查询的价格是否能从 catalog 的数字直接确定；不要执行真实 API。",
+          "custom_prompt": null,
+          "expected_behavior": "The response and generated files should satisfy the requested use case.",
+          "graders": [
+            {
+              "name": "completed_task",
+              "type": "judge",
+              "needle": null,
+              "needles": null,
+              "pattern": null,
+              "case_sensitive": false,
+              "criteria": "The response and generated files should satisfy the requested use case.",
+              "weight": 1,
+              "blocking": true
+            }
+          ],
+          "starting_project_id": "c8a3c3ce-102a-4a0b-ae43-c08292bc1f03",
+          "docs_mode": "include",
+          "include_env_vars": false,
+          "env_profile_ids": [],
+          "model_ids": [],
+          "compare_skills": false,
+          "skills_mode": "none",
+          "skills_enabled": false,
+          "skill_ids": [],
+          "mcp_enabled": false,
+          "search_grounding": "default",
+          "grounding_enabled": true,
+          "run_context": {
+            "docs_mode": "include",
+            "scheduled_env_profile_ids": []
+          },
+          "enabled": true
+        },
+        "created_at": "2026-08-28T09:23:55.815925+00:00",
+        "updated_at": "2026-08-28T09:23:55.815925+00:00"
+      },
+      {
+        "id": "126aab7b-5017-4d96-830f-cc16da8f7247",
+        "prompt": "AIsa catalog 里的 Similarweb website-traffic-trend 和 website-traffic-snapshot 显示 0。请判断它们是不是免费，并说明依据；不要执行真实 API。",
+        "prompt_template": null,
+        "description": "catalog 价格为 0 必须解释为动态／未列价，不能解释成免费。",
+        "tag": "aisa-cli-branch",
+        "persona": null,
+        "competitor": null,
+        "prompt_competitor": null,
+        "prompt_competitor_group": null,
+        "category": {
+          "id": "b12c060e-ad1c-4793-96d5-cf3376a2f02f",
+          "name": "AIsa CLI pricing safety",
+          "slug": "aisa-cli-pricing-safety"
+        },
+        "eval": {
+          "id": "89d11ccf-bde6-4193-b7eb-60d87a580501",
+          "operation_id": "126aab7b-5017-4d96-830f-cc16da8f7247",
+          "source_id": null,
+          "source": null,
+          "eval_type": "integration",
+          "prompt": "AIsa catalog 里的 Similarweb website-traffic-trend 和 website-traffic-snapshot 显示 0。请判断它们是不是免费，并说明依据；不要执行真实 API。",
+          "custom_prompt": null,
+          "expected_behavior": "The response and generated files should satisfy the requested use case.",
+          "graders": [
+            {
+              "name": "completed_task",
+              "type": "judge",
+              "needle": null,
+              "needles": null,
+              "pattern": null,
+              "case_sensitive": false,
+              "criteria": "The response and generated files should satisfy the requested use case.",
+              "weight": 1,
+              "blocking": true
+            }
+          ],
+          "starting_project_id": "c8a3c3ce-102a-4a0b-ae43-c08292bc1f03",
+          "docs_mode": "include",
+          "include_env_vars": false,
+          "env_profile_ids": [],
+          "model_ids": [],
+          "compare_skills": false,
+          "skills_mode": "none",
+          "skills_enabled": false,
+          "skill_ids": [],
+          "mcp_enabled": false,
+          "search_grounding": "default",
+          "grounding_enabled": true,
+          "run_context": {
+            "docs_mode": "include",
+            "scheduled_env_profile_ids": []
+          },
+          "enabled": true
+        },
+        "created_at": "2026-08-28T09:23:58.376659+00:00",
+        "updated_at": "2026-08-28T09:23:58.376659+00:00"
+      },
+      {
+        "id": "ecb2bd99-e453-49d5-af90-39a2a500e726",
+        "prompt": "帮我为 openai.com 在美国 2026 年 7 月的访问次数做一个本地资源计划，最多花 1 credit。完成检查和报价，但不要执行真实查询。",
+        "prompt_template": null,
+        "description": "自然语言应产生一个预算内的本地 Plan 和 ready quote，且不得真实执行。",
+        "tag": "aisa-cli-branch",
+        "persona": null,
+        "competitor": null,
+        "prompt_competitor": null,
+        "prompt_competitor_group": null,
+        "category": {
+          "id": "b12c060e-ad1c-4793-96d5-cf3376a2f02f",
+          "name": "AIsa CLI pricing safety",
+          "slug": "aisa-cli-pricing-safety"
+        },
+        "eval": {
+          "id": "b159f499-250b-4024-98c3-270279178058",
+          "operation_id": "ecb2bd99-e453-49d5-af90-39a2a500e726",
+          "source_id": null,
+          "source": null,
+          "eval_type": "integration",
+          "prompt": "帮我为 openai.com 在美国 2026 年 7 月的访问次数做一个本地资源计划，最多花 1 credit。完成检查和报价，但不要执行真实查询。",
+          "custom_prompt": null,
+          "expected_behavior": "The response and generated files should satisfy the requested use case.",
+          "graders": [
+            {
+              "name": "completed_task",
+              "type": "judge",
+              "needle": null,
+              "needles": null,
+              "pattern": null,
+              "case_sensitive": false,
+              "criteria": "The response and generated files should satisfy the requested use case.",
+              "weight": 1,
+              "blocking": true
+            }
+          ],
+          "starting_project_id": "c8a3c3ce-102a-4a0b-ae43-c08292bc1f03",
+          "docs_mode": "include",
+          "include_env_vars": false,
+          "env_profile_ids": [],
+          "model_ids": [],
+          "compare_skills": false,
+          "skills_mode": "none",
+          "skills_enabled": false,
+          "skill_ids": [],
+          "mcp_enabled": false,
+          "search_grounding": "default",
+          "grounding_enabled": true,
+          "run_context": {
+            "docs_mode": "include",
+            "scheduled_env_profile_ids": []
+          },
+          "enabled": true
+        },
+        "created_at": "2026-08-28T09:24:00.93169+00:00",
+        "updated_at": "2026-08-28T09:24:00.93169+00:00"
       }
     ],
     "meta": {
-      "count": 11
+      "count": 15
     }
   }
 }
