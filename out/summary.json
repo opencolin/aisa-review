@@ -1,0 +1,186 @@
+{
+  "generatedAt": "2026-10-30T02:16:01.403Z",
+  "domain": "aisa.one",
+  "window": {
+    "start": "2026-09-30",
+    "end": "2026-10-30",
+    "days": 30
+  },
+  "baselineDate": "2026-08-23",
+  "lastEvalRun": "2026-08-23",
+  "evalsStale": true,
+  "reportUrl": "https://github.com/opencolin/aisa-review/blob/main/out/agent-readiness-and-visibility-report.md",
+  "scores": {
+    "ora": {
+      "score": 85,
+      "max": 100,
+      "grade": "B",
+      "scannedAt": "2026-10-27T00:37:42.217+00:00"
+    },
+    "cloudflare": {
+      "pass": 10,
+      "scored": 22,
+      "level": 1,
+      "levelName": "Basic Web Presence",
+      "scannedAt": "2026-10-30T02:16:00.949Z"
+    },
+    "visibility": {
+      "score": 0.009,
+      "rank": 8,
+      "of": 13,
+      "citations": 5,
+      "runs": 666,
+      "leader": {
+        "name": "Composio",
+        "score": 0.524
+      }
+    }
+  },
+  "brokenDocUrls": [
+    "https://aisa.one/docs/api-reference/essentials/get_credits-balance",
+    "https://aisa.one/docs/api-reference/exa/post_exa-agent-runs",
+    "https://aisa.one/docs/api-reference/financial/get_filings_items",
+    "https://aisa.one/docs/api-reference/financial/get_financial_metrics_snapshot",
+    "https://aisa.one/docs/api-reference/financial/get_financial-company-facts",
+    "https://aisa.one/docs/api-reference/financial/get_prices_snapshot",
+    "https://aisa.one/docs/api-reference/firecrawl/post_firecrawl-search",
+    "https://aisa.one/docs/api-reference/image-generation/post_images-edits",
+    "https://aisa.one/docs/api-reference/images",
+    "https://aisa.one/docs/api-reference/images/post_images-edits",
+    "https://aisa.one/docs/api-reference/other/post_firecrawl_parse",
+    "https://aisa.one/docs/api-reference/rerank/post_rerank",
+    "https://aisa.one/docs/authentication",
+    "https://aisa.one/docs/direct-api-access",
+    "https://aisa.one/docs/guides/direct-api-access",
+    "https://aisa.one/docs/guides/errors",
+    "https://aisa.one/docs/guides/images",
+    "https://aisa.one/docs/quickstart",
+    "https://aisa.one/docs/start/authentication"
+  ],
+  "changes": [
+    {
+      "label": "Ora agent-readiness",
+      "then": "62/100 (C)",
+      "now": "85/100 (B)",
+      "direction": "better"
+    },
+    {
+      "label": "Cloudflare checks passing",
+      "then": "3/16",
+      "now": "10/22",
+      "direction": "better"
+    },
+    {
+      "label": "MCP servers scanners can find",
+      "then": "0 of 11",
+      "now": "found via server card (67 live)",
+      "direction": "better"
+    },
+    {
+      "label": "Doc URLs agents hit that 404",
+      "then": "19",
+      "now": "19",
+      "direction": null
+    },
+    {
+      "label": "Citations",
+      "then": "1 over 594 runs",
+      "now": "5 over 666 runs",
+      "direction": "better"
+    },
+    {
+      "label": "Visibility score",
+      "then": "0.12% (#8)",
+      "now": "0.90% (#8)",
+      "direction": "better"
+    },
+    {
+      "label": "API Performance evals",
+      "then": "run 2026-08-23",
+      "now": "none since 2026-08-23",
+      "direction": "worse"
+    }
+  ],
+  "shipped": [
+    "ARD discovery",
+    "ARD entry validity",
+    "Registry branding",
+    "Agent discovery file",
+    "Agent Skills index conformance (v0.2.0)",
+    "pricing.md exists",
+    "MCP well-known discovery",
+    "Agent mode view",
+    "HTTP Link headers (RFC 8288)",
+    "Modular llms.txt per product area",
+    "JSON-LD structured data",
+    "Pricing info accessible",
+    "Public API/docs linked from homepage",
+    "Skills.sh skill quality",
+    "Trust anchor pages",
+    "Markdown alternate link",
+    "Markdown frontmatter metadata",
+    "API catalog (RFC 9727)",
+    "Markdown agent docs",
+    "Markdown content negotiation (acceptmarkdown.com)",
+    "MCP tool descriptions",
+    "MCP parameter schemas",
+    "MCP server identity",
+    "MCP tool listing",
+    "MCP tool naming",
+    "MCP auth mechanism",
+    "MCP auth mechanism",
+    "MCP OAuth metadata",
+    "MCP PKCE S256 support",
+    "OAuth Protected Resource metadata (RFC 9728)",
+    "auth.md exists",
+    "auth.md structure",
+    "Agent auth WWW-Authenticate hint",
+    "agent_auth endpoints reachable",
+    "MCP error handling",
+    "MCP modern transport",
+    "WebMCP support",
+    "CLI tool available",
+    "MCP tool annotations",
+    "Product + docs MCP coverage",
+    "MCP resources exposed",
+    "Accessible document structure",
+    "MCP resource quality"
+  ],
+  "regressed": [
+    {
+      "name": "Sitemap freshness (lastmod)",
+      "score": 0,
+      "maxScore": 1,
+      "details": "Only 0% of 500 sampled sitemap entries carry a lastmod date - add it to the rest so agents can prioritize fresh content"
+    },
+    {
+      "name": "llms.txt links resolve",
+      "score": 1,
+      "maxScore": 2,
+      "details": "1 of 5 probed llms.txt links do not resolve: https://aisa.one/docs/mcp"
+    },
+    {
+      "name": "OpenAPI spec published",
+      "score": 0,
+      "maxScore": 7,
+      "details": "No OpenAPI/Swagger specification found"
+    },
+    {
+      "name": "API schema complexity analysis",
+      "score": 1,
+      "maxScore": 2,
+      "details": "REST: OpenAPI spec found (YAML) but no operation descriptions or summaries found"
+    }
+  ],
+  "top": [
+    "**19 documentation URLs that agents actually requested return 404 right now** (re-verified live for this report, not taken from the audit) — **the same 19 as on 2026-08-23; none have been fixed**. Agents reach a real endpoint in the OpenAPI spec, construct the matching doc URL, and hit nothing. Several have obvious redirect targets; a few are shipped endpoints with no doc page at all.",
+    "**Re-run the API Performance evals.** None have run since 2026-08-23, so the CLI defects, the REST/CLI pass rates and every agent-behaviour pattern in this report are carried over from then. Most of the work that shipped since is unmeasured against real agents — a re-run is what turns \"shipped\" into \"verified\"."
+  ],
+  "findings": [
+    "**The MCP servers are now discoverable.** A server card at `/.well-known/mcp/server-card.json` passes Cloudflare, and Ora detects the server at `mcp.aisa.one` (5/6). What remains is polish: the card itself is incomplete (missing fields: name, description, version (drift: card lists 7 tools the live server does not have: list_categories, account, search, ...)), and no verified MCP registry listing.",
+    "**Coding agents are measured for _usage_ but not for _recommendation_.** API Performance and Devtool Arena both run Claude Code against the API (grade C, 69%), but visibility tracking uses only 3 platforms (Google AI Overviews, Perplexity, ChatGPT), **none of them coding agents**, out of 20 available. We know how well Claude Code *uses* AIsa once it arrives, and nothing about whether it ever *recommends* it.",
+    "**Nothing shipped since 2026-08-23 has been tested against agents.** Lightsage's API Performance evals have not run since then, so the pass rates, CLI defects and behaviour patterns below are carried over unchanged. Re-running them is the cheapest way to confirm the fixes and re-rank what is left.",
+    "**Agent Analytics was switched off as of 2026-08-23.** Lightsage reported no tracking events received, so the inside-out view — which pages agents actually read — did not exist. The public API does not expose this, so confirm in the Lightsage dashboard whether the middleware has since been installed.",
+    "**Average position (1.33, #5) rests on 5 citations.** Too few to read as category strength — it will move sharply as citations accumulate."
+  ]
+}

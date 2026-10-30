@@ -147,6 +147,9 @@ const evalsStale = Boolean(lastRunDate && lastRunDate < w.start);
 const staleNote = evalsStale
   ? `> **Not re-measured.** Lightsage has run no API Performance evals since **${lastRunDate}**, so the figures in this section are carried over from then. Nothing that shipped since has been tested against agents yet.`
   : null;
+// Structured copy of the headline sections, written to out/summary.json for the
+// dashboard (leads.aisa.builders/aeo/readiness), which renders it natively.
+const summary = { changes: [], shipped: [], regressed: [], top: [], findings: [] };
 const brokenUrls = (urlCheck?.urls ?? []).filter((u) => u.stillBroken).sort((a, b) => String(a.url).localeCompare(String(b.url)));
 
 /* ---------- header ---------- */
@@ -171,7 +174,10 @@ P("");
     const vis = (v) => pct(v);
     P(`### What changed since ${b.capturedAt}`, "");
     P(`| Metric | ${b.capturedAt} | Now | |`, `| --- | --- | --- | --- |`);
-    const row = (label, then, now, better) => P(`| ${label} | ${then} | ${now} | ${better == null ? "" : better ? "better" : "worse"} |`);
+    const row = (label, then, now, better) => {
+      summary.changes.push({ label, then, now: now.replace(/\*\*/g, ""), direction: better == null ? null : better ? "better" : "worse" });
+      P(`| ${label} | ${then} | ${now} | ${better == null ? "" : better ? "better" : "worse"} |`);
+    };
     if (ora) row("Ora agent-readiness", `${b.ora.score}/100 (${b.ora.grade})`, `${ora.score}/100 (${ora.grade})`, ora.score === b.ora.score ? null : ora.score > b.ora.score);
     if (cf) row("Cloudflare checks passing", `${b.cloudflare.pass}/${b.cloudflare.scored}`, `${cfPass}/${cfScored.length}`, cfPass === b.cloudflare.pass ? null : cfPass > b.cloudflare.pass);
     if (mcpMan?.counts?.live) row("MCP servers scanners can find", `0 of ${b.mcp.live}`, mcpCardLive ? `found via server card (${mcpMan.counts.live} live)` : `0 of ${mcpMan.counts.live}`, mcpCardLive || null);
@@ -185,6 +191,8 @@ P("");
     // of what shipped, since Ora re-scans independently of this repo.
     const shipped = oraChecks.filter((c) => c.status === "pass" && b.ora.checks[c.id] && b.ora.checks[c.id].status !== "pass");
     const regressed = oraChecks.filter((c) => c.status !== "pass" && c.status !== "na" && b.ora.checks[c.id]?.status === "pass");
+    summary.shipped = shipped.map((c) => c.name);
+    summary.regressed = regressed.map((c) => ({ name: c.name, score: c.score, maxScore: c.maxScore, details: c.details ?? "" }));
     if (shipped.length) {
       P(`**${shipped.length} Ora checks moved to passing**, among them: ${shipped.slice(0, 14).map((c) => esc(c.name)).join(", ")}${shipped.length > 14 ? ", …" : ""}. Most of the surfacing work from the last report has landed.`, "");
     }
@@ -211,6 +219,7 @@ P("");
   if (evalsStale) {
     top.push(`**Re-run the API Performance evals.** None have run since ${lastRunDate}, so the CLI defects, the REST/CLI pass rates and every agent-behaviour pattern in this report are carried over from then. Most of the work that shipped since is unmeasured against real agents — a re-run is what turns "shipped" into "verified".`);
   }
+  summary.top = top;
   top.forEach((t, i) => P(`**${i + 1}.** ${t}`, ""));
   P("");
   if (credState === "balance") {
@@ -272,6 +281,7 @@ if (credState === "balance") {
   findings.push(`**Caveat, not a task: endpoint pass rates are currently depressed by billing.** The eval account returns \`402 — insufficient wallet balance\` on most live calls, so agents authenticate, write working code, and fail at the call. Being handled separately — do not read the endpoint scores as a verdict on the API.`);
 }
 
+summary.findings = findings;
 P(`${findings.length} findings drive everything below:`, "");
 findings.forEach((f, i) => P(`${i + 1}. ${f}`));
 P("");
@@ -981,6 +991,30 @@ for (const e of manifest.endpoints) {
   P(`| ${esc(e.label)} | \`${esc(e.path)}\` | ${e.ok ? "ok" : e.optional ? "n/a" : "**failed**"} (${e.status}) | ${e.durationMs}ms |`);
 }
 P("");
+
+writeFileSync(
+  join(outDir, "summary.json"),
+  JSON.stringify(
+    {
+      generatedAt: manifest.generatedAt,
+      domain: DOMAIN,
+      window: w,
+      baselineDate: baseline?.capturedAt ?? null,
+      lastEvalRun: lastRunDate,
+      evalsStale,
+      reportUrl: "https://github.com/opencolin/aisa-review/blob/main/out/agent-readiness-and-visibility-report.md",
+      scores: {
+        ora: ora ? { score: ora.score, max: ora.maxScore ?? 100, grade: ora.grade, scannedAt: ora.scannedAt } : null,
+        cloudflare: cf ? { pass: cfPass, scored: cfScored.length, level: cf.level, levelName: cf.levelName, scannedAt: cf.scannedAt } : null,
+        visibility: { score: snap.visibility_score ?? null, rank: snap.visibility_score_rank ?? null, of: competitors.length, citations: citationCount, runs: runCount, leader: leader ? { name: leader.company?.name, score: leader.visibility_score } : null },
+      },
+      brokenDocUrls: brokenUrls.map((u) => String(u.url)),
+      ...summary,
+    },
+    null,
+    2,
+  ),
+);
 
 const outPath = join(outDir, "agent-readiness-and-visibility-report.md");
 writeFileSync(outPath, md.join("\n"));
