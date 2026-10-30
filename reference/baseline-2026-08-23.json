@@ -1,0 +1,692 @@
+{
+  "capturedAt": "2026-08-23",
+  "note": "Frozen snapshot of the data behind the 2026-08-23 report. The report diffs live data against this to show progress.",
+  "visibility": {
+    "visibility_score": 0.0012,
+    "share_of_voice": 0.0017,
+    "average_position": 1,
+    "rank": 8,
+    "citations": 1,
+    "runs": 594
+  },
+  "ora": {
+    "score": 62,
+    "grade": "C",
+    "checks": {
+      "ard-catalog": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 1
+      },
+      "ard-entries-valid": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "ard-trust-manifest": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "agentic-search-usecase": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 6
+      },
+      "agentic-search-specific": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 6
+      },
+      "brand-search-accuracy": {
+        "status": "pass",
+        "score": 3,
+        "maxScore": 3
+      },
+      "wikipedia-presence": {
+        "status": "error",
+        "score": 0,
+        "maxScore": 4
+      },
+      "robots-ai-policy-quality": {
+        "status": "pass",
+        "score": 1,
+        "maxScore": 2
+      },
+      "mcp-registry-listed": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 1
+      },
+      "npm-sdk-package": {
+        "status": "pass",
+        "score": 1,
+        "maxScore": 1
+      },
+      "agent-rules-repo": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 1
+      },
+      "agent-plugins-repo": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 1
+      },
+      "skills-sh-listed": {
+        "status": "pass",
+        "score": 1,
+        "maxScore": 1
+      },
+      "registry-branding": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "chatgpt-app-listed": {
+        "status": "pass",
+        "score": 2,
+        "maxScore": 2
+      },
+      "sitemap": {
+        "status": "pass",
+        "score": 2,
+        "maxScore": 2
+      },
+      "content-no-js": {
+        "status": "pass",
+        "score": 2,
+        "maxScore": 3
+      },
+      "bot-detection": {
+        "status": "pass",
+        "score": 2,
+        "maxScore": 2
+      },
+      "agent-discovery-file": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 2
+      },
+      "agent-skills-index-v2": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "a2a-agent-card": {
+        "status": "pass",
+        "score": 2,
+        "maxScore": 2
+      },
+      "pricing-md": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 2
+      },
+      "nlweb-schema-feeds": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 1
+      },
+      "mcp-well-known-discovery": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 2
+      },
+      "agent-mode-view": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 2
+      },
+      "link-headers-discovery": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 1
+      },
+      "markdown-url-fallback": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 2
+      },
+      "modular-llms-txt": {
+        "status": "warning",
+        "score": 0,
+        "maxScore": 1
+      },
+      "sitemap-lastmod": {
+        "status": "pass",
+        "score": 1,
+        "maxScore": 1
+      },
+      "robots-agent-user-policy": {
+        "status": "pass",
+        "score": 2,
+        "maxScore": 2
+      },
+      "llms-txt-exists": {
+        "status": "pass",
+        "score": 1,
+        "maxScore": 1
+      },
+      "llms-txt-formatting": {
+        "status": "pass",
+        "score": 2,
+        "maxScore": 2
+      },
+      "json-ld": {
+        "status": "warning",
+        "score": 2,
+        "maxScore": 4
+      },
+      "pricing-info": {
+        "status": "warning",
+        "score": 2,
+        "maxScore": 3
+      },
+      "public-api-docs": {
+        "status": "warning",
+        "score": 2,
+        "maxScore": 3
+      },
+      "agent-instruction": {
+        "status": "pass",
+        "score": 3,
+        "maxScore": 3
+      },
+      "skills-sh-quality": {
+        "status": "warning",
+        "score": 1,
+        "maxScore": 2
+      },
+      "json-ld-entity-linking": {
+        "status": "pass",
+        "score": 2,
+        "maxScore": 2
+      },
+      "metadata-completeness": {
+        "status": "pass",
+        "score": 2,
+        "maxScore": 2
+      },
+      "org-schema-completeness": {
+        "status": "warning",
+        "score": 1,
+        "maxScore": 2
+      },
+      "schema-type-breadth": {
+        "status": "warning",
+        "score": 1,
+        "maxScore": 2
+      },
+      "trust-anchors": {
+        "status": "warning",
+        "score": 1,
+        "maxScore": 2
+      },
+      "llms-txt-links-resolve": {
+        "status": "pass",
+        "score": 2,
+        "maxScore": 2
+      },
+      "markdown-link-alternate": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 1
+      },
+      "markdown-frontmatter": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 1
+      },
+      "redirect-hygiene": {
+        "status": "pass",
+        "score": 1,
+        "maxScore": 1
+      },
+      "page-token-budget": {
+        "status": "pass",
+        "score": 1,
+        "maxScore": 1
+      },
+      "code-fence-validity": {
+        "status": "pass",
+        "score": 1,
+        "maxScore": 1
+      },
+      "docs-auth-gate": {
+        "status": "pass",
+        "score": 2,
+        "maxScore": 2
+      },
+      "openapi-spec": {
+        "status": "pass",
+        "score": 5,
+        "maxScore": 7
+      },
+      "developer-portal": {
+        "status": "pass",
+        "score": 6,
+        "maxScore": 6
+      },
+      "api-catalog-rfc9727": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 2
+      },
+      "markdown-negotiation": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 1
+      },
+      "markdown-negotiation-vary": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 1
+      },
+      "agent-ua-markdown": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 1
+      },
+      "agent-crawler-reachability": {
+        "status": "pass",
+        "score": 2,
+        "maxScore": 2
+      },
+      "mcp-tool-descriptions": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 3
+      },
+      "mcp-param-schemas": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "mcp-server-identity": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 1
+      },
+      "mcp-tool-listing": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 3
+      },
+      "mcp-tool-naming": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "public-api": {
+        "status": "pass",
+        "score": 7,
+        "maxScore": 7
+      },
+      "oauth-support": {
+        "status": "pass",
+        "score": 5,
+        "maxScore": 5
+      },
+      "scoped-permissions": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 5
+      },
+      "mcp-auth-mechanism": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "mcp-oauth-metadata": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "mcp-pkce-s256": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "onboarding-friction": {
+        "status": "warning",
+        "score": 1,
+        "maxScore": 2
+      },
+      "web-bot-auth-directory": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 2
+      },
+      "oauth-protected-resource": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 2
+      },
+      "auth-md-exists": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 2
+      },
+      "auth-md-structure": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 2
+      },
+      "auth-md-walkthrough-simulation": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "agent-auth-discovery-metadata": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 3
+      },
+      "agent-auth-www-authenticate": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 1
+      },
+      "agent-auth-endpoints-reachable": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 2
+      },
+      "mcp-server": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 6
+      },
+      "mcp-error-handling": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "mcp-transport-modern": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 1
+      },
+      "webmcp": {
+        "status": "warning",
+        "score": 1,
+        "maxScore": 2
+      },
+      "rate-limit-headers": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "idempotency-key-support": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 3
+      },
+      "json-error-responses": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 4
+      },
+      "api-error-model": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 3
+      },
+      "api-versioning-policy": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 3
+      },
+      "pagination-shape": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "async-job-pattern": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "cli-tool": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 3
+      },
+      "rest-sdk-packages": {
+        "status": "warning",
+        "score": 1,
+        "maxScore": 3
+      },
+      "nlweb-ask": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 1
+      },
+      "nlweb-streaming": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 1
+      },
+      "response-schema-coverage": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "mcp-tool-annotations": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "mcp-server-card": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 2
+      },
+      "mcp-multi-surface-coverage": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 2
+      },
+      "sandbox-environment": {
+        "status": "fail",
+        "score": 0,
+        "maxScore": 2
+      },
+      "batch-endpoints": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "mcp-resource-listing": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 3
+      },
+      "graphql-error-type-definition": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 3
+      },
+      "graphql-versioning-policy": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "graphql-pagination-pattern": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "graphql-async-job-pattern": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "graphql-schema-completeness": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 3
+      },
+      "graphql-batch-mutations": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "agent-friendly-404": {
+        "status": "pass",
+        "score": 1,
+        "maxScore": 2
+      },
+      "ax-document-structure": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 3
+      },
+      "ax-native-controls": {
+        "status": "pass",
+        "score": 3,
+        "maxScore": 3
+      },
+      "ax-accessible-names": {
+        "status": "pass",
+        "score": 2,
+        "maxScore": 2
+      },
+      "ax-form-labeling": {
+        "status": "pass",
+        "score": 2,
+        "maxScore": 2
+      },
+      "ax-tree-injection-safe": {
+        "status": "pass",
+        "score": 2,
+        "maxScore": 2
+      },
+      "mcp-app-registry": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 4
+      },
+      "a2ui-support": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 2
+      },
+      "mcp-apps-ui-quality": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 4
+      },
+      "mcp-view-domain": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 4
+      },
+      "mcp-view-csp": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 4
+      },
+      "api-schema-analysis": {
+        "status": "pass",
+        "score": 2,
+        "maxScore": 2
+      },
+      "function-calling-compat": {
+        "status": "pass",
+        "score": 2,
+        "maxScore": 2
+      },
+      "mcp-resource-quality": {
+        "status": "na",
+        "score": 0,
+        "maxScore": 3
+      },
+      "mpp-support": {
+        "status": "warning",
+        "score": 0,
+        "maxScore": 2
+      },
+      "x402-support": {
+        "status": "warning",
+        "score": 0,
+        "maxScore": 2
+      },
+      "ucp-support": {
+        "status": "warning",
+        "score": 0,
+        "maxScore": 3
+      },
+      "acp-support": {
+        "status": "warning",
+        "score": 0,
+        "maxScore": 3
+      },
+      "acp-delegate-payment": {
+        "status": "warning",
+        "score": 0,
+        "maxScore": 3
+      },
+      "ap2-support": {
+        "status": "warning",
+        "score": 0,
+        "maxScore": 3
+      }
+    }
+  },
+  "cloudflare": {
+    "level": 1,
+    "pass": 3,
+    "scored": 16,
+    "checks": {
+      "robotsTxt": "pass",
+      "sitemap": "pass",
+      "linkHeaders": "fail",
+      "dnsAid": "fail",
+      "markdownNegotiation": "fail",
+      "robotsTxtAiRules": "pass",
+      "contentSignals": "fail",
+      "webBotAuth": "neutral",
+      "apiCatalog": "fail",
+      "oauthDiscovery": "fail",
+      "oauthProtectedResource": "fail",
+      "authMd": "fail",
+      "mcpServerCard": "fail",
+      "a2aAgentCard": "fail",
+      "agentSkills": "fail",
+      "webMcp": "fail",
+      "ard": "fail",
+      "x402": "neutral",
+      "mpp": "neutral",
+      "ucp": "neutral",
+      "acp": "neutral",
+      "ap2": "neutral"
+    }
+  },
+  "mcp": {
+    "live": 11,
+    "tools": 188
+  },
+  "brokenDocUrls": [
+    "https://aisa.one/docs/api-reference/essentials/get_credits-balance",
+    "https://aisa.one/docs/api-reference/exa/post_exa-agent-runs",
+    "https://aisa.one/docs/api-reference/financial/get_filings_items",
+    "https://aisa.one/docs/api-reference/financial/get_financial-company-facts",
+    "https://aisa.one/docs/api-reference/financial/get_financial_metrics_snapshot",
+    "https://aisa.one/docs/api-reference/financial/get_prices_snapshot",
+    "https://aisa.one/docs/api-reference/firecrawl/post_firecrawl-search",
+    "https://aisa.one/docs/api-reference/image-generation/post_images-edits",
+    "https://aisa.one/docs/api-reference/images",
+    "https://aisa.one/docs/api-reference/images/post_images-edits",
+    "https://aisa.one/docs/api-reference/other/post_firecrawl_parse",
+    "https://aisa.one/docs/api-reference/rerank/post_rerank",
+    "https://aisa.one/docs/authentication",
+    "https://aisa.one/docs/direct-api-access",
+    "https://aisa.one/docs/guides/direct-api-access",
+    "https://aisa.one/docs/guides/errors",
+    "https://aisa.one/docs/guides/images",
+    "https://aisa.one/docs/quickstart",
+    "https://aisa.one/docs/start/authentication"
+  ]
+}

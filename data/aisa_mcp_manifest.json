@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 1151,
+  "durationMs": 1829,
   "path": "aisa.one/.well-known/mcp.json",
   "body": {
     "manifestVersion": "1.0",
@@ -11,12 +11,62 @@
       "hasServerInfoName": false
     },
     "counts": {
-      "total": 47,
-      "live": 11,
-      "planned": 36
+      "total": 67,
+      "live": 67,
+      "planned": 0
     },
-    "liveTools": 188,
+    "liveTools": 2428,
     "live": [
+      {
+        "name": "AIsa AgentMail",
+        "slug": "agentmail",
+        "category": "Communication",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/agentmail/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 60
+      },
+      {
+        "name": "AIsa Ahrefs (Site Explorer)",
+        "slug": "ahrefs",
+        "category": "seo",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/ahrefs/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 2
+      },
+      {
+        "name": "AIsa AISA Twitter Relay",
+        "slug": "aisa-twitter",
+        "category": "1",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/aisa-twitter/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 8
+      },
+      {
+        "name": "AIsa Akta",
+        "slug": "akta",
+        "category": "supporting",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/akta/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 6
+      },
+      {
+        "name": "AIsa Anthropic Web Search (GEO)",
+        "slug": "anthropic-websearch",
+        "category": "API",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/anthropic-websearch/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 0
+      },
       {
         "name": "AIsa Apollo",
         "slug": "apollo",
@@ -26,6 +76,76 @@
         "transport": "streamable-http",
         "auth": "bearer",
         "tools": 54
+      },
+      {
+        "name": "AIsa Brave Answer",
+        "slug": "brave-answer",
+        "category": "13",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/brave-answer/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 1
+      },
+      {
+        "name": "AIsa Brave Search",
+        "slug": "brave-search",
+        "category": "13",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/brave-search/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 15
+      },
+      {
+        "name": "AIsa BytePlus Market Insight",
+        "slug": "byteplus-market-insight",
+        "category": "API",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/byteplus-market-insight/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 0
+      },
+      {
+        "name": "AIsa BytePlus SearchInfinity (AI Web Search + Fetch)",
+        "slug": "byteplus-search",
+        "category": "search",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/byteplus-search/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 2
+      },
+      {
+        "name": "AIsa CNPJá (Brazilian company registry / CNPJ)",
+        "slug": "cnpja",
+        "category": "data",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/cnpja/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 1
+      },
+      {
+        "name": "AIsa CoinGecko",
+        "slug": "coingecko",
+        "category": "12",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/coingecko/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 23
+      },
+      {
+        "name": "AIsa Creator Discovery",
+        "slug": "creator-discovery",
+        "category": "Creators",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/creator-discovery/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 3
       },
       {
         "name": "AIsa Crypto Market Data",
@@ -38,6 +158,96 @@
         "tools": 21
       },
       {
+        "name": "AIsa DataForSEO",
+        "slug": "dataforseo",
+        "category": "13",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/dataforseo/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 489
+      },
+      {
+        "name": "AIsa Duffel Flights",
+        "slug": "duffel-flights",
+        "category": "duffel",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/duffel-flights/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 15
+      },
+      {
+        "name": "AIsa Duffel Stays",
+        "slug": "duffel-stays",
+        "category": "duffel-stays",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/duffel-stays/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 10
+      },
+      {
+        "name": "AIsa edinet",
+        "slug": "edinet",
+        "category": "general",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/edinet/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 2
+      },
+      {
+        "name": "AIsa Exa",
+        "slug": "exa",
+        "category": "general",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/exa/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 7
+      },
+      {
+        "name": "AIsa FinancialAPI",
+        "slug": "financial",
+        "category": "3",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/financial/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 23
+      },
+      {
+        "name": "AIsa Firecrawl",
+        "slug": "firecrawl",
+        "category": "web research",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/firecrawl/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 12
+      },
+      {
+        "name": "AIsa foreplay",
+        "slug": "foreplay",
+        "category": "Ad Intelligence",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/foreplay/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 4
+      },
+      {
+        "name": "AIsa fred",
+        "slug": "fred",
+        "category": "general",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/fred/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 35
+      },
+      {
         "name": "AIsa Instagram",
         "slug": "instagram",
         "category": "Social",
@@ -46,6 +256,16 @@
         "transport": "streamable-http",
         "auth": "bearer",
         "tools": 17
+      },
+      {
+        "name": "AIsa kalshi-unauthorized",
+        "slug": "kalshi-unauthorized",
+        "category": "7",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/kalshi-unauthorized/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 4
       },
       {
         "name": "AIsa MarketPulse",
@@ -58,11 +278,121 @@
         "tools": 21
       },
       {
+        "name": "AIsa OpenAI Web Search (GEO)",
+        "slug": "openai-web-search",
+        "category": "API",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/openai-web-search/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 0
+      },
+      {
+        "name": "AIsa openmeteo",
+        "slug": "openmeteo",
+        "category": "data",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/openmeteo/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 12
+      },
+      {
+        "name": "AIsa Oxylabs Web Scraper API (Realtime)",
+        "slug": "oxylabs",
+        "category": "API",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/oxylabs/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 0
+      },
+      {
+        "name": "AIsa Oxylabs Web Scraper — Push-Pull async (LLM sources)",
+        "slug": "oxylabs-llm-async",
+        "category": "API",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/oxylabs-llm-async/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 4
+      },
+      {
+        "name": "AIsa Parallel.ai",
+        "slug": "parallel-ai",
+        "category": "11",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/parallel-ai/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 21
+      },
+      {
+        "name": "AIsa Perplexity",
+        "slug": "perplexity",
+        "category": "8",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/perplexity/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 4
+      },
+      {
         "name": "AIsa Pinterest",
         "slug": "pinterest",
         "category": "Social",
         "tier": "L0",
         "endpoint": "https://mcp.aisa.one/pinterest/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 4
+      },
+      {
+        "name": "AIsa Polymarket Bridge",
+        "slug": "polymarket-bridge",
+        "category": "9",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/polymarket-bridge/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 5
+      },
+      {
+        "name": "AIsa Polymarket Clob",
+        "slug": "polymarket-clob",
+        "category": "9",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/polymarket-clob/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 44
+      },
+      {
+        "name": "AIsa Polymarket Data",
+        "slug": "polymarket-data",
+        "category": "9",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/polymarket-data/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 13
+      },
+      {
+        "name": "AIsa Polymarket Gamma",
+        "slug": "polymarket-gamma",
+        "category": "9",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/polymarket-gamma/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 27
+      },
+      {
+        "name": "AIsa Polymarket Relayer",
+        "slug": "polymarket-relayer",
+        "category": "9",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/polymarket-relayer/mcp",
         "transport": "streamable-http",
         "auth": "bearer",
         "tools": 4
@@ -78,6 +408,16 @@
         "tools": 5
       },
       {
+        "name": "AIsa Querit",
+        "slug": "querit",
+        "category": "2",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/querit/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 1
+      },
+      {
         "name": "AIsa Reddit",
         "slug": "reddit",
         "category": "Social",
@@ -86,6 +426,176 @@
         "transport": "streamable-http",
         "auth": "bearer",
         "tools": 5
+      },
+      {
+        "name": "AIsa Scholar",
+        "slug": "scholar",
+        "category": "6",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/scholar/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 4
+      },
+      {
+        "name": "AIsa Scrape Creators",
+        "slug": "scrape-creators",
+        "category": "10",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/scrape-creators/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 24
+      },
+      {
+        "name": "AIsa Search",
+        "slug": "search-api",
+        "category": "2",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/search-api/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 2
+      },
+      {
+        "name": "AIsa Semrush (Analytics)",
+        "slug": "semrush",
+        "category": "seo",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/semrush/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 19
+      },
+      {
+        "name": "AIsa AI Visibility",
+        "slug": "seo-ai-visibility",
+        "category": "SEO & Search Data",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/seo-ai-visibility/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 23
+      },
+      {
+        "name": "AIsa App Store Data",
+        "slug": "seo-apps",
+        "category": "SEO & Search Data",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/seo-apps/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 29
+      },
+      {
+        "name": "AIsa Backlinks",
+        "slug": "seo-backlinks",
+        "category": "SEO & Search Data",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/seo-backlinks/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 27
+      },
+      {
+        "name": "AIsa Business Listings & Reviews",
+        "slug": "seo-business",
+        "category": "SEO & Search Data",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/seo-business/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 22
+      },
+      {
+        "name": "AIsa Content & Sentiment",
+        "slug": "seo-content",
+        "category": "SEO & Search Data",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/seo-content/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 10
+      },
+      {
+        "name": "AIsa Technologies & Whois",
+        "slug": "seo-domains",
+        "category": "SEO & Search Data",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/seo-domains/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 12
+      },
+      {
+        "name": "AIsa Keyword Volume & Ads",
+        "slug": "seo-keywords",
+        "category": "SEO & Search Data",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/seo-keywords/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 33
+      },
+      {
+        "name": "AIsa Domain & Keyword Research",
+        "slug": "seo-labs",
+        "category": "SEO & Search Data",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/seo-labs/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 46
+      },
+      {
+        "name": "AIsa Shopping & Marketplace",
+        "slug": "seo-merchant",
+        "category": "SEO & Search Data",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/seo-merchant/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 22
+      },
+      {
+        "name": "AIsa On-Page Audit",
+        "slug": "seo-onpage",
+        "category": "SEO & Search Data",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/seo-onpage/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 19
+      },
+      {
+        "name": "AIsa SERP - Google",
+        "slug": "seo-serp",
+        "category": "SEO & Search Data",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/seo-serp/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 38
+      },
+      {
+        "name": "AIsa SERP - Other Engines",
+        "slug": "seo-serp-other-engines",
+        "category": "SEO & Search Data",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/seo-serp-other-engines/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 34
+      },
+      {
+        "name": "AIsa Similarweb",
+        "slug": "similarweb",
+        "category": "Market Intelligence",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/similarweb/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 29
       },
       {
         "name": "Stock Pulse",
@@ -98,6 +608,36 @@
         "tools": 4
       },
       {
+        "name": "AIsa Tavily",
+        "slug": "tavily",
+        "category": "2",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/tavily/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 4
+      },
+      {
+        "name": "AIsa TikHub (multi-platform social media data API)",
+        "slug": "tikhub",
+        "category": "core",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/tikhub/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 954
+      },
+      {
+        "name": "AIsa TwitterAPI",
+        "slug": "twitter",
+        "category": "1",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/twitter/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 28
+      },
+      {
         "name": "AIsa Twitter API",
         "slug": "twitter-api",
         "category": "Social",
@@ -105,7 +645,17 @@
         "endpoint": "https://mcp.aisa.one/twitter-api/mcp",
         "transport": "streamable-http",
         "auth": "bearer",
-        "tools": 29
+        "tools": 28
+      },
+      {
+        "name": "AIsa WaveInflu",
+        "slug": "waveinflu",
+        "category": "general",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/waveinflu/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 3
       },
       {
         "name": "AIsa Web Search",
@@ -115,7 +665,17 @@
         "endpoint": "https://mcp.aisa.one/web-search/mcp",
         "transport": "streamable-http",
         "auth": "bearer",
-        "tools": 27
+        "tools": 26
+      },
+      {
+        "name": "AIsa Youtube",
+        "slug": "youtube",
+        "category": "5",
+        "tier": "L0",
+        "endpoint": "https://mcp.aisa.one/youtube/mcp",
+        "transport": "streamable-http",
+        "auth": "bearer",
+        "tools": 3
       },
       {
         "name": "AIsa YouTube Search",

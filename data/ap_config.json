@@ -1,7 +1,7 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 1005,
+  "durationMs": 462,
   "path": "/v1/api-performance/config",
   "body": {
     "models": [
@@ -12,31 +12,31 @@
         "id": "74ced55a-8bfb-4703-ad3e-56e371894523",
         "source_id": "a51e8ab2-1305-435d-afcb-62237f7759c8",
         "target_type": "agent",
-        "execution_platform": "claude-code",
-        "model_id": "global.anthropic.claude-opus-5",
+        "agent_id": "claude-code",
+        "model_id": "anthropic/claude-opus-5",
         "frequency": "daily",
         "enabled": true,
-        "next_run_at": "2026-08-13T09:00:00+00:00",
+        "next_run_at": "2026-08-13T14:00:00+00:00",
         "last_run_at": null,
         "last_skipped_at": null,
         "skip_reason": null,
         "created_at": "2026-08-12T12:32:53.774435+00:00",
-        "updated_at": "2026-08-23T08:25:55.854972+00:00"
+        "updated_at": "2026-08-30T08:30:43.342179+00:00"
       },
       {
         "id": "bb1c7300-f564-4c60-b3f8-b8c14a0d261e",
         "source_id": "29be1e5d-b3fd-40fa-9fdc-a3b9705dcc5b",
         "target_type": "agent",
-        "execution_platform": "claude-code",
-        "model_id": "global.anthropic.claude-opus-5",
+        "agent_id": "claude-code",
+        "model_id": "anthropic/claude-opus-5",
         "frequency": "daily",
         "enabled": true,
-        "next_run_at": "2026-08-24T09:00:00+00:00",
+        "next_run_at": "2026-08-24T14:00:00+00:00",
         "last_run_at": null,
         "last_skipped_at": null,
         "skip_reason": null,
         "created_at": "2026-08-14T06:58:49.249982+00:00",
-        "updated_at": "2026-08-23T08:26:10.641658+00:00"
+        "updated_at": "2026-08-30T08:30:43.342179+00:00"
       }
     ],
     "operation_ids": [
@@ -118,14 +118,15 @@
     ],
     "env_profiles": [
       {
-        "id": "default",
+        "id": "6f062a1f-2569-410a-b2dc-06dc91589649",
         "name": "Default",
         "env_var_keys": [
           "AISA_API_KEY"
-        ]
+        ],
+        "updated_at": "2026-10-21T18:31:49.520034+00:00"
       }
     ],
-    "default_env_profile_id": "default",
+    "default_env_profile_id": "6f062a1f-2569-410a-b2dc-06dc91589649",
     "source_id": null,
     "api_base_url": "https://api.aisa.one",
     "can_configure_per_model_schedules": false

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T19:06:19.551Z",
+  "generatedAt": "2026-10-30T02:16:01.403Z",
   "domain": "aisa.one",
   "reportUrl": "https://github.com/opencolin/aisa-review/blob/main/out/agent-readiness-and-visibility-report.md",
   "actions": [
@@ -9,7 +9,8 @@
       "title": "Publish a conforming MCP server card at `/.well-known/mcp/server-card.json`",
       "owner": "Platform",
       "effort": "S",
-      "why": "11 live MCP servers exposing 188 tools score zero on every scanner because the existing manifest has no `serverInfo.name`. Biggest gap between what is built and what is credited."
+      "why": "Shipped — Cloudflare finds the card and Ora detects the server. Remaining: MCP server card found at https://mcp.aisa.one/.well-known/mcp/server-card.json but missing fields: name, description, version (drift: card lists 7 tools the live server does not have: list_categories, account, search, ...).",
+      "status": "Partial"
     },
     {
       "n": 2,
@@ -17,7 +18,8 @@
       "title": "Fix the Twitter community/social endpoint contract",
       "owner": "API",
       "effort": "M",
-      "why": "Six commands return `400: request does not match the endpoint contract` for every documented invocation and every parameter spelling. An agent concluded it is a server-side bug."
+      "why": "Six commands return `400: request does not match the endpoint contract` for every documented invocation and every parameter spelling. An agent concluded it is a server-side bug.",
+      "status": "Not re-tested"
     },
     {
       "n": 3,
@@ -25,7 +27,8 @@
       "title": "Return a non-zero exit code when a CLI call fails",
       "owner": "CLI",
       "effort": "S",
-      "why": "The CLI exits 0 after failed API calls, so scripts and agents cannot detect failure. Seen in 15 of 50 sampled failing runs."
+      "why": "The CLI exits 0 after failed API calls, so scripts and agents cannot detect failure. Seen in 15 of 50 sampled failing runs.",
+      "status": "Not re-tested"
     },
     {
       "n": 4,
@@ -33,143 +36,188 @@
       "title": "Redirect 9 broken doc URLs to their existing equivalents",
       "owner": "Docs",
       "effort": "S",
-      "why": "Agents requested these mid-task and got a 404. Each has a live target page — this is a redirect map, not new content."
+      "why": "Agents requested these mid-task and got a 404. Each has a live target page — this is a redirect map, not new content.",
+      "status": "Open"
     },
     {
       "n": 5,
-      "priority": "P1",
-      "title": "Write doc pages for shipped endpoints that have none (10 URLs)",
-      "owner": "Docs",
-      "effort": "M",
-      "why": "`/v1/rerank`, `/v1/images/edits` and `/apis/v1/firecrawl/search` are live and evaluated, but an agent following the OpenAPI spec to the matching doc URL finds nothing."
+      "priority": "P0",
+      "title": "Re-run the Lightsage API Performance evals",
+      "owner": "Platform",
+      "effort": "XS",
+      "why": "No evals since 2026-08-23. Every pass rate, CLI defect and behaviour pattern in this report predates the fixes that shipped since, so none of them are verified against real agents.",
+      "status": "Open"
     },
     {
       "n": 6,
       "priority": "P1",
-      "title": "Serve OIDC discovery from the apex domain",
-      "owner": "Platform",
-      "effort": "S",
-      "why": "`/.well-known/openid-configuration` exists only on `login.aisa.one`. Scanners and agents probe the apex, so it reads as absent."
+      "title": "Write doc pages for shipped endpoints that have none (10 URLs)",
+      "owner": "Docs",
+      "effort": "M",
+      "why": "`/v1/rerank`, `/v1/images/edits` and `/apis/v1/firecrawl/search` are live and evaluated, but an agent following the OpenAPI spec to the matching doc URL finds nothing.",
+      "status": "Open"
     },
     {
       "n": 7,
       "priority": "P1",
-      "title": "Add the missing `supportedInterfaces` field to the A2A agent card",
+      "title": "Serve OIDC discovery from the apex domain",
       "owner": "Platform",
-      "effort": "XS",
-      "why": "The card is already served; one required field makes it valid."
+      "effort": "S",
+      "why": "`/.well-known/openid-configuration` exists only on `login.aisa.one`. Scanners and agents probe the apex, so it reads as absent.",
+      "status": "Open"
     },
     {
       "n": 8,
       "priority": "P1",
-      "title": "Surface the CLI and MCP entry points on the site",
-      "owner": "Web",
+      "title": "Add the missing `supportedInterfaces` field to the A2A agent card",
+      "owner": "Platform",
       "effort": "XS",
-      "why": "`@aisa-one/cli` is published and maintained but nothing links to it, so three separate checks score it zero. The MCP endpoints are equally unadvertised outside the manifest — link both from the homepage and docs nav."
+      "why": "The card is already served; one required field makes it valid.",
+      "status": "Open"
     },
     {
       "n": 9,
       "priority": "P1",
-      "title": "Install `@lightsage/agent-tracker` middleware",
+      "title": "Surface the CLI and MCP entry points on the site",
       "owner": "Web",
-      "effort": "S",
-      "why": "Agent Analytics has received no events, so there is no data on which pages agents actually read."
+      "effort": "XS",
+      "why": "_Was:_ `@aisa-one/cli` is published and maintained but nothing links to it, so three separate checks score it zero. The MCP endpoints are equally unadvertised outside the manifest — link both from the homepage and docs nav.",
+      "status": "Done"
     },
     {
       "n": 10,
       "priority": "P1",
-      "title": "Provision a capped evaluation wallet",
-      "owner": "Platform",
+      "title": "Install `@lightsage/agent-tracker` middleware",
+      "owner": "Web",
       "effort": "S",
-      "why": "A dedicated, spend-capped credential for Lightsage's eval sandbox means a future retest can never again confuse a payment failure with a product failure — which is exactly what happened here twice. Keeps the eval environment isolated from production spend."
+      "why": "Agent Analytics has received no events, so there is no data on which pages agents actually read.",
+      "status": "Not re-checked"
     },
     {
       "n": 11,
       "priority": "P1",
-      "title": "Verify each fix against the scanners that flagged it",
+      "title": "Provision a capped evaluation wallet",
       "owner": "Platform",
       "effort": "S",
-      "why": "Re-run Ora, Cloudflare and the doc link check after shipping. Ora exposes `run_checks` for re-verifying individual checks, and `npm run fetch` in this repo re-requests every flagged doc URL, so the fix list shrinks on its own as items land."
+      "why": "A dedicated, spend-capped credential for Lightsage's eval sandbox means a future retest can never again confuse a payment failure with a product failure — which is exactly what happened here twice. Keeps the eval environment isolated from production spend.",
+      "status": "Not re-checked"
     },
     {
       "n": 12,
       "priority": "P1",
-      "title": "Add coding agents to Lightsage visibility tracking",
-      "owner": "Growth",
-      "effort": "XS",
-      "why": "3 of 19 platforms are tracked and none are coding agents. Claude Code, Codex, Cursor and Copilot recommendations are entirely unmeasured — a settings change, not engineering work."
+      "title": "Verify each fix against the scanners that flagged it",
+      "owner": "Platform",
+      "effort": "S",
+      "why": "Re-run Ora, Cloudflare and the doc link check after shipping. Ora exposes `run_checks` for re-verifying individual checks, and `npm run fetch` in this repo re-requests every flagged doc URL, so the fix list shrinks on its own as items land.",
+      "status": "Ongoing"
     },
     {
       "n": 13,
-      "priority": "P2",
-      "title": "Serve markdown to agents (`Accept: text/markdown` or `/index.md`)",
-      "owner": "Platform",
-      "effort": "M",
-      "why": "Agents arriving from search get HTML only. `Guessed Without Docs` is now the dominant pattern at 65% of runs — agents skip the docs entirely, which cheap machine-readable entry points directly address."
+      "priority": "P1",
+      "title": "Add coding agents to Lightsage visibility tracking",
+      "owner": "Growth",
+      "effort": "XS",
+      "why": "3 of 20 platforms are tracked and none are coding agents. Claude Code, Codex, Cursor and Copilot recommendations are entirely unmeasured — a settings change, not engineering work.",
+      "status": "Open"
     },
     {
       "n": 14,
       "priority": "P2",
-      "title": "Advertise `llms.txt`, sitemap and service-doc via RFC 8288 `Link` headers",
+      "title": "Serve markdown to agents (`Accept: text/markdown` or `/index.md`)",
       "owner": "Platform",
-      "effort": "S",
-      "why": "Lets agents find key resources without parsing HTML."
+      "effort": "M",
+      "why": "_Was:_ Agents arriving from search get HTML only. `Guessed Without Docs` is now the dominant pattern at 65% of runs — agents skip the docs entirely, which cheap machine-readable entry points directly address.",
+      "status": "Done"
     },
     {
       "n": 15,
       "priority": "P2",
-      "title": "Return a markdown body on 404s listing where to go next",
-      "owner": "Web",
+      "title": "Advertise `llms.txt`, sitemap and service-doc via RFC 8288 `Link` headers",
+      "owner": "Platform",
       "effort": "S",
-      "why": "A dead-end 404 gives an agent no way to recover, so it falls back to guessing."
+      "why": "_Was:_ Lets agents find key resources without parsing HTML.",
+      "status": "Done"
     },
     {
       "n": 16,
       "priority": "P2",
-      "title": "Make the docs worth opening",
-      "owner": "Docs",
-      "effort": "M",
-      "why": "65% of runs are `Guessed Without Docs` — agents reach for the API without consulting documentation at all. That is survivable on REST, where the spec carries them, but it is why CLI runs fail: there is no spec to guess from."
+      "title": "Return a markdown body on 404s listing where to go next",
+      "owner": "Web",
+      "effort": "S",
+      "why": "_Was:_ A dead-end 404 gives an agent no way to recover, so it falls back to guessing.",
+      "status": "Done"
     },
     {
       "n": 17,
       "priority": "P2",
-      "title": "Fix the remaining 3 medium CLI defects",
-      "owner": "CLI",
+      "title": "Make the docs worth opening",
+      "owner": "Docs",
       "effort": "M",
-      "why": "Documented options are not implemented; `aisa twitter space` returns 404; `aisa skills` subcommands fail or no-op."
+      "why": "65% of runs are `Guessed Without Docs` — agents reach for the API without consulting documentation at all. That is survivable on REST, where the spec carries them, but it is why CLI runs fail: there is no spec to guess from.",
+      "status": "Not re-tested"
     },
     {
       "n": 18,
       "priority": "P2",
-      "title": "Confirm `GET /v1/errors` is real and documented",
-      "owner": "API",
-      "effort": "S",
-      "why": "Scored 0.43 — the agent could not confirm the endpoint exists, and `/docs/api-reference/errors` was separately flagged."
+      "title": "Fix the remaining 3 medium CLI defects",
+      "owner": "CLI",
+      "effort": "M",
+      "why": "Documented options are not implemented; `aisa twitter space` returns 404; `aisa skills` subcommands fail or no-op.",
+      "status": "Not re-tested"
     },
     {
       "n": 19,
       "priority": "P2",
-      "title": "Complete the JSON-LD Organization schema",
-      "owner": "Web",
+      "title": "Confirm `GET /v1/errors` is real and documented",
+      "owner": "API",
       "effort": "S",
-      "why": "Ora scores JSON-LD 2/4 — the Organization type is present but missing `name` and `description`, and Organization completeness is 1/2 for missing `contactPoint` and `address`. Note FAQPage is already present; the gap is the Organization block, plus `Service` or `AggregateRating` for breadth."
+      "why": "Scored 0.43 — the agent could not confirm the endpoint exists, and `/docs/api-reference/errors` was separately flagged.",
+      "status": "Not re-tested"
     },
     {
       "n": 20,
       "priority": "P2",
-      "title": "Publish `/.well-known/ai-catalog.json` (ARD) and Content Signals in robots.txt",
-      "owner": "Platform",
-      "effort": "M",
-      "why": "Both are required-tier checks on Ora and Cloudflare that currently score zero."
+      "title": "Complete the JSON-LD Organization schema",
+      "owner": "Web",
+      "effort": "S",
+      "why": "_Was:_ Ora scores JSON-LD 2/4 — the Organization type is present but missing `name` and `description`, and Organization completeness is 1/2 for missing `contactPoint` and `address`. Note FAQPage is already present; the gap is the Organization block, plus `Service` or `AggregateRating` for breadth.",
+      "status": "Done"
     },
     {
       "n": 21,
       "priority": "P2",
+      "title": "Publish `/.well-known/ai-catalog.json` (ARD) and Content Signals in robots.txt",
+      "owner": "Platform",
+      "effort": "M",
+      "why": "The ARD catalog now passes on both scanners. Content Signals in robots.txt still fails on Cloudflare: No Content Signals found in robots.txt.",
+      "status": "Partial"
+    },
+    {
+      "n": 22,
+      "priority": "P2",
       "title": "Work the Lightsage GEO task list (Reddit, arXiv, comparison pages)",
       "owner": "Growth",
       "effort": "L",
-      "why": "Seven ranked tasks aimed at citation share, detailed later in this report. Slower payback than the items above."
+      "why": "Seven ranked tasks aimed at citation share, detailed later in this report. Slower payback than the items above.",
+      "status": "Ongoing"
+    },
+    {
+      "n": 23,
+      "priority": "P2",
+      "title": "Fix links in `llms.txt` that do not resolve",
+      "owner": "Docs",
+      "effort": "XS",
+      "why": "1 of 5 probed llms.txt links do not resolve: https://aisa.one/docs/mcp. A plain GET to `/docs/mcp` returns **405**, so any agent following `llms.txt` dead-ends there.",
+      "status": "Open"
+    },
+    {
+      "n": 24,
+      "priority": "P2",
+      "title": "List the MCP server in a verified MCP registry",
+      "owner": "Growth",
+      "effort": "S",
+      "why": "Ora finds no bi-directionally verified registry entry. Publish from a package whose homepage or repository names aisa.one, or link the registry entry from the docs.",
+      "status": "Open"
     }
   ]
 }

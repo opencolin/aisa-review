@@ -1,14 +1,14 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 193,
+  "durationMs": 384,
   "path": "registry.npmjs.org/@aisa-one/cli",
   "body": {
     "name": "@aisa-one/cli",
-    "latest": "0.3.0",
-    "versions": 16,
+    "latest": "0.6.9",
+    "versions": 29,
     "created": "2026-03-03T03:52:08.759Z",
-    "modified": "2026-08-19T01:10:30.404Z",
+    "modified": "2026-10-21T10:15:11.106Z",
     "description": "CLI for the AIsa unified AI infrastructure platform - one API key for 80+ LLMs and 900+ endpoints across finance, search, social, and video APIs",
     "bin": {
       "aisa": "dist/index.js"

@@ -1,8 +1,8 @@
 {
   "ok": true,
   "status": 200,
-  "durationMs": 3038,
-  "path": "/v1/visibility/overview?start_date=2026-07-24&end_date=2026-08-23",
+  "durationMs": 756,
+  "path": "/v1/visibility/overview?start_date=2026-09-30&end_date=2026-10-30",
   "body": {
     "company": {
       "name": "AIsa",
@@ -11,110 +11,145 @@
       "relationship": "primary"
     },
     "date_range": {
-      "start_date": "2026-07-24",
-      "end_date": "2026-08-23",
+      "start_date": "2026-09-30",
+      "end_date": "2026-10-30",
       "granularity": "day",
-      "latest_run_date": "2026-08-23",
+      "latest_run_date": "2026-10-29",
       "active_prompts_only": true
     },
     "has_data": true,
     "snapshot": {
-      "visibility_score": 0.0012,
+      "recommendation_score": null,
+      "recommendation_score_rank": null,
+      "visibility_score": 0.009,
       "visibility_score_rank": 8,
-      "share_of_voice": 0.0017,
+      "share_of_voice": 0.0068,
       "share_of_voice_rank": 8,
-      "average_position": 1,
-      "average_position_rank": 1,
-      "total_citations": 1
+      "average_position": 1.33,
+      "average_position_rank": 5,
+      "total_citations": 5
     },
     "timeseries": {
+      "recommendation_score": [],
       "visibility_score": [
         {
-          "date": "2026-07-26",
+          "date": "2026-09-30",
+          "value": 0.037
+        },
+        {
+          "date": "2026-10-01",
+          "value": 0.037
+        },
+        {
+          "date": "2026-10-02",
           "value": 0
         },
         {
-          "date": "2026-07-27",
+          "date": "2026-10-03",
           "value": 0
         },
         {
-          "date": "2026-07-28",
+          "date": "2026-10-04",
+          "value": 0.037
+        },
+        {
+          "date": "2026-10-05",
           "value": 0
         },
         {
-          "date": "2026-07-29",
+          "date": "2026-10-06",
           "value": 0
         },
         {
-          "date": "2026-07-30",
-          "value": 0.0259
-        },
-        {
-          "date": "2026-07-31",
+          "date": "2026-10-07",
           "value": 0
         },
         {
-          "date": "2026-08-01",
+          "date": "2026-10-08",
           "value": 0
         },
         {
-          "date": "2026-08-02",
+          "date": "2026-10-09",
           "value": 0
         },
         {
-          "date": "2026-08-03",
+          "date": "2026-10-10",
           "value": 0
         },
         {
-          "date": "2026-08-04",
+          "date": "2026-10-11",
           "value": 0
         },
         {
-          "date": "2026-08-12",
+          "date": "2026-10-12",
+          "value": 0.037
+        },
+        {
+          "date": "2026-10-13",
+          "value": 0.037
+        },
+        {
+          "date": "2026-10-14",
+          "value": 0.0556
+        },
+        {
+          "date": "2026-10-15",
           "value": 0
         },
         {
-          "date": "2026-08-13",
+          "date": "2026-10-16",
           "value": 0
         },
         {
-          "date": "2026-08-14",
+          "date": "2026-10-17",
           "value": 0
         },
         {
-          "date": "2026-08-15",
+          "date": "2026-10-18",
           "value": 0
         },
         {
-          "date": "2026-08-16",
+          "date": "2026-10-19",
           "value": 0
         },
         {
-          "date": "2026-08-17",
+          "date": "2026-10-20",
           "value": 0
         },
         {
-          "date": "2026-08-18",
+          "date": "2026-10-21",
           "value": 0
         },
         {
-          "date": "2026-08-19",
+          "date": "2026-10-22",
           "value": 0
         },
         {
-          "date": "2026-08-20",
+          "date": "2026-10-23",
           "value": 0
         },
         {
-          "date": "2026-08-21",
+          "date": "2026-10-24",
           "value": 0
         },
         {
-          "date": "2026-08-22",
+          "date": "2026-10-25",
           "value": 0
         },
         {
-          "date": "2026-08-23",
+          "date": "2026-10-26",
+          "value": 0
+        },
+        {
+          "date": "2026-10-27",
+          "value": 0
+        },
+        {
+          "date": "2026-10-28",
+          "value": 0
+        },
+        {
+          "date": "2026-10-29",
           "value": 0
         }
       ]
@@ -124,287 +159,326 @@
         {
           "platform_id": "7d5177d2-039d-441b-ac4b-aacad2e80eb8",
           "name": "Google AI Overviews",
-          "icon_url": null
-        },
-        {
-          "platform_id": "c0900b3f-a2b4-4668-8cd8-f734a80c7bb2",
-          "name": "ChatGPT",
-          "icon_url": null
+          "icon_url": null,
+          "mention_count": 6,
+          "prompt_run_count": 270
         },
         {
           "platform_id": "63ec5e76-c454-427d-b110-162c501ddfde",
           "name": "Perplexity",
-          "icon_url": null
+          "icon_url": null,
+          "mention_count": 0,
+          "prompt_run_count": 126
+        },
+        {
+          "platform_id": "c0900b3f-a2b4-4668-8cd8-f734a80c7bb2",
+          "name": "ChatGPT",
+          "icon_url": null,
+          "mention_count": 0,
+          "prompt_run_count": 270
         }
       ],
+      "recommendation_score": {},
       "visibility_score": {
         "7d5177d2-039d-441b-ac4b-aacad2e80eb8": [
           {
-            "date": "2026-07-26",
+            "date": "2026-09-30",
+            "value": 0.1111
+          },
+          {
+            "date": "2026-10-01",
+            "value": 0.1111
+          },
+          {
+            "date": "2026-10-02",
             "value": 0
           },
           {
-            "date": "2026-07-27",
+            "date": "2026-10-03",
             "value": 0
           },
           {
-            "date": "2026-07-28",
+            "date": "2026-10-04",
+            "value": 0.1111
+          },
+          {
+            "date": "2026-10-05",
             "value": 0
           },
           {
-            "date": "2026-07-29",
+            "date": "2026-10-06",
             "value": 0
           },
           {
-            "date": "2026-07-30",
-            "value": 0.0778
-          },
-          {
-            "date": "2026-07-31",
+            "date": "2026-10-07",
             "value": 0
           },
           {
-            "date": "2026-08-01",
+            "date": "2026-10-08",
             "value": 0
           },
           {
-            "date": "2026-08-02",
+            "date": "2026-10-09",
             "value": 0
           },
           {
-            "date": "2026-08-03",
+            "date": "2026-10-10",
             "value": 0
           },
           {
-            "date": "2026-08-04",
+            "date": "2026-10-11",
             "value": 0
           },
           {
-            "date": "2026-08-12",
+            "date": "2026-10-12",
+            "value": 0.1111
+          },
+          {
+            "date": "2026-10-13",
+            "value": 0.1111
+          },
+          {
+            "date": "2026-10-14",
+            "value": 0.1111
+          },
+          {
+            "date": "2026-10-15",
             "value": 0
           },
           {
-            "date": "2026-08-13",
+            "date": "2026-10-16",
             "value": 0
           },
           {
-            "date": "2026-08-14",
+            "date": "2026-10-17",
             "value": 0
           },
           {
-            "date": "2026-08-15",
+            "date": "2026-10-18",
             "value": 0
           },
           {
-            "date": "2026-08-16",
+            "date": "2026-10-19",
             "value": 0
           },
           {
-            "date": "2026-08-17",
+            "date": "2026-10-20",
             "value": 0
           },
           {
-            "date": "2026-08-18",
+            "date": "2026-10-21",
             "value": 0
           },
           {
-            "date": "2026-08-19",
+            "date": "2026-10-22",
             "value": 0
           },
           {
-            "date": "2026-08-20",
+            "date": "2026-10-23",
             "value": 0
           },
           {
-            "date": "2026-08-21",
+            "date": "2026-10-24",
             "value": 0
           },
           {
-            "date": "2026-08-22",
+            "date": "2026-10-25",
             "value": 0
           },
           {
-            "date": "2026-08-23",
-            "value": 0
-          }
-        ],
-        "c0900b3f-a2b4-4668-8cd8-f734a80c7bb2": [
-          {
-            "date": "2026-07-26",
+            "date": "2026-10-26",
             "value": 0
           },
           {
-            "date": "2026-07-27",
+            "date": "2026-10-27",
             "value": 0
           },
           {
-            "date": "2026-07-28",
+            "date": "2026-10-28",
             "value": 0
           },
           {
-            "date": "2026-07-29",
-            "value": 0
-          },
-          {
-            "date": "2026-07-30",
-            "value": 0
-          },
-          {
-            "date": "2026-07-31",
-            "value": 0
-          },
-          {
-            "date": "2026-08-01",
-            "value": 0
-          },
-          {
-            "date": "2026-08-02",
-            "value": 0
-          },
-          {
-            "date": "2026-08-03",
-            "value": 0
-          },
-          {
-            "date": "2026-08-04",
-            "value": 0
-          },
-          {
-            "date": "2026-08-12",
-            "value": 0
-          },
-          {
-            "date": "2026-08-13",
-            "value": 0
-          },
-          {
-            "date": "2026-08-14",
-            "value": 0
-          },
-          {
-            "date": "2026-08-15",
-            "value": 0
-          },
-          {
-            "date": "2026-08-16",
-            "value": 0
-          },
-          {
-            "date": "2026-08-17",
-            "value": 0
-          },
-          {
-            "date": "2026-08-18",
-            "value": 0
-          },
-          {
-            "date": "2026-08-19",
-            "value": 0
-          },
-          {
-            "date": "2026-08-20",
-            "value": 0
-          },
-          {
-            "date": "2026-08-21",
-            "value": 0
-          },
-          {
-            "date": "2026-08-22",
-            "value": 0
-          },
-          {
-            "date": "2026-08-23",
+            "date": "2026-10-29",
             "value": 0
           }
         ],
         "63ec5e76-c454-427d-b110-162c501ddfde": [
           {
-            "date": "2026-07-26",
+            "date": "2026-09-30",
             "value": 0
           },
           {
-            "date": "2026-07-27",
+            "date": "2026-10-01",
             "value": 0
           },
           {
-            "date": "2026-07-28",
+            "date": "2026-10-02",
             "value": 0
           },
           {
-            "date": "2026-07-29",
+            "date": "2026-10-03",
             "value": 0
           },
           {
-            "date": "2026-07-30",
+            "date": "2026-10-04",
             "value": 0
           },
           {
-            "date": "2026-07-31",
+            "date": "2026-10-05",
             "value": 0
           },
           {
-            "date": "2026-08-01",
+            "date": "2026-10-06",
             "value": 0
           },
           {
-            "date": "2026-08-02",
+            "date": "2026-10-07",
             "value": 0
           },
           {
-            "date": "2026-08-03",
+            "date": "2026-10-08",
             "value": 0
           },
           {
-            "date": "2026-08-04",
+            "date": "2026-10-09",
             "value": 0
           },
           {
-            "date": "2026-08-12",
+            "date": "2026-10-10",
             "value": 0
           },
           {
-            "date": "2026-08-13",
+            "date": "2026-10-11",
             "value": 0
           },
           {
-            "date": "2026-08-14",
+            "date": "2026-10-12",
             "value": 0
           },
           {
-            "date": "2026-08-15",
+            "date": "2026-10-13",
+            "value": 0
+          }
+        ],
+        "c0900b3f-a2b4-4668-8cd8-f734a80c7bb2": [
+          {
+            "date": "2026-09-30",
             "value": 0
           },
           {
-            "date": "2026-08-16",
+            "date": "2026-10-01",
             "value": 0
           },
           {
-            "date": "2026-08-17",
+            "date": "2026-10-02",
             "value": 0
           },
           {
-            "date": "2026-08-18",
+            "date": "2026-10-03",
             "value": 0
           },
           {
-            "date": "2026-08-19",
+            "date": "2026-10-04",
             "value": 0
           },
           {
-            "date": "2026-08-20",
+            "date": "2026-10-05",
             "value": 0
           },
           {
-            "date": "2026-08-21",
+            "date": "2026-10-06",
             "value": 0
           },
           {
-            "date": "2026-08-22",
+            "date": "2026-10-07",
             "value": 0
           },
           {
-            "date": "2026-08-23",
+            "date": "2026-10-08",
+            "value": 0
+          },
+          {
+            "date": "2026-10-09",
+            "value": 0
+          },
+          {
+            "date": "2026-10-10",
+            "value": 0
+          },
+          {
+            "date": "2026-10-11",
+            "value": 0
+          },
+          {
+            "date": "2026-10-12",
+            "value": 0
+          },
+          {
+            "date": "2026-10-13",
+            "value": 0
+          },
+          {
+            "date": "2026-10-14",
+            "value": 0
+          },
+          {
+            "date": "2026-10-15",
+            "value": 0
+          },
+          {
+            "date": "2026-10-16",
+            "value": 0
+          },
+          {
+            "date": "2026-10-17",
+            "value": 0
+          },
+          {
+            "date": "2026-10-18",
+            "value": 0
+          },
+          {
+            "date": "2026-10-19",
+            "value": 0
+          },
+          {
+            "date": "2026-10-20",
+            "value": 0
+          },
+          {
+            "date": "2026-10-21",
+            "value": 0
+          },
+          {
+            "date": "2026-10-22",
+            "value": 0
+          },
+          {
+            "date": "2026-10-23",
+            "value": 0
+          },
+          {
+            "date": "2026-10-24",
+            "value": 0
+          },
+          {
+            "date": "2026-10-25",
+            "value": 0
+          },
+          {
+            "date": "2026-10-26",
+            "value": 0
+          },
+          {
+            "date": "2026-10-27",
+            "value": 0
+          },
+          {
+            "date": "2026-10-28",
+            "value": 0
+          },
+          {
+            "date": "2026-10-29",
             "value": 0
           }
         ]
@@ -412,271 +486,367 @@
       "citations": {
         "7d5177d2-039d-441b-ac4b-aacad2e80eb8": [
           {
-            "date": "2026-07-26",
-            "value": 0
-          },
-          {
-            "date": "2026-07-27",
-            "value": 0
-          },
-          {
-            "date": "2026-07-28",
-            "value": 0
-          },
-          {
-            "date": "2026-07-29",
-            "value": 0
-          },
-          {
-            "date": "2026-07-30",
+            "date": "2026-09-30",
             "value": 1
           },
           {
-            "date": "2026-07-31",
+            "date": "2026-10-01",
+            "value": 1
+          },
+          {
+            "date": "2026-10-02",
             "value": 0
           },
           {
-            "date": "2026-08-01",
+            "date": "2026-10-03",
             "value": 0
           },
           {
-            "date": "2026-08-02",
+            "date": "2026-10-04",
+            "value": 1
+          },
+          {
+            "date": "2026-10-05",
             "value": 0
           },
           {
-            "date": "2026-08-03",
+            "date": "2026-10-06",
             "value": 0
           },
           {
-            "date": "2026-08-04",
+            "date": "2026-10-07",
             "value": 0
           },
           {
-            "date": "2026-08-12",
+            "date": "2026-10-08",
             "value": 0
           },
           {
-            "date": "2026-08-13",
+            "date": "2026-10-09",
             "value": 0
           },
           {
-            "date": "2026-08-14",
+            "date": "2026-10-10",
             "value": 0
           },
           {
-            "date": "2026-08-15",
+            "date": "2026-10-11",
             "value": 0
           },
           {
-            "date": "2026-08-16",
+            "date": "2026-10-12",
+            "value": 1
+          },
+          {
+            "date": "2026-10-13",
             "value": 0
           },
           {
-            "date": "2026-08-17",
+            "date": "2026-10-14",
+            "value": 1
+          },
+          {
+            "date": "2026-10-15",
             "value": 0
           },
           {
-            "date": "2026-08-18",
+            "date": "2026-10-16",
             "value": 0
           },
           {
-            "date": "2026-08-19",
+            "date": "2026-10-17",
             "value": 0
           },
           {
-            "date": "2026-08-20",
+            "date": "2026-10-18",
             "value": 0
           },
           {
-            "date": "2026-08-21",
+            "date": "2026-10-19",
             "value": 0
           },
           {
-            "date": "2026-08-22",
+            "date": "2026-10-20",
             "value": 0
           },
           {
-            "date": "2026-08-23",
-            "value": 0
-          }
-        ],
-        "c0900b3f-a2b4-4668-8cd8-f734a80c7bb2": [
-          {
-            "date": "2026-07-26",
+            "date": "2026-10-21",
             "value": 0
           },
           {
-            "date": "2026-07-27",
+            "date": "2026-10-22",
             "value": 0
           },
           {
-            "date": "2026-07-28",
+            "date": "2026-10-23",
             "value": 0
           },
           {
-            "date": "2026-07-29",
+            "date": "2026-10-24",
             "value": 0
           },
           {
-            "date": "2026-07-30",
+            "date": "2026-10-25",
             "value": 0
           },
           {
-            "date": "2026-07-31",
+            "date": "2026-10-26",
             "value": 0
           },
           {
-            "date": "2026-08-01",
+            "date": "2026-10-27",
             "value": 0
           },
           {
-            "date": "2026-08-02",
+            "date": "2026-10-28",
             "value": 0
           },
           {
-            "date": "2026-08-03",
-            "value": 0
-          },
-          {
-            "date": "2026-08-04",
-            "value": 0
-          },
-          {
-            "date": "2026-08-12",
-            "value": 0
-          },
-          {
-            "date": "2026-08-13",
-            "value": 0
-          },
-          {
-            "date": "2026-08-14",
-            "value": 0
-          },
-          {
-            "date": "2026-08-15",
-            "value": 0
-          },
-          {
-            "date": "2026-08-16",
-            "value": 0
-          },
-          {
-            "date": "2026-08-17",
-            "value": 0
-          },
-          {
-            "date": "2026-08-18",
-            "value": 0
-          },
-          {
-            "date": "2026-08-19",
-            "value": 0
-          },
-          {
-            "date": "2026-08-20",
-            "value": 0
-          },
-          {
-            "date": "2026-08-21",
-            "value": 0
-          },
-          {
-            "date": "2026-08-22",
-            "value": 0
-          },
-          {
-            "date": "2026-08-23",
+            "date": "2026-10-29",
             "value": 0
           }
         ],
         "63ec5e76-c454-427d-b110-162c501ddfde": [
           {
-            "date": "2026-07-26",
+            "date": "2026-09-30",
             "value": 0
           },
           {
-            "date": "2026-07-27",
+            "date": "2026-10-01",
             "value": 0
           },
           {
-            "date": "2026-07-28",
+            "date": "2026-10-02",
             "value": 0
           },
           {
-            "date": "2026-07-29",
+            "date": "2026-10-03",
             "value": 0
           },
           {
-            "date": "2026-07-30",
+            "date": "2026-10-04",
             "value": 0
           },
           {
-            "date": "2026-07-31",
+            "date": "2026-10-05",
             "value": 0
           },
           {
-            "date": "2026-08-01",
+            "date": "2026-10-06",
             "value": 0
           },
           {
-            "date": "2026-08-02",
+            "date": "2026-10-07",
             "value": 0
           },
           {
-            "date": "2026-08-03",
+            "date": "2026-10-08",
             "value": 0
           },
           {
-            "date": "2026-08-04",
+            "date": "2026-10-09",
             "value": 0
           },
           {
-            "date": "2026-08-12",
+            "date": "2026-10-10",
             "value": 0
           },
           {
-            "date": "2026-08-13",
+            "date": "2026-10-11",
             "value": 0
           },
           {
-            "date": "2026-08-14",
+            "date": "2026-10-12",
             "value": 0
           },
           {
-            "date": "2026-08-15",
+            "date": "2026-10-13",
             "value": 0
           },
           {
-            "date": "2026-08-16",
+            "date": "2026-10-14",
             "value": 0
           },
           {
-            "date": "2026-08-17",
+            "date": "2026-10-15",
             "value": 0
           },
           {
-            "date": "2026-08-18",
+            "date": "2026-10-16",
             "value": 0
           },
           {
-            "date": "2026-08-19",
+            "date": "2026-10-17",
             "value": 0
           },
           {
-            "date": "2026-08-20",
+            "date": "2026-10-18",
             "value": 0
           },
           {
-            "date": "2026-08-21",
+            "date": "2026-10-19",
             "value": 0
           },
           {
-            "date": "2026-08-22",
+            "date": "2026-10-20",
             "value": 0
           },
           {
-            "date": "2026-08-23",
+            "date": "2026-10-21",
+            "value": 0
+          },
+          {
+            "date": "2026-10-22",
+            "value": 0
+          },
+          {
+            "date": "2026-10-23",
+            "value": 0
+          },
+          {
+            "date": "2026-10-24",
+            "value": 0
+          },
+          {
+            "date": "2026-10-25",
+            "value": 0
+          },
+          {
+            "date": "2026-10-26",
+            "value": 0
+          },
+          {
+            "date": "2026-10-27",
+            "value": 0
+          },
+          {
+            "date": "2026-10-28",
+            "value": 0
+          },
+          {
+            "date": "2026-10-29",
+            "value": 0
+          }
+        ],
+        "c0900b3f-a2b4-4668-8cd8-f734a80c7bb2": [
+          {
+            "date": "2026-09-30",
+            "value": 0
+          },
+          {
+            "date": "2026-10-01",
+            "value": 0
+          },
+          {
+            "date": "2026-10-02",
+            "value": 0
+          },
+          {
+            "date": "2026-10-03",
+            "value": 0
+          },
+          {
+            "date": "2026-10-04",
+            "value": 0
+          },
+          {
+            "date": "2026-10-05",
+            "value": 0
+          },
+          {
+            "date": "2026-10-06",
+            "value": 0
+          },
+          {
+            "date": "2026-10-07",
+            "value": 0
+          },
+          {
+            "date": "2026-10-08",
+            "value": 0
+          },
+          {
+            "date": "2026-10-09",
+            "value": 0
+          },
+          {
+            "date": "2026-10-10",
+            "value": 0
+          },
+          {
+            "date": "2026-10-11",
+            "value": 0
+          },
+          {
+            "date": "2026-10-12",
+            "value": 0
+          },
+          {
+            "date": "2026-10-13",
+            "value": 0
+          },
+          {
+            "date": "2026-10-14",
+            "value": 0
+          },
+          {
+            "date": "2026-10-15",
+            "value": 0
+          },
+          {
+            "date": "2026-10-16",
+            "value": 0
+          },
+          {
+            "date": "2026-10-17",
+            "value": 0
+          },
+          {
+            "date": "2026-10-18",
+            "value": 0
+          },
+          {
+            "date": "2026-10-19",
+            "value": 0
+          },
+          {
+            "date": "2026-10-20",
+            "value": 0
+          },
+          {
+            "date": "2026-10-21",
+            "value": 0
+          },
+          {
+            "date": "2026-10-22",
+            "value": 0
+          },
+          {
+            "date": "2026-10-23",
+            "value": 0
+          },
+          {
+            "date": "2026-10-24",
+            "value": 0
+          },
+          {
+            "date": "2026-10-25",
+            "value": 0
+          },
+          {
+            "date": "2026-10-26",
+            "value": 0
+          },
+          {
+            "date": "2026-10-27",
+            "value": 0
+          },
+          {
+            "date": "2026-10-28",
+            "value": 0
+          },
+          {
+            "date": "2026-10-29",
             "value": 0
           }
         ]
@@ -690,12 +860,14 @@
           "logo_url": null,
           "relationship": "competitor"
         },
-        "visibility_score": 0.4167,
+        "recommendation_score": null,
+        "recommendation_score_rank": null,
+        "visibility_score": 0.524,
         "visibility_score_rank": 1,
-        "share_of_voice": 0.5774,
+        "share_of_voice": 0.3952,
         "share_of_voice_rank": 1,
-        "average_position": 1.24,
-        "average_position_rank": 2
+        "average_position": 1.21,
+        "average_position_rank": 3
       },
       {
         "company": {
@@ -704,12 +876,14 @@
           "logo_url": null,
           "relationship": "competitor"
         },
-        "visibility_score": 0.283,
+        "recommendation_score": null,
+        "recommendation_score_rank": null,
+        "visibility_score": 0.3468,
         "visibility_score_rank": 2,
-        "share_of_voice": 0.3939,
+        "share_of_voice": 0.2616,
         "share_of_voice_rank": 2,
-        "average_position": 1.81,
-        "average_position_rank": 4
+        "average_position": 2.11,
+        "average_position_rank": 8
       },
       {
         "company": {
@@ -718,12 +892,14 @@
           "logo_url": null,
           "relationship": "competitor"
         },
-        "visibility_score": 0.1361,
+        "recommendation_score": null,
+        "recommendation_score_rank": null,
+        "visibility_score": 0.2492,
         "visibility_score_rank": 3,
-        "share_of_voice": 0.1801,
+        "share_of_voice": 0.188,
         "share_of_voice_rank": 3,
-        "average_position": 2.88,
-        "average_position_rank": 8
+        "average_position": 2.25,
+        "average_position_rank": 10
       },
       {
         "company": {
@@ -732,12 +908,14 @@
           "logo_url": null,
           "relationship": "competitor"
         },
-        "visibility_score": 0.0587,
+        "recommendation_score": null,
+        "recommendation_score_rank": null,
+        "visibility_score": 0.0916,
         "visibility_score_rank": 4,
-        "share_of_voice": 0.1111,
+        "share_of_voice": 0.0691,
         "share_of_voice_rank": 4,
-        "average_position": 2.47,
-        "average_position_rank": 7
+        "average_position": 2.23,
+        "average_position_rank": 9
       },
       {
         "company": {
@@ -746,54 +924,14 @@
           "logo_url": null,
           "relationship": "competitor"
         },
-        "visibility_score": 0.0362,
+        "recommendation_score": null,
+        "recommendation_score_rank": null,
+        "visibility_score": 0.0631,
         "visibility_score_rank": 5,
-        "share_of_voice": 0.0488,
+        "share_of_voice": 0.0476,
         "share_of_voice_rank": 5,
-        "average_position": 2.17,
-        "average_position_rank": 6
-      },
-      {
-        "company": {
-          "name": "AWS Marketplace",
-          "domain": "aws.amazon.com/marketplace",
-          "logo_url": null,
-          "relationship": "competitor"
-        },
-        "visibility_score": 0.0199,
-        "visibility_score_rank": 6,
-        "share_of_voice": 0.0387,
-        "share_of_voice_rank": 6,
-        "average_position": 1.65,
-        "average_position_rank": 3
-      },
-      {
-        "company": {
-          "name": "Toolhouse",
-          "domain": "toolhouse.ai",
-          "logo_url": null,
-          "relationship": "competitor"
-        },
-        "visibility_score": 0.0013,
-        "visibility_score_rank": 7,
-        "share_of_voice": 0.0017,
-        "share_of_voice_rank": 7,
-        "average_position": 2,
-        "average_position_rank": 5
-      },
-      {
-        "company": {
-          "name": "AIsa",
-          "domain": "aisa.one",
-          "logo_url": null,
-          "relationship": "primary"
-        },
-        "visibility_score": 0.0012,
-        "visibility_score_rank": 8,
-        "share_of_voice": 0.0017,
-        "share_of_voice_rank": 8,
-        "average_position": 1,
-        "average_position_rank": 1
+        "average_position": 2.05,
+        "average_position_rank": 7
       },
       {
         "company": {
@@ -802,39 +940,61 @@
           "logo_url": null,
           "relationship": "competitor"
         },
-        "visibility_score": 0,
+        "recommendation_score": null,
+        "recommendation_score_rank": null,
+        "visibility_score": 0.0135,
+        "visibility_score_rank": 7,
+        "share_of_voice": 0.0102,
+        "share_of_voice_rank": 7,
+        "average_position": 1.67,
+        "average_position_rank": 6
+      },
+      {
+        "company": {
+          "name": "AIsa",
+          "domain": "aisa.one",
+          "logo_url": null,
+          "relationship": "primary"
+        },
+        "recommendation_score": null,
+        "recommendation_score_rank": null,
+        "visibility_score": 0.009,
+        "visibility_score_rank": 8,
+        "share_of_voice": 0.0068,
+        "share_of_voice_rank": 8,
+        "average_position": 1.33,
+        "average_position_rank": 5
+      },
+      {
+        "company": {
+          "name": "AWS Marketplace",
+          "domain": "aws.amazon.com/marketplace",
+          "logo_url": null,
+          "relationship": "competitor"
+        },
+        "recommendation_score": null,
+        "recommendation_score_rank": null,
+        "visibility_score": 0.0195,
+        "visibility_score_rank": 6,
+        "share_of_voice": 0.0147,
+        "share_of_voice_rank": 6,
+        "average_position": 1.31,
+        "average_position_rank": 4
+      },
+      {
+        "company": {
+          "name": "Toolhouse",
+          "domain": "toolhouse.ai",
+          "logo_url": null,
+          "relationship": "competitor"
+        },
+        "recommendation_score": null,
+        "recommendation_score_rank": null,
+        "visibility_score": 0.0045,
         "visibility_score_rank": 9,
-        "share_of_voice": 0,
+        "share_of_voice": 0.0034,
         "share_of_voice_rank": 9,
-        "average_position": 0,
-        "average_position_rank": 9
-      },
-      {
-        "company": {
-          "name": "Sapiom",
-          "domain": "sapiom.ai",
-          "logo_url": null,
-          "relationship": "competitor"
-        },
-        "visibility_score": 0,
-        "visibility_score_rank": 10,
-        "share_of_voice": 0,
-        "share_of_voice_rank": 10,
-        "average_position": 0,
-        "average_position_rank": 10
-      },
-      {
-        "company": {
-          "name": "AgentOps",
-          "domain": "agentops.ai",
-          "logo_url": null,
-          "relationship": "competitor"
-        },
-        "visibility_score": 0,
-        "visibility_score_rank": 11,
-        "share_of_voice": 0,
-        "share_of_voice_rank": 11,
-        "average_position": 0,
+        "average_position": 2.67,
         "average_position_rank": 11
       },
       {
@@ -844,6 +1004,40 @@
           "logo_url": null,
           "relationship": "competitor"
         },
+        "recommendation_score": null,
+        "recommendation_score_rank": null,
+        "visibility_score": 0.003,
+        "visibility_score_rank": 10,
+        "share_of_voice": 0.0023,
+        "share_of_voice_rank": 10,
+        "average_position": 1,
+        "average_position_rank": 1
+      },
+      {
+        "company": {
+          "name": "Sapiom",
+          "domain": "sapiom.ai",
+          "logo_url": null,
+          "relationship": "competitor"
+        },
+        "recommendation_score": null,
+        "recommendation_score_rank": null,
+        "visibility_score": 0.0015,
+        "visibility_score_rank": 11,
+        "share_of_voice": 0.0011,
+        "share_of_voice_rank": 11,
+        "average_position": 1,
+        "average_position_rank": 2
+      },
+      {
+        "company": {
+          "name": "AgentOps",
+          "domain": "agentops.ai",
+          "logo_url": null,
+          "relationship": "competitor"
+        },
+        "recommendation_score": null,
+        "recommendation_score_rank": null,
         "visibility_score": 0,
         "visibility_score_rank": 12,
         "share_of_voice": 0,
@@ -858,13 +1052,508 @@
           "logo_url": null,
           "relationship": "competitor"
         },
+        "recommendation_score": null,
+        "recommendation_score_rank": null,
         "visibility_score": 0,
-        "visibility_score_rank": 13,
+        "visibility_score_rank": 12,
         "share_of_voice": 0,
         "share_of_voice_rank": 13,
         "average_position": 0,
         "average_position_rank": 13
       }
-    ]
+    ],
+    "period": {
+      "name": null,
+      "start_date": "2026-09-30",
+      "end_date": "2026-10-30",
+      "days": 31,
+      "previous_start_date": "2026-08-30",
+      "previous_end_date": "2026-09-29",
+      "previous_days": 31,
+      "partial": true,
+      "timezone": "UTC"
+    },
+    "coverage": {
+      "comparable": true,
+      "notes": [],
+      "current": {
+        "start_date": "2026-09-30",
+        "end_date": "2026-10-30",
+        "runs": 666,
+        "expected_runs": 718,
+        "complete_days": 30,
+        "runs_per_day": 22.2,
+        "missing_days": [],
+        "short_days": []
+      },
+      "previous": {
+        "start_date": "2026-08-30",
+        "end_date": "2026-09-29",
+        "runs": 701,
+        "expected_runs": 691,
+        "complete_days": 31,
+        "runs_per_day": 22.61,
+        "missing_days": [],
+        "short_days": []
+      },
+      "days": [
+        {
+          "date": "2026-08-30",
+          "period": "previous",
+          "runs": 22,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-08-31",
+          "period": "previous",
+          "runs": 26,
+          "expected_runs": 25,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-01",
+          "period": "previous",
+          "runs": 19,
+          "expected_runs": 25,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-02",
+          "period": "previous",
+          "runs": 24,
+          "expected_runs": 22,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-03",
+          "period": "previous",
+          "runs": 26,
+          "expected_runs": 22,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-04",
+          "period": "previous",
+          "runs": 27,
+          "expected_runs": 22,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-05",
+          "period": "previous",
+          "runs": 21,
+          "expected_runs": 24,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-06",
+          "period": "previous",
+          "runs": 23,
+          "expected_runs": 24,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-07",
+          "period": "previous",
+          "runs": 24,
+          "expected_runs": 24,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-08",
+          "period": "previous",
+          "runs": 22,
+          "expected_runs": 24,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-09",
+          "period": "previous",
+          "runs": 25,
+          "expected_runs": 24,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-10",
+          "period": "previous",
+          "runs": 25,
+          "expected_runs": 24,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-11",
+          "period": "previous",
+          "runs": 18,
+          "expected_runs": 24,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-12",
+          "period": "previous",
+          "runs": 19,
+          "expected_runs": 23,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-13",
+          "period": "previous",
+          "runs": 21,
+          "expected_runs": 23,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-14",
+          "period": "previous",
+          "runs": 26,
+          "expected_runs": 22,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-15",
+          "period": "previous",
+          "runs": 20,
+          "expected_runs": 22,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-16",
+          "period": "previous",
+          "runs": 20,
+          "expected_runs": 21,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-17",
+          "period": "previous",
+          "runs": 20,
+          "expected_runs": 20,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-18",
+          "period": "previous",
+          "runs": 19,
+          "expected_runs": 20,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-19",
+          "period": "previous",
+          "runs": 19,
+          "expected_runs": 20,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-20",
+          "period": "previous",
+          "runs": 20,
+          "expected_runs": 20,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-21",
+          "period": "previous",
+          "runs": 23,
+          "expected_runs": 20,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-22",
+          "period": "previous",
+          "runs": 19,
+          "expected_runs": 20,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-23",
+          "period": "previous",
+          "runs": 19,
+          "expected_runs": 20,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-24",
+          "period": "previous",
+          "runs": 25,
+          "expected_runs": 19,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-25",
+          "period": "previous",
+          "runs": 23,
+          "expected_runs": 19,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-26",
+          "period": "previous",
+          "runs": 25,
+          "expected_runs": 20,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-27",
+          "period": "previous",
+          "runs": 27,
+          "expected_runs": 23,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-28",
+          "period": "previous",
+          "runs": 27,
+          "expected_runs": 23,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-29",
+          "period": "previous",
+          "runs": 27,
+          "expected_runs": 25,
+          "status": "ok"
+        },
+        {
+          "date": "2026-09-30",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 25,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-01",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-02",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-03",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-04",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-05",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-06",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-07",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-08",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-09",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-10",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-11",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-12",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-13",
+          "period": "current",
+          "runs": 27,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-14",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-15",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-16",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-17",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 27,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-18",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-19",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-20",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-21",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-22",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-23",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-24",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-25",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-26",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-27",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-28",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-29",
+          "period": "current",
+          "runs": 18,
+          "expected_runs": 18,
+          "status": "ok"
+        },
+        {
+          "date": "2026-10-30",
+          "period": "current",
+          "runs": 0,
+          "expected_runs": 18,
+          "status": "in_progress"
+        }
+      ]
+    },
+    "rates": {
+      "headline_metric": "owned_citations",
+      "current": {
+        "runs": 666,
+        "owned_citations": 5,
+        "owned_citations_per_run": 0.0075,
+        "brand_mention_runs": 6,
+        "mention_rate": 0.009
+      },
+      "previous": {
+        "runs": 701,
+        "owned_citations": 5,
+        "owned_citations_per_run": 0.0071,
+        "brand_mention_runs": 9,
+        "mention_rate": 0.0128
+      },
+      "change": {
+        "owned_citations": 0,
+        "owned_citations_per_run": 0.0563,
+        "mention_rate": -0.2969
+      }
+    }
   }
 }
